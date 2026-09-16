@@ -1,0 +1,52 @@
+name: One-time product migration
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Migrate Star Enterprise files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 https://github.com/zeroooolu/kanjian-distribution-products.git /tmp/source
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -R /tmp/source/03-enterprise/. .
+          cp -R /tmp/source/api ./api
+          grep -RIl '/03-enterprise/' . --exclude-dir=.git | xargs -r sed -i 's#/03-enterprise/#/#g'
+          cat > vercel.json <<'EOF'
+          {
+            "rewrites": [
+              { "source": "/assets/star-logo.png", "destination": "https://star.kanjian.com/app/release/images/star-logo.png" },
+              { "source": "/assets/platform-logos/:file", "destination": "https://raw.githubusercontent.com/zeroooolu/music-promotion/main/frontend/star-release/assets/platform-logos/:file" },
+              { "source": "/", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/index.html", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/product", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/product/", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/solutions", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/solutions/", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/pricing", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/pricing/", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/api", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/api/", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/developers", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/developers/", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/apply", "destination": "/prototype-v4/index.html" },
+              { "source": "/enterprise/apply/", "destination": "/prototype-v4/index.html" }
+            ]
+          }
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: migrate enterprise from parent repository"
+          git push origin HEAD:main
