@@ -216,13 +216,13 @@ a{text-decoration:none;color:inherit}
 .asset-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .asset-grid.two{grid-template-columns:1fr 1fr}
 .brand-asset-card{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:12px;min-height:84px;padding:11px;border:1px solid #e5e9ef;border-radius:10px;background:#fbfcfd}
-.brand-asset-card.wide{grid-column:1/-1}
+.brand-asset-card.wide{grid-column:1/-1;grid-template-columns:118px minmax(0,1fr) auto}
 .asset-thumb{position:relative;display:grid;place-items:center;width:64px;height:58px;overflow:hidden;border:1px solid #e1e6ed;border-radius:9px;background:#fff;color:#26364d}
 .asset-thumb img{width:100%;height:100%;object-fit:contain}
 .logo-thumb{display:flex;align-items:center;justify-content:center;gap:4px;padding:6px;font-weight:900}
 .logo-thumb span{font-size:12px}.logo-thumb small{font-size:5px;color:#8793a4}
 .icon-thumb{width:48px;height:48px;margin-left:8px;background:linear-gradient(145deg,#1d2b42,#315ff4);border-color:transparent;color:#fff;font-size:17px;font-weight:900}
-.background-thumb{width:92px;background:linear-gradient(135deg,#e4ecff,#b9c9fb 52%,#7f99ee);border-color:#d7e0f7;color:#fff;font-size:7px;font-weight:900;letter-spacing:.08em}
+.background-thumb{width:108px;height:58px;background:linear-gradient(135deg,#e4ecff,#b9c9fb 52%,#7f99ee);border-color:#d7e0f7;color:#fff;font-size:7px;font-weight:900;letter-spacing:.05em;text-align:center;line-height:1.25;padding:0 8px}
 .asset-card-copy b,.asset-card-copy span{display:block}
 .asset-card-copy b{font-size:11px}.asset-card-copy span{margin-top:5px;color:#909aa8;font-size:8px;line-height:1.4}
 .brand-asset-card>button,.secondary-mini{height:30px;padding:0 10px;border:1px solid #d9e1eb;border-radius:7px;background:#fff;color:#4d5e76;font-size:9px;font-weight:650;cursor:pointer}
@@ -320,7 +320,8 @@ a{text-decoration:none;color:inherit}
   .brand-scope-tabs{flex-direction:column}
   .brand-scope-tabs button{grid-template-columns:34px 1fr auto}
   .asset-grid,.asset-grid.two{grid-template-columns:1fr}
-  .brand-asset-card.wide{grid-column:auto}
+  .brand-asset-card.wide{grid-column:auto;grid-template-columns:92px minmax(0,1fr) auto}
+  .background-thumb{width:82px}
   .agreement-item{grid-template-columns:36px 1fr;align-items:start}
   .agreement-item .language-action,.agreement-item .secondary-mini{grid-column:auto}
   .theme-setting{align-items:flex-start;flex-direction:column}
