@@ -179,123 +179,194 @@
         </section>
       </section>
 
-      <section class="page" data-page="brand">
-        <div class="page-head">
-          <div><span class="eyebrow">企业设置</span><h1>品牌与门户</h1><p>分别配置企业管理后台和面向客户开放的发行门户品牌。</p></div>
-          <button class="primary-btn">保存配置</button>
+      <section class="page brand-page" data-page="brand">
+        <div class="page-head brand-page-head">
+          <div><span class="eyebrow">企业设置</span><h1>品牌与门户</h1><p>分别配置企业管理后台和面向合作客户开放的发行门户。</p></div>
+          <div class="brand-save-actions">
+            <span class="save-state" id="brand-save-state"><i></i>所有更改已保存</span>
+            <button class="primary-btn" id="brand-save-btn" type="button" disabled>保存配置</button>
+          </div>
         </div>
 
         <div class="brand-scope-tabs" role="tablist" aria-label="品牌配置作用域">
-          <button type="button" class="active" data-brand-tab="admin"><b>管理后台</b><span>仅影响企业内部管理后台</span></button>
-          <button type="button" data-brand-tab="portal"><b>客户门户</b><span>影响开放给合作客户的前台门户</span></button>
+          <button type="button" class="active" data-brand-tab="admin">
+            <span class="scope-tab-icon">▦</span>
+            <span class="scope-tab-copy"><b>管理后台</b><small>企业内部团队使用</small></span>
+            <em>后台生效</em>
+          </button>
+          <button type="button" data-brand-tab="portal">
+            <span class="scope-tab-icon">◎</span>
+            <span class="scope-tab-copy"><b>客户门户</b><small>合作客户对外使用</small></span>
+            <em>前台生效</em>
+          </button>
         </div>
 
         <div class="brand-scope-panel active" data-brand-panel="admin">
-          <div class="brand-layout">
-            <section class="panel form-panel">
-              <div class="panel-head"><div><h3>管理后台品牌</h3><p>用于企业内部管理后台的左上角品牌与浏览器页签展示。</p></div><span class="scope-tag">后台生效</span></div>
-
-              <div class="asset-setting">
-                <div class="asset-copy">
-                  <b>品牌 Logo</b>
-                  <p>显示在管理后台左上角，建议上传透明背景 PNG / SVG。</p>
+          <div class="brand-editor-layout">
+            <div class="settings-stack">
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">01</span><div><h3>品牌素材</h3><p>配置管理后台左上角 Logo 与浏览器图标。</p></div></div>
                 </div>
-                <div class="asset-preview admin-logo-preview"><span>NOVA</span><small>ENTERPRISE</small></div>
-                <button type="button">更换 Logo</button>
-              </div>
-
-              <div class="asset-setting">
-                <div class="asset-copy">
-                  <b>网站 ICON</b>
-                  <p>显示在浏览器标签页，建议使用 1:1 PNG / ICO。</p>
+                <div class="asset-grid two">
+                  <div class="brand-asset-card">
+                    <div class="asset-thumb logo-thumb" data-preview-admin-logo><span>NOVA</span><small>ENTERPRISE</small></div>
+                    <div class="asset-card-copy"><b>品牌 Logo</b><span>PNG / SVG，建议透明背景</span></div>
+                    <button type="button" data-upload-trigger="admin-logo">更换</button>
+                    <input hidden type="file" accept="image/png,image/jpeg,image/svg+xml" data-upload-input="admin-logo">
+                  </div>
+                  <div class="brand-asset-card">
+                    <div class="asset-thumb icon-thumb" data-preview-admin-icon>N</div>
+                    <div class="asset-card-copy"><b>网站 ICON</b><span>PNG / ICO，建议 1:1</span></div>
+                    <button type="button" data-upload-trigger="admin-icon">更换</button>
+                    <input hidden type="file" accept="image/png,image/jpeg,image/x-icon" data-upload-input="admin-icon">
+                  </div>
                 </div>
-                <div class="asset-preview favicon-preview">N</div>
-                <button type="button">更换 ICON</button>
-              </div>
+              </section>
 
-              <div class="form-grid">
-                <label><span>后台名称</span><input value="NOVA Music Enterprise"></label>
-                <label><span>浏览器标题</span><input value="NOVA Music · 企业发行管理"></label>
-              </div>
-            </section>
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">02</span><div><h3>后台信息</h3><p>用于后台导航品牌和浏览器页签。</p></div></div>
+                </div>
+                <div class="form-grid">
+                  <label><span>后台名称</span><input data-brand-input="admin-name" value="NOVA Music Enterprise"></label>
+                  <label><span>浏览器标题</span><input data-brand-input="admin-title" value="NOVA Music · 企业发行管理"></label>
+                </div>
+              </section>
+            </div>
 
-            <aside class="portal-preview">
-              <div class="preview-label">管理后台预览</div>
+            <aside class="brand-preview-pane">
+              <div class="preview-toolbar"><div><b>管理后台预览</b><span>实时预览</span></div><small>仅展示品牌效果</small></div>
               <div class="admin-preview-shell">
                 <div class="admin-preview-side">
-                  <div class="admin-preview-logo">NOVA <small>ENTERPRISE</small></div>
+                  <div class="admin-preview-brand">
+                    <div class="admin-preview-logo" data-live-admin-logo>NOVA <small>ENTERPRISE</small></div>
+                  </div>
                   <span class="active"></span><span></span><span></span><span></span><span></span>
                 </div>
                 <div class="admin-preview-main">
-                  <div class="admin-preview-top"><b>业务总览</b><i>N</i></div>
+                  <div class="admin-preview-top"><b data-live-admin-name>NOVA Music Enterprise</b><i data-live-admin-icon>N</i></div>
+                  <div class="admin-preview-title"><span>企业中心</span><strong>套餐与权益</strong></div>
                   <div class="admin-preview-cards"><span></span><span></span><span></span></div>
                   <div class="admin-preview-table"></div>
                 </div>
               </div>
+              <div class="preview-meta-row"><span>浏览器标题</span><b data-live-admin-title>NOVA Music · 企业发行管理</b></div>
             </aside>
           </div>
         </div>
 
         <div class="brand-scope-panel" data-brand-panel="portal" hidden>
-          <div class="brand-layout">
-            <section class="panel form-panel">
-              <div class="panel-head"><div><h3>客户门户品牌</h3><p>用于合作客户登录、提交发行、查询数据与收入的前台门户。</p></div><span class="scope-tag portal">前台生效</span></div>
-
-              <div class="asset-setting">
-                <div class="asset-copy"><b>品牌 Logo</b><p>显示在客户门户左上角及登录页。</p></div>
-                <div class="asset-preview admin-logo-preview"><span>NOVA</span><small>MUSIC</small></div>
-                <button type="button">更换 Logo</button>
-              </div>
-
-              <div class="asset-setting">
-                <div class="asset-copy"><b>网站 ICON</b><p>显示在客户门户浏览器标签页。</p></div>
-                <div class="asset-preview favicon-preview">N</div>
-                <button type="button">更换 ICON</button>
-              </div>
-
-              <div class="asset-setting">
-                <div class="asset-copy"><b>品牌背景 / 视频</b><p>用于客户门户登录页或品牌首屏，支持图片或视频素材。</p></div>
-                <div class="asset-preview background-preview"><span>MEDIA</span></div>
-                <button type="button">更换素材</button>
-              </div>
-
-              <div class="form-grid one portal-form">
-                <label><span>门户名称</span><input value="NOVA Music Distribution"></label>
-                <label><span>服务邮箱</span><input value="support@novamusic.com"></label>
-
-                <label class="field-with-action"><span>Slogan <button type="button" class="text-action">管理翻译</button></span><input value="让音乐作品触达更多听众"></label>
-
-                <label class="field-with-action"><span>品牌描述 <button type="button" class="text-action">管理翻译</button></span><textarea>面向音乐人、厂牌和版权客户提供专业音乐发行服务。</textarea></label>
-
-                <div class="theme-setting">
-                  <div><span>主题色</span><small>用于按钮、链接、选中状态等主要交互元素。</small></div>
-                  <div class="theme-control"><input type="color" value="#315ff4"><input value="#315FF4"></div>
+          <div class="brand-editor-layout">
+            <div class="settings-stack">
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">01</span><div><h3>品牌素材</h3><p>统一客户门户、登录页及浏览器页签的品牌视觉。</p></div></div>
                 </div>
-
-                <div class="agreement-row">
-                  <div><b>用户协议</b><span>当前未上传</span></div>
-                  <div class="agreement-actions"><button type="button" class="text-action">管理翻译</button><button type="button">上传文件</button></div>
+                <div class="asset-grid">
+                  <div class="brand-asset-card">
+                    <div class="asset-thumb logo-thumb" data-preview-portal-logo><span>NOVA</span><small>MUSIC</small></div>
+                    <div class="asset-card-copy"><b>品牌 Logo</b><span>PNG / SVG</span></div>
+                    <button type="button" data-upload-trigger="portal-logo">更换</button>
+                    <input hidden type="file" accept="image/png,image/jpeg,image/svg+xml" data-upload-input="portal-logo">
+                  </div>
+                  <div class="brand-asset-card">
+                    <div class="asset-thumb icon-thumb" data-preview-portal-icon>N</div>
+                    <div class="asset-card-copy"><b>网站 ICON</b><span>PNG / ICO</span></div>
+                    <button type="button" data-upload-trigger="portal-icon">更换</button>
+                    <input hidden type="file" accept="image/png,image/jpeg,image/x-icon" data-upload-input="portal-icon">
+                  </div>
+                  <div class="brand-asset-card wide">
+                    <div class="asset-thumb background-thumb" data-preview-portal-bg><span>品牌背景 / 视频</span></div>
+                    <div class="asset-card-copy"><b>登录页背景</b><span>图片或视频素材</span></div>
+                    <button type="button" data-upload-trigger="portal-bg">更换</button>
+                    <input hidden type="file" accept="image/*,video/*" data-upload-input="portal-bg">
+                  </div>
                 </div>
+              </section>
 
-                <div class="agreement-row">
-                  <div><b>隐私协议</b><span>当前未上传</span></div>
-                  <div class="agreement-actions"><button type="button" class="text-action">管理翻译</button><button type="button">上传文件</button></div>
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">02</span><div><h3>门户信息</h3><p>用于客户门户导航、登录页及服务联系信息。</p></div></div>
+                </div>
+                <div class="form-grid">
+                  <label><span>门户名称</span><input data-brand-input="portal-name" value="NOVA Music Distribution"></label>
+                  <label><span>服务邮箱</span><input data-brand-input="portal-email" value="support@novamusic.com"></label>
+                </div>
+              </section>
+
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">03</span><div><h3>品牌文案与主题</h3><p>客户门户首屏文案支持多语言配置，并实时同步预览。</p></div></div>
+                </div>
+                <div class="form-grid one">
+                  <label class="field-with-action">
+                    <span>Slogan <button type="button" class="language-action" data-translate-field="slogan">多语言 <em>4</em></button></span>
+                    <input data-brand-input="portal-slogan" value="让音乐作品触达更多听众">
+                  </label>
+                  <label class="field-with-action">
+                    <span>品牌描述 <button type="button" class="language-action" data-translate-field="description">多语言 <em>4</em></button></span>
+                    <textarea data-brand-input="portal-description">面向音乐人、厂牌和版权客户提供专业音乐发行服务。</textarea>
+                  </label>
+                  <div class="theme-setting">
+                    <div><span>主题色</span><small>用于按钮、链接、选中状态等主要交互元素。</small></div>
+                    <div class="theme-control">
+                      <label class="color-swatch"><input type="color" data-brand-color value="#315ff4"><i></i></label>
+                      <input data-brand-color-text value="#315FF4" maxlength="7">
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">04</span><div><h3>协议与合规</h3><p>门户注册与登录环节向客户展示的协议文件。</p></div></div>
+                </div>
+                <div class="agreement-list">
+                  <div class="agreement-item">
+                    <div class="agreement-icon">文</div>
+                    <div class="agreement-copy"><b>用户协议</b><span data-agreement-status="terms">尚未上传文件</span></div>
+                    <button type="button" class="language-action" data-translate-field="terms">多语言 <em>4</em></button>
+                    <button type="button" class="secondary-mini" data-upload-trigger="terms">上传文件</button>
+                    <input hidden type="file" accept=".pdf,.doc,.docx" data-upload-input="terms">
+                  </div>
+                  <div class="agreement-item">
+                    <div class="agreement-icon">隐</div>
+                    <div class="agreement-copy"><b>隐私协议</b><span data-agreement-status="privacy">尚未上传文件</span></div>
+                    <button type="button" class="language-action" data-translate-field="privacy">多语言 <em>4</em></button>
+                    <button type="button" class="secondary-mini" data-upload-trigger="privacy">上传文件</button>
+                    <input hidden type="file" accept=".pdf,.doc,.docx" data-upload-input="privacy">
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <aside class="brand-preview-pane portal-pane">
+              <div class="preview-toolbar">
+                <div><b>客户门户预览</b><span>实时预览</span></div>
+                <div class="device-switch"><button type="button" class="active" data-preview-device="desktop">桌面</button><button type="button" data-preview-device="mobile">手机</button></div>
+              </div>
+              <div class="portal-device-frame" data-portal-frame>
+                <div class="browser">
+                  <div class="browser-bar"><i></i><i></i><i></i><span>客户发行门户</span></div>
+                  <div class="portal-head">
+                    <b data-live-portal-logo>NOVA MUSIC</b>
+                    <nav>发行 · 艺人 · 数据 · 收入</nav>
+                    <button data-theme-bg>新建发行</button>
+                  </div>
+                  <div class="portal-body brand-theme-preview" data-live-portal-bg>
+                    <small>MUSIC DISTRIBUTION</small>
+                    <h2 data-live-portal-slogan>让音乐作品<br>触达更多听众</h2>
+                    <p data-live-portal-description>面向音乐人、厂牌和版权客户提供专业音乐发行服务。</p>
+                    <button data-theme-bg>开始发行</button>
+                  </div>
+                  <div class="portal-preview-footer">
+                    <span data-live-portal-name>NOVA Music Distribution</span>
+                    <span data-live-portal-email>support@novamusic.com</span>
+                  </div>
                 </div>
               </div>
-            </section>
-
-            <aside class="portal-preview">
-              <div class="preview-label">客户门户预览</div>
-              <div class="browser">
-                <div class="browser-bar"><i></i><i></i><i></i><span>客户发行门户</span></div>
-                <div class="portal-head"><b>NOVA MUSIC</b><nav>发行 · 艺人 · 数据 · 收入</nav><button>新建发行</button></div>
-                <div class="portal-body brand-theme-preview"><small>MUSIC DISTRIBUTION</small><h2>让音乐作品<br>触达更多听众</h2><p>面向音乐人、厂牌和版权客户提供专业音乐发行服务。</p><button>开始发行</button></div>
-              </div>
-
-              <div class="preview-note">
-                <b>配置说明</b>
-                <p>管理后台品牌和客户门户品牌相互独立。客户门户配置只影响对外开放页面，不改变企业内部管理后台。</p>
-              </div>
+              <div class="preview-note"><b>作用范围</b><p>客户门户配置仅影响合作客户看到的前台，不改变企业内部管理后台。</p></div>
             </aside>
           </div>
         </div>
