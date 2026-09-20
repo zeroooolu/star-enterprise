@@ -332,3 +332,9 @@ a{text-decoration:none;color:inherit}
 }
 
 @media(max-width:860px){.metric-grid.usage{grid-template-columns:1fr}}
+
+.enterprise-subnav{display:flex;align-items:center;gap:22px;margin:-2px 0 20px;border-bottom:1px solid #e5e9ef}
+.enterprise-subnav a{position:relative;padding:0 1px 11px;color:#7d8999;font-size:11px;font-weight:650}
+.enterprise-subnav a:hover{color:#40526c}
+.enterprise-subnav a.active{color:#3157d2}
+.enterprise-subnav a.active:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:999px;background:#315ff4}
