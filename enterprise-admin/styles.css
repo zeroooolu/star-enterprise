@@ -338,3 +338,13 @@ a{text-decoration:none;color:inherit}
 .enterprise-subnav a:hover{color:#40526c}
 .enterprise-subnav a.active{color:#3157d2}
 .enterprise-subnav a.active:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:999px;background:#315ff4}
+
+.nav-parent .nav-arrow{transition:transform .18s ease}
+.nav-parent.open .nav-arrow{transform:rotate(90deg)}
+.nav-submenu[hidden]{display:none}
+.nav-submenu{display:grid;gap:2px;margin:2px 0 4px;padding-left:39px}
+.nav-subitem{display:flex;align-items:center;height:34px;padding:0 9px;border-radius:7px;color:#6d7b90;font-size:11px}
+.nav-subitem:hover{background:#f5f7fb;color:#334965}
+@media(max-width:860px){
+  .nav-submenu{display:none!important}
+}
