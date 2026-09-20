@@ -330,3 +330,5 @@ a{text-decoration:none;color:inherit}
 @media(max-width:1180px){
   .metric-grid.usage{grid-template-columns:repeat(2,1fr)}
 }
+
+@media(max-width:860px){.metric-grid.usage{grid-template-columns:1fr}}
