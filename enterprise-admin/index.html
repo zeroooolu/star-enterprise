@@ -49,7 +49,6 @@
         <div class="group-title">企业设置</div>
         <a class="nav-item" data-route href="/enterprise/admin/company"><span class="icon">◎</span><span>企业信息</span></a>
         <a class="nav-item" data-route href="/enterprise/admin/brand"><span class="icon">✦</span><span>品牌与门户</span></a>
-        <a class="nav-item" data-route href="/enterprise/admin/distribution"><span class="icon">⚙</span><span>发行配置</span></a>
       </div>
     </nav>
   </aside>
@@ -346,38 +345,7 @@
         </div>
       </section>
 
-      <section class="page" data-page="distribution">
-        <div class="page-head">
-          <div><span class="eyebrow">企业设置</span><h1>发行配置</h1><p>设置企业客户门户中的默认发行规则和可操作范围。</p></div>
-          <button class="primary-btn">保存配置</button>
-        </div>
-
-        <section class="panel form-panel">
-          <div class="panel-head"><div><h3>默认发行设置</h3><p>客户新建发行时自动带入的基础配置。</p></div></div>
-          <div class="form-grid">
-            <label><span>默认发行地区</span><select><option>全球</option><option>中国大陆</option></select></label>
-            <label><span>默认语言</span><select><option>根据内容选择</option><option>中文</option><option>英文</option></select></label>
-            <label><span>默认发行类型</span><select><option>数字发行</option></select></label>
-            <label><span>默认发行提前期</span><select><option>至少提前 7 天</option><option>至少提前 14 天</option></select></label>
-          </div>
-        </section>
-
-        <section class="panel">
-          <div class="panel-head"><div><h3>客户门户权限</h3><p>控制合作客户在门户中可执行的发行操作。</p></div></div>
-          <div class="toggle-list">
-            <div><span><b>允许客户自行选择发行渠道</b><small>关闭后由企业运营团队统一配置目标平台。</small></span><button class="switch on" aria-label="开启"></button></div>
-            <div><span><b>允许客户修改发行日期</b><small>提交审核前可调整计划发行日期。</small></span><button class="switch on"></button></div>
-            <div><span><b>发行前需要企业内部审核</b><small>客户提交后先进入企业审核，再进入正式发行流程。</small></span><button class="switch on"></button></div>
-            <div><span><b>允许客户发起下架申请</b><small>客户可发起申请，最终由企业运营团队确认。</small></span><button class="switch"></button></div>
-          </div>
-        </section>
-
-        <section class="panel">
-          <div class="panel-head"><div><h3>默认发行渠道</h3><p>设置客户创建发行时默认勾选的平台。</p></div><button class="secondary-btn small">编辑渠道</button></div>
-          <div class="channel-tags"><span>QQ 音乐</span><span>网易云音乐</span><span>酷狗音乐</span><span>Apple Music</span><span>Spotify</span><span>Amazon Music</span><span>TikTok</span><span>+ 12 个平台</span></div>
-        </section>
-      </section>
-    </main>
+      </main>
   </div>
 </div>
 
@@ -425,9 +393,7 @@ const routes={
   '/enterprise/admin/company':'company',
   '/enterprise/admin/company/':'company',
   '/enterprise/admin/brand':'brand',
-  '/enterprise/admin/brand/':'brand',
-  '/enterprise/admin/distribution':'distribution',
-  '/enterprise/admin/distribution/':'distribution'
+  '/enterprise/admin/brand/':'brand'
 };
 function render(path){
   const page=routes[path]||'overview';
@@ -449,8 +415,6 @@ document.addEventListener('click',e=>{
   }
 });
 addEventListener('popstate',()=>render(location.pathname));
-document.querySelectorAll('.switch').forEach(btn=>btn.addEventListener('click',()=>btn.classList.toggle('on')));
-
 document.querySelectorAll('[data-brand-tab]').forEach(btn=>btn.addEventListener('click',()=>{
   const key=btn.dataset.brandTab;
   document.querySelectorAll('[data-brand-tab]').forEach(x=>x.classList.toggle('active',x===btn));
