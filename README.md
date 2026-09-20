@@ -173,7 +173,7 @@ Developer Product 应逐步具备：
 
 企业版 Plan 不通过拆掉核心发行流程制造版本差异。三个版本均应具备完整的曲库、客户门户、发行、状态、数据与收入主链路，差异集中在五个维度：
 
-1. **业务容量**：曲库规模与合作客户规模；
+1. **业务容量**：曲库规模、视频使用量与合作客户规模；
 2. **企业运营能力**：独立域名、多客户经营与合作方分账；
 3. **批量与系统集成**：Excel、SFTP、XML、DDEX 与发行 API；
 4. **实施复杂度**：历史迁移、深度联调与项目制实施；
@@ -183,11 +183,11 @@ Developer Product 应逐步具备：
 
 ### 6.2 自有品牌发行平台价格
 
-| 版本 | 年费 | 曲库规模 | 合作客户 | 主要适用阶段 |
-| --- | ---: | ---: | ---: | --- |
-| 基础版 | ¥12,800 / 年 | 1,000 首 | 50 个 | 小规模发行运营 |
-| 专业版 | ¥59,800 / 年 | 5 万首 | 1,000 个 | 规模化多客户发行 |
-| 企业版 | ¥129,800 / 年起 | 30 万首起 | 按项目配置 | 大型发行或平台级业务 |
+| 版本 | 年费 | 曲库规模 | 视频使用量 | 合作客户 | 主要适用阶段 |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 基础版 | ¥12,800 / 年 | 1,000 首 | 100 个视频 | 50 个 | 小规模发行运营 |
+| 专业版 | ¥59,800 / 年 | 5 万首 | 1,000 个视频 | 1,000 个 | 规模化多客户发行 |
+| 企业版 | ¥129,800 / 年起 | 30 万首起 | 10,000 个视频 | 按项目配置 | 大型发行或平台级业务 |
 
 三个版本统一收取：
 
@@ -201,6 +201,7 @@ Developer Product 应逐步具备：
 | --- | --- | --- | --- |
 | **业务容量** |  |  |  |
 | 曲库规模 | 1,000 首 | 5 万首 | 30 万首起 |
+| 视频使用量 | 100 个视频 | 1,000 个视频 | 10,000 个视频 |
 | 合作客户 | 50 个 | 1,000 个 | 按项目配置 |
 | **品牌、曲库与客户运营** |  |  |  |
 | 企业品牌与 Logo | ✓ | ✓ | ✓ |
@@ -240,6 +241,7 @@ Developer Product 应逐步具备：
 
 ```text
 catalog_limit
+video_limit
 client_limit
 custom_domain
 distribution_core
@@ -264,6 +266,7 @@ sla_level
 ```text
 Basic
 - catalog_limit: 1000
+- video_limit: 100
 - client_limit: 50
 - custom_domain: false
 - partner_split: false
@@ -279,6 +282,7 @@ Basic
 
 Professional
 - catalog_limit: 50000
+- video_limit: 1000
 - client_limit: 1000
 - custom_domain: true
 - partner_split: true
@@ -294,6 +298,7 @@ Professional
 
 Enterprise
 - catalog_limit: 300000+
+- video_limit: 10000
 - client_limit: project_based
 - custom_domain: true
 - partner_split: true
@@ -383,6 +388,7 @@ Enterprise Plan
 │   ├── Branded Platform
 │   └── Distribution API
 ├── Catalog Quota
+├── Video Quota
 ├── Client Quota
 ├── DSP Scope
 ├── API Access
