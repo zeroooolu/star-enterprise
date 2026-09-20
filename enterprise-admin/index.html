@@ -376,6 +376,20 @@
   </div>
 </div>
 
+<div class="translation-backdrop" id="translation-drawer" hidden>
+  <aside class="translation-drawer" role="dialog" aria-modal="true" aria-labelledby="translation-title">
+    <div class="translation-head">
+      <div><span class="eyebrow">MULTILINGUAL</span><h2 id="translation-title">多语言配置</h2><p id="translation-subtitle">分别维护不同语言下展示给客户的内容。</p></div>
+      <button type="button" class="translation-close" data-close-translation aria-label="关闭">×</button>
+    </div>
+    <div class="translation-list" id="translation-list"></div>
+    <div class="translation-actions">
+      <button type="button" class="secondary-btn" data-close-translation>取消</button>
+      <button type="button" class="primary-btn" id="translation-save">保存多语言</button>
+    </div>
+  </aside>
+</div>
+
 <div class="modal-backdrop" id="usage-modal" hidden>
   <section class="usage-modal" role="dialog" aria-modal="true" aria-labelledby="usage-modal-title">
     <div class="modal-head">
@@ -423,7 +437,7 @@ const routes={
   '/enterprise/admin/brand/':'brand'
 };
 function render(path){
-  const page=routes[path]||'overview';
+  const page=routes[path]||'plan';
   document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
   document.querySelectorAll('[data-route]').forEach(a=>{
     const u=new URL(a.href,location.origin);
@@ -442,6 +456,29 @@ document.addEventListener('click',e=>{
   }
 });
 addEventListener('popstate',()=>render(location.pathname));
+const brandPage=document.querySelector('[data-page="brand"]');
+const brandSaveBtn=document.querySelector('#brand-save-btn');
+const brandSaveState=document.querySelector('#brand-save-state');
+let brandDirty=false;
+
+function markBrandDirty(){
+  brandDirty=true;
+  if(brandSaveBtn)brandSaveBtn.disabled=false;
+  if(brandSaveState){
+    brandSaveState.classList.add('dirty');
+    brandSaveState.innerHTML='<i></i>有未保存修改';
+  }
+}
+function markBrandSaved(){
+  brandDirty=false;
+  if(brandSaveBtn)brandSaveBtn.disabled=true;
+  if(brandSaveState){
+    brandSaveState.classList.remove('dirty');
+    brandSaveState.innerHTML='<i></i>所有更改已保存';
+  }
+}
+brandSaveBtn?.addEventListener('click',markBrandSaved);
+
 document.querySelectorAll('[data-brand-tab]').forEach(btn=>btn.addEventListener('click',()=>{
   const key=btn.dataset.brandTab;
   document.querySelectorAll('[data-brand-tab]').forEach(x=>x.classList.toggle('active',x===btn));
@@ -451,6 +488,154 @@ document.querySelectorAll('[data-brand-tab]').forEach(btn=>btn.addEventListener(
     panel.hidden=!active;
   });
 }));
+
+const liveMap={
+  'admin-name':'[data-live-admin-name]',
+  'admin-title':'[data-live-admin-title]',
+  'portal-name':'[data-live-portal-name]',
+  'portal-email':'[data-live-portal-email]',
+  'portal-slogan':'[data-live-portal-slogan]',
+  'portal-description':'[data-live-portal-description]'
+};
+document.querySelectorAll('[data-brand-input]').forEach(input=>input.addEventListener('input',()=>{
+  const target=document.querySelector(liveMap[input.dataset.brandInput]);
+  if(target)target.textContent=input.value||'—';
+  markBrandDirty();
+}));
+
+const colorPicker=document.querySelector('[data-brand-color]');
+const colorText=document.querySelector('[data-brand-color-text]');
+function applyBrandColor(value){
+  if(!/^#[0-9a-fA-F]{6}$/.test(value))return;
+  const normalized=value.toUpperCase();
+  brandPage?.style.setProperty('--brand-blue',normalized);
+  if(colorPicker&&colorPicker.value.toUpperCase()!==normalized)colorPicker.value=normalized;
+  if(colorText&&colorText.value.toUpperCase()!==normalized)colorText.value=normalized;
+  const swatch=document.querySelector('.color-swatch i');
+  if(swatch)swatch.style.background=normalized;
+}
+colorPicker?.addEventListener('input',()=>{applyBrandColor(colorPicker.value);markBrandDirty()});
+colorText?.addEventListener('input',()=>{applyBrandColor(colorText.value.trim());markBrandDirty()});
+
+document.querySelectorAll('[data-preview-device]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('[data-preview-device]').forEach(x=>x.classList.toggle('active',x===btn));
+  document.querySelector('[data-portal-frame]')?.classList.toggle('mobile',btn.dataset.previewDevice==='mobile');
+}));
+
+document.querySelectorAll('[data-upload-trigger]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelector('[data-upload-input="'+btn.dataset.uploadTrigger+'"]')?.click();
+}));
+document.querySelectorAll('[data-upload-input]').forEach(input=>input.addEventListener('change',()=>{
+  const file=input.files?.[0];
+  if(!file)return;
+  const key=input.dataset.uploadInput;
+  if(key==='terms'||key==='privacy'){
+    const status=document.querySelector('[data-agreement-status="'+key+'"]');
+    if(status)status.textContent=file.name;
+    markBrandDirty();
+    return;
+  }
+  const url=URL.createObjectURL(file);
+  const setImage=(selector,fit='contain')=>{
+    const target=document.querySelector(selector);
+    if(target)target.innerHTML='<img src="'+url+'" alt="" style="width:100%;height:100%;object-fit:'+fit+'">';
+  };
+  if(key==='admin-logo'){
+    setImage('[data-preview-admin-logo]');
+    setImage('[data-live-admin-logo]');
+  }else if(key==='admin-icon'){
+    setImage('[data-preview-admin-icon]','cover');
+    setImage('[data-live-admin-icon]','cover');
+  }else if(key==='portal-logo'){
+    setImage('[data-preview-portal-logo]');
+    setImage('[data-live-portal-logo]');
+  }else if(key==='portal-icon'){
+    setImage('[data-preview-portal-icon]','cover');
+  }else if(key==='portal-bg'){
+    const thumb=document.querySelector('[data-preview-portal-bg]');
+    const hero=document.querySelector('[data-live-portal-bg]');
+    if(file.type.startsWith('image/')){
+      if(thumb)thumb.style.backgroundImage='url("'+url+'")';
+      if(hero)hero.style.backgroundImage='url("'+url+'")';
+    }else{
+      if(thumb)thumb.innerHTML='<span>VIDEO · '+file.name+'</span>';
+    }
+  }
+  markBrandDirty();
+}));
+
+const translationDrawer=document.querySelector('#translation-drawer');
+const translationList=document.querySelector('#translation-list');
+const translationTitle=document.querySelector('#translation-title');
+const translationSubtitle=document.querySelector('#translation-subtitle');
+let activeTranslationField='';
+const languageLabels=[['zh-CN','简体中文'],['zh-TW','繁體中文'],['en','English'],['ja','日本語']];
+const translationValues={
+  slogan:{
+    'zh-CN':'让音乐作品触达更多听众',
+    'zh-TW':'讓音樂作品觸達更多聽眾',
+    en:'Bring your music to more listeners',
+    ja:'音楽をもっと多くのリスナーへ'
+  },
+  description:{
+    'zh-CN':'面向音乐人、厂牌和版权客户提供专业音乐发行服务。',
+    'zh-TW':'面向音樂人、廠牌和版權客戶提供專業音樂發行服務。',
+    en:'Professional music distribution for artists, labels and rights holders.',
+    ja:'アーティスト、レーベル、権利者向けの音楽配信サービス。'
+  }
+};
+const translationNames={slogan:'Slogan',description:'品牌描述',terms:'用户协议',privacy:'隐私协议'};
+
+function openTranslation(field){
+  activeTranslationField=field;
+  if(!translationDrawer||!translationList)return;
+  const isDocument=field==='terms'||field==='privacy';
+  if(translationTitle)translationTitle.textContent=(translationNames[field]||'内容')+' · 多语言';
+  if(translationSubtitle)translationSubtitle.textContent=isDocument?'为不同语言分别上传对应协议文件。':'分别维护不同语言下展示给客户的内容。';
+  translationList.innerHTML='';
+  languageLabels.forEach(([code,label])=>{
+    const row=document.createElement('div');
+    row.className='translation-row';
+    const labelEl=document.createElement('label');
+    labelEl.textContent=label;
+    row.appendChild(labelEl);
+    if(isDocument){
+      const box=document.createElement('div');
+      box.className='translation-file';
+      box.innerHTML='<span data-translation-file-status="'+code+'">未上传文件</span><button type="button">选择文件</button><input hidden type="file" accept=".pdf,.doc,.docx">';
+      const button=box.querySelector('button'),fileInput=box.querySelector('input'),status=box.querySelector('span');
+      button.addEventListener('click',()=>fileInput.click());
+      fileInput.addEventListener('change',()=>{if(fileInput.files?.[0]){status.textContent=fileInput.files[0].name;markBrandDirty()}});
+      row.appendChild(box);
+    }else{
+      const isLong=field==='description';
+      const control=document.createElement(isLong?'textarea':'input');
+      control.dataset.translationLang=code;
+      control.value=translationValues[field]?.[code]||'';
+      row.appendChild(control);
+    }
+    translationList.appendChild(row);
+  });
+  translationDrawer.hidden=false;
+  document.body.classList.add('modal-open');
+}
+function closeTranslation(){
+  if(translationDrawer)translationDrawer.hidden=true;
+  document.body.classList.remove('modal-open');
+}
+document.querySelectorAll('[data-translate-field]').forEach(btn=>btn.addEventListener('click',()=>openTranslation(btn.dataset.translateField)));
+document.querySelectorAll('[data-close-translation]').forEach(btn=>btn.addEventListener('click',closeTranslation));
+document.querySelector('#translation-save')?.addEventListener('click',()=>{
+  if(activeTranslationField==='slogan'||activeTranslationField==='description'){
+    translationValues[activeTranslationField]=translationValues[activeTranslationField]||{};
+    translationList?.querySelectorAll('[data-translation-lang]').forEach(input=>{
+      translationValues[activeTranslationField][input.dataset.translationLang]=input.value;
+    });
+  }
+  markBrandDirty();
+  closeTranslation();
+});
+translationDrawer?.addEventListener('click',e=>{if(e.target===translationDrawer)closeTranslation()});
 
 const usageModal=document.querySelector('#usage-modal');
 const usageSubmit=document.querySelector('#submit-usage-order');
@@ -482,7 +667,7 @@ usageSubmit?.addEventListener('click',()=>{
   usageSubmit.disabled=true;
 });
 usageModal?.addEventListener('click',e=>{if(e.target===usageModal)closeUsageModal()});
-addEventListener('keydown',e=>{if(e.key==='Escape'&&!usageModal?.hidden)closeUsageModal()});
+addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!translationDrawer?.hidden){closeTranslation();return}if(!usageModal?.hidden)closeUsageModal()});
 render(location.pathname);
 </script>
 </body>
