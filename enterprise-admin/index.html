@@ -226,30 +226,123 @@
 
       <section class="page" data-page="brand">
         <div class="page-head">
-          <div><span class="eyebrow">企业设置</span><h1>品牌与门户</h1><p>配置企业对外客户发行门户的品牌信息和基础展示内容。</p></div>
+          <div><span class="eyebrow">企业设置</span><h1>品牌与门户</h1><p>分别配置企业管理后台和面向客户开放的发行门户品牌。</p></div>
           <button class="primary-btn">保存配置</button>
         </div>
 
-        <div class="brand-layout">
-          <section class="panel form-panel">
-            <div class="panel-head"><div><h3>品牌配置</h3><p>用于客户登录、发行提交和业务查询门户。</p></div></div>
-            <div class="logo-upload"><div class="logo-preview">N</div><div><b>品牌 Logo</b><p>建议上传透明背景 PNG，尺寸不小于 240 × 80。</p><button>上传 Logo</button></div></div>
-            <div class="form-grid one">
-              <label><span>品牌名称</span><input value="NOVA MUSIC"></label>
-              <label><span>门户名称</span><input value="NOVA Music Distribution"></label>
-              <label><span>服务邮箱</span><input value="support@novamusic.com"></label>
-              <label><span>品牌介绍</span><textarea>面向音乐人、厂牌和版权客户提供专业音乐发行服务。</textarea></label>
-            </div>
-          </section>
+        <div class="brand-scope-tabs" role="tablist" aria-label="品牌配置作用域">
+          <button type="button" class="active" data-brand-tab="admin"><b>管理后台</b><span>仅影响企业内部管理后台</span></button>
+          <button type="button" data-brand-tab="portal"><b>客户门户</b><span>影响开放给合作客户的前台门户</span></button>
+        </div>
 
-          <aside class="portal-preview">
-            <div class="preview-label">客户门户预览</div>
-            <div class="browser">
-              <div class="browser-bar"><i></i><i></i><i></i><span>portal.novamusic.com</span></div>
-              <div class="portal-head"><b>NOVA MUSIC</b><nav>发行 · 艺人 · 数据 · 收入</nav><button>新建发行</button></div>
-              <div class="portal-body"><small>MUSIC DISTRIBUTION</small><h2>让音乐作品<br>触达更多听众</h2><p>创建新发行，并随时查看各平台处理进度。</p><button>开始发行</button></div>
-            </div>
-          </aside>
+        <div class="brand-scope-panel active" data-brand-panel="admin">
+          <div class="brand-layout">
+            <section class="panel form-panel">
+              <div class="panel-head"><div><h3>管理后台品牌</h3><p>用于企业内部管理后台的左上角品牌与浏览器页签展示。</p></div><span class="scope-tag">后台生效</span></div>
+
+              <div class="asset-setting">
+                <div class="asset-copy">
+                  <b>品牌 Logo</b>
+                  <p>显示在管理后台左上角，建议上传透明背景 PNG / SVG。</p>
+                </div>
+                <div class="asset-preview admin-logo-preview"><span>NOVA</span><small>ENTERPRISE</small></div>
+                <button type="button">更换 Logo</button>
+              </div>
+
+              <div class="asset-setting">
+                <div class="asset-copy">
+                  <b>网站 ICON</b>
+                  <p>显示在浏览器标签页，建议使用 1:1 PNG / ICO。</p>
+                </div>
+                <div class="asset-preview favicon-preview">N</div>
+                <button type="button">更换 ICON</button>
+              </div>
+
+              <div class="form-grid">
+                <label><span>后台名称</span><input value="NOVA Music Enterprise"></label>
+                <label><span>浏览器标题</span><input value="NOVA Music · 企业发行管理"></label>
+              </div>
+            </section>
+
+            <aside class="portal-preview">
+              <div class="preview-label">管理后台预览</div>
+              <div class="admin-preview-shell">
+                <div class="admin-preview-side">
+                  <div class="admin-preview-logo">NOVA <small>ENTERPRISE</small></div>
+                  <span class="active"></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="admin-preview-main">
+                  <div class="admin-preview-top"><b>业务总览</b><i>N</i></div>
+                  <div class="admin-preview-cards"><span></span><span></span><span></span></div>
+                  <div class="admin-preview-table"></div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="brand-scope-panel" data-brand-panel="portal" hidden>
+          <div class="brand-layout">
+            <section class="panel form-panel">
+              <div class="panel-head"><div><h3>客户门户品牌</h3><p>用于合作客户登录、提交发行、查询数据与收入的前台门户。</p></div><span class="scope-tag portal">前台生效</span></div>
+
+              <div class="asset-setting">
+                <div class="asset-copy"><b>品牌 Logo</b><p>显示在客户门户左上角及登录页。</p></div>
+                <div class="asset-preview admin-logo-preview"><span>NOVA</span><small>MUSIC</small></div>
+                <button type="button">更换 Logo</button>
+              </div>
+
+              <div class="asset-setting">
+                <div class="asset-copy"><b>网站 ICON</b><p>显示在客户门户浏览器标签页。</p></div>
+                <div class="asset-preview favicon-preview">N</div>
+                <button type="button">更换 ICON</button>
+              </div>
+
+              <div class="asset-setting">
+                <div class="asset-copy"><b>品牌背景 / 视频</b><p>用于客户门户登录页或品牌首屏，支持图片或视频素材。</p></div>
+                <div class="asset-preview background-preview"><span>MEDIA</span></div>
+                <button type="button">更换素材</button>
+              </div>
+
+              <div class="form-grid one portal-form">
+                <label><span>门户名称</span><input value="NOVA Music Distribution"></label>
+                <label><span>服务邮箱</span><input value="support@novamusic.com"></label>
+
+                <label class="field-with-action"><span>Slogan <button type="button" class="text-action">管理翻译</button></span><input value="让音乐作品触达更多听众"></label>
+
+                <label class="field-with-action"><span>品牌描述 <button type="button" class="text-action">管理翻译</button></span><textarea>面向音乐人、厂牌和版权客户提供专业音乐发行服务。</textarea></label>
+
+                <div class="theme-setting">
+                  <div><span>主题色</span><small>用于按钮、链接、选中状态等主要交互元素。</small></div>
+                  <div class="theme-control"><input type="color" value="#315ff4"><input value="#315FF4"></div>
+                </div>
+
+                <div class="agreement-row">
+                  <div><b>用户协议</b><span>当前未上传</span></div>
+                  <div class="agreement-actions"><button type="button" class="text-action">管理翻译</button><button type="button">上传文件</button></div>
+                </div>
+
+                <div class="agreement-row">
+                  <div><b>隐私协议</b><span>当前未上传</span></div>
+                  <div class="agreement-actions"><button type="button" class="text-action">管理翻译</button><button type="button">上传文件</button></div>
+                </div>
+              </div>
+            </section>
+
+            <aside class="portal-preview">
+              <div class="preview-label">客户门户预览</div>
+              <div class="browser">
+                <div class="browser-bar"><i></i><i></i><i></i><span>客户发行门户</span></div>
+                <div class="portal-head"><b>NOVA MUSIC</b><nav>发行 · 艺人 · 数据 · 收入</nav><button>新建发行</button></div>
+                <div class="portal-body brand-theme-preview"><small>MUSIC DISTRIBUTION</small><h2>让音乐作品<br>触达更多听众</h2><p>面向音乐人、厂牌和版权客户提供专业音乐发行服务。</p><button>开始发行</button></div>
+              </div>
+
+              <div class="preview-note">
+                <b>配置说明</b>
+                <p>管理后台品牌和客户门户品牌相互独立。客户门户配置只影响对外开放页面，不改变企业内部管理后台。</p>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -357,6 +450,16 @@ document.addEventListener('click',e=>{
 });
 addEventListener('popstate',()=>render(location.pathname));
 document.querySelectorAll('.switch').forEach(btn=>btn.addEventListener('click',()=>btn.classList.toggle('on')));
+
+document.querySelectorAll('[data-brand-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+  const key=btn.dataset.brandTab;
+  document.querySelectorAll('[data-brand-tab]').forEach(x=>x.classList.toggle('active',x===btn));
+  document.querySelectorAll('[data-brand-panel]').forEach(panel=>{
+    const active=panel.dataset.brandPanel===key;
+    panel.classList.toggle('active',active);
+    panel.hidden=!active;
+  });
+}));
 
 const usageModal=document.querySelector('#usage-modal');
 const usageSubmit=document.querySelector('#submit-usage-order');
