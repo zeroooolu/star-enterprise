@@ -13,8 +13,6 @@
     { "source": "/enterprise/admin/company/", "destination": "/enterprise-admin/index.html" },
     { "source": "/enterprise/admin/brand", "destination": "/enterprise-admin/index.html" },
     { "source": "/enterprise/admin/brand/", "destination": "/enterprise-admin/index.html" },
-    { "source": "/enterprise/admin/distribution", "destination": "/enterprise-admin/index.html" },
-    { "source": "/enterprise/admin/distribution/", "destination": "/enterprise-admin/index.html" },
 
     { "source": "/", "destination": "/prototype-v4/index.html" },
     { "source": "/enterprise", "destination": "/prototype-v4/index.html" },
