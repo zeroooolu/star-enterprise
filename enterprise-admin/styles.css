@@ -99,3 +99,51 @@ a{text-decoration:none;color:inherit}
 @media(max-width:860px){
   .sidebar{width:74px}.brand-mark{font-size:14px}.brand-pro,.group-title,.nav-item span:not(.icon),.nav-item b{display:none}.nav-item{grid-template-columns:1fr;justify-items:center}.main-shell{width:calc(100% - 74px);margin-left:74px}.content{padding:24px 18px 60px}.metric-grid,.two-col,.rights-grid,.form-grid{grid-template-columns:1fr}.hero-meta{grid-template-columns:1fr}.hero-meta div{padding:9px 0}.service-grid{grid-template-columns:1fr 1fr}
 }
+.inline-action,.table-action{height:28px!important;padding:0 10px!important;border:1px solid #cfd8e8!important;border-radius:7px!important;background:#fff!important;color:#315ff4!important;font-size:10px!important;font-weight:700!important;cursor:pointer}
+.inline-action:hover,.table-action:hover{border-color:#9fb2ef!important;background:#f5f8ff!important}
+.metric-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px}
+.metric-card-footer p{margin:0}
+.metric-card-footer button{height:28px;padding:0 10px;border:1px solid #cfd8e8;border-radius:7px;background:#fff;color:#315ff4;font-size:10px;font-weight:700;cursor:pointer}
+.metric-card-footer button:hover{border-color:#9fb2ef;background:#f5f8ff}
+.usage-quota-row strong{color:#233754}
+.modal-open{overflow:hidden}
+.modal-backdrop[hidden]{display:none}
+.modal-backdrop{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:24px;background:rgba(26,36,54,.42);backdrop-filter:blur(4px)}
+.usage-modal{width:min(680px,calc(100vw - 40px));max-height:calc(100vh - 48px);overflow:auto;padding:25px;border:1px solid #dfe5ee;border-radius:16px;background:#fff;box-shadow:0 30px 90px rgba(21,35,68,.22)}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding-bottom:19px;border-bottom:1px solid #edf0f4}
+.modal-head h2{margin:4px 0 7px;font-size:21px}
+.modal-head p{margin:0;color:#7f8b9d;font-size:11px}
+.modal-close{width:32px;height:32px;border:1px solid #e0e5ec;border-radius:8px;background:#fff;color:#738095;font-size:20px;line-height:1;cursor:pointer}
+.modal-close:hover{background:#f6f8fb}
+.usage-balance{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.usage-balance>div{padding:15px;border:1px solid #e4e9f0;border-radius:10px;background:#fafbfc}
+.usage-balance span,.usage-balance strong{display:block}
+.usage-balance span{color:#8490a1;font-size:10px}
+.usage-balance strong{margin-top:7px;font-size:16px}
+.purchase-block{padding-top:2px}
+.purchase-block h3{margin:0 0 12px;font-size:13px}
+.package-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.usage-package{min-height:72px;padding:12px;border:1px solid #dfe4ec;border-radius:10px;background:#fff;color:#33435b;text-align:left;cursor:pointer}
+.usage-package b,.usage-package span{display:block}
+.usage-package b{font-size:12px}
+.usage-package span{margin-top:7px;color:#8792a3;font-size:10px}
+.usage-package:hover{border-color:#bdc9e3;background:#fbfcff}
+.usage-package.active{border-color:#8da5f4;background:#f4f7ff;box-shadow:0 0 0 3px rgba(49,95,244,.07)}
+.usage-package.active b{color:#2c50ca}
+.custom-usage{display:block;margin-top:12px}
+.custom-usage[hidden]{display:none}
+.custom-usage span{display:block;margin-bottom:7px;color:#5f6d82;font-size:10px;font-weight:700}
+.custom-usage input{width:100%;height:42px;padding:0 12px;border:1px solid #dbe2eb;border-radius:8px;outline:none}
+.custom-usage input:focus{border-color:#8fa6ee;box-shadow:0 0 0 3px rgba(49,95,244,.08)}
+.purchase-note{margin:13px 0 0;color:#8994a3;font-size:10px;line-height:1.6}
+.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:22px;padding-top:17px;border-top:1px solid #edf0f4}
+.modal-actions .primary-btn,.modal-actions .secondary-btn{height:38px}
+.usage-success{margin-top:14px;padding:12px 14px;border:1px solid #cfe9db;border-radius:9px;background:#f3fbf7;color:#297453}
+.usage-success[hidden]{display:none}
+.usage-success b,.usage-success span{display:block}
+.usage-success b{font-size:11px}
+.usage-success span{margin-top:4px;font-size:9px;color:#658274}
+@media(max-width:720px){
+  .package-grid{grid-template-columns:repeat(2,1fr)}
+  .usage-balance{grid-template-columns:1fr}
+}
