@@ -45,7 +45,7 @@ a{text-decoration:none;color:inherit}
 .status-pill{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:800}
 .status-pill.ok{background:#eaf8f1;color:#188458}
 .panel-head a{color:#315ff4;font-size:11px}
-.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}.metric-grid.usage{grid-template-columns:repeat(4,1fr)}
 .metric-card{padding:20px 21px;background:#fff;border:1px solid var(--line);border-radius:11px}
 .metric-card>span{display:block;color:#6f7d91;font-size:11px;margin-bottom:11px}
 .metric-card strong{display:block;font-size:24px;letter-spacing:-.03em}.metric-card strong small{font-size:13px;color:#96a0af;font-weight:600}
@@ -325,4 +325,8 @@ a{text-decoration:none;color:inherit}
   .agreement-item{grid-template-columns:36px 1fr;align-items:start}
   .agreement-item .language-action,.agreement-item .secondary-mini{grid-column:auto}
   .theme-setting{align-items:flex-start;flex-direction:column}
+}
+
+@media(max-width:1180px){
+  .metric-grid.usage{grid-template-columns:repeat(2,1fr)}
 }
