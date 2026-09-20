@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>星球发行·企业版管理后台</title>
+<link rel="stylesheet" href="/enterprise-admin/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand-row">
+      <div class="brand-mark">STAR</div>
+      <span class="brand-pro">企业版</span>
+      <button class="collapse-btn" aria-label="收起菜单">‹</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="group-title">内容资产</div>
+        <a class="nav-item muted" href="#"><span class="icon">▦</span><span>作品目录</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">♫</span><span>歌单</span></a>
+        <a class="nav-item muted" href="#"><span class="icon">♙</span><span>合作伙伴</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">⇩</span><span>批量导入</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">⇄</span><span>DDEX</span><b>›</b></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="group-title">发行和授权</div>
+        <a class="nav-item muted" href="#"><span class="icon">▤</span><span>合同</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">➤</span><span>发行</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">◉</span><span>合规</span><b>›</b></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="group-title">报表与分账</div>
+        <a class="nav-item muted" href="#"><span class="icon">▣</span><span>版税</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">↗</span><span>分账</span><b>›</b></a>
+      </div>
+
+      <div class="nav-group enterprise-group">
+        <div class="group-title">企业中心</div>
+        <a class="nav-item" data-route href="/enterprise/admin"><span class="icon">⌂</span><span>企业概览</span></a>
+        <a class="nav-item" data-route href="/enterprise/admin/plan"><span class="icon">◇</span><span>版本与权益</span></a>
+        <a class="nav-item" data-route href="/enterprise/admin/usage"><span class="icon">◫</span><span>用量与额度</span></a>
+      </div>
+
+      <div class="nav-group enterprise-group">
+        <div class="group-title">企业设置</div>
+        <a class="nav-item" data-route href="/enterprise/admin/company"><span class="icon">◎</span><span>企业信息</span></a>
+        <a class="nav-item" data-route href="/enterprise/admin/brand"><span class="icon">✦</span><span>品牌与门户</span></a>
+        <a class="nav-item" data-route href="/enterprise/admin/distribution"><span class="icon">⚙</span><span>发行配置</span></a>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="main-shell">
+    <header class="topbar">
+      <div></div>
+      <div class="top-actions">
+        <button title="云服务">☁</button>
+        <button title="帮助文档">▤</button>
+        <span class="sep"></span>
+        <button title="语言">◎</button>
+        <span class="sep"></span>
+        <button class="avatar" title="账户">企</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="page" data-page="overview">
+        <div class="page-head">
+          <div><span class="eyebrow">企业中心</span><h1>企业概览</h1><p>查看企业账户、当前版本、服务周期和核心额度使用情况。</p></div>
+          <button class="secondary-btn">查看服务信息</button>
+        </div>
+
+        <div class="hero-card">
+          <div>
+            <span class="status-pill ok">账户正常</span>
+            <h2>NOVA Music Entertainment</h2>
+            <p>企业 ID：ENT-2026-0182 · 企业主体：中国大陆</p>
+          </div>
+          <div class="hero-meta">
+            <div><span>当前版本</span><strong>专业版</strong></div>
+            <div><span>服务周期</span><strong>2026/09/01 - 2027/08/31</strong></div>
+            <div><span>服务等级</span><strong>优先支持</strong></div>
+          </div>
+        </div>
+
+        <div class="section-title"><div><h2>版本与额度</h2><p>当前套餐下的主要业务容量与开放能力。</p></div><a data-route href="/enterprise/admin/plan">查看全部权益 →</a></div>
+        <div class="metric-grid">
+          <article class="metric-card"><span>曲库额度</span><strong>18,426 <small>/ 50,000</small></strong><div class="progress"><i style="width:36.8%"></i></div><p>已使用 36.8%</p></article>
+          <article class="metric-card"><span>合作客户</span><strong>128 <small>/ 1,000</small></strong><div class="progress"><i style="width:12.8%"></i></div><p>已使用 12.8%</p></article>
+          <article class="metric-card"><span>本月发行使用量</span><strong>8,462 <small>次</small></strong><div class="progress neutral"><i style="width:54%"></i></div><p>较上月 +12.4%</p></article>
+        </div>
+
+        <div class="two-col">
+          <section class="panel">
+            <div class="panel-head"><div><h3>已开通能力</h3><p>按当前专业版方案开放。</p></div><a data-route href="/enterprise/admin/plan">权益详情</a></div>
+            <div class="entitlement-list compact">
+              <div><span>企业管理后台 + 客户发行门户</span><b class="yes">已开通</b></div>
+              <div><span>独立品牌与 Logo</span><b class="yes">已开通</b></div>
+              <div><span>合作方分账与结算</span><b class="yes">已开通</b></div>
+              <div><span>SFTP / XML 数据交换</span><b class="yes">已开通</b></div>
+              <div><span>DDEX 行业标准接入</span><b class="no">未开通</b></div>
+              <div><span>发行 API</span><b class="addon">可增购</b></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-head"><div><h3>服务信息</h3><p>企业当前服务关系与支持方式。</p></div></div>
+            <dl class="info-list">
+              <div><dt>合同编号</dt><dd>KJ-ENT-2026-0821</dd></div>
+              <div><dt>服务到期</dt><dd>2027/08/31</dd></div>
+              <div><dt>客户支持</dt><dd>优先客户支持</dd></div>
+              <div><dt>技术支持</dt><dd>优先技术支持</dd></div>
+              <div><dt>上线支持</dt><dd>首次实施培训</dd></div>
+            </dl>
+          </section>
+        </div>
+      </section>
+
+      <section class="page" data-page="plan">
+        <div class="page-head">
+          <div><span class="eyebrow">企业中心</span><h1>版本与权益</h1><p>查看当前企业版本、业务容量、开放能力和服务等级。</p></div>
+          <button class="primary-btn">联系商务升级</button>
+        </div>
+
+        <div class="plan-summary">
+          <div><span class="plan-label">当前版本</span><h2>专业版</h2><p>适合规模化多客户发行业务，支持独立品牌、合作方分账和企业级数据交换。</p></div>
+          <div class="plan-price"><strong>¥59,800</strong><span>/ 年</span><small>有效期至 2027/08/31</small></div>
+        </div>
+
+        <section class="panel table-panel">
+          <div class="panel-head"><div><h3>业务容量</h3><p>当前版本对应的核心业务额度。</p></div></div>
+          <div class="quota-row"><div><b>曲库规模</b><span>已使用 18,426 首</span></div><strong>50,000 首</strong><button>申请扩容</button></div>
+          <div class="quota-row"><div><b>合作客户</b><span>已使用 128 个</span></div><strong>1,000 个</strong><button>申请扩容</button></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>功能权益</h3><p>当前专业版已开通和可选购能力。</p></div></div>
+          <div class="rights-grid">
+            <div class="rights-group"><h4>品牌与客户运营</h4><p><span>企业品牌与 Logo</span><b class="yes">✓</b></p><p><span>企业管理后台 + 客户门户</span><b class="yes">✓</b></p><p><span>合作客户与团队管理</span><b class="yes">✓</b></p></div>
+            <div class="rights-group"><h4>发行与持续运营</h4><p><span>完整发行流程</span><b class="yes">✓</b></p><p><span>批量发行</span><b class="yes">✓</b></p><p><span>发行状态与异常跟踪</span><b class="yes">✓</b></p></div>
+            <div class="rights-group"><h4>数据与收入</h4><p><span>平台数据与收入报表</span><b class="yes">✓</b></p><p><span>合作方分账与结算</span><b class="yes">✓</b></p><p><span>报表导出</span><b class="yes">✓</b></p></div>
+            <div class="rights-group"><h4>数据交换</h4><p><span>Excel</span><b class="yes">✓</b></p><p><span>SFTP / XML</span><b class="yes">✓</b></p><p><span>DDEX</span><b class="no">—</b></p><p><span>发行 API</span><b class="addon">可增购</b></p></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>服务权益</h3><p>当前方案包含的实施和服务等级。</p></div></div>
+          <div class="service-grid">
+            <div><span>客户支持</span><b>优先支持</b><small>企业问题优先响应</small></div>
+            <div><span>技术支持</span><b>优先技术支持</b><small>接入与日常技术问题支持</small></div>
+            <div><span>上线支持</span><b>首次实施培训</b><small>上线阶段提供实施与培训</small></div>
+            <div><span>历史曲库迁移</span><b>可选服务</b><small>按迁移规模单独评估</small></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" data-page="usage">
+        <div class="page-head">
+          <div><span class="eyebrow">企业中心</span><h1>用量与额度</h1><p>查看企业当前业务容量、发行使用量和近期趋势。</p></div>
+          <select><option>本月</option><option>上月</option><option>最近 6 个月</option></select>
+        </div>
+
+        <div class="metric-grid usage">
+          <article class="metric-card"><span>曲库使用量</span><strong>18,426 <small>/ 50,000</small></strong><div class="progress"><i style="width:36.8%"></i></div><p>剩余 31,574 首</p></article>
+          <article class="metric-card"><span>合作客户</span><strong>128 <small>/ 1,000</small></strong><div class="progress"><i style="width:12.8%"></i></div><p>剩余 872 个</p></article>
+          <article class="metric-card"><span>发行使用量</span><strong>8,462 <small>次</small></strong><p class="delta">↑ 12.4% 较上月</p></article>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>近 6 个月发行使用量</h3><p>按“歌曲 × 实际目标平台”累计计算。</p></div></div>
+          <div class="bar-chart">
+            <div><i style="height:48%"></i><span>4月</span><b>5,820</b></div>
+            <div><i style="height:56%"></i><span>5月</span><b>6,430</b></div>
+            <div><i style="height:63%"></i><span>6月</span><b>7,180</b></div>
+            <div><i style="height:58%"></i><span>7月</span><b>6,760</b></div>
+            <div><i style="height:70%"></i><span>8月</span><b>7,528</b></div>
+            <div class="active"><i style="height:82%"></i><span>9月</span><b>8,462</b></div>
+          </div>
+        </section>
+
+        <section class="panel table-panel">
+          <div class="panel-head"><div><h3>额度明细</h3><p>当前版本下的可用容量和使用情况。</p></div></div>
+          <div class="data-table">
+            <div class="tr head"><span>项目</span><span>当前使用</span><span>版本额度</span><span>使用率</span><span>状态</span></div>
+            <div class="tr"><b>曲库</b><span>18,426 首</span><span>50,000 首</span><span>36.8%</span><em class="ok">正常</em></div>
+            <div class="tr"><b>合作客户</b><span>128 个</span><span>1,000 个</span><span>12.8%</span><em class="ok">正常</em></div>
+            <div class="tr"><b>独立品牌</b><span>1 个</span><span>1 个</span><span>100%</span><em class="ok">已启用</em></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" data-page="company">
+        <div class="page-head">
+          <div><span class="eyebrow">企业设置</span><h1>企业信息</h1><p>维护企业基础资料和业务联系人信息。</p></div>
+          <button class="primary-btn">保存修改</button>
+        </div>
+
+        <section class="panel form-panel">
+          <div class="panel-head"><div><h3>基础信息</h3><p>企业主体类信息由合同与账户资料同步，部分字段不可直接修改。</p></div></div>
+          <div class="form-grid">
+            <label><span>企业名称</span><input value="NOVA Music Entertainment"></label>
+            <label><span>企业简称</span><input value="NOVA Music"></label>
+            <label><span>企业 ID</span><input value="ENT-2026-0182" disabled></label>
+            <label><span>企业主体地区</span><input value="中国大陆" disabled></label>
+            <label><span>统一社会信用代码</span><input value="9131**********28" disabled></label>
+            <label><span>企业状态</span><input value="正常" disabled></label>
+          </div>
+        </section>
+
+        <section class="panel form-panel">
+          <div class="panel-head"><div><h3>业务联系人</h3><p>用于企业服务、实施和重要业务通知。</p></div></div>
+          <div class="form-grid">
+            <label><span>联系人</span><input value="张明"></label>
+            <label><span>联系电话</span><input value="+86 138 0000 2188"></label>
+            <label><span>工作邮箱</span><input value="ming.zhang@novamusic.com"></label>
+            <label><span>所在地区</span><input value="上海"></label>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" data-page="brand">
+        <div class="page-head">
+          <div><span class="eyebrow">企业设置</span><h1>品牌与门户</h1><p>配置企业对外客户发行门户的品牌信息和基础展示内容。</p></div>
+          <button class="primary-btn">保存配置</button>
+        </div>
+
+        <div class="brand-layout">
+          <section class="panel form-panel">
+            <div class="panel-head"><div><h3>品牌配置</h3><p>用于客户登录、发行提交和业务查询门户。</p></div></div>
+            <div class="logo-upload"><div class="logo-preview">N</div><div><b>品牌 Logo</b><p>建议上传透明背景 PNG，尺寸不小于 240 × 80。</p><button>上传 Logo</button></div></div>
+            <div class="form-grid one">
+              <label><span>品牌名称</span><input value="NOVA MUSIC"></label>
+              <label><span>门户名称</span><input value="NOVA Music Distribution"></label>
+              <label><span>服务邮箱</span><input value="support@novamusic.com"></label>
+              <label><span>品牌介绍</span><textarea>面向音乐人、厂牌和版权客户提供专业音乐发行服务。</textarea></label>
+            </div>
+          </section>
+
+          <aside class="portal-preview">
+            <div class="preview-label">客户门户预览</div>
+            <div class="browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span>portal.novamusic.com</span></div>
+              <div class="portal-head"><b>NOVA MUSIC</b><nav>发行 · 艺人 · 数据 · 收入</nav><button>新建发行</button></div>
+              <div class="portal-body"><small>MUSIC DISTRIBUTION</small><h2>让音乐作品<br>触达更多听众</h2><p>创建新发行，并随时查看各平台处理进度。</p><button>开始发行</button></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="page" data-page="distribution">
+        <div class="page-head">
+          <div><span class="eyebrow">企业设置</span><h1>发行配置</h1><p>设置企业客户门户中的默认发行规则和可操作范围。</p></div>
+          <button class="primary-btn">保存配置</button>
+        </div>
+
+        <section class="panel form-panel">
+          <div class="panel-head"><div><h3>默认发行设置</h3><p>客户新建发行时自动带入的基础配置。</p></div></div>
+          <div class="form-grid">
+            <label><span>默认发行地区</span><select><option>全球</option><option>中国大陆</option></select></label>
+            <label><span>默认语言</span><select><option>根据内容选择</option><option>中文</option><option>英文</option></select></label>
+            <label><span>默认发行类型</span><select><option>数字发行</option></select></label>
+            <label><span>默认发行提前期</span><select><option>至少提前 7 天</option><option>至少提前 14 天</option></select></label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>客户门户权限</h3><p>控制合作客户在门户中可执行的发行操作。</p></div></div>
+          <div class="toggle-list">
+            <div><span><b>允许客户自行选择发行渠道</b><small>关闭后由企业运营团队统一配置目标平台。</small></span><button class="switch on" aria-label="开启"></button></div>
+            <div><span><b>允许客户修改发行日期</b><small>提交审核前可调整计划发行日期。</small></span><button class="switch on"></button></div>
+            <div><span><b>发行前需要企业内部审核</b><small>客户提交后先进入企业审核，再进入正式发行流程。</small></span><button class="switch on"></button></div>
+            <div><span><b>允许客户发起下架申请</b><small>客户可发起申请，最终由企业运营团队确认。</small></span><button class="switch"></button></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>默认发行渠道</h3><p>设置客户创建发行时默认勾选的平台。</p></div><button class="secondary-btn small">编辑渠道</button></div>
+          <div class="channel-tags"><span>QQ 音乐</span><span>网易云音乐</span><span>酷狗音乐</span><span>Apple Music</span><span>Spotify</span><span>Amazon Music</span><span>TikTok</span><span>+ 12 个平台</span></div>
+        </section>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const routes={
+  '/enterprise/admin':'overview',
+  '/enterprise/admin/':'overview',
+  '/enterprise/admin/plan':'plan',
+  '/enterprise/admin/plan/':'plan',
+  '/enterprise/admin/usage':'usage',
+  '/enterprise/admin/usage/':'usage',
+  '/enterprise/admin/company':'company',
+  '/enterprise/admin/company/':'company',
+  '/enterprise/admin/brand':'brand',
+  '/enterprise/admin/brand/':'brand',
+  '/enterprise/admin/distribution':'distribution',
+  '/enterprise/admin/distribution/':'distribution'
+};
+function render(path){
+  const page=routes[path]||'overview';
+  document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
+  document.querySelectorAll('[data-route]').forEach(a=>{
+    const u=new URL(a.href,location.origin);
+    a.classList.toggle('active',routes[u.pathname]===page);
+  });
+  scrollTo(0,0);
+}
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[data-route]');
+  if(!a)return;
+  const u=new URL(a.href,location.origin);
+  if(routes[u.pathname]){
+    e.preventDefault();
+    history.pushState({},'',u.pathname);
+    render(u.pathname);
+  }
+});
+addEventListener('popstate',()=>render(location.pathname));
+document.querySelectorAll('.switch').forEach(btn=>btn.addEventListener('click',()=>btn.classList.toggle('on')));
+render(location.pathname);
+</script>
+</body>
+</html>
