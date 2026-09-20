@@ -69,7 +69,6 @@ a{text-decoration:none;color:inherit}
 .bar-chart>div{flex:1;position:relative;height:190px;display:flex;align-items:center;justify-content:flex-end;flex-direction:column}
 .bar-chart i{width:50%;min-width:26px;max-width:50px;background:#c7d2ea;border-radius:7px 7px 2px 2px}.bar-chart .active i{background:#5275df}
 .bar-chart span{margin-top:9px;color:#78859a;font-size:10px}.bar-chart b{font-size:9px;color:#738096;margin-bottom:6px}
-.data-table{border-top:1px solid #edf0f4}.tr{display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr .7fr;align-items:center;gap:12px;min-height:46px;border-bottom:1px solid #edf0f4;font-size:11px}.tr.head{min-height:38px;color:#8a95a5;font-size:10px;background:#fafbfc}.tr em{font-style:normal;font-size:10px}.tr .ok{color:#1d8b5f}
 .usage-record-panel{padding-bottom:8px}
 .usage-record-table{border-top:1px solid #edf0f4}
 .usage-record-row{display:grid;grid-template-columns:1.05fr 1.8fr .7fr .7fr .7fr;align-items:center;gap:14px;min-height:48px;border-bottom:1px solid #edf0f4;font-size:11px}
@@ -87,8 +86,6 @@ a{text-decoration:none;color:inherit}
 @media(max-width:860px){
   .sidebar{width:74px}.brand-mark{font-size:14px}.brand-pro,.group-title,.nav-item span:not(.icon),.nav-item b{display:none}.nav-item{grid-template-columns:1fr;justify-items:center}.main-shell{width:calc(100% - 74px);margin-left:74px}.content{padding:24px 18px 60px}.metric-grid,.two-col,.rights-grid,.form-grid{grid-template-columns:1fr}.service-grid{grid-template-columns:1fr 1fr}
 }
-.inline-action,.table-action{height:28px!important;padding:0 10px!important;border:1px solid #cfd8e8!important;border-radius:7px!important;background:#fff!important;color:#315ff4!important;font-size:10px!important;font-weight:700!important;cursor:pointer}
-.inline-action:hover,.table-action:hover{border-color:#9fb2ef!important;background:#f5f8ff!important}
 .metric-card-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:9px}
 .metric-card-footer p{margin:0}
 .metric-card-footer button{height:28px;padding:0 10px;border:1px solid #cfd8e8;border-radius:7px;background:#fff;color:#315ff4;font-size:10px;font-weight:700;cursor:pointer}
