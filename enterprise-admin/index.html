@@ -42,7 +42,11 @@
         <div class="group-title">企业管理</div>
         <a class="nav-item" data-route data-nav-pages="plan,usage" href="/enterprise/admin/plan"><span class="icon">◇</span><span>套餐与用量</span></a>
         <a class="nav-item" data-route href="/enterprise/admin/brand"><span class="icon">✦</span><span>品牌与门户</span></a>
-        <a class="nav-item muted" href="#" title="企业信息 / 账号管理 / 权限管理"><span class="icon">⚙</span><span>系统设置</span><b>›</b></a>
+        <a class="nav-item nav-parent" href="#" data-submenu-toggle="account-permission" aria-expanded="false"><span class="icon">⚙</span><span>账号与权限</span><b class="nav-arrow">›</b></a>
+        <div class="nav-submenu" data-submenu="account-permission" hidden>
+          <a class="nav-subitem muted" href="#"><span>账号管理</span></a>
+          <a class="nav-subitem muted" href="#"><span>角色管理</span></a>
+        </div>
       </div>
     </nav>
   </aside>
@@ -452,6 +456,17 @@ function render(path){
   scrollTo(0,0);
 }
 document.addEventListener('click',e=>{
+  const submenuToggle=e.target.closest('[data-submenu-toggle]');
+  if(submenuToggle){
+    e.preventDefault();
+    const key=submenuToggle.dataset.submenuToggle;
+    const submenu=document.querySelector('[data-submenu="'+key+'"]');
+    const open=submenuToggle.getAttribute('aria-expanded')==='true';
+    submenuToggle.setAttribute('aria-expanded',String(!open));
+    submenuToggle.classList.toggle('open',!open);
+    if(submenu)submenu.hidden=open;
+    return;
+  }
   const a=e.target.closest('a[data-route]');
   if(!a)return;
   const u=new URL(a.href,location.origin);
