@@ -2,6 +2,20 @@
   "rewrites": [
     { "source": "/assets/star-logo.png", "destination": "https://star.kanjian.com/app/release/images/star-logo.png" },
     { "source": "/assets/platform-logos/:file", "destination": "https://raw.githubusercontent.com/zeroooolu/music-promotion/main/frontend/star-release/assets/platform-logos/:file" },
+
+    { "source": "/enterprise/admin", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/plan", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/plan/", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/usage", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/usage/", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/company", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/company/", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/brand", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/brand/", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/distribution", "destination": "/enterprise-admin/index.html" },
+    { "source": "/enterprise/admin/distribution/", "destination": "/enterprise-admin/index.html" },
+
     { "source": "/", "destination": "/prototype-v4/index.html" },
     { "source": "/enterprise", "destination": "/prototype-v4/index.html" },
     { "source": "/enterprise/", "destination": "/prototype-v4/index.html" },
