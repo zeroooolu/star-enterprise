@@ -39,16 +39,10 @@
       </div>
 
       <div class="nav-group enterprise-group">
-        <div class="group-title">企业中心</div>
-        <a class="nav-item" data-route href="/enterprise/admin/plan"><span class="icon">◇</span><span>套餐与权益</span></a>
-        <a class="nav-item" data-route href="/enterprise/admin/usage"><span class="icon">◫</span><span>用量与增购</span></a>
-      </div>
-
-      <div class="nav-group enterprise-group">
-        <div class="group-title">企业设置</div>
-        <a class="nav-item" data-route href="/enterprise/admin/company"><span class="icon">◎</span><span>企业信息</span></a>
+        <div class="group-title">企业管理</div>
+        <a class="nav-item" data-route data-nav-pages="plan,usage" href="/enterprise/admin/plan"><span class="icon">◇</span><span>套餐与用量</span></a>
         <a class="nav-item" data-route href="/enterprise/admin/brand"><span class="icon">✦</span><span>品牌与门户</span></a>
-        <a class="nav-item muted" href="#" title="账号管理 / 权限管理"><span class="icon">⚙</span><span>系统设置</span><b>›</b></a>
+        <a class="nav-item muted" href="#" title="企业信息 / 账号管理 / 权限管理"><span class="icon">⚙</span><span>系统设置</span><b>›</b></a>
       </div>
     </nav>
   </aside>
@@ -68,6 +62,10 @@
 
     <main class="content">
       <section class="page" data-page="plan">
+        <div class="enterprise-subnav" aria-label="套餐与用量">
+          <a class="active" data-route href="/enterprise/admin/plan">套餐与权益</a>
+          <a data-route href="/enterprise/admin/usage">用量与增购</a>
+        </div>
         <div class="page-head">
           <div><span class="eyebrow">企业中心</span><h1>套餐与权益</h1><p>查看当前企业套餐、业务容量、功能权益和服务范围。</p></div>
           <button class="primary-btn">联系商务升级</button>
@@ -113,6 +111,10 @@
       </section>
 
       <section class="page" data-page="usage">
+        <div class="enterprise-subnav" aria-label="套餐与用量">
+          <a data-route href="/enterprise/admin/plan">套餐与权益</a>
+          <a class="active" data-route href="/enterprise/admin/usage">用量与增购</a>
+        </div>
         <div class="page-head">
           <div><span class="eyebrow">企业中心</span><h1>用量与增购</h1><p>查看曲库、视频、客户与发行使用量，并在需要时扩容或购买。</p></div>
           <select><option>本月</option><option>上月</option><option>最近 6 个月</option></select>
@@ -444,7 +446,8 @@ function render(path){
   document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
   document.querySelectorAll('[data-route]').forEach(a=>{
     const u=new URL(a.href,location.origin);
-    a.classList.toggle('active',routes[u.pathname]===page);
+    const navPages=(a.dataset.navPages||'').split(',').filter(Boolean);
+    a.classList.toggle('active',navPages.length?navPages.includes(page):routes[u.pathname]===page);
   });
   scrollTo(0,0);
 }
