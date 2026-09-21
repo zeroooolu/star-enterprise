@@ -464,8 +464,11 @@
 [data-page="pricing"] .pricing-cost-items small{margin:5px 0 0;color:#7d8899;font-size:10px;font-weight:650}
 [data-page="pricing"] .pricing-cost-items>i{display:grid;place-items:center;color:#9ba6b5;font-style:normal;font-size:18px}
 [data-page="pricing"] .pricing-cost-note{grid-column:1/-1;margin:0;padding-top:17px;border-top:1px solid #e6eaf1;color:#8994a4;font-size:11px;line-height:1.65}
+[data-page="pricing"] .pricing-cost-overview-merged{margin-top:20px;margin-bottom:22px}
+[data-page="pricing"] .pricing-cost-overview-merged .pricing-cost-note{display:flex;justify-content:space-between;gap:28px}
+[data-page="pricing"] .pricing-cost-overview-merged .pricing-cost-note span{display:block;max-width:560px}
 @media(max-width:900px){[data-page="pricing"] .pricing-cost-overview{grid-template-columns:1fr}[data-page="pricing"] .pricing-cost-items strong{font-size:23px}}
-@media(max-width:680px){[data-page="pricing"] .pricing-cost-overview{padding:22px 18px}[data-page="pricing"] .pricing-cost-intro h2{font-size:22px}[data-page="pricing"] .pricing-cost-items{grid-template-columns:1fr}[data-page="pricing"] .pricing-cost-items>i{display:none}[data-page="pricing"] .pricing-cost-items>div{padding:15px 16px}[data-page="pricing"] .pricing-cost-items strong{font-size:24px}}
+@media(max-width:680px){[data-page="pricing"] .pricing-cost-overview{padding:22px 18px}[data-page="pricing"] .pricing-cost-intro h2{font-size:22px}[data-page="pricing"] .pricing-cost-items{grid-template-columns:1fr}[data-page="pricing"] .pricing-cost-items>i{display:none}[data-page="pricing"] .pricing-cost-items>div{padding:15px 16px}[data-page="pricing"] .pricing-cost-items strong{font-size:24px}[data-page="pricing"] .pricing-cost-overview-merged .pricing-cost-note{flex-direction:column;gap:8px}}
 
 /* Enterprise pricing plan matrix v2 */
 [data-page="pricing"] .pricing-cards article{display:flex;flex-direction:column}
