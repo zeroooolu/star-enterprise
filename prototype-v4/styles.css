@@ -660,3 +660,14 @@
   [data-page="solutions"] .solution-architecture{padding:17px;border-radius:16px}
   [data-page="solutions"] .fit-matrix-row{padding:18px 17px}
 }
+
+/* Kanjian enterprise brand lockup */
+.brand-kanjian{gap:12px}
+.brand-kanjian img{width:auto;height:22px;max-height:none;object-fit:contain}
+.brand-kanjian>span{display:block;width:1px;height:22px;background:var(--blue)}
+.brand-kanjian>b{display:block;font-size:15px;font-weight:760;line-height:1;color:var(--blue);letter-spacing:.01em;white-space:nowrap}
+@media(max-width:820px){
+  .brand-kanjian{gap:0}
+  .brand-kanjian img{width:auto;height:18px;max-height:none}
+  .brand-kanjian>span,.brand-kanjian>b{display:none}
+}
