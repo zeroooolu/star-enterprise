@@ -1,0 +1,15 @@
+deploymentApiVersion: apps/v1
+service:
+  internalPort: 3000
+  externalPort: 3000
+ingress:
+  class:
+    enabled: true
+    name: nginx
+  enabled: true
+  url: enterprise.test.kanjian.com
+  path: /
+  pathType: Prefix
+  tls:
+    enabled: true
+    secretName: wildcard-test-kanjian-com
