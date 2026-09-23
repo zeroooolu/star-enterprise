@@ -1,0 +1,93 @@
+name: Sync to GitLab
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gitlab-sync-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Sync GitHub to GitLab
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure GitLab SSH access
+        env:
+          GITLAB_SSH_PRIVATE_KEY: ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
+          GITLAB_KNOWN_HOSTS: ${{ secrets.GITLAB_KNOWN_HOSTS }}
+          GITLAB_SSH_PORT: ${{ secrets.GITLAB_SSH_PORT }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GITLAB_SSH_PRIVATE_KEY:-}" ]; then
+            echo "::error::Missing GitHub Actions secret: GITLAB_SSH_PRIVATE_KEY"
+            exit 1
+          fi
+
+          if [ -z "${GITLAB_KNOWN_HOSTS:-}" ]; then
+            echo "::error::Missing GitHub Actions secret: GITLAB_KNOWN_HOSTS"
+            exit 1
+          fi
+
+          PORT="${GITLAB_SSH_PORT:-22}"
+
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$GITLAB_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$GITLAB_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+
+          cat > ~/.ssh/config <<EOF
+          Host gitlab.kanjian.com
+            HostName gitlab.kanjian.com
+            User git
+            Port ${PORT}
+            IdentityFile ~/.ssh/id_ed25519
+            IdentitiesOnly yes
+          EOF
+          chmod 600 ~/.ssh/config
+
+      - name: Add GitLab remote
+        run: |
+          git remote remove gitlab 2>/dev/null || true
+          git remote add gitlab git@gitlab.kanjian.com:ai/star-enterprise-f2e.git
+
+      - name: Sync main branch safely
+        if: github.ref_type == 'branch'
+        run: |
+          set -euo pipefail
+
+          # Read the current GitLab main first. We never force-push over GitLab-only commits.
+          git fetch --no-tags gitlab main
+
+          if git show-ref --verify --quiet refs/remotes/gitlab/main; then
+            if ! git merge-base --is-ancestor refs/remotes/gitlab/main "${GITHUB_SHA}"; then
+              echo "::error::GitLab main contains commits that are not in GitHub main. Refusing to overwrite them. Reconcile the repositories once, then rerun this workflow."
+              echo "GitHub-only / GitLab-only commits:"
+              git log --oneline --left-right --cherry-pick "${GITHUB_SHA}...refs/remotes/gitlab/main" -n 40 || true
+              exit 1
+            fi
+          fi
+
+          git push gitlab "${GITHUB_SHA}:refs/heads/main"
+
+      - name: Sync tag
+        if: github.ref_type == 'tag'
+        run: |
+          set -euo pipefail
+          git push gitlab "refs/tags/${GITHUB_REF_NAME}:refs/tags/${GITHUB_REF_NAME}"
