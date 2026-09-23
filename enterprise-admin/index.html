@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>看见音乐·企业发行服务管理后台</title>
+<link rel="stylesheet" href="/enterprise-admin/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand-row">
+      <div class="brand-mark">KANJIAN</div>
+      <span class="brand-pro">企业发行服务</span>
+      <button class="collapse-btn" aria-label="收起菜单">‹</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="group-title">内容资产</div>
+        <a class="nav-item muted" href="#"><span class="icon">▦</span><span>作品目录</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">♫</span><span>歌单</span></a>
+        <a class="nav-item muted" href="#"><span class="icon">♙</span><span>合作伙伴</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">⇩</span><span>批量导入</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">⇄</span><span>DDEX</span><b>›</b></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="group-title">发行和授权</div>
+        <a class="nav-item muted" href="#"><span class="icon">▤</span><span>合同</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">➤</span><span>发行</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">◉</span><span>合规</span><b>›</b></a>
+      </div>
+
+      <div class="nav-group">
+        <div class="group-title">报表与分账</div>
+        <a class="nav-item muted" href="#"><span class="icon">▣</span><span>版税</span><b>›</b></a>
+        <a class="nav-item muted" href="#"><span class="icon">↗</span><span>分账</span><b>›</b></a>
+      </div>
+
+      <div class="nav-group enterprise-group">
+        <div class="group-title">企业管理</div>
+        <a class="nav-item" data-route data-nav-pages="plan,usage" href="/enterprise/admin/plan"><span class="icon">◇</span><span>套餐与用量</span></a>
+        <a class="nav-item" data-route href="/enterprise/admin/brand"><span class="icon">✦</span><span>品牌与门户</span></a>
+        <a class="nav-item nav-parent" href="#" data-submenu-toggle="account-permission" aria-expanded="false"><span class="icon">⚙</span><span>账号与权限</span><b class="nav-arrow">›</b></a>
+        <div class="nav-submenu" data-submenu="account-permission" hidden>
+          <a class="nav-subitem muted" href="#"><span>账号管理</span></a>
+          <a class="nav-subitem muted" href="#"><span>角色管理</span></a>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="main-shell">
+    <header class="topbar">
+      <div></div>
+      <div class="top-actions">
+        <button title="云服务">☁</button>
+        <button title="帮助文档">▤</button>
+        <span class="sep"></span>
+        <button title="语言">◎</button>
+        <span class="sep"></span>
+        <button class="avatar" title="账户">企</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="page" data-page="plan">
+        <div class="enterprise-subnav" aria-label="套餐与用量">
+          <a class="active" data-route href="/enterprise/admin/plan">套餐与权益</a>
+          <a data-route href="/enterprise/admin/usage">用量与增购</a>
+        </div>
+        <div class="page-head">
+          <div><span class="eyebrow">企业中心</span><h1>套餐与权益</h1><p>查看当前企业套餐、业务容量、功能权益和服务范围。</p></div>
+          <button class="primary-btn">联系商务升级</button>
+        </div>
+
+        <div class="plan-summary">
+          <div>
+            <span class="plan-label">当前套餐</span>
+            <div class="plan-title-row"><h2>专业版</h2><span class="status-pill ok">服务正常</span></div>
+            <p>适合规模化多客户发行业务，支持独立品牌、合作方分账和企业级数据交换。</p>
+            <div class="plan-meta-inline"><span>服务周期：2026/09/01 - 2027/08/31</span><span>服务等级：优先支持</span></div>
+          </div>
+          <div class="plan-price"><strong>¥59,800</strong><span>/ 年</span><small>到期时间 2027/08/31</small></div>
+        </div>
+
+        <section class="panel table-panel">
+          <div class="panel-head"><div><h3>业务容量</h3><p>当前版本对应的核心业务额度。</p></div></div>
+          <div class="quota-row"><div><b>曲库规模</b><span>已使用 18,426 首</span></div><strong>50,000 首</strong><button>申请扩容</button></div>
+          <div class="quota-row"><div><b>视频使用量</b><span>已使用 286 个 · 剩余 714 个</span></div><strong>1,000 个</strong><button>申请扩容</button></div>
+          <div class="quota-row"><div><b>合作客户</b><span>已使用 128 个</span></div><strong>1,000 个</strong><button>申请扩容</button></div>
+          <div class="quota-row usage-quota-row"><div><b>发行使用量</b><span>已使用 8,462 次 · 剩余 11,538 次</span></div><strong>20,000 次</strong><button type="button" data-buy-usage>购买 / 增购</button></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>功能权益</h3><p>当前专业版已开通和可选购能力。</p></div></div>
+          <div class="rights-grid">
+            <div class="rights-group"><h4>品牌与客户运营</h4><p><span>企业品牌与 Logo</span><b class="yes">✓</b></p><p><span>企业管理后台 + 客户门户</span><b class="yes">✓</b></p><p><span>合作客户与团队管理</span><b class="yes">✓</b></p></div>
+            <div class="rights-group"><h4>发行与持续运营</h4><p><span>完整发行流程</span><b class="yes">✓</b></p><p><span>批量发行</span><b class="yes">✓</b></p><p><span>发行状态与异常跟踪</span><b class="yes">✓</b></p></div>
+            <div class="rights-group"><h4>数据与收入</h4><p><span>平台数据与收入报表</span><b class="yes">✓</b></p><p><span>合作方分账与结算</span><b class="yes">✓</b></p><p><span>报表导出</span><b class="yes">✓</b></p></div>
+            <div class="rights-group"><h4>数据交换</h4><p><span>Excel</span><b class="yes">✓</b></p><p><span>SFTP / XML</span><b class="yes">✓</b></p><p><span>DDEX</span><b class="no">—</b></p></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>服务权益</h3><p>当前方案包含的实施和服务等级。</p></div></div>
+          <div class="service-grid">
+            <div><span>客户支持</span><b>优先支持</b><small>企业问题优先响应</small></div>
+            <div><span>技术支持</span><b>优先技术支持</b><small>接入与日常技术问题支持</small></div>
+            <div><span>上线支持</span><b>首次实施培训</b><small>上线阶段提供实施与培训</small></div>
+            <div><span>历史曲库迁移</span><b>可选服务</b><small>按迁移规模单独评估</small></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" data-page="usage">
+        <div class="enterprise-subnav" aria-label="套餐与用量">
+          <a data-route href="/enterprise/admin/plan">套餐与权益</a>
+          <a class="active" data-route href="/enterprise/admin/usage">用量与增购</a>
+        </div>
+        <div class="page-head">
+          <div><span class="eyebrow">企业中心</span><h1>用量与增购</h1><p>查看曲库、视频、客户与发行使用量，并在需要时扩容或购买。</p></div>
+          <select><option>本月</option><option>上月</option><option>最近 6 个月</option></select>
+        </div>
+
+        <div class="metric-grid usage">
+          <article class="metric-card"><span>曲库使用量</span><strong>18,426 <small>/ 50,000</small></strong><div class="progress"><i style="width:36.8%"></i></div><p>剩余 31,574 首</p></article>
+          <article class="metric-card"><span>视频使用量</span><strong>286 <small>/ 1,000 个</small></strong><div class="progress"><i style="width:28.6%"></i></div><div class="metric-card-footer"><p>剩余 714 个</p><button type="button">申请扩容</button></div></article>
+          <article class="metric-card"><span>合作客户</span><strong>128 <small>/ 1,000</small></strong><div class="progress"><i style="width:12.8%"></i></div><p>剩余 872 个</p></article>
+          <article class="metric-card usage-purchase-card"><span>发行使用量</span><strong>8,462 <small>/ 20,000 次</small></strong><div class="progress"><i style="width:42.3%"></i></div><div class="metric-card-footer"><p>剩余 11,538 次</p><button type="button" data-buy-usage>购买 / 增购</button></div></article>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><div><h3>近 6 个月发行使用量</h3><p>按“歌曲 × 实际目标平台”累计计算。</p></div></div>
+          <div class="bar-chart">
+            <div><i style="height:48%"></i><span>4月</span><b>5,820</b></div>
+            <div><i style="height:56%"></i><span>5月</span><b>6,430</b></div>
+            <div><i style="height:63%"></i><span>6月</span><b>7,180</b></div>
+            <div><i style="height:58%"></i><span>7月</span><b>6,760</b></div>
+            <div><i style="height:70%"></i><span>8月</span><b>7,528</b></div>
+            <div class="active"><i style="height:82%"></i><span>9月</span><b>8,462</b></div>
+          </div>
+        </section>
+
+        <section class="panel usage-record-panel">
+          <div class="panel-head">
+            <div><h3>发行使用记录</h3><p>发行使用量按“歌曲 × 实际目标平台”计次，用于核对具体消耗来源。</p></div>
+            <button type="button" class="secondary-btn small">导出记录</button>
+          </div>
+          <div class="usage-record-table">
+            <div class="usage-record-row head"><span>日期</span><span>发行任务</span><span>歌曲数</span><span>渠道数</span><span>消耗</span></div>
+            <div class="usage-record-row"><span>2026/09/20</span><b>Midnight Signals</b><span>10 首</span><span>6 个</span><strong>60 次</strong></div>
+            <div class="usage-record-row"><span>2026/09/19</span><b>Blue Hour</b><span>5 首</span><span>8 个</span><strong>40 次</strong></div>
+            <div class="usage-record-row"><span>2026/09/18</span><b>After Rain</b><span>1 首</span><span>12 个</span><strong>12 次</strong></div>
+            <div class="usage-record-row"><span>2026/09/17</span><b>Neon Summer</b><span>8 首</span><span>9 个</span><strong>72 次</strong></div>
+            <div class="usage-record-row"><span>2026/09/16</span><b>City Lights</b><span>4 首</span><span>7 个</span><strong>28 次</strong></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="page" data-page="company">
+        <div class="page-head">
+          <div><span class="eyebrow">企业设置</span><h1>企业信息</h1><p>维护企业基础资料和业务联系人信息。</p></div>
+          <button class="primary-btn">保存修改</button>
+        </div>
+
+        <section class="panel form-panel">
+          <div class="panel-head"><div><h3>基础信息</h3><p>企业主体类信息由合同与账户资料同步，部分字段不可直接修改。</p></div></div>
+          <div class="form-grid">
+            <label><span>企业名称</span><input value="NOVA Music Entertainment"></label>
+            <label><span>企业简称</span><input value="NOVA Music"></label>
+            <label><span>企业 ID</span><input value="ENT-2026-0182" disabled></label>
+            <label><span>企业主体地区</span><input value="中国大陆" disabled></label>
+            <label><span>统一社会信用代码</span><input value="9131**********28" disabled></label>
+            <label><span>企业状态</span><input value="正常" disabled></label>
+          </div>
+        </section>
+
+        <section class="panel form-panel">
+          <div class="panel-head"><div><h3>业务联系人</h3><p>用于企业服务、实施和重要业务通知。</p></div></div>
+          <div class="form-grid">
+            <label><span>联系人</span><input value="张明"></label>
+            <label><span>联系电话</span><input value="+86 138 0000 2188"></label>
+            <label><span>工作邮箱</span><input value="ming.zhang@novamusic.com"></label>
+            <label><span>所在地区</span><input value="上海"></label>
+          </div>
+        </section>
+      </section>
+
+      <section class="page brand-page" data-page="brand">
+        <div class="page-head brand-page-head">
+          <div><span class="eyebrow">企业设置</span><h1>品牌与门户</h1><p>分别配置企业管理后台和面向合作客户开放的发行门户。</p></div>
+          <div class="brand-save-actions">
+            <span class="save-state" id="brand-save-state"><i></i>所有更改已保存</span>
+            <button class="primary-btn" id="brand-save-btn" type="button" disabled>保存配置</button>
+          </div>
+        </div>
+
+        <div class="brand-scope-tabs" role="tablist" aria-label="品牌配置作用域">
+          <button type="button" class="active" data-brand-tab="admin">
+            <span class="scope-tab-icon">▦</span>
+            <span class="scope-tab-copy"><b>管理后台</b><small>企业内部团队使用</small></span>
+            <em>后台生效</em>
+          </button>
+          <button type="button" data-brand-tab="portal">
+            <span class="scope-tab-icon">◎</span>
+            <span class="scope-tab-copy"><b>客户门户</b><small>合作客户对外使用</small></span>
+            <em>前台生效</em>
+          </button>
+        </div>
+
+        <div class="brand-scope-panel active" data-brand-panel="admin">
+          <div class="brand-editor-layout">
+            <div class="settings-stack">
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">01</span><div><h3>品牌素材</h3><p>配置管理后台左上角 Logo 与浏览器图标。</p></div></div>
+                </div>
+                <div class="asset-grid two">
+                  <div class="brand-asset-card">
+                    <div class="asset-thumb logo-thumb" data-preview-admin-logo><span>NOVA</span><small>ENTERPRISE</small></div>
+                    <div class="asset-card-copy"><b>品牌 Logo</b><span>PNG / SVG，建议透明背景</span></div>
+                    <button type="button" data-upload-trigger="admin-logo">更换</button>
+                    <input hidden type="file" accept="image/png,image/jpeg,image/svg+xml" data-upload-input="admin-logo">
+                  </div>
+                  <div class="brand-asset-card">
+                    <div class="asset-thumb icon-thumb" data-preview-admin-icon>N</div>
+                    <div class="asset-card-copy"><b>网站 ICON</b><span>PNG / ICO，建议 1:1</span></div>
+                    <button type="button" data-upload-trigger="admin-icon">更换</button>
+                    <input hidden type="file" accept="image/png,image/jpeg,image/x-icon" data-upload-input="admin-icon">
+                  </div>
+                </div>
+              </section>
+
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">02</span><div><h3>后台信息</h3><p>用于后台导航品牌和浏览器页签。</p></div></div>
+                </div>
+                <div class="form-grid">
+                  <label><span>后台名称</span><input data-brand-input="admin-name" value="NOVA Music Enterprise"></label>
+                  <label><span>浏览器标题</span><input data-brand-input="admin-title" value="NOVA Music · 企业发行管理"></label>
+                </div>
+              </section>
+            </div>
+
+            <aside class="brand-preview-pane">
+              <div class="preview-toolbar"><div><b>管理后台预览</b><span>实时预览</span></div><small>仅展示品牌效果</small></div>
+              <div class="admin-preview-shell">
+                <div class="admin-preview-side">
+                  <div class="admin-preview-brand">
+                    <div class="admin-preview-logo" data-live-admin-logo>NOVA <small>ENTERPRISE</small></div>
+                  </div>
+                  <span class="active"></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="admin-preview-main">
+                  <div class="admin-preview-top"><b data-live-admin-name>NOVA Music Enterprise</b><i data-live-admin-icon>N</i></div>
+                  <div class="admin-preview-title"><span>企业中心</span><strong>套餐与权益</strong></div>
+                  <div class="admin-preview-cards"><span></span><span></span><span></span></div>
+                  <div class="admin-preview-table"></div>
+                </div>
+              </div>
+              <div class="preview-meta-row"><span>浏览器标题</span><b data-live-admin-title>NOVA Music · 企业发行管理</b></div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="brand-scope-panel" data-brand-panel="portal" hidden>
+          <div class="brand-editor-layout">
+            <div class="settings-stack">
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">01</span><div><h3>品牌素材</h3><p>统一客户门户、登录页及浏览器页签的品牌视觉。</p></div></div>
+                </div>
+                <div class="asset-grid">
+                  <div class="brand-asset-card">
+                    <div class="asset-thumb logo-thumb" data-preview-portal-logo><span>NOVA</span><small>MUSIC</small></div>
+                    <div class="asset-card-copy"><b>品牌 Logo</b><span>PNG / SVG</span></div>
+                    <button type="button" data-upload-trigger="portal-logo">更换</button>
+                    <input hidden type="file" accept="image/png,image/jpeg,image/svg+xml" data-upload-input="portal-logo">
+                  </div>
+                  <div class="brand-asset-card">
+                    <div class="asset-thumb icon-thumb" data-preview-portal-icon>N</div>
+                    <div class="asset-card-copy"><b>网站 ICON</b><span>PNG / ICO</span></div>
+                    <button type="button" data-upload-trigger="portal-icon">更换</button>
+                    <input hidden type="file" accept="image/png,image/jpeg,image/x-icon" data-upload-input="portal-icon">
+                  </div>
+                  <div class="brand-asset-card wide">
+                    <div class="asset-thumb background-thumb" data-preview-portal-bg><span>品牌背景 / 视频</span></div>
+                    <div class="asset-card-copy"><b>登录页背景</b><span>图片或视频素材</span></div>
+                    <button type="button" data-upload-trigger="portal-bg">更换</button>
+                    <input hidden type="file" accept="image/*,video/*" data-upload-input="portal-bg">
+                  </div>
+                </div>
+              </section>
+
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">02</span><div><h3>门户信息</h3><p>用于客户门户导航、登录页及服务联系信息。</p></div></div>
+                </div>
+                <div class="form-grid">
+                  <label><span>门户名称</span><input data-brand-input="portal-name" value="NOVA Music Distribution"></label>
+                  <label><span>服务邮箱</span><input data-brand-input="portal-email" value="support@novamusic.com"></label>
+                </div>
+              </section>
+
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">03</span><div><h3>品牌文案与主题</h3><p>客户门户首屏文案支持多语言配置，并实时同步预览。</p></div></div>
+                </div>
+                <div class="form-grid one">
+                  <label class="field-with-action">
+                    <span>Slogan <button type="button" class="language-action" data-translate-field="slogan">多语言 <em>4</em></button></span>
+                    <input data-brand-input="portal-slogan" value="让音乐作品触达更多听众">
+                  </label>
+                  <label class="field-with-action">
+                    <span>品牌描述 <button type="button" class="language-action" data-translate-field="description">多语言 <em>4</em></button></span>
+                    <textarea data-brand-input="portal-description">面向音乐人、厂牌和版权客户提供专业音乐发行服务。</textarea>
+                  </label>
+                  <div class="theme-setting">
+                    <div><span>主题色</span><small>用于按钮、链接、选中状态等主要交互元素。</small></div>
+                    <div class="theme-control">
+                      <label class="color-swatch"><input type="color" data-brand-color value="#315ff4"><i></i></label>
+                      <input data-brand-color-text value="#315FF4" maxlength="7">
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div><span class="settings-no">04</span><div><h3>协议与合规</h3><p>门户注册与登录环节向客户展示的协议文件。</p></div></div>
+                </div>
+                <div class="agreement-list">
+                  <div class="agreement-item">
+                    <div class="agreement-icon">文</div>
+                    <div class="agreement-copy"><b>用户协议</b><span data-agreement-status="terms">尚未上传文件</span></div>
+                    <button type="button" class="language-action" data-translate-field="terms">多语言 <em>4</em></button>
+                    <button type="button" class="secondary-mini" data-upload-trigger="terms">上传文件</button>
+                    <input hidden type="file" accept=".pdf,.doc,.docx" data-upload-input="terms">
+                  </div>
+                  <div class="agreement-item">
+                    <div class="agreement-icon">隐</div>
+                    <div class="agreement-copy"><b>隐私协议</b><span data-agreement-status="privacy">尚未上传文件</span></div>
+                    <button type="button" class="language-action" data-translate-field="privacy">多语言 <em>4</em></button>
+                    <button type="button" class="secondary-mini" data-upload-trigger="privacy">上传文件</button>
+                    <input hidden type="file" accept=".pdf,.doc,.docx" data-upload-input="privacy">
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <aside class="brand-preview-pane portal-pane">
+              <div class="preview-toolbar">
+                <div><b>客户门户预览</b><span>实时预览</span></div>
+                <div class="device-switch"><button type="button" class="active" data-preview-device="desktop">桌面</button><button type="button" data-preview-device="mobile">手机</button></div>
+              </div>
+              <div class="portal-device-frame" data-portal-frame>
+                <div class="browser">
+                  <div class="browser-bar"><i></i><i></i><i></i><span>客户发行门户</span></div>
+                  <div class="portal-head">
+                    <b data-live-portal-logo>NOVA MUSIC</b>
+                    <nav>发行 · 艺人 · 数据 · 收入</nav>
+                    <button data-theme-bg>新建发行</button>
+                  </div>
+                  <div class="portal-body brand-theme-preview" data-live-portal-bg>
+                    <small>MUSIC DISTRIBUTION</small>
+                    <h2 data-live-portal-slogan>让音乐作品<br>触达更多听众</h2>
+                    <p data-live-portal-description>面向音乐人、厂牌和版权客户提供专业音乐发行服务。</p>
+                    <button data-theme-bg>开始发行</button>
+                  </div>
+                  <div class="portal-preview-footer">
+                    <span data-live-portal-name>NOVA Music Distribution</span>
+                    <span data-live-portal-email>support@novamusic.com</span>
+                  </div>
+                </div>
+              </div>
+              <div class="preview-note"><b>作用范围</b><p>客户门户配置仅影响合作客户看到的前台，不改变企业内部管理后台。</p></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      </main>
+  </div>
+</div>
+
+<div class="translation-backdrop" id="translation-drawer" hidden>
+  <aside class="translation-drawer" role="dialog" aria-modal="true" aria-labelledby="translation-title">
+    <div class="translation-head">
+      <div><span class="eyebrow">MULTILINGUAL</span><h2 id="translation-title">多语言配置</h2><p id="translation-subtitle">分别维护不同语言下展示给客户的内容。</p></div>
+      <button type="button" class="translation-close" data-close-translation aria-label="关闭">×</button>
+    </div>
+    <div class="translation-list" id="translation-list"></div>
+    <div class="translation-actions">
+      <button type="button" class="secondary-btn" data-close-translation>取消</button>
+      <button type="button" class="primary-btn" id="translation-save">保存多语言</button>
+    </div>
+  </aside>
+</div>
+
+<div class="modal-backdrop" id="usage-modal" hidden>
+  <section class="usage-modal" role="dialog" aria-modal="true" aria-labelledby="usage-modal-title">
+    <div class="modal-head">
+      <div><span class="eyebrow">发行使用量</span><h2 id="usage-modal-title">购买 / 申请增购</h2><p>发行使用量按“歌曲 × 实际目标平台”计次。</p></div>
+      <button type="button" class="modal-close" data-close-usage aria-label="关闭">×</button>
+    </div>
+    <div class="usage-balance">
+      <div><span>当前已购</span><strong>20,000 次</strong></div>
+      <div><span>已使用</span><strong>8,462 次</strong></div>
+      <div><span>剩余</span><strong>11,538 次</strong></div>
+    </div>
+    <div class="purchase-block">
+      <h3>选择增购数量</h3>
+      <div class="package-grid">
+        <button type="button" class="usage-package active" data-package="1000"><b>1,000 次</b><span>¥1,000</span></button>
+        <button type="button" class="usage-package" data-package="5000"><b>5,000 次</b><span>¥5,000</span></button>
+        <button type="button" class="usage-package" data-package="10000"><b>10,000 次</b><span>¥10,000</span></button>
+        <button type="button" class="usage-package" data-package="custom"><b>自定义</b><span>提交申请</span></button>
+      </div>
+      <label class="custom-usage" hidden><span>自定义增购数量</span><input type="number" min="1" step="100" placeholder="请输入需要增购的发行使用量"></label>
+      <p class="purchase-note">标准计费参考：¥1 / 首 / 渠道。实际结算以企业合作方案为准。</p>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="secondary-btn" data-close-usage>取消</button>
+      <button type="button" class="primary-btn" id="submit-usage-order">确认购买 1,000 次</button>
+    </div>
+    <div class="usage-success" id="usage-success" hidden>
+      <b>增购申请已提交</b>
+      <span>正式系统中将进入购买或商务确认流程。</span>
+    </div>
+  </section>
+</div>
+
+<script>
+const routes={
+  '/enterprise/admin':'plan',
+  '/enterprise/admin/':'plan',
+  '/enterprise/admin/plan':'plan',
+  '/enterprise/admin/plan/':'plan',
+  '/enterprise/admin/usage':'usage',
+  '/enterprise/admin/usage/':'usage',
+  '/enterprise/admin/company':'company',
+  '/enterprise/admin/company/':'company',
+  '/enterprise/admin/brand':'brand',
+  '/enterprise/admin/brand/':'brand'
+};
+function render(path){
+  const page=routes[path]||'plan';
+  document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
+  document.querySelectorAll('[data-route]').forEach(a=>{
+    const u=new URL(a.href,location.origin);
+    const navPages=(a.dataset.navPages||'').split(',').filter(Boolean);
+    a.classList.toggle('active',navPages.length?navPages.includes(page):routes[u.pathname]===page);
+  });
+  scrollTo(0,0);
+}
+document.addEventListener('click',e=>{
+  const submenuToggle=e.target.closest('[data-submenu-toggle]');
+  if(submenuToggle){
+    e.preventDefault();
+    const key=submenuToggle.dataset.submenuToggle;
+    const submenu=document.querySelector('[data-submenu="'+key+'"]');
+    const open=submenuToggle.getAttribute('aria-expanded')==='true';
+    submenuToggle.setAttribute('aria-expanded',String(!open));
+    submenuToggle.classList.toggle('open',!open);
+    if(submenu)submenu.hidden=open;
+    return;
+  }
+  const a=e.target.closest('a[data-route]');
+  if(!a)return;
+  const u=new URL(a.href,location.origin);
+  if(routes[u.pathname]){
+    e.preventDefault();
+    history.pushState({},'',u.pathname);
+    render(u.pathname);
+  }
+});
+addEventListener('popstate',()=>render(location.pathname));
+const brandPage=document.querySelector('[data-page="brand"]');
+const brandSaveBtn=document.querySelector('#brand-save-btn');
+const brandSaveState=document.querySelector('#brand-save-state');
+let brandDirty=false;
+
+function markBrandDirty(){
+  brandDirty=true;
+  if(brandSaveBtn)brandSaveBtn.disabled=false;
+  if(brandSaveState){
+    brandSaveState.classList.add('dirty');
+    brandSaveState.innerHTML='<i></i>有未保存修改';
+  }
+}
+function markBrandSaved(){
+  brandDirty=false;
+  if(brandSaveBtn)brandSaveBtn.disabled=true;
+  if(brandSaveState){
+    brandSaveState.classList.remove('dirty');
+    brandSaveState.innerHTML='<i></i>所有更改已保存';
+  }
+}
+brandSaveBtn?.addEventListener('click',markBrandSaved);
+
+document.querySelectorAll('[data-brand-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+  const key=btn.dataset.brandTab;
+  document.querySelectorAll('[data-brand-tab]').forEach(x=>x.classList.toggle('active',x===btn));
+  document.querySelectorAll('[data-brand-panel]').forEach(panel=>{
+    const active=panel.dataset.brandPanel===key;
+    panel.classList.toggle('active',active);
+    panel.hidden=!active;
+  });
+}));
+
+const liveMap={
+  'admin-name':'[data-live-admin-name]',
+  'admin-title':'[data-live-admin-title]',
+  'portal-name':'[data-live-portal-name]',
+  'portal-email':'[data-live-portal-email]',
+  'portal-slogan':'[data-live-portal-slogan]',
+  'portal-description':'[data-live-portal-description]'
+};
+document.querySelectorAll('[data-brand-input]').forEach(input=>input.addEventListener('input',()=>{
+  const target=document.querySelector(liveMap[input.dataset.brandInput]);
+  if(target)target.textContent=input.value||'—';
+  markBrandDirty();
+}));
+
+const colorPicker=document.querySelector('[data-brand-color]');
+const colorText=document.querySelector('[data-brand-color-text]');
+function applyBrandColor(value){
+  if(!/^#[0-9a-fA-F]{6}$/.test(value))return;
+  const normalized=value.toUpperCase();
+  brandPage?.style.setProperty('--brand-blue',normalized);
+  if(colorPicker&&colorPicker.value.toUpperCase()!==normalized)colorPicker.value=normalized;
+  if(colorText&&colorText.value.toUpperCase()!==normalized)colorText.value=normalized;
+  const swatch=document.querySelector('.color-swatch i');
+  if(swatch)swatch.style.background=normalized;
+}
+colorPicker?.addEventListener('input',()=>{applyBrandColor(colorPicker.value);markBrandDirty()});
+colorText?.addEventListener('input',()=>{applyBrandColor(colorText.value.trim());markBrandDirty()});
+
+document.querySelectorAll('[data-preview-device]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('[data-preview-device]').forEach(x=>x.classList.toggle('active',x===btn));
+  document.querySelector('[data-portal-frame]')?.classList.toggle('mobile',btn.dataset.previewDevice==='mobile');
+}));
+
+document.querySelectorAll('[data-upload-trigger]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelector('[data-upload-input="'+btn.dataset.uploadTrigger+'"]')?.click();
+}));
+document.querySelectorAll('[data-upload-input]').forEach(input=>input.addEventListener('change',()=>{
+  const file=input.files?.[0];
+  if(!file)return;
+  const key=input.dataset.uploadInput;
+  if(key==='terms'||key==='privacy'){
+    const status=document.querySelector('[data-agreement-status="'+key+'"]');
+    if(status)status.textContent=file.name;
+    markBrandDirty();
+    return;
+  }
+  const url=URL.createObjectURL(file);
+  const setImage=(selector,fit='contain')=>{
+    const target=document.querySelector(selector);
+    if(target)target.innerHTML='<img src="'+url+'" alt="" style="width:100%;height:100%;object-fit:'+fit+'">';
+  };
+  if(key==='admin-logo'){
+    setImage('[data-preview-admin-logo]');
+    setImage('[data-live-admin-logo]');
+  }else if(key==='admin-icon'){
+    setImage('[data-preview-admin-icon]','cover');
+    setImage('[data-live-admin-icon]','cover');
+  }else if(key==='portal-logo'){
+    setImage('[data-preview-portal-logo]');
+    setImage('[data-live-portal-logo]');
+  }else if(key==='portal-icon'){
+    setImage('[data-preview-portal-icon]','cover');
+  }else if(key==='portal-bg'){
+    const thumb=document.querySelector('[data-preview-portal-bg]');
+    const hero=document.querySelector('[data-live-portal-bg]');
+    if(file.type.startsWith('image/')){
+      if(thumb)thumb.style.backgroundImage='url("'+url+'")';
+      if(hero)hero.style.backgroundImage='url("'+url+'")';
+    }else{
+      if(thumb)thumb.innerHTML='<span>VIDEO · '+file.name+'</span>';
+    }
+  }
+  markBrandDirty();
+}));
+
+const translationDrawer=document.querySelector('#translation-drawer');
+const translationList=document.querySelector('#translation-list');
+const translationTitle=document.querySelector('#translation-title');
+const translationSubtitle=document.querySelector('#translation-subtitle');
+let activeTranslationField='';
+const languageLabels=[['zh-CN','简体中文'],['zh-TW','繁體中文'],['en','English'],['ja','日本語']];
+const translationValues={
+  slogan:{
+    'zh-CN':'让音乐作品触达更多听众',
+    'zh-TW':'讓音樂作品觸達更多聽眾',
+    en:'Bring your music to more listeners',
+    ja:'音楽をもっと多くのリスナーへ'
+  },
+  description:{
+    'zh-CN':'面向音乐人、厂牌和版权客户提供专业音乐发行服务。',
+    'zh-TW':'面向音樂人、廠牌和版權客戶提供專業音樂發行服務。',
+    en:'Professional music distribution for artists, labels and rights holders.',
+    ja:'アーティスト、レーベル、権利者向けの音楽配信サービス。'
+  }
+};
+const translationNames={slogan:'Slogan',description:'品牌描述',terms:'用户协议',privacy:'隐私协议'};
+
+function openTranslation(field){
+  activeTranslationField=field;
+  if(!translationDrawer||!translationList)return;
+  const isDocument=field==='terms'||field==='privacy';
+  if(translationTitle)translationTitle.textContent=(translationNames[field]||'内容')+' · 多语言';
+  if(translationSubtitle)translationSubtitle.textContent=isDocument?'为不同语言分别上传对应协议文件。':'分别维护不同语言下展示给客户的内容。';
+  translationList.innerHTML='';
+  languageLabels.forEach(([code,label])=>{
+    const row=document.createElement('div');
+    row.className='translation-row';
+    const labelEl=document.createElement('label');
+    labelEl.textContent=label;
+    row.appendChild(labelEl);
+    if(isDocument){
+      const box=document.createElement('div');
+      box.className='translation-file';
+      box.innerHTML='<span data-translation-file-status="'+code+'">未上传文件</span><button type="button">选择文件</button><input hidden type="file" accept=".pdf,.doc,.docx">';
+      const button=box.querySelector('button'),fileInput=box.querySelector('input'),status=box.querySelector('span');
+      button.addEventListener('click',()=>fileInput.click());
+      fileInput.addEventListener('change',()=>{if(fileInput.files?.[0]){status.textContent=fileInput.files[0].name;markBrandDirty()}});
+      row.appendChild(box);
+    }else{
+      const isLong=field==='description';
+      const control=document.createElement(isLong?'textarea':'input');
+      control.dataset.translationLang=code;
+      control.value=translationValues[field]?.[code]||'';
+      row.appendChild(control);
+    }
+    translationList.appendChild(row);
+  });
+  translationDrawer.hidden=false;
+  document.body.classList.add('modal-open');
+}
+function closeTranslation(){
+  if(translationDrawer)translationDrawer.hidden=true;
+  document.body.classList.remove('modal-open');
+}
+document.querySelectorAll('[data-translate-field]').forEach(btn=>btn.addEventListener('click',()=>openTranslation(btn.dataset.translateField)));
+document.querySelectorAll('[data-close-translation]').forEach(btn=>btn.addEventListener('click',closeTranslation));
+document.querySelector('#translation-save')?.addEventListener('click',()=>{
+  if(activeTranslationField==='slogan'||activeTranslationField==='description'){
+    translationValues[activeTranslationField]=translationValues[activeTranslationField]||{};
+    translationList?.querySelectorAll('[data-translation-lang]').forEach(input=>{
+      translationValues[activeTranslationField][input.dataset.translationLang]=input.value;
+    });
+  }
+  markBrandDirty();
+  closeTranslation();
+});
+translationDrawer?.addEventListener('click',e=>{if(e.target===translationDrawer)closeTranslation()});
+
+const usageModal=document.querySelector('#usage-modal');
+const usageSubmit=document.querySelector('#submit-usage-order');
+const customUsage=document.querySelector('.custom-usage');
+const usageSuccess=document.querySelector('#usage-success');
+let selectedUsage='1000';
+function openUsageModal(){
+  if(!usageModal)return;
+  usageModal.hidden=false;
+  document.body.classList.add('modal-open');
+  usageSuccess.hidden=true;
+}
+function closeUsageModal(){
+  if(!usageModal)return;
+  usageModal.hidden=true;
+  document.body.classList.remove('modal-open');
+}
+document.querySelectorAll('[data-buy-usage]').forEach(btn=>btn.addEventListener('click',openUsageModal));
+document.querySelectorAll('[data-close-usage]').forEach(btn=>btn.addEventListener('click',closeUsageModal));
+document.querySelectorAll('.usage-package').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('.usage-package').forEach(x=>x.classList.toggle('active',x===btn));
+  selectedUsage=btn.dataset.package||'1000';
+  if(customUsage)customUsage.hidden=selectedUsage!=='custom';
+  if(usageSubmit)usageSubmit.textContent=selectedUsage==='custom'?'提交增购申请':'确认购买 '+Number(selectedUsage).toLocaleString()+' 次';
+}));
+usageSubmit?.addEventListener('click',()=>{
+  if(usageSuccess)usageSuccess.hidden=false;
+  usageSubmit.textContent='已提交';
+  usageSubmit.disabled=true;
+});
+usageModal?.addEventListener('click',e=>{if(e.target===usageModal)closeUsageModal()});
+addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!translationDrawer?.hidden){closeTranslation();return}if(!usageModal?.hidden)closeUsageModal()});
+render(location.pathname);
+</script>
+</body>
+</html>
