@@ -32,3 +32,5 @@ jobs:
           fi
           git commit -m "feat: align Open API pages with release gateway"
           git push origin HEAD:main
+
+# one-time bootstrap trigger; future runs can use workflow_dispatch
