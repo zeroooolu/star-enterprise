@@ -1,0 +1,34 @@
+name: Link K-JSON reference assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/link-kjson-reference.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add K-JSON reference loader
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('prototype-v4/index.html')
+          html = path.read_text(encoding='utf-8')
+          tag = '<script src="/prototype-v4/kjson-reference.js"></script>'
+          if tag not in html:
+              html = html.replace('</body>', tag + '\n</body>')
+              path.write_text(html, encoding='utf-8')
+          PY
+      - name: Commit loader
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prototype-v4/index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "feat: mount full K-JSON reference"
+          git push origin HEAD:main
