@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>看见音乐·企业发行服务管理后台</title>
-<link rel="stylesheet" href="/enterprise-admin/styles.css">
+<link rel="stylesheet" href="/assets/admin.css">
 </head>
 <body>
 <div class="app-shell">
@@ -40,8 +40,8 @@
 
       <div class="nav-group enterprise-group">
         <div class="group-title">企业管理</div>
-        <a class="nav-item" data-route data-nav-pages="plan,usage" href="/enterprise/admin/plan"><span class="icon">◇</span><span>套餐与用量</span></a>
-        <a class="nav-item" data-route href="/enterprise/admin/brand"><span class="icon">✦</span><span>品牌与门户</span></a>
+        <a class="nav-item" data-route data-nav-pages="plan,usage" href="/admin/plan"><span class="icon">◇</span><span>套餐与用量</span></a>
+        <a class="nav-item" data-route href="/admin/brand"><span class="icon">✦</span><span>品牌与门户</span></a>
         <a class="nav-item nav-parent" href="#" data-submenu-toggle="account-permission" aria-expanded="false"><span class="icon">⚙</span><span>账号与权限</span><b class="nav-arrow">›</b></a>
         <div class="nav-submenu" data-submenu="account-permission" hidden>
           <a class="nav-subitem muted" href="#"><span>账号管理</span></a>
@@ -67,8 +67,8 @@
     <main class="content">
       <section class="page" data-page="plan">
         <div class="enterprise-subnav" aria-label="套餐与用量">
-          <a class="active" data-route href="/enterprise/admin/plan">套餐与权益</a>
-          <a data-route href="/enterprise/admin/usage">用量与增购</a>
+          <a class="active" data-route href="/admin/plan">套餐与权益</a>
+          <a data-route href="/admin/usage">用量与增购</a>
         </div>
         <div class="page-head">
           <div><span class="eyebrow">企业中心</span><h1>套餐与权益</h1><p>查看当前企业套餐、业务容量、功能权益和服务范围。</p></div>
@@ -116,8 +116,8 @@
 
       <section class="page" data-page="usage">
         <div class="enterprise-subnav" aria-label="套餐与用量">
-          <a data-route href="/enterprise/admin/plan">套餐与权益</a>
-          <a class="active" data-route href="/enterprise/admin/usage">用量与增购</a>
+          <a data-route href="/admin/plan">套餐与权益</a>
+          <a class="active" data-route href="/admin/usage">用量与增购</a>
         </div>
         <div class="page-head">
           <div><span class="eyebrow">企业中心</span><h1>用量与增购</h1><p>查看曲库、视频、客户与发行使用量，并在需要时扩容或购买。</p></div>
@@ -434,16 +434,11 @@
 
 <script>
 const routes={
-  '/enterprise/admin':'plan',
-  '/enterprise/admin/':'plan',
-  '/enterprise/admin/plan':'plan',
-  '/enterprise/admin/plan/':'plan',
-  '/enterprise/admin/usage':'usage',
-  '/enterprise/admin/usage/':'usage',
-  '/enterprise/admin/company':'company',
-  '/enterprise/admin/company/':'company',
-  '/enterprise/admin/brand':'brand',
-  '/enterprise/admin/brand/':'brand'
+  '/admin':'plan',
+  '/admin/plan':'plan',
+  '/admin/usage':'usage',
+  '/admin/company':'company',
+  '/admin/brand':'brand'
 };
 function render(path){
   const page=routes[path]||'plan';

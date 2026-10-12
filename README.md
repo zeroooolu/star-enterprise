@@ -405,21 +405,20 @@ Enterprise Plan
 
 ## 9. 官网与信息架构
 
-当前正式实现位于：
+当前正式实现位于仓库的 `prototype-v4/` 目录；该目录只是内部源码位置，不会出现在公开 URL 中。
 
-`03-enterprise/prototype-v4/`
-
-根目录 `vercel.json` 中的 `/enterprise*` 路由指向该版本。
+根目录 `vercel.json` 和 `nginx.conf` 将正式、测试环境统一到无业务前缀的规范路由。历史 `/enterprise/*` 链接会通过永久重定向迁移到新地址。
 
 正式页面：
 
-- `/enterprise`
-- `/enterprise/product`
-- `/enterprise/solutions`
-- `/enterprise/pricing`
-- `/enterprise/api`
-- `/enterprise/developers`
-- `/enterprise/apply`
+- `/`
+- `/product`
+- `/solutions`
+- `/pricing`
+- `/api`
+- `/developers`
+- `/apply`
+- `/admin/*`
 
 官网商业叙事顺序优先回答：
 
