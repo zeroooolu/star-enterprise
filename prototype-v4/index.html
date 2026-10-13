@@ -237,35 +237,73 @@
       <p>贯通资料校验、内容审核、渠道发行与平台上线。按平台查看上架结果、传输任务及历史记录，让异常处理和后续更新有据可查。</p>
     </div>
     <div class="release-process-head reveal"><b>标准发行流程</b><span>从内容提交到平台上线的完整业务链路</span></div>
-    <div class="release-steps release-journey reveal" role="list" aria-label="标准发行流程：七个阶段的静态说明">
+    <div class="release-steps reveal" role="list" aria-label="标准发行流程，七个阶段依次展示">
       <div role="listitem"><b>01</b><span>内容提交</span></div><div role="listitem"><b>02</b><span>资料校验</span></div><div role="listitem"><b>03</b><span>内容审核</span></div><div role="listitem"><b>04</b><span>渠道配置</span></div><div role="listitem"><b>05</b><span>提交发行</span></div><div role="listitem"><b>06</b><span>渠道处理</span></div><div role="listitem"><b>07</b><span>上线完成</span></div>
     </div>
-    <div class="release-detail-preview reveal" aria-label="示例专辑 Night Drive 的发行详情示意，所有数量与记录均为演示数据">
-      <div class="rd-appbar"><span>作品目录 <i>›</i> 专辑 <i>›</i> 发行情况</span><small>发行管理工作台</small></div>
-      <div class="rd-content">
-        <div class="rd-album-header">
-          <div class="rd-album-identity">
+    <div class="release-split-preview reveal" aria-label="专辑 Night Drive 的发行情况示意。所有平台状态与数字均为演示数据">
+      <div class="ro-topbar"><span>作品目录 <i>›</i> 专辑 <i>›</i> 发行情况</span><small>发行管理工作台</small></div>
+      <div class="ro-layout">
+        <aside class="ro-album-pane">
+          <div class="ro-pane-heading">专辑信息 <span>ALBUM DETAILS</span></div>
+          <div class="ro-album-identity">
             <img src="/assets/album-night-drive.png" alt="Night Drive 专辑封面" loading="lazy">
-            <div><span class="rd-object-kind">ALBUM DISTRIBUTION</span><h3>Night Drive <small>EP</small></h3>
-              <div class="rd-album-sub">Nova Echo <span>·</span> NOVA Records</div>
-              <div class="rd-album-meta"><span>UPC 697812340026</span><span>发行日期 2026-09-18</span></div>
+            <div><h3>Night Drive</h3><span>Nova Echo · EP · 8 首歌曲</span><small>NOVA Records</small></div>
+          </div>
+          <div class="ro-album-details">
+            <div><span>UPC / EAN</span><b>697812340026</b></div>
+            <div><span>发行日期</span><b>2026-09-18</b></div>
+            <div><span>资料状态</span><b class="ro-verified">✓ 资料已通过</b></div>
+          </div>
+          <div class="ro-progress-heading">平台发行进度</div>
+          <div class="ro-stats">
+            <div><strong>4</strong><span>已上架</span></div>
+            <div><strong>0</strong><span>已下架</span></div>
+            <div><strong>2</strong><span>未上架</span></div>
+          </div>
+          <p class="ro-album-notice"><span aria-hidden="true">!</span> 1 个平台处理中，1 个平台待重新提交</p>
+        </aside>
+        <div class="ro-channel-pane">
+          <div class="ro-channel-heading"><div><strong>渠道发行状态</strong><span>各平台的上架结果、任务与记录</span></div><small>共 6 个平台</small></div>
+          <div class="ro-table">
+            <div class="ro-table-head"><span>平台</span><span>发行结果</span><span>最新任务状态</span><span>记录</span></div>
+            <div class="ro-channel-row">
+              <div class="ro-platform"><img src="/assets/platforms/qq-music.png" alt="" loading="lazy"><b>QQ 音乐</b></div>
+              <span class="ro-publication live"><i></i>已上架</span>
+              <div class="ro-task"><b class="success">传输成功</b><small>合规 · 无审核任务</small></div>
+              <span class="ro-record">1 次</span>
+            </div>
+            <div class="ro-channel-row">
+              <div class="ro-platform"><img src="/assets/platforms/kugou-music.png" alt="" loading="lazy"><b>酷狗音乐</b></div>
+              <span class="ro-publication live"><i></i>已上架</span>
+              <div class="ro-task"><b class="success">传输成功</b><small>合规 · 无审核任务</small></div>
+              <span class="ro-record">1 次</span>
+            </div>
+            <div class="ro-channel-row">
+              <div class="ro-platform"><img src="/assets/platforms/netease-music.jpg" alt="" loading="lazy"><b>网易云音乐</b></div>
+              <span class="ro-publication live"><i></i>已上架</span>
+              <div class="ro-task"><b class="success">传输成功</b><small>合规 · 无审核任务</small></div>
+              <span class="ro-record">1 次</span>
+            </div>
+            <div class="ro-channel-row">
+              <div class="ro-platform"><img src="/assets/platforms/apple-music.jpg" alt="" loading="lazy"><b>Apple Music</b></div>
+              <span class="ro-publication live"><i></i>已上架</span>
+              <div class="ro-task"><b class="success">传输成功</b><small>合规 · 无审核任务</small></div>
+              <span class="ro-record">1 次</span>
+            </div>
+            <div class="ro-channel-row">
+              <div class="ro-platform"><img src="/assets/platforms/spotify.jpeg" alt="" loading="lazy"><b>Spotify</b></div>
+              <span class="ro-publication waiting"><i></i>未上架</span>
+              <div class="ro-task"><b class="waiting">平台处理中</b><small>等待平台确认</small></div>
+              <span class="ro-record">1 次</span>
+            </div>
+            <div class="ro-channel-row">
+              <div class="ro-platform"><img src="/assets/platforms/youtube-music.png" alt="" loading="lazy"><b>YouTube Music</b></div>
+              <span class="ro-publication waiting"><i></i>未上架</span>
+              <div class="ro-task"><b class="error">传输失败</b><small>需重新提交</small></div>
+              <span class="ro-record">2 次</span>
             </div>
           </div>
-          <span class="rd-approved"><i>✓</i> 资料已通过</span>
-        </div>
-        <div class="rd-detail-tabs"><span>基本信息</span><span>音频列表</span><span class="current">发行情况</span><span>授权合同</span></div>
-        <div class="rd-summary">
-          <div><span><i class="rd-indicator live"></i>已上架平台</span><strong>4</strong><small>平台已完成上线</small></div>
-          <div><span><i class="rd-indicator offline"></i>已下架平台</span><strong>0</strong><small>当前无下架记录</small></div>
-          <div><span><i class="rd-indicator pending"></i>未上架平台</span><strong>2</strong><small>1 项待处理 · 1 项异常</small></div>
-        </div>
-        <div class="rd-platform-panel">
-          <div class="rd-platform-toolbar"><div><b>平台发行状态</b><small>查看各平台的结果、传输任务与发行记录</small></div><div class="rd-platform-filter"><span>⌕ 搜索平台</span><em>全部平台⌄</em></div></div>
-          <div class="rd-table">
-            <div class="rd-table-heading"><span>平台</span><span>传输路径</span><span>发行结果</span><span>最新发行任务状态</span><span>发行记录</span></div>
-            <div class="rd-group"><span>TME · 系统传输</span><small>2 个平台</small></div><div class="rd-platform-row"><div class="rd-platform-name"><img src="/assets/platforms/qq-music.png" alt="" loading="lazy"><div><b>QQ 音乐</b><small>数字发行</small></div></div><span class="rd-route">TME (SP)</span><span class="rd-publish live"><i></i>已上架</span><div class="rd-task"><b class="success">传输成功</b><small>合规 · 无审核任务</small></div><div class="rd-record"><b>1 次记录</b><small>2026-09-18</small></div></div><div class="rd-platform-row"><div class="rd-platform-name"><img src="/assets/platforms/kugou-music.png" alt="" loading="lazy"><div><b>酷狗音乐</b><small>数字发行</small></div></div><span class="rd-route">TME (SP)</span><span class="rd-publish live"><i></i>已上架</span><div class="rd-task"><b class="success">传输成功</b><small>合规 · 无审核任务</small></div><div class="rd-record"><b>1 次记录</b><small>2026-09-18</small></div></div><div class="rd-group"><span>网易云音乐 · 系统传输</span><small>1 个平台</small></div><div class="rd-platform-row"><div class="rd-platform-name"><img src="/assets/platforms/netease-music.jpg" alt="" loading="lazy"><div><b>网易云音乐</b><small>数字发行</small></div></div><span class="rd-route">NetEase (SP)</span><span class="rd-publish live"><i></i>已上架</span><div class="rd-task"><b class="success">传输成功</b><small>合规 · 无审核任务</small></div><div class="rd-record"><b>1 次记录</b><small>2026-09-18</small></div></div><div class="rd-group"><span>国际平台 · 直连发行</span><small>3 个平台</small></div><div class="rd-platform-row"><div class="rd-platform-name"><img src="/assets/platforms/apple-music.jpg" alt="" loading="lazy"><div><b>Apple Music</b><small>数字发行</small></div></div><span class="rd-route">直连</span><span class="rd-publish live"><i></i>已上架</span><div class="rd-task"><b class="success">传输成功</b><small>合规 · 无审核任务</small></div><div class="rd-record"><b>1 次记录</b><small>2026-09-19</small></div></div><div class="rd-platform-row"><div class="rd-platform-name"><img src="/assets/platforms/spotify.jpeg" alt="" loading="lazy"><div><b>Spotify</b><small>数字发行</small></div></div><span class="rd-route">直连</span><span class="rd-publish pending"><i></i>未上架</span><div class="rd-task"><b class="waiting">等待平台处理</b><small>任务进行中</small></div><div class="rd-record"><b>1 次记录</b><small>2026-09-19</small></div></div><div class="rd-platform-row"><div class="rd-platform-name"><img src="/assets/platforms/youtube-music.png" alt="" loading="lazy"><div><b>YouTube Music</b><small>数字发行</small></div></div><span class="rd-route">直连</span><span class="rd-publish pending"><i></i>未上架</span><div class="rd-task"><b class="error">传输失败</b><small>需重新提交</small></div><div class="rd-record"><b>2 次记录</b><small>2026-09-20</small></div></div>
-          </div>
-          <div class="rd-footer"><span><i></i> 状态与记录按渠道归档，便于追踪异常和重新提交</span><small>产品界面示意 · 非实时数据</small></div>
+          <div class="ro-channel-footer"><span><i></i> 平台状态与任务记录独立追踪</span><small>示例数据 · 非实时状态</small></div>
         </div>
       </div>
     </div>
