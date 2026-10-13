@@ -322,34 +322,80 @@
         <p>无需重建已有网站、App 或内部系统，通过发行 API 与标准化数据交换接入看见音乐的发行能力，支持内容导入、发行提交、渠道状态跟踪与大规模曲库运营。</p>
       </div>
       <div class="integration-scale-layout reveal">
-        <div class="integration-architecture" aria-label="系统集成示意：企业网站、App、SaaS 或内部系统，经 API 或批量数据交换连接看见音乐企业发行服务，再交付至音乐平台。">
-          <div class="ia-header"><span>系统集成示意</span><small>INTEGRATION OVERVIEW</small></div>
-          <div class="ia-sources">
-            <div class="ia-source"><span class="ia-symbol">⌘</span><div><b>企业现有产品</b><small>网站 / App / 音乐 SaaS</small></div></div>
-            <div class="ia-source"><span class="ia-symbol">▤</span><div><b>企业内部系统</b><small>曲库 / 发行 / 运营后台</small></div></div>
+        <div class="integration-architecture" id="integration-architecture-preview" aria-label="企业发行服务系统集成架构示意">
+          <div class="ia-header">
+            <div class="ia-header-copy"><span class="ia-head-eyebrow">SYSTEM ARCHITECTURE</span><strong>开放发行连接架构</strong></div>
+            <button class="ia-expand-button" type="button" data-integration-expand aria-label="放大查看系统集成架构图" aria-haspopup="dialog" aria-controls="integration-architecture-dialog">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H4a1 1 0 0 0-1 1v4M16 3h4a1 1 0 0 1 1 1v4M3 16v4a1 1 0 0 0 1 1h4M21 16v4a1 1 0 0 1-1 1h-4"/></svg>
+              <span>放大查看</span>
+            </button>
           </div>
-          <div class="ia-connector" aria-hidden="true"><i></i><span>↓</span><i></i></div>
-          <div class="ia-integration-methods">
-            <span class="ia-method-primary">发行 API</span>
-            <span>K-JSON</span><span>Excel</span><span>SFTP</span><span>XML</span><span>DDEX</span>
+          <div class="ia-diagram">
+            <div class="ia-layer-label"><span>01</span><strong>业务系统</strong><small>BUSINESS SYSTEMS</small></div>
+            <div class="ia-source-grid">
+              <div class="ia-source-card">
+                <span class="ia-node-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9h10M7 12h6"/></svg></span>
+                <div><b>企业现有产品</b><small>网站 · App · 音乐 SaaS</small></div>
+              </div>
+              <div class="ia-source-card">
+                <span class="ia-node-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="5" rx="1.5"/><rect x="4" y="10" width="16" height="5" rx="1.5"/><rect x="4" y="16.5" width="16" height="5" rx="1.5"/><path d="M7.5 6h.01M7.5 12.5h.01M7.5 19h.01"/></svg></span>
+                <div><b>企业内部系统</b><small>曲库 · 发行 · 运营后台</small></div>
+              </div>
+            </div>
+            <div class="ia-link" aria-hidden="true"><span></span><i>↓</i></div>
+            <div class="ia-access-layer">
+              <div class="ia-layer-label"><span>02</span><strong>标准化接入</strong><small>INTEGRATION</small></div>
+              <div class="ia-access-grid">
+                <div class="ia-access-api">
+                  <span class="ia-access-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span>
+                  <div><b>发行 API</b><small>系统级接口集成</small></div>
+                </div>
+                <div class="ia-access-batch">
+                  <b>批量数据交换</b>
+                  <div class="ia-protocols"><span>K-JSON</span><span>Excel</span><span>SFTP</span><span>XML</span><span>DDEX</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="ia-link" aria-hidden="true"><span></span><i>↓</i></div>
+            <div class="ia-core">
+              <div class="ia-layer-label"><span>03</span><strong>企业发行底座</strong><small>DISTRIBUTION CORE</small></div>
+              <div class="ia-core-brand">
+                <span class="ia-core-logo" aria-hidden="true"><img src="/assets/kanjian-logo.png" alt=""></span>
+                <div><b>看见音乐企业发行服务</b><small>统一发行基础设施</small></div>
+                <span class="ia-core-live">ENTERPRISE</span>
+              </div>
+              <div class="ia-core-services">
+                <span><i aria-hidden="true">01</i> 内容与曲库</span><span><i aria-hidden="true">02</i> 发行提交</span><span><i aria-hidden="true">03</i> 渠道状态</span>
+              </div>
+            </div>
+            <div class="ia-link" aria-hidden="true"><span></span><i>↓</i></div>
+            <div class="ia-dsp-layer">
+              <div class="ia-layer-label"><span>04</span><strong>音乐平台 / DSP</strong><small>GLOBAL DELIVERY</small></div>
+              <div class="ia-dsp-content">
+                <div class="ia-dsp-logos" aria-hidden="true">
+                  <img src="/assets/platforms/spotify.jpeg" alt=""><img src="/assets/platforms/apple-music.jpg" alt=""><img src="/assets/platforms/qq-music.png" alt=""><img src="/assets/platforms/netease-music.jpg" alt="">
+                </div>
+                <div><b>国内外主流音乐平台</b><small>发行交付 · 平台结果查询</small></div>
+                <span class="ia-dsp-more">+</span>
+              </div>
+            </div>
+            <div class="ia-result-loop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M6.5 9A7 7 0 0 1 19 12M5 12a7 7 0 0 0 12.5 3"/></svg><span>发行任务与平台状态可查询，支持后续更新、下架</span></div>
           </div>
-          <div class="ia-connector" aria-hidden="true"><i></i><span>↓</span><i></i></div>
-          <div class="ia-platform">
-            <div class="ia-platform-heading"><span class="ia-platform-mark" aria-hidden="true">K</span><div><small>看见音乐</small><b>企业发行服务</b></div></div>
-            <div class="ia-platform-services"><span>内容与曲库</span><span>发行提交</span><span>渠道状态查询</span></div>
-          </div>
-          <div class="ia-connector" aria-hidden="true"><i></i><span>↓</span><i></i></div>
-          <div class="ia-dsp"><span class="ia-dsp-icon" aria-hidden="true">◎</span><div><b>国内外音乐平台 / DSP</b><small>标准化交付与发行结果追踪</small></div><span class="ia-dsp-arrow" aria-hidden="true">→</span></div>
-          <p class="ia-feedback">发行任务和平台结果可回查至企业现有业务流程</p>
         </div>
         <div class="integration-scale-capabilities">
           <div class="integration-feature"><span class="integration-feature-num" aria-hidden="true">01</span><div><b>发行 API 接入</b><p>将内容管理、发行提交与渠道状态能力接入现有产品，无需重新搭建发行业务界面。</p></div></div>
           <div class="integration-feature"><span class="integration-feature-num" aria-hidden="true">02</span><div><b>批量数据交换</b><p>兼容 K-JSON、Excel、SFTP、XML 和 DDEX，适配大曲库导入及专业发行数据交换。</p></div></div>
           <div class="integration-feature"><span class="integration-feature-num" aria-hidden="true">03</span><div><b>发行状态追踪</b><p>按任务与作品目录编号查询各平台处理结果和失败信息，让异常处理持续可追踪。</p></div></div>
-          <div class="integration-feature-link"><a class="text-link" href="/api" data-route>了解发行 API →</a><small>具体接口开放范围以开发者文档与企业接入方案为准。</small></div>
+          <div class="integration-feature-link"><a class="text-link" href="/api" data-route>了解发行 API →</a></div>
         </div>
       </div>
     </div>
+      <dialog class="ia-diagram-dialog" id="integration-architecture-dialog" aria-label="系统集成架构放大查看">
+        <div class="ia-dialog-shell">
+          <div class="ia-dialog-toolbar"><div><span>INTEGRATION OVERVIEW</span><strong>开放发行连接架构</strong></div><button type="button" class="ia-dialog-close" data-integration-close aria-label="关闭放大视图">✕ <span>关闭</span></button></div>
+          <div class="ia-dialog-body" data-integration-zoom-content></div>
+        </div>
+      </dialog>
   </section>
 
   <section class="section soft product-launch"><div class="container"><div class="section-head reveal"><span class="eyebrow">FROM SETUP TO LAUNCH</span><h2>从配置到正式运营，按步骤完成上线</h2><p>新建发行平台或迁移现有业务，都可按照清晰的上线流程完成品牌配置、业务导入、发行验证和正式运营。</p></div><div class="launch-steps reveal"><article><b>01</b><h3>配置品牌</h3><p>设置企业品牌、Logo、客户入口和域名。</p></article><article><b>02</b><h3>导入业务</h3><p>建立合作客户与团队，导入已有曲库和发行资料。</p></article><article><b>03</b><h3>完成发行验证</h3><p>验证内容审核、渠道提交、状态回传和上线流程。</p></article><article><b>04</b><h3>正式运营</h3><p>客户开始提交内容，团队进入持续发行运营。</p></article></div></div></section>
@@ -883,6 +929,13 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
 addEventListener('popstate',()=>render(location.pathname,location.hash));
 const toggle=document.querySelector('.nav-toggle'),nav=document.querySelector('.nav-links');if(toggle&&nav)toggle.onclick=()=>{const open=nav.classList.toggle('open');toggle.textContent=open?'×':'☰';toggle.setAttribute('aria-expanded',open)};const devToggle=document.querySelector('.dev-mobile-nav'),devNav=document.querySelector('.dev-side');if(devToggle&&devNav)devToggle.onclick=()=>{const open=devNav.classList.toggle('open');devToggle.setAttribute('aria-expanded',String(open));devToggle.querySelector('b').textContent=open?'×':'☰'};
 const form=document.querySelector('#apply-form');if(form)form.addEventListener('submit',e=>{e.preventDefault();form.querySelector('.success').hidden=false});
+const integrationDialog=document.querySelector('#integration-architecture-dialog');
+const integrationExpand=document.querySelector('[data-integration-expand]');
+const integrationZoomContent=integrationDialog?.querySelector('[data-integration-zoom-content]');
+integrationExpand?.addEventListener('click',()=>{const diagram=document.querySelector('#integration-architecture-preview .ia-diagram');if(!integrationDialog||!integrationZoomContent||!diagram)return;integrationZoomContent.replaceChildren(diagram.cloneNode(true));integrationDialog.showModal()});
+integrationDialog?.querySelector('[data-integration-close]')?.addEventListener('click',()=>integrationDialog.close());
+integrationDialog?.addEventListener('click',event=>{if(event.target===integrationDialog)integrationDialog.close()});
+integrationDialog?.addEventListener('close',()=>{integrationZoomContent?.replaceChildren();integrationExpand?.focus()});
 setBillingPeriod('yearly');
 render(location.pathname,location.hash);
 </script>
