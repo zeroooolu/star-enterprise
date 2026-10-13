@@ -128,7 +128,48 @@
             <span><img src="/assets/icons/menu/user-cog.svg" alt="" aria-hidden="true">用户管理</span>
           </nav>
         </aside>
-        <div class="phu-main"><div class="phu-head"><div><small>发行工作台</small><strong>今日待处理</strong></div><button>+ 新建发行</button></div><div class="phu-metrics"><div><span>待审核</span><b>24</b></div><div><span>发行中</span><b>68</b></div><div><span>已上线</span><b>1,284</b></div></div><div class="phu-list"><div><span class="cover"></span><p><b>Midnight Signals</b><small>NOVA Records · 12 tracks</small></p><em class="status now">发行中</em></div><div><span class="cover alt"></span><p><b>Neon Summer</b><small>Blue Hour · Single</small></p><em class="status done">已上线</em></div><div><span class="cover warm"></span><p><b>After Rain</b><small>Cloud Room · EP</small></p><em class="status wait">待审核</em></div></div></div>
+        <div class="phu-main phu-release-preview" aria-label="示例专辑 Night Drive 的多渠道发行进度概览，数据仅供展示">
+          <div class="phu-release-heading">
+            <div><small>RELEASE OPERATIONS</small><strong>发行运营</strong></div>
+            <span class="phu-target-count">6 个目标平台</span>
+          </div>
+          <div class="phu-release-album">
+            <img src="/assets/album-night-drive.png" alt="Night Drive 专辑封面" loading="lazy">
+            <div class="phu-album-copy">
+              <strong>Night Drive</strong>
+              <span>Nova Echo · NOVA Records</span>
+              <small>EP · 8 首歌曲 · UPC 697812340026</small>
+            </div>
+            <span class="phu-album-approved"><i aria-hidden="true">✓</i>资料已通过</span>
+          </div>
+          <div class="phu-release-stats">
+            <div><span>已上架</span><strong>4</strong><small>平台已完成上线</small></div>
+            <div><span>处理中</span><strong>1</strong><small>等待平台确认</small></div>
+            <div><span>需处理</span><strong>1</strong><small>存在传输异常</small></div>
+          </div>
+          <div class="phu-release-progress" aria-hidden="true"><span class="live"></span><span class="processing"></span><span class="issue"></span></div>
+          <div class="phu-channel-table">
+            <div class="phu-channel-heading"><b>渠道发行状态</b><span>发行结果 / 最新任务</span></div>
+            <div class="phu-channel-row">
+              <div class="phu-channel-brand"><img src="/assets/platforms/qq-music.png" alt=""><b>QQ 音乐</b></div>
+              <em class="phu-channel-status live">已上架</em><span class="phu-channel-task success">传输成功</span>
+            </div>
+            <div class="phu-channel-row">
+              <div class="phu-channel-brand"><img src="/assets/platforms/apple-music.jpg" alt=""><b>Apple Music</b></div>
+              <em class="phu-channel-status live">已上架</em><span class="phu-channel-task success">传输成功</span>
+            </div>
+            <div class="phu-channel-row">
+              <div class="phu-channel-brand"><img src="/assets/platforms/spotify.jpeg" alt=""><b>Spotify</b></div>
+              <em class="phu-channel-status pending">未上架</em><span class="phu-channel-task processing">平台处理中</span>
+            </div>
+            <div class="phu-channel-row">
+              <div class="phu-channel-brand"><img src="/assets/platforms/youtube-music.png" alt=""><b>YouTube Music</b></div>
+              <em class="phu-channel-status pending">未上架</em><span class="phu-channel-task error">传输失败</span>
+            </div>
+            <div class="phu-channel-more"><span>另有 2 个平台已上架</span><span>共 6 个平台</span></div>
+          </div>
+          <div class="phu-release-foot"><i aria-hidden="true"></i><span>各平台发行结果与任务记录独立追踪</span></div>
+        </div>
       </div>
     </div>
   </div></section>
