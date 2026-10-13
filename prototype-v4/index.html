@@ -748,24 +748,25 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
 [data-page="apply"] .apply-promise small{color:#7b8798;font-size:11px;line-height:1.6}
 [data-page="apply"] .apply-links{display:flex;flex-wrap:wrap;gap:18px;margin-top:25px}
 [data-page="apply"] .apply-links a{font-size:12px}
-[data-page="apply"] .apply-form-card{min-width:0;overflow:hidden;padding:24px 24px 18px;border:1px solid rgba(214,222,235,.96);border-radius:22px;background:#fff;box-shadow:0 24px 66px rgba(25,42,82,.085)}
-[data-page="apply"] .form-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:18px}
-[data-page="apply"] .form-card-head h2{margin:3px 0 6px;color:#26354c;font-size:24px;letter-spacing:-.035em}
-[data-page="apply"] .form-card-head p{margin:0;color:#7b899c;font-size:12px;line-height:1.65}
-[data-page="apply"] .apply-open-form{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex:none;margin-top:6px;padding:10px 12px;border:1px solid #cedcff;border-radius:9px;background:#eef3ff;color:#315ad6;font-size:11px;font-weight:800;line-height:1.2;white-space:nowrap;transition:background .2s ease}
-[data-page="apply"] .apply-open-form:hover{background:#dce8ff}
-[data-page="apply"] .apply-open-form:focus-visible{outline:3px solid #a9bdff;outline-offset:3px}
-[data-page="apply"] .apply-context{display:inline-flex;align-items:center;margin:0 0 13px;padding:7px 10px;border:1px solid #d9e3ff;border-radius:999px;background:#f3f6ff;color:#3157c8;font-size:11px;font-weight:760}
-[data-page="apply"] .apply-context[hidden]{display:none}
-[data-page="apply"] .apply-embed-frame{position:relative;overflow:hidden;border:1px solid #e2e8f2;border-radius:13px;background:#f9fbff}
-[data-page="apply"] .apply-embed-frame iframe{display:block;width:100%;height:850px;min-height:620px;border:0;background:#fff}
-[data-page="apply"] .apply-form-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 1px 0}
-[data-page="apply"] .apply-form-footer p{margin:0;color:#8693a6;font-size:11px;line-height:1.6}
-[data-page="apply"] .apply-form-footer a{color:#315ad6;font-size:11px;font-weight:800;white-space:nowrap}
-[data-page="apply"] .apply-form-footer a:hover{text-decoration:underline}
+[data-page="apply"] .apply-form-card{min-width:0;overflow:hidden;padding:0;border:1px solid rgba(214,222,235,.96);border-radius:22px;background:#fff;box-shadow:0 24px 66px rgba(25,42,82,.085)}
+[data-page="apply"] .apply-form-card iframe{display:block;width:100%;height:850px;min-height:620px;border:0;background:#fff}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media(max-width:1100px){[data-page="apply"] .apply-shell{grid-template-columns:minmax(0,.8fr) minmax(470px,1.2fr);gap:30px}[data-page="apply"] .apply-intro h1{font-size:46px}}
 @media(max-width:900px){[data-page="apply"] .apply-stage{padding:60px 0 74px}[data-page="apply"] .apply-shell{grid-template-columns:1fr;gap:34px}[data-page="apply"] .apply-intro{position:relative;top:auto;padding-top:0}[data-page="apply"] .apply-intro h1{max-width:720px}[data-page="apply"] .apply-intro>p{max-width:680px}[data-page="apply"] .apply-promises{grid-template-columns:repeat(3,1fr);gap:10px;max-width:none;border-top:0;margin-top:24px}[data-page="apply"] .apply-promise{display:block;padding:16px;border:1px solid var(--ap-line);border-radius:13px;background:rgba(255,255,255,.74)}[data-page="apply"] .apply-promise>span{margin-bottom:13px}[data-page="apply"] .apply-form-card{max-width:790px}}
-@media(max-width:620px){[data-page="apply"] .apply-stage{padding:44px 0 58px}[data-page="apply"] .apply-intro h1{font-size:37px;line-height:1.12}[data-page="apply"] .apply-intro>p{font-size:14px;line-height:1.75}[data-page="apply"] .apply-promises{grid-template-columns:1fr;gap:0;border-top:1px solid var(--ap-line)}[data-page="apply"] .apply-promise{display:grid;padding:14px 0;border:0;border-bottom:1px solid var(--ap-line);border-radius:0;background:transparent}[data-page="apply"] .apply-promise>span{margin:0}[data-page="apply"] .apply-form-card{padding:18px 12px 14px;border-radius:18px}[data-page="apply"] .form-card-head{display:block;margin:0 5px 14px}[data-page="apply"] .form-card-head h2{font-size:22px}[data-page="apply"] .apply-open-form{margin-top:13px}[data-page="apply"] .apply-context{margin-left:5px}[data-page="apply"] .apply-embed-frame{border-radius:10px}[data-page="apply"] .apply-embed-frame iframe{height:760px}[data-page="apply"] .apply-form-footer{display:block;margin:11px 5px 0}[data-page="apply"] .apply-form-footer a{display:inline-block;margin-top:7px}}
+@media(max-width:620px){[data-page="apply"] .apply-stage{padding:44px 0 58px}[data-page="apply"] .apply-intro h1{font-size:37px;line-height:1.12}[data-page="apply"] .apply-intro>p{font-size:14px;line-height:1.75}[data-page="apply"] .apply-promises{grid-template-columns:1fr;gap:0;border-top:1px solid var(--ap-line)}[data-page="apply"] .apply-promise{display:grid;padding:14px 0;border:0;border-bottom:1px solid var(--ap-line);border-radius:0;background:transparent}[data-page="apply"] .apply-promise>span{margin:0}[data-page="apply"] .apply-form-card{padding:0;border-radius:18px}[data-page="apply"] .apply-form-card iframe{height:760px}}
 </style>
   <section class="apply-stage">
     <div class="container apply-shell">
@@ -781,18 +782,7 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
         <div class="apply-links"><a class="text-link" href="/pricing" data-route>查看版本与价格 →</a><a class="text-link" href="/api" data-route>了解发行 API →</a></div>
       </div>
       <div class="apply-form-card reveal">
-        <div class="form-card-head">
-          <div><span class="eyebrow">ENTERPRISE INQUIRY</span><h2>提交企业发行需求</h2><p>填写飞书收集表，我们将根据你的业务需求进行方案评估。</p></div>
-          <a class="apply-open-form" href="https://pcnwoqnoz1jl.feishu.cn/share/base/form/shrcn6Dwj4BsDAyRGeePzWVfath" target="_blank" rel="noopener noreferrer">在飞书中打开 <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="apply-context" id="apply-context" hidden></div>
-        <div class="apply-embed-frame">
-          <iframe src="https://pcnwoqnoz1jl.feishu.cn/share/base/form/shrcn6Dwj4BsDAyRGeePzWVfath" title="企业发行服务申请｜飞书收集表" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-        <div class="apply-form-footer">
-          <p>表单由飞书提供。若无法在页面内显示或填写，请使用外部打开入口。</p>
-          <a href="https://pcnwoqnoz1jl.feishu.cn/share/base/form/shrcn6Dwj4BsDAyRGeePzWVfath" target="_blank" rel="noopener noreferrer">打开独立表单 ↗</a>
-        </div>
+        <iframe src="https://pcnwoqnoz1jl.feishu.cn/share/base/form/shrcn6Dwj4BsDAyRGeePzWVfath" title="企业发行服务申请｜飞书收集表" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
       </div>
     </div>
   </section>
@@ -810,9 +800,8 @@ function setNav(page){document.querySelectorAll('[data-nav]').forEach(a=>a.class
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');observer.unobserve(entry.target)}}),{threshold:.05});
 function revealVisible(){document.querySelectorAll('.page.active .reveal').forEach(el=>observer.observe(el))}
 function closeMenu(){const menu=document.querySelector('.nav-links'),toggle=document.querySelector('.nav-toggle');menu?.classList.remove('open');if(toggle){toggle.setAttribute('aria-expanded','false');toggle.textContent='☰'}}
-function applyRouteContext(){const page=document.querySelector('[data-page="apply"]');if(!page)return;const params=new URLSearchParams(location.search),plan=params.get('plan'),solution=params.get('solution'),badge=page.querySelector('#apply-context');let label='';if(solution==='api')label='咨询方向：发行 API';else if(plan)label='咨询方向：'+({basic:'基础版',professional:'专业版',enterprise:'企业版'}[plan]||'自有品牌发行平台');if(badge){badge.textContent=label?label+'（请在飞书表单中填写对应需求）':'';badge.hidden=!label}}
 function syncSectionNav(){document.querySelectorAll('.product-subnav,.api-subnav,.solutions-subnav').forEach(nav=>{const links=[...nav.querySelectorAll('a[href^="#"]')],targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);if(!targets.length)return;const update=()=>{const y=scrollY+150;let current=targets[0];targets.forEach(t=>{if(t.offsetTop<=y)current=t});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current.id))};update();if(!nav.dataset.spy){nav.dataset.spy='1';addEventListener('scroll',update,{passive:true})}})}
-function render(path,hash=''){const page=routes[path]||'home';document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));setNav(page);setPageMeta(page);closeMenu();applyRouteContext();requestAnimationFrame(()=>{revealVisible();syncSectionNav();if(hash)document.querySelector(hash)?.scrollIntoView();else scrollTo(0,0)})}
+function render(path,hash=''){const page=routes[path]||'home';document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));setNav(page);setPageMeta(page);closeMenu();requestAnimationFrame(()=>{revealVisible();syncSectionNav();if(hash)document.querySelector(hash)?.scrollIntoView();else scrollTo(0,0)})}
 function setBillingPeriod(period){const yearly=period==='yearly';document.querySelectorAll('[data-billing-period]').forEach(btn=>{const active=btn.dataset.billingPeriod===period;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});document.querySelectorAll('[data-plan-price]').forEach(price=>{const monthly=Number(price.dataset.monthly),yearlyPrice=Number(price.dataset.yearly),value=yearly?yearlyPrice:monthly;price.innerHTML='¥'+value.toLocaleString('zh-CN')+'<small>/'+(yearly?'年':'月')+'</small>';const saving=price.parentElement?.querySelector('[data-plan-saving]');if(saving){saving.hidden=!yearly;saving.textContent='年付节省 ¥'+(monthly*12-yearlyPrice).toLocaleString('zh-CN')}});const label=document.querySelector('[data-billing-summary-label]'),summary=document.querySelector('[data-billing-summary-price]');if(label)label.textContent=yearly?'年付':'月付';if(summary)summary.textContent=yearly?'¥9,999 起':'¥999 起'}
 document.addEventListener('click',e=>{const billing=e.target.closest('[data-billing-period]');if(billing){setBillingPeriod(billing.dataset.billingPeriod);return}const a=e.target.closest('a[data-route]');if(a){const u=new URL(a.href,location.origin);if(routes[u.pathname]){e.preventDefault();history.pushState({},'',u.pathname+u.search+u.hash);render(u.pathname,u.hash);return}}const tab=e.target.closest('[data-product-tab]');if(tab){const key=tab.dataset.productTab;document.querySelectorAll('[data-product-tab]').forEach(btn=>{const active=btn===tab;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});document.querySelectorAll('[data-product-panel]').forEach(panel=>{const active=panel.dataset.productPanel===key;panel.classList.toggle('active',active);panel.hidden=!active});return}const solutionRole=e.target.closest('[data-solution-role]');if(solutionRole){const stage=document.querySelector('[data-solution-stage]'),key=solutionRole.dataset.solutionRole;document.querySelectorAll('[data-solution-role]').forEach(btn=>{const active=btn===solutionRole;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});stage?.querySelectorAll('[data-solution-panel]').forEach(panel=>{const active=panel.dataset.solutionPanel===key;panel.classList.toggle('active',active);panel.hidden=!active});return}const arch=e.target.closest('[data-arch-tab]');if(arch){const studio=arch.closest('[data-architecture-studio]'),key=arch.dataset.archTab;studio.querySelectorAll('[data-arch-tab]').forEach(btn=>btn.classList.toggle('active',btn===arch));studio.querySelectorAll('[data-arch-panel]').forEach(panel=>panel.classList.toggle('active',panel.dataset.archPanel===key));return}const plan=e.target.closest('[data-plan-tab]');if(plan){const root=plan.closest('[data-plan-compare]'),key=plan.dataset.planTab;root.querySelectorAll('[data-plan-tab]').forEach(btn=>btn.classList.toggle('active',btn===plan));root.querySelectorAll('[data-plan-panel]').forEach(panel=>panel.classList.toggle('active',panel.dataset.planPanel===key));return}const apiResource=e.target.closest('[data-api-resource]');if(apiResource){const root=apiResource.closest('[data-api-explorer]'),key=apiResource.dataset.apiResource;root.querySelectorAll('[data-api-resource]').forEach(btn=>btn.classList.toggle('active',btn===apiResource));root.querySelectorAll('[data-api-endpoints]').forEach(panel=>panel.hidden=panel.dataset.apiEndpoints!==key);const title=root.querySelector('#api-resource-title');if(title)title.textContent=apiResource.querySelector('b')?.textContent||key;return}const navInner=e.target.closest('.nav-inner');if(!navInner)closeMenu()});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
