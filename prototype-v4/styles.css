@@ -1672,3 +1672,84 @@
   [data-page="product"] .ia-dialog-body .ia-dsp-layer{padding:9px}
   [data-page="product"] .ia-dialog-body .ia-dsp-logos img{width:26px;height:26px}
 }
+
+
+/* Product hero: album distribution overview consistent with release operations */
+[data-page="product"] .product-hero-ui .phu-release-preview{min-width:0;padding:19px 19px 15px;background:linear-gradient(145deg,#fff 40%,#fbfcff)}
+[data-page="product"] .phu-release-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+[data-page="product"] .phu-release-heading small{display:block;color:#8da0bc;font-size:8px;font-weight:850;letter-spacing:.1em}
+[data-page="product"] .phu-release-heading strong{display:block;margin-top:4px;color:#213450;font-size:17px;line-height:1.2;font-weight:850}
+[data-page="product"] .phu-target-count{flex:none;padding:6px 9px;border:1px solid #dfe8f6;border-radius:6px;background:#f3f6fc;color:#57719a;font-size:9px;font-weight:750;white-space:nowrap}
+[data-page="product"] .phu-release-album{display:flex;align-items:center;gap:10px;min-width:0;margin-top:14px;padding:10px;border:1px solid #dde5f0;border-radius:11px;background:#f9fbff}
+[data-page="product"] .phu-release-album>img{display:block;flex:none;width:48px;height:48px;border-radius:7px;object-fit:cover;box-shadow:0 4px 10px rgba(30,51,91,.12)}
+[data-page="product"] .phu-album-copy{min-width:0}
+[data-page="product"] .phu-album-copy strong,[data-page="product"] .phu-album-copy span,[data-page="product"] .phu-album-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+[data-page="product"] .phu-album-copy strong{color:#253550;font-size:13px;font-weight:850}
+[data-page="product"] .phu-album-copy span{margin-top:4px;color:#687992;font-size:9px}
+[data-page="product"] .phu-album-copy small{margin-top:4px;color:#99a6b6;font-size:8px;font-variant-numeric:tabular-nums}
+[data-page="product"] .phu-album-approved{display:flex;align-items:center;gap:4px;flex:none;margin-left:auto;padding:5px 7px;border:1px solid #cde8d8;border-radius:6px;background:#edf9f1;color:#388e60;font-size:8px;font-weight:750;white-space:nowrap}
+[data-page="product"] .phu-album-approved i{font-size:9px;font-style:normal}
+[data-page="product"] .phu-release-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:11px}
+[data-page="product"] .phu-release-stats>div{min-width:0;padding:10px 11px 9px;border:1px solid #e2e8f2;border-radius:9px;background:#fff}
+[data-page="product"] .phu-release-stats span,[data-page="product"] .phu-release-stats strong,[data-page="product"] .phu-release-stats small{display:block}
+[data-page="product"] .phu-release-stats span{color:#8190a5;font-size:9px;font-weight:650}
+[data-page="product"] .phu-release-stats strong{margin-top:3px;color:#29405c;font-size:20px;line-height:1.16;font-weight:850;font-variant-numeric:tabular-nums}
+[data-page="product"] .phu-release-stats>div:first-child strong{color:#23875a}
+[data-page="product"] .phu-release-stats>div:nth-child(2) strong{color:#5373be}
+[data-page="product"] .phu-release-stats>div:last-child strong{color:#bb7939}
+[data-page="product"] .phu-release-stats small{margin-top:3px;overflow:hidden;color:#9ca9b9;font-size:8px;text-overflow:ellipsis;white-space:nowrap}
+[data-page="product"] .phu-release-progress{display:flex;gap:3px;height:4px;margin-top:8px;overflow:hidden;border-radius:9px;background:#e9edf4}
+[data-page="product"] .phu-release-progress>span{display:block;min-width:0}
+[data-page="product"] .phu-release-progress>.live{flex:4;background:#55bf8b}
+[data-page="product"] .phu-release-progress>.processing{flex:1;background:#88a5ea}
+[data-page="product"] .phu-release-progress>.issue{flex:1;background:#e6ad70}
+[data-page="product"] .phu-channel-table{min-width:0;margin-top:12px;overflow:hidden;border:1px solid #e0e7f0;border-radius:10px;background:#fff}
+[data-page="product"] .phu-channel-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:32px;padding:8px 11px;border-bottom:1px solid #e5ebf3;background:#f5f8fc}
+[data-page="product"] .phu-channel-heading b{color:#344963;font-size:10px;font-weight:850}
+[data-page="product"] .phu-channel-heading>span{color:#99a7b9;font-size:8px}
+[data-page="product"] .phu-channel-row{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(54px,.59fr) minmax(66px,.68fr);align-items:center;gap:6px;min-width:0;min-height:45px;padding:7px 11px;border-bottom:1px solid #edf0f5}
+[data-page="product"] .phu-channel-row>*{min-width:0}
+[data-page="product"] .phu-channel-brand{display:flex;align-items:center;gap:7px;min-width:0}
+[data-page="product"] .phu-channel-brand img{display:block;flex:none;width:25px;height:25px;padding:2px;border:1px solid #e9edf3;border-radius:6px;background:#fff;object-fit:contain}
+[data-page="product"] .phu-channel-brand b{overflow:hidden;color:#344760;font-size:9px;font-weight:780;text-overflow:ellipsis;white-space:nowrap}
+[data-page="product"] .phu-channel-status{justify-self:start;display:inline-flex;align-items:center;padding:5px 6px;border-radius:5px;font-size:8px;font-style:normal;font-weight:800;white-space:nowrap}
+[data-page="product"] .phu-channel-status.live{background:#e9f8ef;color:#358b60}
+[data-page="product"] .phu-channel-status.pending{background:#f0f3f7;color:#7d8b9d}
+[data-page="product"] .phu-channel-task{overflow:hidden;font-size:9px;font-weight:700;text-overflow:ellipsis;white-space:nowrap}
+[data-page="product"] .phu-channel-task.success{color:#409c71}
+[data-page="product"] .phu-channel-task.processing{color:#718dbd}
+[data-page="product"] .phu-channel-task.error{color:#c18447}
+[data-page="product"] .phu-channel-more{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:29px;padding:7px 11px;background:#fbfcff;color:#7387a5;font-size:8px}
+[data-page="product"] .phu-channel-more span:last-child{color:#a0adbf;white-space:nowrap}
+[data-page="product"] .phu-release-foot{display:flex;align-items:center;gap:7px;min-width:0;margin-top:12px;color:#8596ad;font-size:8px}
+[data-page="product"] .phu-release-foot i{flex:none;width:6px;height:6px;border-radius:50%;background:#58bb91;box-shadow:0 0 0 3px #e9f8f0}
+@media(max-width:1100px) and (min-width:1021px){
+  [data-page="product"] .product-hero-ui .phu-release-preview{padding:16px 13px 13px}
+  [data-page="product"] .phu-release-album{gap:7px}
+  [data-page="product"] .phu-release-album>img{width:41px;height:41px}
+  [data-page="product"] .phu-album-approved{padding:4px 5px;font-size:7px}
+  [data-page="product"] .phu-channel-row{gap:5px;padding-right:8px;padding-left:8px}
+}
+@media(max-width:560px){
+  [data-page="product"] .product-hero-ui .phu-release-preview{padding:13px 10px 12px}
+  [data-page="product"] .phu-release-heading strong{font-size:14px}
+  [data-page="product"] .phu-target-count{padding:5px 6px;font-size:8px}
+  [data-page="product"] .phu-release-album{gap:7px;margin-top:11px;padding:7px}
+  [data-page="product"] .phu-release-album>img{width:36px;height:36px}
+  [data-page="product"] .phu-album-copy strong{font-size:11px}
+  [data-page="product"] .phu-album-copy span{font-size:8px}
+  [data-page="product"] .phu-album-copy small{font-size:7px}
+  [data-page="product"] .phu-album-approved{display:none}
+  [data-page="product"] .phu-release-stats{gap:5px;margin-top:9px}
+  [data-page="product"] .phu-release-stats>div{padding:8px 6px}
+  [data-page="product"] .phu-release-stats span{font-size:8px}
+  [data-page="product"] .phu-release-stats strong{font-size:17px}
+  [data-page="product"] .phu-release-stats small{font-size:7px}
+  [data-page="product"] .phu-channel-heading{padding:7px 8px}
+  [data-page="product"] .phu-channel-row{grid-template-columns:minmax(0,1fr) auto;gap:6px 8px;padding:8px;min-height:0}
+  [data-page="product"] .phu-channel-brand{grid-column:1;grid-row:1}
+  [data-page="product"] .phu-channel-status{grid-column:2;grid-row:1}
+  [data-page="product"] .phu-channel-task{grid-column:1/-1;grid-row:2;margin-left:31px;font-size:8px}
+  [data-page="product"] .phu-channel-brand img{width:24px;height:24px}
+  [data-page="product"] .phu-channel-more{padding:7px 8px}
+}
