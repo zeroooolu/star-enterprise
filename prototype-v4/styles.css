@@ -1770,3 +1770,59 @@
   [data-page="product"] .product-hero-visual{width:calc(100% + 18px);margin:0 -9px}
   [data-page="product"] .product-hero-visual img{max-height:none}
 }
+
+
+/* Home hero image: replace dense mockup with a calm, responsive illustration */
+[data-page="home"] .sonic-hero{
+  min-height:680px;
+  padding-block:76px 66px;
+  background:radial-gradient(circle at 84% 41%,rgba(226,237,255,.35),transparent 33%),linear-gradient(110deg,#fff 0%,#fcfdff 51%,#fff 100%);
+}
+[data-page="home"] .sonic-hero:before,
+[data-page="home"] .sonic-hero:after,
+[data-page="home"] .sonic-hero-gridlines{display:none}
+[data-page="home"] .sonic-hero .hero-grid{
+  grid-template-columns:minmax(0,.99fr) minmax(0,1.13fr);
+  gap:clamp(26px,3.6vw,52px);
+  min-height:532px;
+  align-items:center;
+}
+[data-page="home"] .sonic-hero .hero-copy{position:relative;z-index:2;max-width:635px}
+[data-page="home"] .sonic-hero h1{font-size:clamp(54px,5.8vw,80px);line-height:1.025}
+[data-page="home"] .home-hero-art{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  width:calc(100% + 50px);
+  margin:0 -48px 0 0;
+  min-width:0;
+  isolation:isolate;
+}
+[data-page="home"] .home-hero-art img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:none;
+  object-fit:contain;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+@media(max-width:1100px){
+  [data-page="home"] .sonic-hero .hero-grid{gap:24px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  [data-page="home"] .home-hero-art{width:calc(100% + 18px);margin-right:-18px}
+  [data-page="home"] .sonic-hero h1{font-size:clamp(50px,6vw,70px)}
+}
+@media(max-width:900px){
+  [data-page="home"] .sonic-hero{min-height:0;padding:66px 0 52px}
+  [data-page="home"] .sonic-hero .hero-grid{grid-template-columns:1fr;gap:18px;min-height:0}
+  [data-page="home"] .sonic-hero .hero-copy{max-width:760px}
+  [data-page="home"] .home-hero-art{width:min(100%,760px);margin:2px auto 0}
+  [data-page="home"] .sonic-hero h1{font-size:clamp(48px,6.9vw,70px)}
+}
+@media(max-width:560px){
+  [data-page="home"] .sonic-hero{padding:54px 0 38px}
+  [data-page="home"] .sonic-hero .hero-grid{gap:14px}
+  [data-page="home"] .sonic-hero h1{font-size:clamp(40px,10.8vw,52px);line-height:1.08}
+  [data-page="home"] .home-hero-art{width:calc(100% + 24px);margin:0 -12px}
+}
