@@ -24,14 +24,15 @@
 <body>
 <header class="site-nav">
   <div class="container nav-inner">
-    <a class="brand brand-kanjian" href="/" data-route aria-label="看见音乐企业发行服务"><img src="/assets/kanjian-logo.png" alt="看见音乐"><span aria-hidden="true"></span><b>企业发行服务</b></a>
+    <a class="brand brand-kanjian" href="/" data-route aria-label="看见音乐首页"><img src="/assets/kanjian-logo.png" alt="看见音乐"><span aria-hidden="true"></span><b>企业发行服务</b></a>
     <nav class="nav-links" aria-label="主导航">
       <a href="/product" data-route data-nav="product">产品</a>
       <a href="/solutions" data-route data-nav="solutions">解决方案</a>
-      <a href="/pricing" data-route data-nav="pricing">价格</a>
+      <a href="/pricing" data-route data-nav="pricing">定价</a>
       <a href="/api" data-route data-nav="api">发行 API</a>
+      <a href="/developers" data-route data-nav="developers">开发者文档</a>
     </nav>
-    <div class="nav-actions"><a class="btn btn-primary" href="/apply" data-route>申请企业方案</a></div>
+    <div class="nav-actions"><a class="btn btn-primary nav-consult-btn" href="/apply" data-route>立即咨询 <span aria-hidden="true">→</span></a></div>
     <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false">☰</button>
   </div>
 </header>
@@ -104,75 +105,23 @@
 </section>
 
 <section class="page product-page" data-page="product">
-  <section class="product-hero"><div class="container product-hero-grid">
-    <div class="product-hero-copy reveal"><h1>用自有品牌，<br><span class="product-hero-nowrap">经营音乐发行业务</span></h1><p class="product-hero-lead">为音乐人、厂牌和版权客户提供完整的发行服务，覆盖内容提交、审核发行、平台上线、数据与收入等核心业务流程。</p><div class="hero-actions"><a class="btn btn-primary btn-lg" href="/apply" data-route>申请企业方案</a><a class="btn btn-secondary btn-lg" href="/pricing" data-route>查看版本与价格</a></div></div>
-    <div class="product-hero-ui reveal" aria-label="自有品牌企业发行运营界面示意">
-      <div class="workspace-titlebar"><div><b>LOGO</b><span>自有品牌</span></div><small>企业管理后台</small></div>
-      <div class="product-workspace-shell">
-        <aside class="workspace-menu">
-          <nav aria-label="产品页后台示例菜单">
-            <small>内容资产</small>
-            <span><img src="/assets/icons/menu/album.svg" alt="" aria-hidden="true">作品目录</span>
-            <span><img src="/assets/icons/menu/playlist.svg" alt="" aria-hidden="true">歌单</span>
-            <span><img src="/assets/icons/menu/users-group.svg" alt="" aria-hidden="true">合作伙伴</span>
-            <span><img src="/assets/icons/menu/file-upload.svg" alt="" aria-hidden="true">批量导入</span>
-            <small>发行与授权</small>
-            <span><img src="/assets/icons/menu/file-description.svg" alt="" aria-hidden="true">合同</span>
-            <span class="active"><img src="/assets/icons/menu/send.svg" alt="" aria-hidden="true">发行</span>
-            <span><img src="/assets/icons/menu/shield-check.svg" alt="" aria-hidden="true">合规</span>
-            <small>报表与分账</small>
-            <span><img src="/assets/icons/menu/report-money.svg" alt="" aria-hidden="true">版税管理</span>
-            <span><img src="/assets/icons/menu/arrows-split.svg" alt="" aria-hidden="true">分账管理</span>
-            <small>设置</small>
-            <span><img src="/assets/icons/menu/settings.svg" alt="" aria-hidden="true">系统设置</span>
-            <span><img src="/assets/icons/menu/user-cog.svg" alt="" aria-hidden="true">用户管理</span>
-          </nav>
-        </aside>
-        <div class="phu-main phu-release-preview" aria-label="示例专辑 Night Drive 的多渠道发行进度概览，数据仅供展示">
-          <div class="phu-release-heading">
-            <div><small>RELEASE OPERATIONS</small><strong>发行运营</strong></div>
-            <span class="phu-target-count">6 个目标平台</span>
-          </div>
-          <div class="phu-release-album">
-            <img src="/assets/album-night-drive.png" alt="Night Drive 专辑封面" loading="lazy">
-            <div class="phu-album-copy">
-              <strong>Night Drive</strong>
-              <span>Nova Echo · NOVA Records</span>
-              <small>EP · 8 首歌曲 · UPC 697812340026</small>
-            </div>
-            <span class="phu-album-approved"><i aria-hidden="true">✓</i>资料已通过</span>
-          </div>
-          <div class="phu-release-stats">
-            <div><span>已上架</span><strong>4</strong><small>平台已完成上线</small></div>
-            <div><span>处理中</span><strong>1</strong><small>等待平台确认</small></div>
-            <div><span>需处理</span><strong>1</strong><small>存在传输异常</small></div>
-          </div>
-          <div class="phu-release-progress" aria-hidden="true"><span class="live"></span><span class="processing"></span><span class="issue"></span></div>
-          <div class="phu-channel-table">
-            <div class="phu-channel-heading"><b>渠道发行状态</b><span>发行结果 / 最新任务</span></div>
-            <div class="phu-channel-row">
-              <div class="phu-channel-brand"><img src="/assets/platforms/qq-music.png" alt=""><b>QQ 音乐</b></div>
-              <em class="phu-channel-status live">已上架</em><span class="phu-channel-task success">传输成功</span>
-            </div>
-            <div class="phu-channel-row">
-              <div class="phu-channel-brand"><img src="/assets/platforms/apple-music.jpg" alt=""><b>Apple Music</b></div>
-              <em class="phu-channel-status live">已上架</em><span class="phu-channel-task success">传输成功</span>
-            </div>
-            <div class="phu-channel-row">
-              <div class="phu-channel-brand"><img src="/assets/platforms/spotify.jpeg" alt=""><b>Spotify</b></div>
-              <em class="phu-channel-status pending">未上架</em><span class="phu-channel-task processing">平台处理中</span>
-            </div>
-            <div class="phu-channel-row">
-              <div class="phu-channel-brand"><img src="/assets/platforms/youtube-music.png" alt=""><b>YouTube Music</b></div>
-              <em class="phu-channel-status pending">未上架</em><span class="phu-channel-task error">传输失败</span>
-            </div>
-            <div class="phu-channel-more"><span>另有 2 个平台已上架</span><span>共 6 个平台</span></div>
-          </div>
-          <div class="phu-release-foot"><i aria-hidden="true"></i><span>各平台发行结果与任务记录独立追踪</span></div>
-        </div>
+  <section class="product-hero product-hero-artwork">
+    <div class="product-hero-glow" aria-hidden="true"></div>
+    <div class="container product-hero-grid">
+      <div class="product-hero-copy reveal">
+        <span class="product-hero-kicker"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 4 6 4 9s-1 6-4 9c-3-3-4-6-4-9s1-6 4-9Z"/></svg>让好音乐走向世界</span>
+        <h1><span class="product-title-dark">企业</span><span class="product-title-blue">发行服务</span></h1>
+        <p class="product-hero-subtitle">连接曲库管理、发行运营、API 集成与全球渠道</p>
+        <p class="product-hero-lead">面向发行商、厂牌和版权机构，以自有品牌提供音乐发行服务。从内容提交、审核发行到各平台上线跟踪，在统一工作台高效运营。</p>
+        <div class="hero-actions"><a class="btn btn-primary btn-lg" href="/apply" data-route>申请企业方案 <span aria-hidden="true">→</span></a><a class="btn btn-secondary btn-lg" href="/pricing" data-route>查看版本与价格</a></div>
+        <div class="product-hero-proof" aria-label="企业发行能力"><span>自有品牌发行</span><span>多渠道交付</span><span>API / 批量接入</span></div>
+      </div>
+      <div class="product-hero-graphic reveal" aria-label="音乐内容发行至全球平台的示意图">
+        <img src="/assets/product-hero-distribution.webp" alt="Night Drive 专辑通过发行服务连接 QQ 音乐、Apple Music、Spotify、YouTube Music 等音乐平台，并展示不同渠道的发行状态" fetchpriority="high" decoding="async">
       </div>
     </div>
-  </div></section>
+    <div class="product-hero-wave" aria-hidden="true"></div>
+  </section>
   <nav class="product-subnav" aria-label="产品页章节"><div class="container"><a href="#product-brand">品牌</a><a href="#product-workspace">客户与团队</a><a href="#product-clients">客户管理</a><a href="#product-catalog">曲库管理</a><a href="#product-release">发行运营</a><a href="#product-distribution">发行网络</a><a href="#product-revenue">分账与结算</a><a href="#product-scale">集成与扩展</a></div></nav>
 
   <section class="section product-brand" id="product-brand"><div class="container product-split"><div class="product-copy reveal"><span class="eyebrow">YOUR BRAND</span><h2>以自有品牌开展音乐发行</h2><p>使用企业品牌、Logo 和客户入口，为音乐人、厂牌和版权客户提供完整的发行服务。根据版本支持独立域名，从登录、提交音乐到查看发行进度、数据和收入，全程保持统一品牌体验。</p><div class="product-points"><div><b>自有品牌</b><span>以自有品牌对外提供发行服务。</span></div><div><b>客户发行门户</b><span>给音乐人、厂牌和版权客户独立入口。</span></div><div><b>客户关系沉淀</b><span>客户、曲库和发行记录统一沉淀于企业业务体系。</span></div></div></div><div class="brand-portal reveal" aria-label="自有品牌客户发行门户首页示意"><div class="portal-dashboard"><aside class="client-portal-side"><div class="cp-brand"><b>LOGO</b><span>自有品牌</span></div><nav aria-label="客户门户示例菜单"><span class="active"><img src="/assets/icons/menu/album.svg" alt="" aria-hidden="true">首页</span><span><img src="/assets/icons/menu/playlist.svg" alt="" aria-hidden="true">专辑列表</span><span><img src="/assets/icons/menu/send.svg" alt="" aria-hidden="true">视频</span><span><img src="/assets/icons/menu/users-group.svg" alt="" aria-hidden="true">艺人</span><span><img src="/assets/icons/menu/report-money.svg" alt="" aria-hidden="true">我的版税</span><span><img src="/assets/icons/menu/file-description.svg" alt="" aria-hidden="true">我的合同</span></nav></aside><div class="client-portal-main"><div class="cp-top"><b>客户发行门户</b><span>简体中文</span></div><section class="cp-guide"><h3>发行指引</h3><div class="cp-guide-grid"><div><img src="/assets/icons/menu/shield-check.svg" alt=""><b>账号认证</b><span>立即认证</span></div><div><img src="/assets/icons/menu/file-description.svg" alt=""><b>签订合同</b><span>查看合同</span></div><div><img src="/assets/icons/menu/user-cog.svg" alt=""><b>添加艺人</b><span>立即添加</span></div><div><img src="/assets/icons/menu/file-upload.svg" alt=""><b>上传作品</b><span>去上传</span></div></div></section><section class="cp-overview"><h3>数据概览</h3><div class="cp-metrics"><div><span>收益 (CNY)</span><b>0.00</b></div><div><span>专辑</span><b>12</b></div><div><span>歌曲</span><b>48</b></div><div><span>艺人</span><b>8</b></div></div><div class="cp-albums"><div class="cp-albums-head"><b>专辑</b><span>查看全部 →</span></div><div class="cp-album-list"><article><img src="/assets/album-night-drive.png" alt="Night Drive 专辑封面"><b>Night Drive</b></article><article><img src="/assets/album-after-rain.png" alt="After Rain 专辑封面"><b>After Rain</b></article><article><img src="/assets/album-northern-lights.png" alt="Northern Lights 专辑封面"><b>Northern Lights</b></article></div></div></section></div></div></div></div></section>
