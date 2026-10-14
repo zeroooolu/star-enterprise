@@ -1979,3 +1979,46 @@
 @media(prefers-reduced-motion:reduce){
  [data-page="pricing"] .pricing-mode-choice,[data-page="pricing"] .pricing-full-compare>summary span{transition:none}
 }
+
+
+/* Visual QA · typography, clipping and alignment; no layout or content changes. */
+.page.active .section-head > *,
+.page.active .split > *,
+.page.active .hero-grid > *,
+.page.active .subhero .container > *,
+.page.active .api-console-grid > *,
+.page.active .pricing-api-body > *,
+.page.active .pricing-api-deposit-grid > *,
+.page.active .api-v2-prepaid-flow > div,
+.page.active .enterprise-contact-panel > *,
+.page.active .method-grid > *,
+.page.active .option-grid > *,
+.page.active .api-v2-addon-grid > *,
+.page.active .api-v2-developer-grid > * {min-width:0}
+.page.active h1,.page.active h2,.page.active h3,.page.active h4 {overflow-wrap:break-word}
+.page.active .section-head p,.page.active .faq p,.page.active .pricing-api-body p,.page.active .api-v2-addon>p,.page.active .api-v2-developer-grid p,.page.active .enterprise-contact-panel p {overflow-wrap:anywhere}
+.page.active .btn,.page.active .hero-actions a,.page.active .enterprise-contact-actions a {max-width:100%;text-align:center;white-space:normal;overflow-wrap:break-word}
+[data-page="api"] .api-v2-recharge-plans button {min-width:0}
+[data-page="api"] .api-v2-recharge-plans button>b {max-width:100%;white-space:nowrap;font-variant-numeric:tabular-nums}
+[data-page="api"] .api-v2-recharge-plans button>em {max-width:100%;overflow-wrap:anywhere}
+[data-page="api"] .api-v2-calculator-summary,[data-page="api"] .api-v2-calculator-main {min-width:0}
+[data-page="api"] .api-v2-summary-total strong {max-width:100%;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+[data-page="api"] .api-v2-summary-row {min-width:0;align-items:baseline}
+[data-page="api"] .api-v2-summary-row>span {min-width:0;overflow-wrap:anywhere}
+[data-page="api"] .api-v2-summary-row>b {flex-shrink:0}
+[data-page="api"] .api-v2-usage-fields label {min-width:0}
+[data-page="api"] .api-v2-usage-fields input {min-width:0}
+[data-page="api"] .api-console-grid,.api-v2 .api-code-pane {min-width:0}
+[data-page="api"] .api-code-pane pre {max-width:100%;overflow-x:auto}
+[data-page="developers"] .dev-main,[data-page="developers"] .dev-modular-intro,[data-page="developers"] .dev-resource-endpoint,[data-page="developers"] .dev-finance-endpoint {min-width:0}
+[data-page="developers"] .dev-endpoints code,[data-page="developers"] pre code,[data-page="developers"] .dev-finance-table td {overflow-wrap:anywhere}
+[data-page="developers"] .dev-finance-table-scroll {max-width:100%;overflow-x:auto}
+[data-page="pricing"] .pricing-card-v3-price,[data-page="pricing"] .pricing-api-body,[data-page="pricing"] .pricing-api-deposit-grid>div {min-width:0}
+[data-page="pricing"] .pricing-card-v3-fees span {min-width:0}
+[data-page="pricing"] .pricing-card-v3-fees span>* {max-width:100%}
+@media(max-width:680px){
+ [data-page="pricing"] .pricing-card-v3-price h2 {font-size:clamp(27px,8.1vw,33px);letter-spacing:-.055em}
+ [data-page="pricing"] .pricing-api-body h3 {font-size:clamp(29px,8.5vw,36px)}
+ [data-page="api"] .api-v2-calculator-summary .api-v2-summary-total strong {font-size:clamp(27px,8vw,37px)}
+ [data-page="api"] .api-v2-recharge-plans button>b {font-size:clamp(21px,6vw,23px)}
+}
