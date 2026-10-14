@@ -177,45 +177,224 @@
 @media(max-width:900px){.api-v2 .api-v2-dev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.api-v2 .api-v2-dev-grid{grid-template-columns:1fr}.api-v2 .api-v2-hero-proof{gap:8px 12px}.api-v2 .api-v2-hero-proof span+span:before{margin-right:10px}}
 
-/* Developer center grouped by purchasable API modules */
-[data-page="developers"] .dev-shell{grid-template-columns:264px minmax(0,1fr)}
-[data-page="developers"] .dev-side{padding:24px 16px;gap:0;background:#fbfcff}
-[data-page="developers"] .dev-side-title{margin:0 0 22px 9px}
-[data-page="developers"] .dev-nav-start{display:flex;flex-direction:column;margin:0 0 12px}
-[data-page="developers"] .dev-nav-start>b,[data-page="developers"] .dev-nav-label{font-size:10px;color:#8897aa;letter-spacing:.07em;font-weight:750;margin:6px 0 8px;padding:4px 10px}
-[data-page="developers"] .dev-nav-label{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
-[data-page="developers"] .dev-nav-label small{font-size:10px;letter-spacing:0}
-[data-page="developers"] .dev-nav-group{border:1px solid #e4e9f2;background:#fff;border-radius:12px;margin-bottom:11px;overflow:hidden}
-[data-page="developers"] .dev-nav-group summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;padding:12px;font-size:12px;font-weight:800;color:#2a3d5b}
-[data-page="developers"] .dev-nav-group summary::-webkit-details-marker{display:none}
-[data-page="developers"] .dev-nav-group summary:before{content:"▸";font-size:10px;color:#7792b8}
-[data-page="developers"] .dev-nav-group[open] summary:before{content:"▾"}
-[data-page="developers"] .dev-nav-group summary>span{flex:1}
-[data-page="developers"] .dev-nav-group summary small{font-size:10px;color:#8a97a9;font-weight:600}
-[data-page="developers"] .dev-nav-group summary small.live{color:#187654}
-[data-page="developers"] .dev-nav-links{padding:0 6px 10px 10px}
-[data-page="developers"] .dev-nav-links a{display:block;padding:8px 9px;font-size:12px;line-height:1.45;text-decoration:none;color:#61728b}
-[data-page="developers"] .dev-nav-links a:hover{background:#eef4ff;color:#1c58a0}
-[data-page="developers"] .dev-nav-links .dev-nav-module-title{display:flex;align-items:center;justify-content:space-between;gap:7px;font-size:12px;font-weight:730;color:#304863}
-[data-page="developers"] .dev-nav-module-title small{font-size:10px;color:#919caf;font-weight:500;white-space:nowrap}
-[data-page="developers"] .dev-nav-links a.dev-nav-child{padding:6px 9px 6px 25px;color:#8190a5;font-size:11px}
-[data-page="developers"] .dev-modular-intro{background:#f5f8fe;border:1px solid #e0e8f4!important;border-radius:16px;padding:25px!important;margin-top:38px!important;margin-bottom:35px!important}
-[data-page="developers"] .dev-modular-intro.dev-modular-live{background:#eef5ff;border-color:#d0e1f9!important}
-[data-page="developers"] .dev-modular-intro-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+/* Developer center navigation — simple docs tree, independent scroll, accessible drawer */
+[data-page="developers"] .dev-shell{
+  grid-template-columns:272px minmax(0,1fr);
+  max-width:1380px;
+  align-items:start;
+}
+[data-page="developers"] .dev-side{
+  position:sticky;
+  top:72px;
+  align-self:start;
+  height:calc(100vh - 72px);
+  height:calc(100dvh - 72px);
+  max-height:none;
+  min-height:0;
+  display:block;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior-y:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#d5deeb transparent;
+  background:#fff;
+  border-right:1px solid #e8edf4;
+  padding:0 12px 32px 18px;
+  box-sizing:border-box;
+}
+[data-page="developers"] .dev-side::-webkit-scrollbar{width:6px}
+[data-page="developers"] .dev-side::-webkit-scrollbar-thumb{background:#d5deeb;border-radius:10px}
+[data-page="developers"] .dev-side-title{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  position:sticky;
+  top:0;
+  z-index:2;
+  padding:23px 12px 18px;
+  margin:0 0 8px;
+  background:#fff;
+  border-bottom:1px solid #f0f2f6;
+}
+[data-page="developers"] .dev-side-title span{
+  font-size:10px;letter-spacing:.12em;font-weight:750;color:#90a0b8;
+}
+[data-page="developers"] .dev-side-title strong{
+  font-size:16px;letter-spacing:-.02em;color:#1b2d47;
+}
+[data-page="developers"] .dev-nav-tree{display:flex;flex-direction:column;gap:2px}
+[data-page="developers"] .dev-nav-start{display:flex;flex-direction:column;gap:2px;margin:0 0 8px}
+[data-page="developers"] .dev-nav-heading{
+  padding:16px 12px 8px;
+  font-size:11px;letter-spacing:.035em;font-weight:750;color:#7c899e;
+}
+[data-page="developers"] .dev-nav-heading-spaced{margin-top:10px}
+[data-page="developers"] .dev-nav-tree details{
+  display:block;
+  min-width:0;
+  max-height:none!important;
+  height:auto!important;
+  margin:0;
+  padding:0;
+  overflow:visible!important;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+}
+[data-page="developers"] .dev-nav-tree summary{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  list-style:none;
+  cursor:pointer;
+  border-radius:8px;
+  border:0;
+  padding:10px 13px;
+  background:transparent;
+  color:#31445d;
+  font-size:13px;
+  font-weight:710;
+  line-height:1.5;
+  user-select:none;
+}
+[data-page="developers"] .dev-nav-tree summary::-webkit-details-marker{display:none}
+[data-page="developers"] .dev-nav-tree summary::after{
+  content:"";
+  flex:none;
+  width:7px;height:7px;
+  border-right:1.5px solid #96a5b9;
+  border-bottom:1.5px solid #96a5b9;
+  transform:rotate(-45deg);
+  transition:transform .18s ease;
+  margin:0 3px 2px 12px;
+}
+[data-page="developers"] .dev-nav-tree details[open]>summary::after{transform:rotate(45deg)}
+[data-page="developers"] .dev-nav-tree summary:hover{background:#f5f8fc;color:#164b92}
+[data-page="developers"] .dev-nav-tree summary:focus-visible,
+[data-page="developers"] .dev-nav-tree a:focus-visible{outline:2px solid #4688e4;outline-offset:2px}
+[data-page="developers"] .dev-nav-start>a,
+[data-page="developers"] .dev-nav-items>a,
+[data-page="developers"] .dev-nav-addons>a{
+  display:block;
+  padding:8px 13px;
+  min-width:0;
+  line-height:1.55;
+  font-size:12.5px;
+  font-weight:450;
+  color:#65748a;
+  text-decoration:none;
+  border-radius:7px;
+  overflow-wrap:anywhere;
+  transition:background .15s,color .15s;
+}
+[data-page="developers"] .dev-nav-start>a:hover,
+[data-page="developers"] .dev-nav-items>a:hover,
+[data-page="developers"] .dev-nav-addons>a:hover{background:#f3f7fc;color:#265d9f}
+[data-page="developers"] .dev-nav-items{
+  display:flex;
+  flex-direction:column;
+  gap:1px;
+  margin:2px 0 9px 20px;
+  padding-left:9px;
+  border-left:1px solid #e4eaf3;
+}
+[data-page="developers"] .dev-nav-items>a{font-size:12px;padding:7px 10px}
+[data-page="developers"] .dev-nav-addons{display:flex;flex-direction:column;gap:2px;padding-bottom:14px}
+[data-page="developers"] .dev-nav-addons>a{
+  font-size:13px;font-weight:580;color:#3b4e68;padding:10px 13px;
+}
+[data-page="developers"] .dev-nav-addons .dev-nav-module>summary{font-weight:580}
+[data-page="developers"] .dev-nav-group.dev-nav-reference{
+  border-top:1px solid #edf1f6;
+  padding-top:12px;
+  margin-top:0;
+}
+[data-page="developers"] .dev-nav-tree a.dev-nav-active{
+  background:#eaf2ff!important;
+  color:#1f5caa!important;
+  font-weight:720;
+  box-shadow:inset 3px 0 0 #377ada;
+}
+[data-page="developers"] .dev-nav-tree details:has(a.dev-nav-active)>summary{
+  color:#1f5caa;
+}
+[data-page="developers"] .dev-nav-backdrop{display:none}
+[data-page="developers"] .dev-modular-intro{
+  background:#f5f8fe;
+  border:1px solid #e0e8f4!important;
+  border-radius:16px;
+  padding:25px!important;
+  margin-top:38px!important;
+  margin-bottom:35px!important;
+}
+[data-page="developers"] .dev-modular-intro.dev-modular-live{
+  background:#eef5ff;border-color:#d0e1f9!important;
+}
+[data-page="developers"] .dev-modular-intro-top{display:block}
 [data-page="developers"] .dev-modular-intro h2{margin:2px 0 9px}
 [data-page="developers"] .dev-modular-intro p{font-size:13px;margin:0}
-[data-page="developers"] .dev-modular-state{font-size:10px;font-weight:750;white-space:nowrap;color:#73829b;background:#e9eef5;padding:6px 10px;border-radius:99px}
-[data-page="developers"] .dev-modular-state.ready{color:#17754d;background:#ddf3e7}
-[data-page="developers"] .dev-main section.dev-modular-placeholder{background:#fafbfd;border:1px dashed #dbe4f0;padding:20px 24px;margin-top:-14px;margin-bottom:46px;border-radius:13px}
+[data-page="developers"] .dev-main section.dev-modular-placeholder{
+  background:#fafbfd;border:1px dashed #dbe4f0;
+  padding:20px 24px;margin-top:-14px;margin-bottom:46px;border-radius:13px;
+}
 [data-page="developers"] .dev-modular-placeholder h3{margin:0 0 8px}
 [data-page="developers"] .dev-modular-placeholder .dev-notice{margin-top:15px}
-[data-page="developers"] .dev-modular-common{padding:18px 0 28px;border-bottom:1px solid #e6ebf2;margin:40px 0}
+[data-page="developers"] .dev-modular-common{
+  padding:18px 0 28px;border-bottom:1px solid #e6ebf2;margin:40px 0;
+}
 [data-page="developers"] .dev-modular-common h2{margin:5px 0 12px}
 [data-page="developers"] .dev-modular-common p{margin:0}
 [data-page="developers"] .dev-main .dev-endpoints{overflow-x:auto}
-@media(max-width:980px){[data-page="developers"] .dev-shell{grid-template-columns:238px minmax(0,1fr)}[data-page="developers"] .dev-main{padding-left:32px;padding-right:32px}}
-@media(max-width:820px){[data-page="developers"] .dev-shell{display:block}[data-page="developers"] .dev-side.open{padding:16px;max-height:calc(100vh - 114px)}[data-page="developers"] .dev-main{padding:40px 22px 70px}}
-@media(max-width:520px){[data-page="developers"] .dev-main{padding:25px 16px 55px}[data-page="developers"] .dev-modular-intro{padding:20px 17px!important}[data-page="developers"] .dev-modular-intro-top{display:block}[data-page="developers"] .dev-modular-state{display:inline-block;margin:6px 0 13px}}
+[data-page="developers"] .dev-main section[id]{scroll-margin-top:115px}
+@media(max-width:1040px){
+  [data-page="developers"] .dev-shell{grid-template-columns:248px minmax(0,1fr)}
+  [data-page="developers"] .dev-main{padding-left:32px;padding-right:32px}
+}
+@media(max-width:820px){
+  [data-page="developers"] .dev-shell{display:block}
+  [data-page="developers"] .dev-mobile-nav{
+    display:flex;position:sticky;top:64px;z-index:110;
+    width:100%;padding:13px 20px;background:rgba(255,255,255,.98);
+  }
+  [data-page="developers"] .dev-side{
+    display:none!important;
+    position:fixed!important;
+    top:108px!important;
+    bottom:0!important;
+    left:0!important;
+    z-index:109!important;
+    width:min(88vw,340px)!important;
+    height:calc(100vh - 108px)!important;
+    height:calc(100dvh - 108px)!important;
+    max-height:none!important;
+    min-height:0!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    border:0!important;
+    border-right:1px solid #e6ebf2!important;
+    border-radius:0!important;
+    box-shadow:12px 20px 35px rgba(19,35,57,.15)!important;
+    background:#fff;
+    padding:0 14px 30px!important;
+  }
+  [data-page="developers"] .dev-side.open{display:block!important}
+  [data-page="developers"] .dev-nav-backdrop:not([hidden]){
+    display:block;position:fixed;top:108px;left:0;right:0;bottom:0;
+    z-index:108;border:0;background:rgba(20,35,58,.32);
+    width:100%;cursor:default;
+  }
+  body.dev-nav-open{overflow:hidden}
+  [data-page="developers"] .dev-main{padding:38px 22px 75px}
+  [data-page="developers"] .dev-main section[id]{scroll-margin-top:122px}
+}
+@media(max-width:540px){
+  [data-page="developers"] .dev-main{padding:28px 16px 60px}
+  [data-page="developers"] .dev-modular-intro{padding:20px 17px!important}
+}
+
 </style>
 </head>
 <body>
@@ -963,26 +1142,77 @@
 <section class="dev-shell">
 <button class="dev-mobile-nav" type="button" aria-expanded="false" aria-controls="developer-nav"><span>开发者中心目录</span><b>☰</b></button>
 <aside class="dev-side" id="developer-nav" aria-label="开发者文档导航">
-<div class="dev-side-title">开发者中心</div>
-<div class="dev-nav-start"><b>开始使用</b><a href="#overview" >概览</a><a href="#quickstart" >快速开始</a></div>
-<details class="dev-nav-group" open><summary><span>基础发行 API</span><small class="live">已验证</small></summary><div class="dev-nav-links">
-<a href="#basic-api" >基础发行 API 概览</a><a href="#authentication" >身份认证</a><a href="#environment" >环境与凭证</a><a href="#files" >文件上传</a><a href="#gateway-tasks" >K-JSON 发行任务</a><a href="#release-status" >发行状态</a><a href="#guide-batch" >批量发行</a><a href="#guide-kjson" >K-JSON 规范</a><a href="#statuses" >状态码</a>
-</div></details>
-<div class="dev-nav-label">扩展 API 模块 <small>按需选购</small></div>
-<details class="dev-nav-group" open><summary><span>扩展业务模块</span><small>6 个</small></summary><div class="dev-nav-links dev-nav-module-links">
-<a href="#asset-api" class="dev-nav-module-title">资产管理 API <small>规划</small></a>
-<a href="#albums" class="dev-nav-child">专辑</a><a href="#tracks" class="dev-nav-child">歌曲</a><a href="#guide-create" class="dev-nav-child">内容创建</a>
-<a href="#artist-label-api" class="dev-nav-module-title">艺人与厂牌 API <small>规划</small></a>
-<a href="#artists" class="dev-nav-child">艺人</a><a href="#labels" class="dev-nav-child">厂牌</a>
-<a href="#distribution-data-api" class="dev-nav-module-title">发行数据 API <small>待补充</small></a>
-<a href="#royalty-api" class="dev-nav-module-title">版税报表 API <small>待补充</small></a>
-<a href="#split-api" class="dev-nav-module-title">分账管理 API <small>待补充</small></a>
-<a href="#customer-api" class="dev-nav-module-title">客户管理 API <small>待补充</small></a>
-</div></details>
-<details class="dev-nav-group"><summary><span>公共规范与规划</span><small>技术参考</small></summary><div class="dev-nav-links">
-<a href="#reference-data" >参考数据</a><a href="#territories" >国家与地区</a><a href="#languages" >语言</a><a href="#genres" >音乐风格</a><a href="#roles" >角色</a><a href="#dsps" >发行平台</a><a href="#distributions" >统一发行资源</a><a href="#guide-submit" >提交发行</a><a href="#guide-update" >更新发行</a><a href="#guide-takedown" >下架</a><a href="#webhooks" >事件回调</a><a href="#event-types" >事件类型</a><a href="#signature" >签名校验</a><a href="#error-codes" >错误码</a><a href="#changelog" >更新记录</a>
-</div></details>
+  <div class="dev-side-title"><span>DEVELOPER DOCS</span><strong>开发者文档</strong></div>
+  <nav class="dev-nav-tree" aria-label="API 文档章节">
+    <div class="dev-nav-start">
+      <div class="dev-nav-heading">开始使用</div>
+      <a href="#overview">概览</a>
+<a href="#quickstart">快速开始</a>
+    </div>
+
+    <details class="dev-nav-group" open>
+      <summary>基础发行 API</summary>
+      <div class="dev-nav-items">
+        <a href="#basic-api">模块概览</a>
+<a href="#authentication">身份认证</a>
+<a href="#environment">环境与凭证</a>
+<a href="#files">文件上传</a>
+<a href="#gateway-tasks">K-JSON 发行任务</a>
+<a href="#release-status">发行状态查询</a>
+<a href="#guide-batch">批量发行</a>
+<a href="#guide-kjson">K-JSON 规范</a>
+<a href="#statuses">状态码</a>
+      </div>
+    </details>
+
+    <div class="dev-nav-heading dev-nav-heading-spaced">扩展 API 模块</div>
+    <div class="dev-nav-addons">
+      <details class="dev-nav-module">
+        <summary>资产管理 API</summary>
+        <div class="dev-nav-items">
+          <a href="#asset-api">模块概览</a>
+<a href="#albums">专辑</a>
+<a href="#tracks">歌曲</a>
+<a href="#guide-create">内容创建</a>
+        </div>
+      </details>
+      <details class="dev-nav-module">
+        <summary>艺人与厂牌 API</summary>
+        <div class="dev-nav-items">
+          <a href="#artist-label-api">模块概览</a>
+<a href="#artists">艺人</a>
+<a href="#labels">厂牌</a>
+        </div>
+      </details>
+      <a href="#distribution-data-api">发行数据 API</a>
+<a href="#royalty-api">版税报表 API</a>
+<a href="#split-api">分账管理 API</a>
+<a href="#customer-api">客户管理 API</a>
+    </div>
+
+    <details class="dev-nav-group dev-nav-reference">
+      <summary>公共规范</summary>
+      <div class="dev-nav-items">
+        <a href="#reference-data">参考数据</a>
+<a href="#territories">国家与地区</a>
+<a href="#languages">语言</a>
+<a href="#genres">音乐风格</a>
+<a href="#roles">角色</a>
+<a href="#dsps">发行平台</a>
+<a href="#distributions">统一发行资源</a>
+<a href="#guide-submit">提交发行</a>
+<a href="#guide-update">更新发行</a>
+<a href="#guide-takedown">下架</a>
+<a href="#webhooks">事件回调</a>
+<a href="#event-types">事件类型</a>
+<a href="#signature">签名校验</a>
+<a href="#error-codes">错误码</a>
+<a href="#changelog">更新记录</a>
+      </div>
+    </details>
+  </nav>
 </aside>
+<button type="button" class="dev-nav-backdrop" aria-label="关闭开发者目录" hidden></button>
 <article class="dev-main">
 <section id="overview">
         <span class="eyebrow">开发者中心</span>
@@ -1010,10 +1240,10 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
         <p class="caption">创建 K-JSON 任务后的 taskId 返回结构在现有文档中尚未完整定义，联调时以实际测试环境返回为准。</p>
       </section>
 
-<section id="basic-api" class="dev-modular-intro dev-modular-live"><div class="dev-section-kicker">CORE / INCLUDED</div><div class="dev-modular-intro-top"><h2>基础发行 API</h2><span class="dev-modular-state ready">当前可用</span></div><p>默认随 API 接入实施开通。认证、文件上传、K-JSON 发行任务与 DSP 状态查询构成完整发行闭环；上架、修改和下架不依赖额外购买其他业务模块。</p></section>
+<section id="basic-api" class="dev-modular-intro dev-modular-live"><div class="dev-section-kicker">CORE / INCLUDED</div><div class="dev-modular-intro-top"><h2>基础发行 API</h2></div><p>默认随 API 接入实施开通。认证、文件上传、K-JSON 发行任务与 DSP 状态查询构成完整发行闭环；上架、修改和下架不依赖额外购买其他业务模块。</p></section>
 
 <section id="authentication">
-        <div class="dev-section-kicker">基础发行 API</div><h2>身份认证</h2><div class="dev-state"><span class="current">当前可用</span></div>
+        <div class="dev-section-kicker">基础发行 API</div><h2>身份认证</h2>
         <p>使用企业开通时分配的 <code>appKey</code> 与 <code>appSecret</code> 获取 <code>accessToken</code>，后续请求通过 Bearer Token 认证。</p>
         <pre><code>GET /open/v1/token?appKey={appKey}&amp;appSecret={appSecret}
 
@@ -1022,21 +1252,21 @@ Authorization: Bearer {accessToken}</code></pre>
       </section>
 
 <section id="environment">
-        <h2>环境与凭证</h2><div class="dev-state"><span class="current">测试环境已提供</span></div>
+        <h2>环境与凭证</h2>
         <p>测试环境用于完成认证、上传、发行任务与结果查询。生产环境与正式凭证在企业合作和联调阶段开通。</p>
         <div class="doc-table"><div class="head"><b>项目</b><b>测试环境</b><b>生产环境</b></div><div><span>发行网关地址</span><span>https://api.test.kanjian.com/open/v1</span><span>项目开通后提供</span></div><div><span>用途</span><span>接口联调与发行验证</span><span>真实业务发行</span></div><div><span>凭证</span><span>测试 appKey / appSecret</span><span>独立生产凭证</span></div></div>
         <p class="caption">标准资源 API 的正式 Base URL 会在 V1 对外开放时统一提供，不与现有内部接口地址直接绑定。</p>
       </section>
 
 <section id="files">
-        <h2>OSS 文件上传</h2><div class="dev-state"><span class="current">当前可用</span></div>
+        <h2>OSS 文件上传</h2>
         <p>发行链路通过 STS 获取临时 OSS 凭证，用于上传音频、封面、K-JSON 与批次文件。上传路径必须位于返回的 <code>basePath</code> 下。</p>
         <pre><code>GET /open/v1/oss/sts
 Authorization: Bearer {accessToken}</code></pre>
         <div class="doc-table"><div class="head"><b>返回字段</b><b>说明</b><b>备注</b></div><div><span>accessKeyId / accessKeySecret</span><span>临时访问凭证</span><span>仅用于本次授权范围</span></div><div><span>stsToken</span><span>临时安全令牌</span><span>与访问凭证配套使用</span></div><div><span>region / bucket</span><span>存储区域与桶</span><span>按返回值上传</span></div><div><span>basePath</span><span>允许上传的基础路径</span><span>不可越权写入其他目录</span></div><div><span>有效期</span><span>3600 秒</span><span>过期后重新获取</span></div></div>
       </section>
 
-<section id="gateway-tasks"><div class="dev-section-kicker">基础发行 API</div><h2>K-JSON 发行任务</h2><div class="dev-state"><span class="current">当前可用</span></div>
+<section id="gateway-tasks"><div class="dev-section-kicker">基础发行 API</div><h2>K-JSON 发行任务</h2>
 <p>使用 STS 取得上传凭证并将 K-JSON 与所需素材上传到 OSS 后，通过 <code>filePath</code> 指定批次目录提交任务。根据 K-JSON 内容执行上架、修改或下架。</p>
 <div class="dev-endpoints"><div><b>POST</b><code>/open/v1/kjson/tasks</code><span>提交批次发行任务</span></div></div>
 <pre><code>POST /open/v1/kjson/tasks
@@ -1048,7 +1278,7 @@ contentProvider: {cpName}
 <p class="caption">filePath 应依据 STS 返回的 basePath 组装。当前原始文档未完整定义此接口成功返回体，taskId 的获得方式须在联调时确认。</p></section>
 
 <section id="release-status">
-        <h2>发行状态查询</h2><div class="dev-state"><span class="current">当前查询能力可用</span></div>
+        <h2>发行状态查询</h2>
         <p>基础发行 API 已支持按 taskId、batchPath 或 catalogNo 查询任务和 DSP 处理结果，无需购买额外的发行数据 API。统一发行对象及平台级状态接口属于后续规划。</p>
         <pre><code>GET /open/v1/kjson/tasks/{taskId}
 GET /open/v1/kjson/tasks?batchPath={batchPath}
@@ -1057,7 +1287,7 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre>
       </section>
 
 <section id="guide-batch">
-        <h2>批量发行</h2><div class="dev-state"><span class="current">K-JSON 链路当前可用</span></div>
+        <h2>批量发行</h2>
         <p>大批量目录、历史曲库迁移或系统级发行可直接采用 K-JSON。典型流程为获取凭证、获取 STS、上传批次、创建任务并查询处理结果。</p>
         <div class="dev-flow-line"><span>认证</span><i>→</i><span>STS</span><i>→</i><span>OSS 上传</span><i>→</i><span>K-JSON 任务</span><i>→</i><span>发行结果</span></div>
         <pre><code>GET  /open/v1/token
@@ -1069,34 +1299,34 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
       </section>
 
 <section id="guide-kjson">
-        <h2>K-JSON</h2><div class="dev-state"><span class="current">V0.3.1</span></div>
+        <h2>K-JSON</h2>
         <p>K-JSON 是现有发行链路使用的完整发行数据格式，继续作为批量和高级系统接入协议保留。</p>
         <div class="resource-grid"><div><code>MessageHeader</code><span>租户、内容提供方、UPC、任务与消息信息</span></div><div><code>传输状态</code><span>内容新增 / 更新与平台上架 / 下架操作</span></div><div><code>ResourceList</code><span>歌曲、音频、ISRC、角色、风格与版权信息</span></div><div><code>ArtistList</code><span>艺人、平台主页、翻译与厂牌信息</span></div><div><code>ReleaseList</code><span>发行平台、日期、地区、有效期与商业模式</span></div></div>
         <p>K-JSON 的发行信息可配置目标平台、<code>releaseDate</code>、<code>territoryCodes</code>、<code>validtyPeriod</code>、<code>CommercialModelTypes</code> 与 <code>Usage</code>。</p>
       </section>
 
 <section id="statuses">
-        <h2>状态码</h2><div class="dev-state"><span class="current">当前发行网关</span></div>
+        <h2>状态码</h2>
         <div class="doc-table"><div class="head"><b>状态</b><b>中文含义</b><b>业务场景</b></div><div><span>UP_RUNNING</span><span>上架处理中</span><span>入库 / 上架进行中</span></div><div><span>UP_SUCCESS</span><span>上架成功</span><span>入库 / 上架成功</span></div><div><span>UP_FAILED</span><span>上架失败</span><span>入库 / 上架失败</span></div><div><span>DOWN_RUNNING</span><span>下架处理中</span><span>下架任务处理中</span></div><div><span>DOWN_SUCCESS</span><span>下架成功</span><span>平台已完成下架</span></div><div><span>DOWN_FAILED</span><span>下架失败</span><span>下架任务失败</span></div></div>
       </section>
 
 <section id="asset-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL / 01</div><div class="dev-modular-intro-top"><h2>资产管理 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>面向专辑、歌曲、音视频文件及曲库元数据的业务系统集成。将原开发文档中规划的专辑与歌曲资源接口归入这里，暂未提供已验证的独立资产管理 API。</p></section>
 
 <section id="albums">
-        <h2>专辑</h2><div class="dev-state"><span class="planned">V1 规划</span></div>
+        <h2>专辑</h2>
         <p>创建专辑或单曲版本，并维护 UPC、封面、发行日期、厂牌、版权声明、曲目关系等发行元数据。</p>
         <div class="dev-endpoints"><div><b>POST</b><code>/v1/albums</code><span>创建专辑 / 单曲</span></div><div><b class="get">GET</b><code>/v1/albums</code><span>查询专辑列表</span></div><div><b class="get">GET</b><code>/v1/albums/{albumId}</code><span>查询专辑详情</span></div><div><b class="patch">PATCH</b><code>/v1/albums/{albumId}</code><span>更新专辑</span></div></div>
         <p class="caption">现有业务模型已包含标题、封面、UPC、发行日期、厂牌、目录号、C-Line / P-Line 与曲目关联等信息。</p>
       </section>
 
 <section id="tracks">
-        <h2>歌曲</h2><div class="dev-state"><span class="planned">V1 规划</span></div>
+        <h2>歌曲</h2>
         <p>维护歌曲标题、ISRC、音频、歌词、语种、音乐风格、艺人与词曲作者等信息，并关联所属专辑。</p>
         <div class="dev-endpoints"><div><b>POST</b><code>/v1/tracks</code><span>创建歌曲</span></div><div><b class="get">GET</b><code>/v1/tracks</code><span>查询歌曲列表</span></div><div><b class="get">GET</b><code>/v1/tracks/{trackId}</code><span>查询歌曲详情</span></div><div><b class="patch">PATCH</b><code>/v1/tracks/{trackId}</code><span>更新歌曲</span></div></div>
       </section>
 
 <section id="guide-create">
-        <div class="dev-section-kicker">发行指南</div><h2>创建内容</h2><div class="dev-state"><span class="planned">V1 资源 API 规划</span></div>
+        <div class="dev-section-kicker">发行指南</div><h2>创建内容</h2>
         <p>规划中的标准资源 API 建议先建立可复用的内容对象，再创建发行任务。这样艺人、厂牌、专辑与歌曲可以在后续更新、重发和多版本发行中持续复用。</p>
         <div class="dev-flow-line"><span>艺人</span><i>→</i><span>厂牌</span><i>→</i><span>专辑</span><i>→</i><span>歌曲</span><i>→</i><span>音频 / 封面</span></div>
         <div class="doc-table"><div class="head"><b>对象</b><b>关键标识</b><b>主要内容</b></div><div><span>艺人</span><span>artistId</span><span>艺名、语种、角色、平台艺人信息</span></div><div><span>专辑</span><span>albumId / UPC</span><span>标题、封面、厂牌、发行日期、版权声明</span></div><div><span>歌曲</span><span>trackId / ISRC</span><span>标题、音频、歌词、艺人、词曲作者、风格</span></div><div><span>文件</span><span>上传路径</span><span>音频、封面及发行批次文件</span></div></div>
@@ -1105,13 +1335,13 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
 <section id="artist-label-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL / 02</div><div class="dev-modular-intro-top"><h2>艺人与厂牌 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>用于维护艺人、厂牌资料及相关关系。原文档中的艺人和厂牌 V1 资源接口统一纳入此扩展模块，待后续补充真实接口参考。</p></section>
 
 <section id="artists">
-        <div class="dev-section-kicker">API 参考</div><h2>艺人</h2><div class="dev-state"><span class="planned">V1 规划</span></div>
+        <div class="dev-section-kicker">API 参考</div><h2>艺人</h2>
         <p>创建和维护发行中使用的艺人资料，包括艺名、语种、角色及平台艺人信息。对外接口由现有艺人能力标准化封装。</p>
         <div class="dev-endpoints"><div><b>POST</b><code>/v1/artists</code><span>创建艺人</span></div><div><b class="get">GET</b><code>/v1/artists</code><span>查询艺人列表</span></div><div><b class="get">GET</b><code>/v1/artists/{artistId}</code><span>查询艺人详情</span></div><div><b class="patch">PATCH</b><code>/v1/artists/{artistId}</code><span>更新艺人</span></div></div>
       </section>
 
 <section id="labels">
-        <h2>厂牌</h2><div class="dev-state"><span class="planned">V1 规划</span></div>
+        <h2>厂牌</h2>
         <p>维护发行品牌、版权方或厂牌信息，并与专辑和发行内容建立关联。</p>
         <div class="dev-endpoints"><div><b>POST</b><code>/v1/labels</code><span>创建厂牌</span></div><div><b class="get">GET</b><code>/v1/labels</code><span>查询厂牌列表</span></div><div><b class="get">GET</b><code>/v1/labels/{labelId}</code><span>查询厂牌详情</span></div><div><b class="patch">PATCH</b><code>/v1/labels/{labelId}</code><span>更新厂牌</span></div></div>
       </section>
@@ -1124,49 +1354,49 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
 
 <section id="customer-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL MODULE 06</div><div class="dev-modular-intro-top"><h2>客户管理 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>面向 CP 客户、账号、曲库关联与租户隔离的业务系统集成。</p></section><section class="dev-modular-placeholder"><h3>接口参考待补充</h3><p>具体客户对象、可操作范围及权限模型待后续提供 API 资料确认。</p><div class="dev-notice"><b>暂无已确认的公开接口</b><span>后续收到该模块的真实 API 文档后，在此补充 Endpoint、认证与参数、请求和响应示例、错误码及限制。当前不提供未经验证的示例路径。</span></div></section>
 
-<section class="dev-modular-common"><div class="dev-section-kicker">SHARED REFERENCE & ROADMAP</div><h2>公共规范与规划接口</h2><p>这部分保存已有文档的参考数据、统一发行资源、Webhook、错误码与版本管理内容。V1 规划接口不属于已验证的基础发行网关端点。</p></section>
+<section class="dev-modular-common"><div class="dev-section-kicker">SHARED REFERENCE & ROADMAP</div><h2>公共规范与参考</h2><p>这部分保存已有文档的参考数据、统一发行资源、Webhook、错误码与版本管理内容。V1 规划接口不属于已验证的基础发行网关端点。</p></section>
 
 <section id="reference-data">
-        <h2>参考数据</h2><div class="dev-state"><span class="planned">V1 规划</span></div>
+        <h2>参考数据</h2>
         <p>语言、地区、音乐风格、角色与发行平台统一通过参考数据接口读取，避免客户在代码中长期维护内部 ID。</p>
         <div class="dev-endpoints"><div><b class="get">GET</b><code>/v1/reference/languages</code><span>语言</span></div><div><b class="get">GET</b><code>/v1/reference/territories</code><span>国家与地区</span></div><div><b class="get">GET</b><code>/v1/reference/genres</code><span>音乐风格</span></div><div><b class="get">GET</b><code>/v1/reference/roles</code><span>贡献者角色</span></div><div><b class="get">GET</b><code>/v1/reference/dsps</code><span>发行平台</span></div></div>
       </section>
 
 <section id="territories">
-        <div class="dev-section-kicker">参考</div><h2>国家与地区</h2><div class="dev-state"><span class="planned">V1 参考数据</span></div>
+        <div class="dev-section-kicker">参考</div><h2>国家与地区</h2>
         <p>用于定义发行可用地区、限制地区和平台覆盖范围。建议通过参考数据接口实时读取，不在客户系统中长期写死内部 ID。</p>
         <pre><code>GET /v1/reference/territories</code></pre>
       </section>
 <section id="languages">
-        <h2>语言</h2><div class="dev-state"><span class="planned">V1 参考数据</span></div>
+        <h2>语言</h2>
         <p>用于艺人、专辑、歌曲与歌词等内容的语种标识。正式接口会返回稳定代码和展示名称。</p>
         <pre><code>GET /v1/reference/languages</code></pre>
       </section>
 <section id="genres">
-        <h2>音乐风格</h2><div class="dev-state"><span class="planned">V1 参考数据</span></div>
+        <h2>音乐风格</h2>
         <p>用于专辑和歌曲的主风格、子风格等分类。不同平台对风格的支持可能存在差异，提交前由发行校验统一处理。</p>
         <pre><code>GET /v1/reference/genres</code></pre>
       </section>
 <section id="roles">
-        <h2>角色</h2><div class="dev-state"><span class="planned">V1 参考数据</span></div>
+        <h2>角色</h2>
         <p>用于表达主艺人、伴唱艺人、作词、作曲等参与关系。现有业务模型已使用角色信息组织艺人和创作者。</p>
         <pre><code>GET /v1/reference/roles</code></pre>
       </section>
 <section id="dsps">
-        <h2>发行平台</h2><div class="dev-state"><span class="planned">V1 参考数据</span></div>
+        <h2>发行平台</h2>
         <p>返回可选择的目标发行平台及稳定平台代码，用于创建发行任务和查询平台状态。</p>
         <pre><code>GET /v1/reference/dsps</code></pre>
       </section>
 
 <section id="distributions">
-        <h2>统一发行资源</h2><div class="dev-state"><span class="planned">V1 统一资源</span><span class="current">底层 K-JSON 网关已跑通</span></div>
+        <h2>统一发行资源</h2>
         <p>对外统一使用“发行”资源，屏蔽底层 K-JSON 任务编排。创建发行时配置目标平台、发行日期、地区与可用期；后续更新和下架继续围绕同一个发行对象操作。</p>
         <div class="dev-endpoints"><div><b>POST</b><code>/v1/distributions</code><span>创建并提交发行</span></div><div><b class="get">GET</b><code>/v1/distributions/{distributionId}</code><span>查询发行详情</span></div><div><b>POST</b><code>/v1/distributions/{distributionId}/update</code><span>更新发行</span></div><div><b>POST</b><code>/v1/distributions/{distributionId}/takedown</code><span>指定平台下架</span></div><div><b>POST</b><code>/v1/distributions/{distributionId}/takedown-all</code><span>全部平台下架</span></div></div>
         <div class="doc-table"><div class="head"><b>对外操作</b><b>底层 K-JSON</b><b>说明</b></div><div><span>新建内容</span><span>ContentState = INSERT</span><span>新增发行内容</span></div><div><span>更新内容</span><span>ContentState = UPDATE</span><span>更新已有内容</span></div><div><span>上架</span><span>DSP = RELEASE</span><span>向指定发行平台提交</span></div><div><span>下架</span><span>DSP = TAKE_DOWN</span><span>指定平台下架</span></div><div><span>全部下架</span><span>DSP = TAKE_DOWN_ALL</span><span>全部目标平台下架</span></div></div>
       </section>
 
 <section id="guide-submit">
-        <h2>提交发行</h2><div class="dev-state"><span class="planned">V1 资源接口规划</span></div>
+        <h2>提交发行</h2>
         <p>内容准备完成后创建发行任务，选择目标发行平台、发行日期和地区。标准资源 API 会由服务端生成底层 K-JSON 并进入现有发行链路。</p>
         <pre><code>POST /v1/distributions
 {
@@ -1178,13 +1408,13 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
         <p class="caption">以上为 V1 对外资源模型示例；最终字段命名与枚举以正式开放契约为准。</p>
       </section>
 <section id="guide-update">
-        <h2>更新发行</h2><div class="dev-state"><span class="planned">V1 资源接口规划</span></div>
+        <h2>更新发行</h2>
         <p>发行后的元数据、文件或平台配置发生变化时，通过原发行对象提交更新。底层对应 <code>ContentState = UPDATE</code>，并继续复用原有发行关系。</p>
         <pre><code>POST /v1/distributions/{distributionId}/update</code></pre>
         <p>建议在更新前先读取当前发行详情与平台状态，避免对仍在处理中的任务重复提交冲突操作。</p>
       </section>
 <section id="guide-takedown">
-        <h2>下架</h2><div class="dev-state"><span class="planned">V1 资源接口规划</span></div>
+        <h2>下架</h2>
         <p>支持指定发行平台下架和全部平台下架。底层分别映射到 <code>TAKE_DOWN</code> 与 <code>TAKE_DOWN_ALL</code>。</p>
         <pre><code>POST /v1/distributions/{distributionId}/takedown
 POST /v1/distributions/{distributionId}/takedown-all</code></pre>
@@ -1192,32 +1422,32 @@ POST /v1/distributions/{distributionId}/takedown-all</code></pre>
       </section>
 
 <section id="webhooks">
-        <div class="dev-section-kicker">事件</div><h2>事件回调</h2><div class="dev-state"><span class="planned">V1 规划</span></div>
+        <div class="dev-section-kicker">事件</div><h2>事件回调</h2>
         <p>事件回调用于把发行任务和各平台处理结果主动推送到客户系统，减少持续轮询。V1 会提供回调地址管理、投递记录与失败重试。</p>
         <div class="dev-endpoints"><div><b>POST</b><code>/v1/webhooks</code><span>创建回调地址</span></div><div><b class="get">GET</b><code>/v1/webhooks</code><span>查询回调配置</span></div><div><b class="delete">DELETE</b><code>/v1/webhooks/{webhookId}</code><span>删除回调地址</span></div></div>
       </section>
 
 <section id="event-types">
-        <h2>事件类型</h2><div class="dev-state"><span class="planned">V1 规划</span></div>
+        <h2>事件类型</h2>
         <p>事件名保持稳定的机器可读格式，中文文档解释其业务含义。</p>
         <div class="doc-table"><div class="head"><b>事件</b><b>中文含义</b><b>触发场景</b></div><div><span>distribution.created</span><span>发行已创建</span><span>发行任务创建成功</span></div><div><span>distribution.processing</span><span>发行处理中</span><span>发行链路正在处理</span></div><div><span>distribution.completed</span><span>发行任务完成</span><span>任务级处理完成</span></div><div><span>distribution.failed</span><span>发行任务失败</span><span>任务级异常</span></div><div><span>platform.processing</span><span>平台处理中</span><span>单个平台正在处理</span></div><div><span>platform.live</span><span>平台已上线</span><span>单个平台已完成上架</span></div><div><span>platform.failed</span><span>平台处理失败</span><span>返回平台失败原因</span></div><div><span>platform.takedown</span><span>平台已下架</span><span>下架完成</span></div></div>
       </section>
 
 <section id="signature">
-        <h2>签名校验</h2><div class="dev-state"><span class="planned">V1 规划</span></div>
+        <h2>签名校验</h2>
         <p>Webhook 会使用独立 Secret 对回调请求进行签名，客户服务端应先验证签名再处理事件，并使用事件 ID 做幂等去重。</p>
         <div class="doc-table"><div class="head"><b>要求</b><b>作用</b><b>说明</b></div><div><span>独立 Secret</span><span>验证回调来源</span><span>与 API 访问凭证分离</span></div><div><span>时间戳</span><span>降低重放风险</span><span>校验允许的时间窗口</span></div><div><span>event_id</span><span>幂等去重</span><span>同一事件只处理一次</span></div><div><span>失败重试</span><span>提高投递可靠性</span><span>非 2xx 响应进入重试</span></div></div>
         <p class="caption">具体签名算法与 Header 名称会在 V1 正式契约中固定，当前资料尚未提供已上线的签名规范。</p>
       </section>
 
 <section id="error-codes">
-        <h2>错误码</h2><div class="dev-state"><span class="planned">V1 统一错误模型</span></div>
+        <h2>错误码</h2>
         <p>对外 V1 使用 HTTP 状态码 + 业务错误码 + 请求 ID。现有发行结果中的 <code>failCode</code> 继续用于表达具体平台失败原因。</p>
         <div class="doc-table"><div class="head"><b>类型</b><b>需要查看</b><b>处理方式</b></div><div><span>认证 / 权限</span><span>HTTP 状态码、业务错误码</span><span>检查令牌和接口权限</span></div><div><span>参数校验</span><span>字段路径与错误原因</span><span>修正请求后重试</span></div><div><span>发行处理</span><span>任务、目录号、平台状态</span><span>等待处理或修正发行资料</span></div><div><span>平台失败</span><span>failCode、dspId</span><span>按平台要求修正后重新提交</span></div><div><span>系统异常</span><span>请求 ID、请求时间</span><span>提交技术支持排查</span></div></div>
       </section>
 
 <section id="changelog">
-        <h2>更新记录</h2><div class="dev-state"><span class="planned">V1 版本管理</span></div>
+        <h2>更新记录</h2>
         <p>Open API 以 <code>/v1</code> 作为稳定版本边界。新增字段、枚举扩展、行为调整和废弃计划会在更新记录中统一说明，避免企业接入方因接口变化被动修改。</p>
         <div class="dev-notice"><b>版本原则</b><span>兼容性新增优先在当前版本内演进；存在破坏性变更时进入新的主版本，并提前提供迁移说明与过渡期。</span></div>
         <div class="hero-actions"><a class="btn btn-primary" href="/apply?solution=api" data-route>申请 API 接入</a><a class="btn btn-secondary" href="/api" data-route>返回发行 API</a></div>
@@ -1295,7 +1525,7 @@ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entr
 function revealVisible(){document.querySelectorAll('.page.active .reveal').forEach(el=>observer.observe(el))}
 function closeMenu(){const menu=document.querySelector('.nav-links'),toggle=document.querySelector('.nav-toggle');menu?.classList.remove('open');if(toggle){toggle.setAttribute('aria-expanded','false');toggle.textContent='☰'}}
 function syncSectionNav(){document.querySelectorAll('.product-subnav,.api-subnav,.solutions-subnav').forEach(nav=>{const links=[...nav.querySelectorAll('a[href^="#"]')],targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);if(!targets.length)return;const update=()=>{const y=scrollY+150;let current=targets[0];targets.forEach(t=>{if(t.offsetTop<=y)current=t});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current.id))};update();if(!nav.dataset.spy){nav.dataset.spy='1';addEventListener('scroll',update,{passive:true})}})}
-function render(path,hash=''){const page=routes[path]||'home';document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));setNav(page);setPageMeta(page);closeMenu();requestAnimationFrame(()=>{revealVisible();syncSectionNav();if(hash)document.querySelector(hash)?.scrollIntoView();else scrollTo(0,0)})}
+function render(path,hash=''){const page=routes[path]||'home';document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));setNav(page);setPageMeta(page);closeMenu();closeDeveloperMenu();requestAnimationFrame(()=>{revealVisible();syncSectionNav();if(hash)document.querySelector(hash)?.scrollIntoView();else scrollTo(0,0);requestAnimationFrame(updateDeveloperNavActive)})}
 const pricingPlanAmounts={basic:{monthly:999,yearly:9999},professional:{monthly:9999,yearly:99999},enterprise:{monthly:29999,yearly:299999}};
 let pricingPeriod='yearly',pricingEstimatePlan='professional';
 const rmb=n=>'¥'+Math.round(n).toLocaleString('zh-CN');
@@ -1304,7 +1534,76 @@ function setBillingPeriod(period){const yearly=period==='yearly';pricingPeriod=p
 document.addEventListener('click',e=>{const billing=e.target.closest('[data-billing-period]');if(billing){setBillingPeriod(billing.dataset.billingPeriod);return}const estimate=e.target.closest('[data-estimate-plan]');if(estimate){pricingEstimatePlan=estimate.dataset.estimatePlan;document.querySelectorAll('[data-estimate-plan]').forEach(x=>{const on=x===estimate;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});updatePricingEstimate();return}const a=e.target.closest('a[data-route]');if(a){const u=new URL(a.href,location.origin);if(routes[u.pathname]){e.preventDefault();history.pushState({},'',u.pathname+u.search+u.hash);render(u.pathname,u.hash);return}}const tab=e.target.closest('[data-product-tab]');if(tab){const key=tab.dataset.productTab;document.querySelectorAll('[data-product-tab]').forEach(btn=>{const active=btn===tab;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});document.querySelectorAll('[data-product-panel]').forEach(panel=>{const active=panel.dataset.productPanel===key;panel.classList.toggle('active',active);panel.hidden=!active});return}const plan=e.target.closest('[data-plan-tab]');if(plan){const root=plan.closest('[data-plan-compare]'),key=plan.dataset.planTab;root.querySelectorAll('[data-plan-tab]').forEach(btn=>btn.classList.toggle('active',btn===plan));root.querySelectorAll('[data-plan-panel]').forEach(panel=>panel.classList.toggle('active',panel.dataset.planPanel===key));return}const apiResource=e.target.closest('[data-api-resource]');if(apiResource){const root=apiResource.closest('[data-api-explorer]'),key=apiResource.dataset.apiResource;root.querySelectorAll('[data-api-resource]').forEach(btn=>btn.classList.toggle('active',btn===apiResource));root.querySelectorAll('[data-api-endpoints]').forEach(panel=>panel.hidden=panel.dataset.apiEndpoints!==key);const title=root.querySelector('#api-resource-title');if(title)title.textContent=apiResource.querySelector('b')?.textContent||key;return}const navInner=e.target.closest('.nav-inner');if(!navInner)closeMenu()});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
 addEventListener('popstate',()=>render(location.pathname,location.hash));
-const toggle=document.querySelector('.nav-toggle'),nav=document.querySelector('.nav-links');if(toggle&&nav)toggle.onclick=()=>{const open=nav.classList.toggle('open');toggle.textContent=open?'×':'☰';toggle.setAttribute('aria-expanded',open)};const devToggle=document.querySelector('.dev-mobile-nav'),devNav=document.querySelector('.dev-side');if(devToggle&&devNav)devToggle.onclick=()=>{const open=devNav.classList.toggle('open');devToggle.setAttribute('aria-expanded',String(open));devToggle.querySelector('b').textContent=open?'×':'☰'};
+const toggle=document.querySelector('.nav-toggle'),nav=document.querySelector('.nav-links');if(toggle&&nav)toggle.onclick=()=>{const open=nav.classList.toggle('open');toggle.textContent=open?'×':'☰';toggle.setAttribute('aria-expanded',open)};const devToggle=document.querySelector('[data-page="developers"] .dev-mobile-nav');
+const devNav=document.querySelector('[data-page="developers"] .dev-side');
+const devBackdrop=document.querySelector('[data-page="developers"] .dev-nav-backdrop');
+function closeDeveloperMenu(){
+  devNav?.classList.remove('open');
+  if(devToggle){devToggle.setAttribute('aria-expanded','false');const icon=devToggle.querySelector('b');if(icon)icon.textContent='☰'}
+  if(devBackdrop)devBackdrop.hidden=true;
+  document.body.classList.remove('dev-nav-open');
+}
+function setDeveloperMenuOpen(open){
+  if(!devNav||!devToggle)return;
+  devNav.classList.toggle('open',open);
+  devToggle.setAttribute('aria-expanded',String(open));
+  const icon=devToggle.querySelector('b');if(icon)icon.textContent=open?'×':'☰';
+  if(devBackdrop)devBackdrop.hidden=!open;
+  document.body.classList.toggle('dev-nav-open',open&&window.matchMedia('(max-width: 820px)').matches);
+}
+devToggle?.addEventListener('click',()=>setDeveloperMenuOpen(!devNav.classList.contains('open')));
+devBackdrop?.addEventListener('click',()=>{closeDeveloperMenu();devToggle?.focus()});
+devNav?.addEventListener('click',event=>{
+  const link=event.target.closest('a[href^="#"]');
+  if(!link)return;
+  if(window.matchMedia('(max-width: 820px)').matches)closeDeveloperMenu();
+  const id=link.getAttribute('href').slice(1);
+  setDeveloperNavActive(id,false);
+  requestAnimationFrame(updateDeveloperNavActive);
+});
+function setDeveloperNavActive(id,ensureVisible=true){
+  if(!devNav)return;
+  const links=devNav.querySelectorAll('a[href^="#"]');
+  let active=null;
+  links.forEach(link=>{
+    const isActive=link.getAttribute('href')==='#'+id;
+    link.classList.toggle('dev-nav-active',isActive);
+    if(isActive){link.setAttribute('aria-current','location');active=link}
+    else link.removeAttribute('aria-current');
+  });
+  if(!active)return;
+  let parent=active.closest('details');
+  while(parent&&devNav.contains(parent)){
+    parent.open=true;
+    parent=parent.parentElement?.closest('details');
+  }
+  if(!ensureVisible||devNav.classList.contains('open'))return;
+  const item=active.getBoundingClientRect(),box=devNav.getBoundingClientRect(),top=box.top+85,bottom=box.bottom-24;
+  if(item.top<top)devNav.scrollTop-=top-item.top;
+  else if(item.bottom>bottom)devNav.scrollTop+=item.bottom-bottom;
+}
+let devScrollPending=false;
+function updateDeveloperNavActive(){
+  const page=document.querySelector('[data-page="developers"]');
+  if(!page?.classList.contains('active'))return;
+  const sections=page.querySelectorAll('.dev-main section[id]');
+  const threshold=window.matchMedia('(max-width: 820px)').matches?150:140;
+  let active=sections[0];
+  for(const section of sections){if(section.getBoundingClientRect().top<=threshold)active=section;else break}
+  if(active)setDeveloperNavActive(active.id,true);
+}
+addEventListener('scroll',()=>{
+  if(devScrollPending)return;
+  devScrollPending=true;
+  requestAnimationFrame(()=>{devScrollPending=false;updateDeveloperNavActive()});
+},{passive:true});
+addEventListener('hashchange',()=>requestAnimationFrame(updateDeveloperNavActive));
+addEventListener('resize',()=>{
+  if(!window.matchMedia('(max-width: 820px)').matches)closeDeveloperMenu();
+  updateDeveloperNavActive();
+});
+addEventListener('keydown',event=>{if(event.key==='Escape'&&devNav?.classList.contains('open')){closeDeveloperMenu();devToggle?.focus()}});
+
 const form=document.querySelector('#apply-form');if(form)form.addEventListener('submit',e=>{e.preventDefault();form.querySelector('.success').hidden=false});
 const integrationDialog=document.querySelector('#integration-architecture-dialog');
 const integrationExpand=document.querySelector('[data-integration-expand]');
