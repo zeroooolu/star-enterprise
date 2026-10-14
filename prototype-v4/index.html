@@ -190,6 +190,46 @@
  .api-v2 .api-v2-status-panel{grid-template-columns:1fr}
 }
 
+
+/* API page review: descriptive icons, prepaid balance explanation, clear recharge terms */
+.api-v2 .api-v2-addon-icon,.api-v2 .api-v2-dev-icon,.api-v2 .api-v2-method-icon,.api-v2 .api-v2-billing-icon,.api-v2 .api-v2-prepaid-flow-icon,.api-v2 .api-v2-step-icon{display:inline-flex;align-items:center;justify-content:center;flex:none}
+.api-v2 .api-v2-addon-icon{width:42px;height:42px;border-radius:12px;background:#edf4ff;color:#2b65ac}
+.api-v2 .api-v2-addon-icon svg{width:22px;height:22px}
+.api-v2 .api-v2-addon-top{align-items:flex-start}
+.api-v2 .api-v2-addon h3{margin-top:2px}
+.api-v2 .api-v2-step-icon{width:42px;height:42px;border:1px solid rgba(255,255,255,.22);border-radius:12px;color:#d5e7ff;background:rgba(255,255,255,.08);margin:14px 0 4px}
+.api-v2 .api-v2-step-icon svg{width:22px;height:22px}
+.api-v2 .api-v2-billing-icon{width:40px;height:40px;border-radius:12px;background:#e6f0ff;color:#2f6abb;margin-bottom:2px}
+.api-v2 .api-v2-billing-icon svg{width:21px;height:21px}
+.api-v2 .api-v2-prepaid-flow{display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 24px;margin:-4px 0 28px;border:1px solid #e3ebf5;border-radius:15px;background:#fff}
+.api-v2 .api-v2-prepaid-flow>div{display:flex;flex:1;min-width:0;align-items:center;gap:10px;flex-wrap:wrap}
+.api-v2 .api-v2-prepaid-flow-icon{width:36px;height:36px;border-radius:50%;background:#f0f5fc;color:#2c68b0}
+.api-v2 .api-v2-prepaid-flow-icon svg{width:19px;height:19px}
+.api-v2 .api-v2-prepaid-flow strong{font-size:13px;color:#243f65}
+.api-v2 .api-v2-prepaid-flow small{font-size:11px;color:#7387a2;line-height:1.5;flex-basis:100%;margin-left:46px;margin-top:-8px}
+.api-v2 .api-v2-prepaid-arrow{color:#97aaca;font-size:22px}
+.api-v2 .api-v2-recharge-tier-heading{margin-top:22px}
+.api-v2 .api-v2-recharge-duration{margin:0}
+.api-v2 .api-v2-recharge-plans button{position:relative;gap:5px;min-height:134px;padding:15px 13px}
+.api-v2 .api-v2-recharge-plans button:focus-visible,.api-v2 .api-v2-recharge-duration button:focus-visible{outline:2px solid #3c7cce;outline-offset:2px}
+.api-v2 .api-v2-recharge-plans button>b{font-size:23px;letter-spacing:-.5px;font-variant-numeric:tabular-nums}
+.api-v2 .api-v2-recharge-plans button>small{font-size:11px;color:#59769a}
+.api-v2 .api-v2-recharge-plans button em{font-size:10px;margin-top:auto;color:#8393a8}
+.api-v2 .api-v2-dev-icon{width:43px;height:43px;border-radius:13px;color:#2a66af;background:#eaf2ff}
+.api-v2 .api-v2-dev-icon svg{width:22px;height:22px}
+.api-v2 .api-v2-developer-grid article{display:flex;flex-direction:column;align-items:flex-start}
+.api-v2 .api-v2-developer-grid article h3{margin:17px 0 9px}
+.api-v2 .api-v2-developer-grid article a{margin-top:16px}
+.api-v2 .api-v2-console-cta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:15px 22px;border-top:1px solid rgba(255,255,255,.15)}
+.api-v2 .api-v2-console-cta span{color:#92b3df;font-size:12px}
+.api-v2 .api-v2-console-cta a{font-size:12px;color:#c2e0ff;text-decoration:none;font-weight:700}
+.api-v2 .api-v2-console-cta a:hover{text-decoration:underline}
+.api-v2 .api-v2-method-icon{height:34px;width:34px;margin-bottom:11px;border-radius:9px;background:#ecf3ff;color:#2a69b7}
+.api-v2 .api-v2-method-icon svg{width:20px;height:20px}
+@media(max-width:980px){.api-v2 .api-v2-prepaid-flow{gap:7px;padding:16px}.api-v2 .api-v2-prepaid-flow>div{gap:7px}.api-v2 .api-v2-prepaid-flow strong{font-size:12px}.api-v2 .api-v2-prepaid-flow small{margin-left:0;margin-top:0}}
+@media(max-width:760px){.api-v2 .api-v2-prepaid-flow{flex-direction:column;align-items:stretch;gap:10px}.api-v2 .api-v2-prepaid-flow>div{flex:unset;flex-wrap:nowrap}.api-v2 .api-v2-prepaid-flow small{flex-basis:auto;margin:0 0 0 auto}.api-v2 .api-v2-prepaid-arrow{font-size:15px;text-align:center;transform:rotate(90deg)}.api-v2 .api-v2-recharge-duration>div{width:100%}.api-v2 .api-v2-recharge-duration button{flex:1}.api-v2 .api-v2-recharge-plans button{min-height:110px}}
+@media(max-width:480px){.api-v2 .api-v2-prepaid-flow>div{flex-wrap:wrap}.api-v2 .api-v2-prepaid-flow small{margin:0 0 0 45px;flex-basis:100%}.api-v2 .api-v2-billing-strip>div strong{font-size:28px}.api-v2 .api-v2-recharge-plans button>b{font-size:22px}}
+
 /* The prior API product narrative on the current modular layout */
 .api-v2 .api-v2-hero-proof{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:19px}
 .api-v2 .api-v2-hero-proof span{font-size:12px;font-weight:600;color:#566e93;position:relative}
@@ -1110,7 +1150,7 @@
       </div>
       <div class="solutions-faq-grid">
         <details class="solutions-faq-item reveal"><summary>已经拥有网站或 App，是否需要更换现有系统？<span aria-hidden="true"></span></summary><p>不需要整体更换。可根据现有产品架构评估发行 API 接入，保留账号、界面和主要业务流程；接口范围及联调方式由企业方案确定。</p></details>
-        <details class="solutions-faq-item reveal"><summary>是否可以仅采购发行 API？<span aria-hidden="true"></span></summary><p>可以单独申请发行 API 服务，无须同时采购自有品牌发行门户。API 年费、发行使用费及专项实施费用可在价格页面查看，具体权益以方案为准。</p></details>
+        <details class="solutions-faq-item reveal"><summary>是否可以仅采购发行 API？<span aria-hidden="true"></span></summary><p>可以单独申请发行 API 服务，无须同时采购自有品牌发行门户。API 实施费、预充值抵扣及专项实施费用可在价格页面查看，具体权益以方案为准。</p></details>
         <details class="solutions-faq-item reveal"><summary>已有大量存量曲库，是否支持迁移？<span aria-hidden="true"></span></summary><p>支持按项目评估历史曲库迁移，包括元数据映射、内容文件整理、批量导入及迁移验证。迁移范围与费用依据数据规模和复杂度确认。</p></details>
         <details class="solutions-faq-item reveal"><summary>发行审核及渠道交付由哪一方负责？<span aria-hidden="true"></span></summary><p>企业可以开展资料预检及内部运营处理；正式发行审核及渠道交付由看见音乐承担，具体业务责任与异常处理流程以合作协议为准。</p></details>
         <details class="solutions-faq-item reveal"><summary>可以发行到哪些音乐平台？<span aria-hidden="true"></span></summary><p>可根据业务需求选择中国及全球目标音乐平台。具体发行渠道、内容类型、地区范围与处理规则，以合作开通范围和渠道政策为准。</p></details>
@@ -1207,93 +1247,101 @@
   
 <nav class="api-subnav" aria-label="发行 API 页面章节"><div class="container"><a href="#api-capabilities">API 模块</a><a href="#api-flow">发行闭环</a><a href="#api-pricing">价格与测算</a><a href="#api-developer">开发者资源</a><a href="#api-integration">接入方式</a><a href="#api-faq">常见问题</a></div></nav>
 <section class="section api-v2-capabilities" id="api-capabilities"><div class="container">
-    <div class="section-head split reveal"><div><span class="eyebrow">MODULAR API</span><h2>按业务需要，<br>接入对应能力。</h2></div><p>以基础发行 API 为核心，将发行能力接入企业现有系统；资产、艺人、数据、版税、分账及客户管理等能力可独立选配。</p></div>
+    <div class="section-head split reveal"><div><span class="eyebrow">MODULAR API</span><h2>按业务需要，<br>接入对应能力。</h2></div><p>基础发行 API 可独立完成上架、修改和下架；曲库、艺人、发行数据、版税、分账与客户管理能力按需扩展。</p></div>
     <div class="api-v2-core reveal">
       <div class="api-v2-core-main">
         <div class="api-v2-core-top"><span class="api-v2-tag included">基础发行 API · 标准接入</span></div>
         <h3>基础发行 API <small>Distribution API</small></h3>
-        <p>通过统一发行网关完成音频及元数据上传、批量上架、更新、下架与数字音乐平台（DSP）状态查询，无需自建底层发行通道。</p>
+        <p>通过标准 API 接入音乐内容上传、发行提交、更新、下架及渠道结果查询，无需另行建设音乐发行通道。</p>
         <div class="api-v2-core-chips"><span>凭证认证</span><span>文件上传</span><span>批次提交</span><span>上架 / 修改 / 下架</span><span>任务查询</span><span>渠道结果</span></div>
         <a href="#api-flow" class="api-v2-inline-link">了解基础发行接入流程 <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="api-v2-core-price"><small>基础发行 API 权限</small><strong>标准接入</strong><span>随 ¥9,800 一次性实施服务开通</span><p>发行费按 ¥0.8 / 首 / 渠道从预充值余额扣除，支持半年或一年一次充值。</p></div>
+      <div class="api-v2-core-price"><small>基础发行 API 权限</small><strong>标准接入</strong><span>随 ¥9,800 一次性实施服务开通</span><p>发行费用从预充值余额按使用量抵扣，充值与计费方案详见下方说明。</p></div>
     </div>
-    <div class="api-v2-addon-heading reveal"><div><span class="eyebrow">OPTIONAL API MODULES</span><h3>在基础发行之外，扩展更多业务能力</h3><p>围绕现有系统选择业务模块。下列模块是开放规划与意向选配展示，费用按模块一次性测算。</p></div><div class="api-v2-addon-rate"><strong>¥2,000</strong><small>/ 模块 · 一次性</small></div></div>
+    <div class="api-v2-addon-heading reveal"><div><span class="eyebrow">OPTIONAL API MODULES</span><h3>在基础发行之外，扩展更多业务能力</h3><p>根据现有系统按需申请扩展对接，具体接口权限和交付范围由企业合作方案确认。</p></div><div class="api-v2-addon-rate"><strong>¥2,000</strong><small>/ 模块 · 一次性参考价</small></div></div>
     <div class="api-v2-addon-grid reveal"><article class="api-v2-addon">
-  <div class="api-v2-addon-top"><span class="api-v2-addon-no">01 / ADD-ON</span></div>
-  <h3>资产管理 API</h3><p>用于同步专辑、歌曲、音频和封面等音乐资产数据，连接企业现有曲库管理体系。</p>
+  <div class="api-v2-addon-top"><span class="api-v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span><span class="api-v2-addon-no">01 / ADD-ON</span></div>
+  <h3>资产管理 API</h3><p>管理专辑、歌曲、音视频文件及关联元数据，连接企业现有曲库。</p>
   <a class="api-v2-module-doc" href="/developers#asset-api" data-route>查看模块说明 <span aria-hidden="true">↗</span></a><div class="api-v2-addon-bottom"><div><strong>¥2,000</strong><small> / 模块 · 一次性</small></div><button type="button" data-api-addon="asset" aria-pressed="false">加入方案测算 <span aria-hidden="true">+</span></button></div>
 </article>
 <article class="api-v2-addon">
-  <div class="api-v2-addon-top"><span class="api-v2-addon-no">02 / ADD-ON</span></div>
-  <h3>艺人与厂牌 API</h3><p>用于同步艺人、厂牌及关联信息，使发行数据与企业已有主体资料保持一致。</p>
+  <div class="api-v2-addon-top"><span class="api-v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 7a3 3 0 0 1 0 6M17 15a5 5 0 0 1 4 5"/></svg></span><span class="api-v2-addon-no">02 / ADD-ON</span></div>
+  <h3>艺人与厂牌 API</h3><p>管理艺人、厂牌及作品关联关系，保持业务资料统一。</p>
   <a class="api-v2-module-doc" href="/developers#artist-label-api" data-route>查看模块说明 <span aria-hidden="true">↗</span></a><div class="api-v2-addon-bottom"><div><strong>¥2,000</strong><small> / 模块 · 一次性</small></div><button type="button" data-api-addon="artist" aria-pressed="false">加入方案测算 <span aria-hidden="true">+</span></button></div>
 </article>
 <article class="api-v2-addon">
-  <div class="api-v2-addon-top"><span class="api-v2-addon-no">03 / ADD-ON</span></div>
-  <h3>发行数据 API</h3><p>查询发行模板、产品发行设置、发行列表和各 DSP 渠道记录，便于统一管理发行数据及操作历史。基础发行的 K-JSON 任务查询仍包含在标准接入服务中。</p>
+  <div class="api-v2-addon-top"><span class="api-v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M6 17v-5M11 17V6M16 17v-8M21 17v-4"/></svg></span><span class="api-v2-addon-no">03 / ADD-ON</span></div>
+  <h3>发行数据 API</h3><p>查询发行配置、渠道记录和操作历史，扩展发行数据管理能力。</p>
   <a class="api-v2-module-doc" href="/developers#distribution-data-api" data-route>查看模块说明 <span aria-hidden="true">↗</span></a><div class="api-v2-addon-bottom"><div><strong>¥2,000</strong><small> / 模块 · 一次性</small></div><button type="button" data-api-addon="analytics" aria-pressed="false">加入方案测算 <span aria-hidden="true">+</span></button></div>
 </article>
 <article class="api-v2-addon">
-  <div class="api-v2-addon-top"><span class="api-v2-addon-no">04 / ADD-ON</span></div>
-  <h3>版税报表 API</h3><p>面向平台销售与版税报表、歌曲收益明细的财务数据对接，具体字段以接口文档为准。</p>
+  <div class="api-v2-addon-top"><span class="api-v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18M7 15l4-5 4 3 5-6"/><path d="M17 7h3v3"/></svg></span><span class="api-v2-addon-no">04 / ADD-ON</span></div>
+  <h3>版税报表 API</h3><p>按账期获取平台、专辑及歌曲收益，支持财务查询与核对。</p>
   <a class="api-v2-module-doc" href="/developers#royalty-api" data-route>查看模块说明 <span aria-hidden="true">↗</span></a><div class="api-v2-addon-bottom"><div><strong>¥2,000</strong><small> / 模块 · 一次性</small></div><button type="button" data-api-addon="royalty" aria-pressed="false">加入方案测算 <span aria-hidden="true">+</span></button></div>
 </article>
 <article class="api-v2-addon">
-  <div class="api-v2-addon-top"><span class="api-v2-addon-no">05 / ADD-ON</span></div>
-  <h3>分账管理 API</h3><p>面向合作方分账规则、收益分配结果与结算信息的业务集成，具体操作范围以接口文档为准。</p>
+  <div class="api-v2-addon-top"><span class="api-v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="12" cy="19" r="2"/><path d="M6 7v5l6 5M18 7v5l-6 5"/></svg></span><span class="api-v2-addon-no">05 / ADD-ON</span></div>
+  <h3>分账管理 API</h3><p>查询歌曲分账明细及贡献者收益分配结果。</p>
   <a class="api-v2-module-doc" href="/developers#split-api" data-route>查看模块说明 <span aria-hidden="true">↗</span></a><div class="api-v2-addon-bottom"><div><strong>¥2,000</strong><small> / 模块 · 一次性</small></div><button type="button" data-api-addon="settlement" aria-pressed="false">加入方案测算 <span aria-hidden="true">+</span></button></div>
 </article>
 <article class="api-v2-addon">
-  <div class="api-v2-addon-top"><span class="api-v2-addon-no">06 / ADD-ON</span></div>
-  <h3>客户管理 API</h3><p>面向客户、CP 账号与曲库关联信息同步，支持将发行相关数据组织到企业现有客户体系。</p>
+  <div class="api-v2-addon-top"><span class="api-v2-addon-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M7 9h10M7 13h5M7 17h7"/></svg></span><span class="api-v2-addon-no">06 / ADD-ON</span></div>
+  <h3>客户管理 API</h3><p>管理客户档案、联系人和标签，查询实名认证相关信息。</p>
   <a class="api-v2-module-doc" href="/developers#customer-api" data-route>查看模块说明 <span aria-hidden="true">↗</span></a><div class="api-v2-addon-bottom"><div><strong>¥2,000</strong><small> / 模块 · 一次性</small></div><button type="button" data-api-addon="customer" aria-pressed="false">加入方案测算 <span aria-hidden="true">+</span></button></div>
 </article></div>
-    <div class="api-v2-availability reveal"><span class="api-v2-notice-icon" aria-hidden="true">i</span><p><b>模块选配说明：</b>六个扩展模块目前用于展示业务规划与估算意向方案，并非即时开通或正式报价。接口范围、交付时间及实际费用以双方确认的合作方案为准。</p></div>
+    <div class="api-v2-availability reveal"><span class="api-v2-notice-icon" aria-hidden="true">i</span><p><b>扩展模块说明：</b>开发者中心提供相应接口资料，正式开通范围、权限及交付时间按合作方案确认。页面价格用于意向测算，非即时购买。</p></div>
   </div></section>
 
   
 <section class="section dark api-flow-section api-v2-flow" id="api-flow"><div class="container">
     <div class="section-head reveal"><span class="eyebrow light">END-TO-END WORKFLOW</span><h2>一套接口贯穿完整发行链路</h2><p>从身份认证、内容上传，到 K-JSON 发行任务与渠道处理结果查询，形成标准发行闭环。只接入基础发行 API，也可完成上架、修改和下架。</p></div>
     <div class="api-flow reveal">
-      <article><b>01</b><h3>身份认证</h3><p>使用 appKey 与 appSecret 获取 accessToken。</p></article>
-      <article><b>02</b><h3>获取上传凭证</h3><p>通过 STS 接口获得 OSS 临时凭证、bucket 与 basePath。</p></article>
-      <article><b>03</b><h3>上传发行文件</h3><p>将 K-JSON、音频及封面上传至约定的 OSS 批次路径。</p></article>
-      <article><b>04</b><h3>启动发行任务</h3><p>提交 filePath，执行上架、修改或下架操作。</p></article>
-      <article><b>05</b><h3>查询渠道结果</h3><p>按任务 ID、batchPath 或 CatalogNumber 获取 DSP 处理状态。</p></article>
+      <article><b>01</b><span class="api-v2-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><h3>身份认证</h3><p>获取企业访问凭证，完成接口身份认证。</p></article>
+      <article><b>02</b><span class="api-v2-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 1-9 6 6 0 0 1 11 3 3 3 0 0 1-1 6z"/><path d="M12 20v-9M9 14l3-3 3 3"/></svg></span><h3>获取上传凭证</h3><p>获取上传发行文件所需的临时授权。</p></article>
+      <article><b>03</b><span class="api-v2-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V3m-4 4 4-4 4 4M5 14v6h14v-6"/></svg></span><h3>上传发行文件</h3><p>上传音频、封面与 K-JSON 发行数据。</p></article>
+      <article><b>04</b><span class="api-v2-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7ZM11 13l11-11"/></svg></span><h3>启动发行任务</h3><p>提交发行任务，执行上架、修改或下架。</p></article>
+      <article><b>05</b><span class="api-v2-step-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg></span><h3>查询渠道结果</h3><p>按任务、批次或目录号查询渠道处理结果。</p></article>
     </div>
-    <div class="api-v2-flow-foot reveal"><span>发行任务：上架 · 修改 · 下架</span><span>处理结果：进行中 · 成功 · 失败</span><a href="/developers#release-status" data-route>查看状态说明 ↗</a></div><p class="api-v2-flow-footnote">当前支持通过任务 ID、批次或目录号主动查询结果。Webhook 回调属于后续开放能力。</p>
+    <div class="api-v2-flow-foot reveal"><span>发行任务：上架 · 修改 · 下架</span><span>处理结果：进行中 · 成功 · 失败</span><a href="/developers#release-status" data-route>查看状态说明 ↗</a></div><p class="api-v2-flow-footnote">当前可主动查询任务及渠道结果；Webhook 事件回调按后续开放计划提供。</p>
   </div></section>
 
   
 <section class="section api-v2-billing" id="api-pricing"><div class="container">
-<div class="section-head split reveal"><div><span class="eyebrow">API PRICING</span><h2>清晰的 API 商业方案</h2></div><p>首次接入费一次性支付；按发行规模选择月度充值额度标准，半年或一年一次性充入发行账户。发行使用费从预充值余额中按实际使用量抵扣，无需每月付款。</p></div>
+<div class="section-head split reveal"><div><span class="eyebrow">API PRICING</span><h2>清晰的 API 商业方案</h2></div><p>首次接入实施费一次性支付；按业务规模选择半年或一年预充值。发行使用费按每首歌曲、每个目标渠道计算，直接从余额抵扣。</p></div>
 <div class="api-v2-billing-strip reveal">
-<div><small>首次接入实施费</small><strong>¥9,800</strong><span>一次性 · 含基础发行 API</span></div>
-<div><small>发行预充值</small><strong>¥999 起</strong><span>月度额度标准 · 6 / 12 个月一次充值</span></div>
-<div><small>发行使用抵扣</small><strong>¥0.8</strong><span>每首歌曲 / 每目标渠道 · 从余额扣除</span></div>
+  <div><span class="api-v2-billing-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3v5m6-5v5M7 8h10v3a5 5 0 0 1-10 0zM12 16v5"/></svg></span><small>首次接入实施费</small><strong>¥9,800</strong><span>一次性支付 · 含基础发行 API</span></div>
+  <div><span class="api-v2-billing-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="15" rx="3"/><path d="M3 10h18M7 3h11"/><circle cx="16.5" cy="15.5" r="1"/></svg></span><small>发行预充值</small><strong>¥5,994 起</strong><span>半年或一年一次充值</span></div>
+  <div><span class="api-v2-billing-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><small>发行使用费</small><strong>¥0.8</strong><span>每首歌曲 / 每目标渠道 · 余额抵扣</span></div>
+</div>
+<div class="api-v2-prepaid-flow reveal" aria-label="发行预充值与余额抵扣流程">
+ <div><span class="api-v2-prepaid-flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="15" rx="3"/><path d="M3 10h18M7 3h11"/><circle cx="16.5" cy="15.5" r="1"/></svg></span><strong>一次充值到账</strong><small>选择半年或一年充值方案</small></div>
+ <span class="api-v2-prepaid-arrow" aria-hidden="true">→</span>
+ <div><span class="api-v2-prepaid-flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><strong>按发行量扣费</strong><small>每首 × 每渠道 × ¥0.8</small></div>
+ <span class="api-v2-prepaid-arrow" aria-hidden="true">→</span>
+ <div><span class="api-v2-prepaid-flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-4-4m4 4-4 4M20 17H4l4-4m-4 4 4 4"/></svg></span><strong>余额持续抵扣</strong><small>剩余余额可跨月使用</small></div>
 </div>
 <div class="api-v2-calculator reveal" data-api-calculator>
 <div class="api-v2-calculator-main">
-<span class="eyebrow">ESTIMATE YOUR COST</span><h3>配置 API 接入方案</h3><p>选择充值档位和一次性充值时长，再选配需要的 API 模块。每次发行按 ¥0.8 / 首 / 渠道从余额扣减，不再额外计入首次付款。</p>
+<span class="eyebrow">ESTIMATE YOUR COST</span><h3>配置 API 接入方案</h3><p>选择充值周期与档位，再按需选择扩展模块。发行使用费直接从充值余额扣减，不重复计入首次付款。</p>
 <div class="api-v2-recharge-panel">
-<div class="api-v2-recharge-heading"><strong>01 / 选择发行充值档位</strong><span>按月度额度标准测算，非月付订阅</span></div>
-<div class="api-v2-recharge-plans" role="group" aria-label="发行预充值档位">
-<button type="button" class="active" aria-pressed="true" data-api-recharge="999"><span>起步</span><b>¥999<small> / 月度额度</small></b><em data-api-plan-deposit="999">6 个月一次充值 ¥5,994</em></button>
-<button type="button" aria-pressed="false" data-api-recharge="9999"><span>成长</span><b>¥9,999<small> / 月度额度</small></b><em data-api-plan-deposit="9999">6 个月一次充值 ¥59,994</em></button>
-<button type="button" aria-pressed="false" data-api-recharge="29999"><span>规模</span><b>¥29,999<small> / 月度额度</small></b><em data-api-plan-deposit="29999">6 个月一次充值 ¥179,994</em></button>
-</div>
-<div class="api-v2-recharge-duration"><span>02 / 选择一次充值的时长</span><div role="group" aria-label="预充值周期"><button type="button" class="active" aria-pressed="true" data-api-recharge-months="6">半年 · 6 个月</button><button type="button" aria-pressed="false" data-api-recharge-months="12">一年 · 12 个月</button></div></div>
-<p>无需逐月充值；未消耗余额可跨月继续抵扣。到期续充、剩余余额处理及额外充值规则以正式合作协议为准。</p>
-</div>
-<div class="api-v2-calculator-label">扩展模块意向选配（可多选） · ¥2,000 / 模块，一次性</div>
+    <div class="api-v2-recharge-heading"><strong>01 / 选择充值周期</strong><span>周期内按实际发行量抵扣</span></div>
+    <div class="api-v2-recharge-duration"><div role="group" aria-label="预充值周期"><button type="button" class="active" aria-pressed="true" data-api-recharge-months="6">半年 · 6 个月</button><button type="button" aria-pressed="false" data-api-recharge-months="12">一年 · 12 个月</button></div></div>
+    <div class="api-v2-recharge-heading api-v2-recharge-tier-heading"><strong>02 / 选择充值档位</strong><span>仅充值余额不同，基础 API 权益相同</span></div>
+    <div class="api-v2-recharge-plans" role="group" aria-label="发行预充值档位">
+      <button type="button" class="active" aria-pressed="true" data-api-recharge="999"><span>起步额度</span><b data-api-plan-deposit="999">¥5,994</b><small>每半年一次充值</small><em>月度换算基准 ¥999</em></button>
+      <button type="button" aria-pressed="false" data-api-recharge="9999"><span>成长额度</span><b data-api-plan-deposit="9999">¥59,994</b><small>每半年一次充值</small><em>月度换算基准 ¥9,999</em></button>
+      <button type="button" aria-pressed="false" data-api-recharge="29999"><span>规模额度</span><b data-api-plan-deposit="29999">¥179,994</b><small>每半年一次充值</small><em>月度换算基准 ¥29,999</em></button>
+    </div>
+    <p>月度金额仅用于换算一次充值金额，并非每月付款；未用余额可跨月抵扣。</p>
+  </div>
+  <div class="api-v2-calculator-label">扩展 API 模块（可多选） · ¥2,000 / 模块，一次性参考价</div>
 <div class="api-v2-options"><label class="api-v2-opt"><input type="checkbox" data-api-addon-check="asset"><span>资产管理 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="artist"><span>艺人与厂牌 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="analytics"><span>发行数据 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="royalty"><span>版税报表 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="settlement"><span>分账管理 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="customer"><span>客户管理 API</span><b>+ ¥2,000</b></label></div>
-<div class="api-v2-calculator-label api-v2-usage-label">预计本批次发行使用量</div>
+<div class="api-v2-calculator-label api-v2-usage-label">发行使用量估算</div>
 <div class="api-v2-usage-fields"><label>发行歌曲数<input type="number" min="0" max="100000" step="1" value="100" inputmode="numeric" data-api-songs></label><span aria-hidden="true">×</span><label>平均目标渠道数<input type="number" min="0" max="100" step="1" value="5" inputmode="numeric" data-api-channels></label></div>
 </div>
 <aside class="api-v2-calculator-summary" aria-live="polite" aria-atomic="true">
@@ -1305,78 +1353,57 @@
 <div class="api-v2-balance-result"><div><span>本批次预计扣减余额</span><b data-api-usage-price>−¥400</b></div><div><span>预计抵扣后余额</span><b data-api-balance-price>¥5,594</b></div><p data-api-recharge-tip>发行费从充值余额抵扣，不重复计入首次付款。</p></div>
 <a class="btn btn-primary" href="/apply?solution=api" data-route data-api-submit-plan>携带方案申请接入</a>
 </aside></div>
-<p class="api-v2-billing-disclaimer reveal">计费口径：歌曲数 × 目标渠道数 × ¥0.8，从预充值余额中扣除。月度额度标准乘以 6 或 12 个月得到一次性充值金额，不代表每月付款，也未设置未经确认的年付折扣。余额到期处理、追加充值、更新、重传、下架及异常任务的具体规则以正式合作协议为准。</p>
+<p class="api-v2-billing-disclaimer reveal">估算口径：歌曲数 × 目标渠道数 × ¥0.8。余额到期、追加充值及更新、重传、下架、异常任务的具体计费规则以正式合作协议为准。</p>
 </div></section>
 
   
 <section class="section soft api-v2-support" id="api-developer"><div class="container">
-  <div class="section-head split reveal"><div><span class="eyebrow">OPEN API · DEVELOPER RESOURCES</span><h2>从已跑通发行链路，扩展为完整 Open API</h2></div><p>基础发行已提供认证、OSS 上传、K-JSON 任务与渠道结果查询；更多业务模块与企业级开发者能力将随真实接口文档逐步完善。</p></div>
+  <div class="section-head split reveal"><div><span class="eyebrow">OPEN API · DEVELOPER RESOURCES</span><h2>从已跑通发行链路，扩展为完整 Open API</h2></div><p>开发者中心集中提供身份认证、K-JSON 发行任务、结果查询及扩展业务接口资料，按实际授权范围开展系统对接。</p></div>
   <div class="api-v2-developer-grid reveal">
-    <article><h3>测试环境与身份认证</h3><p>使用测试环境、appKey / appSecret 与 accessToken 完成真实发行接口联调。</p><a href="/developers#authentication" data-route>查看认证文档 ↗</a></article>
-    <article><h3>K-JSON 发行与批量上传</h3><p>通过 STS 上传素材与 K-JSON，完成发行任务提交及结果查询。</p><a href="/developers#gateway-tasks" data-route>查看任务接口 ↗</a></article>
-    <article><h3>扩展与技术规范</h3><p>业务资源 API、事件回调、日志和版本规范将随着后续开放进度完善。</p><a href="/developers#webhooks" data-route>了解后续能力 ↗</a></article>
+    <article><span class="api-v2-dev-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><h3>认证与接口接入</h3><p>通过企业访问凭证完成身份认证，了解接口权限和请求规范。</p><a href="/developers#authentication" data-route>查看认证指南 ↗</a></article>
+    <article><span class="api-v2-dev-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3m6 0h4"/></svg></span><h3>发行与结果查询</h3><p>通过 K-JSON 提交发行任务，查询批次和音乐平台的处理结果。</p><a href="/developers#gateway-tasks" data-route>查看发行接口 ↗</a></article>
+    <article><span class="api-v2-dev-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h14v17H6a2 2 0 0 1 0-4h14"/></svg></span><h3>扩展 API 与字段规范</h3><p>按业务模块查看资源接口、请求参数、响应字段和数据结构。</p><a href="/developers#asset-api" data-route>浏览扩展接口 ↗</a></article>
   </div>
-  <div class="api-doc-row reveal"><div><b>开发者中心</b><span>查看基础发行 API 的详细接口和 K-JSON 规范，并按模块浏览持续补充的业务 API。</span></div><a class="text-link" href="/developers" data-route>进入开发者中心 →</a></div>
 </div></section>
-<div class="api-v2-technical-intro container reveal"><span class="eyebrow">VERIFIED DISTRIBUTION API</span><h3>使用真实发行网关接入</h3><p>现有标准接口按「认证 → 上传 → 提交 → 查询」组织，技术细节在开发者中心持续更新。</p></div>
+<div class="api-v2-technical-intro container reveal"><span class="eyebrow">VERIFIED DISTRIBUTION API</span><h3>使用真实发行网关接入</h3><p>发行提交与结果查询使用标准网关。以下为简化示例，完整参数及接入要求参见开发者中心。</p></div>
 <section class="api-console-wrap api-v2-console-wrap api-v2-console-relocated"><div class="container"><div class="api-console reveal">
-    <div class="api-console-head"><div><i></i><i></i><i></i></div><span>kanjian / open/v1</span><b>当前发行网关 · 已验证链路</b></div>
+    <div class="api-console-head"><div><i></i><i></i><i></i></div><span>kanjian / open/v1</span><b>标准发行 API · 请求示例</b></div>
     <div class="api-console-grid">
       <div class="api-code-pane"><div class="code-pane-title"><span>提交发行任务</span><b><em>POST</em> /open/v1/kjson/tasks</b></div><pre><code>{
-  "filePath": "/bucket/app/tenant/cp/batch"
-}</code></pre><small class="api-v2-code-note">先通过 STS 获取上传路径，上传 K-JSON 与所需素材后再提交任务。</small></div>
-      <div class="api-code-pane response"><div class="code-pane-title"><span>查询发行进度</span><b><em>GET</em> /open/v1/kjson/tasks/{taskId}</b></div><pre><code>GET /open/v1/kjson/tasks/{taskId}
-GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-code-note">通过任务 ID 或 Catalog Number 查询。创建任务的返回字段以实际联调结果为准。</small></div>
+  "filePath": "{batchPath}"
+}</code></pre><small class="api-v2-code-note">上传发行素材后，使用实际批次目录路径提交 K-JSON 发行任务。</small></div>
+      <div class="api-code-pane response"><div class="code-pane-title"><span>查询发行进度</span><b><em>GET</em> /open/v1/kjson/tasks?batchPath=...</b></div><pre><code>GET /open/v1/kjson/tasks?batchPath={batchPath}
+GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-code-note">按批次路径或作品目录号查询发行处理结果。</small></div>
     </div>
+    <div class="api-v2-console-cta"><span>详细接口、认证要求与响应字段见开发者中心。</span><a href="/developers#quickstart" data-route>查看完整接口文档 →</a></div>
   </div></div></section>
 
-  
-<section class="section api-explorer-section" id="api-endpoints"><div class="container">
-    <div class="visual-section-head reveal"><div><span class="eyebrow">VERIFIED API REFERENCE</span><h2>从真实接口开始接入</h2></div><p>以下为当前已跑通的六个基础发行网关接口。点击分类查看接口路径；详细参数、数据格式和接入限制请以开发者文档为准。</p></div>
-    <div class="api-explorer reveal" data-api-explorer><div class="api-resource-nav">
-      <button class="active" type="button" data-api-resource="auth"><span>01</span><b>身份认证</b><small>获取 accessToken</small></button>
-      <button type="button" data-api-resource="upload"><span>02</span><b>文件上传</b><small>STS 临时凭证</small></button>
-      <button type="button" data-api-resource="task"><span>03</span><b>发行任务</b><small>K-JSON 上架 / 修改 / 下架</small></button>
-      <button type="button" data-api-resource="result"><span>04</span><b>结果查询</b><small>任务 · 批次 · CatalogNo</small></button>
-    </div><div class="api-resource-code"><div class="resource-code-head"><span>当前可用接口</span><b id="api-resource-title">身份认证</b></div>
-      <div class="api-endpoints" data-api-endpoints="auth"><p><em class="get">GET</em><code>/open/v1/token</code><span>使用 appKey / appSecret 获取 accessToken</span></p></div>
-      <div class="api-endpoints" data-api-endpoints="upload" hidden><p><em class="get">GET</em><code>/open/v1/oss/sts</code><span>获取 OSS 临时访问凭证及 basePath</span></p><p><em class="get">OSS</em><code>{basePath}/...</code><span>通过对象存储上传 K-JSON 和相关素材（非网关端点）</span></p></div>
-      <div class="api-endpoints" data-api-endpoints="task" hidden><p><em>POST</em><code>/open/v1/kjson/tasks</code><span>传入 filePath 创建上架、修改或下架任务</span></p></div>
-      <div class="api-endpoints" data-api-endpoints="result" hidden><p><em class="get">GET</em><code>/open/v1/kjson/tasks/{taskId}</code><span>查询批次任务及导入结果</span></p><p><em class="get">GET</em><code>/open/v1/kjson/tasks?batchPath=...</code><span>按批次路径查询 DSP 发行结果</span></p><p><em class="get">GET</em><code>/open/v1/release/result/latest/{catalogNo}</code><span>按 CatalogNumber 查询最新 DSP 结果</span></p></div>
-      <div class="api-v2-endpoint-bottom"><span>测试环境：api.test.kanjian.com</span><a href="/developers#authentication" data-route data-api-doc-link>查看对应接口文档 →</a></div>
-    </div></div>
-    <div class="api-v2-endpoint-warning reveal"><b>联调提示</b><p>创建 K-JSON 任务的响应字段（含 taskId 获取方式）尚待补充；正式环境域名和凭证需在对接时确认。</p></div>
-  </div></section>
-
-  
 <section class="section api-v2-integration" id="api-integration"><div class="container">
-  <div class="section-head split reveal"><div><span class="eyebrow">INTEGRATION OPTIONS</span><h2>兼容实时 API 与批量数据交换</h2></div><p>针对不同系统架构和数据规模，可选择标准发行 API 接入，或评估批量导入、文件交换及行业标准协议等专项集成方案。</p></div>
+  <div class="section-head split reveal"><div><span class="eyebrow">INTEGRATION OPTIONS</span><h2>兼容实时 API 与批量数据交换</h2></div><p>支持标准发行 API 对接，或根据系统架构和业务规模评估文件交换与行业标准协议等专项集成方式。</p></div>
   <div class="api-v2-integration-standard reveal">
-    <div><span class="api-v2-integration-eyebrow">标准发行 API 接入</span><h3>API + K-JSON</h3><p>通过身份认证、STS 上传和 K-JSON 任务完成批量发行与结果查询。这是当前已有真实接口文档的标准发行路径。</p></div>
+    <div><span class="api-v2-integration-eyebrow">标准发行 API 接入</span><h3>API + K-JSON</h3><p>通过身份认证、文件上传与 K-JSON 任务完成发行提交和结果查询。</p></div>
     <a class="text-link" href="/developers#quickstart" data-route>查看基础发行指南 →</a>
   </div>
   <h3 class="api-v2-alt-heading">其他集成与数据交换方案 <small>按项目评估</small></h3>
   <div class="method-grid api-method-grid api-v2-alt-methods reveal">
-    <div><small>批量导入</small><b>Excel</b><span>通过标准模板导入内容与发行信息。</span></div>
-    <div><small>文件交换</small><b>SFTP</b><span>面向大批量素材与配套数据交换。</span></div>
-    <div><small>结构化数据</small><b>XML</b><span>对接企业现有批量结构化数据流程。</span></div>
-    <div><small>行业标准</small><b>DDEX</b><span>适配专业音乐行业标准数据交换。</span></div>
+    <div><span class="api-v2-method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M10 9v12"/></svg></span><small>批量导入</small><b>Excel</b><span>按标准模板批量导入业务数据。</span></div>
+    <div><span class="api-v2-method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m9 14 3-3 3 3m-3-3v6"/></svg></span><small>文件交换</small><b>SFTP</b><span>批量交换音乐文件及配套数据。</span></div>
+    <div><span class="api-v2-method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4m8-8 4 4-4 4m-3-10-2 12"/></svg></span><small>结构化数据</small><b>XML</b><span>衔接现有结构化数据流程。</span></div>
+    <div><span class="api-v2-method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="m11 6-5 11m7-11 5 11M7 19h10"/></svg></span><small>行业标准</small><b>DDEX</b><span>适配音乐行业标准数据交换。</span></div>
   </div>
-  <p class="api-v2-integration-note">以上 Excel、SFTP、XML、DDEX 为可评估的专项集成方式，不表示全部包含在 ¥9,800 标准 API 接入实施费中。具体交付范围与报价需单独确认。</p>
+  <p class="api-v2-integration-note">Excel、SFTP、XML、DDEX 属于按项目评估的专项集成方式，不默认包含在标准 API 接入实施费中。</p>
 </div></section>
 <section class="section soft api-v2-faq" id="api-faq"><div class="container">
   <div class="section-head reveal"><span class="eyebrow">FAQ</span><h2>API 接入常见问题</h2></div>
   <div class="faq reveal">
-    <details><summary>只接入基础发行 API，可以完成发行吗？</summary><p>可以。基础发行 API 包含认证、文件上传凭证、K-JSON 发行任务、更新、下架和渠道结果查询，不需要另外购买艺人、资产或发行数据模块。</p></details>
-    <details><summary>扩展 API 模块可以直接购买和调用吗？</summary><p>当前扩展模块为产品规划与意向方案展示，尚不代表已经开放或可立即开通。实际接口、授权范围与交付时间将在合作确认及相应接口文档完善后明确。</p></details>
-    <details><summary>API 发行预充值需要每月付款吗？</summary><p>不需要。按 ¥999、¥9,999 或 ¥29,999 的月度额度基准，选择半年（6 个月）或一年（12 个月）一次充值。例如起步档半年充值 ¥5,994，一年充值 ¥11,988。发行使用费按 ¥0.8 / 首 / 渠道从余额抵扣；未消耗余额可跨月使用，到期余额处理以合同为准。</p></details>
-    <details><summary>¥2,000/模块需要每年支付吗？</summary><p>当前方案按照每模块 ¥2,000 一次性授权费用测算，不按年重复计入模块授权费。持续服务、维护和专项技术支持范围由合作方案约定。</p></details>
-    <details><summary>需要再购买企业发行管理平台套餐吗？</summary><p>不需要。基础发行 API 可以独立接入，标准实施费为 ¥9,800（一次性）；另选择半年或一年一次性充值的发行余额方案，每首歌曲 / 每目标渠道从余额扣减 ¥0.8，无需每月付款。</p></details>
-    <details><summary>发行更新、下架、异常或重复提交怎样计费？</summary><p>目前页面只展示基础发行的估算计费口径。更新、下架、重传、异常等业务的具体收费规则，以正式合作合同及结算口径为准。</p></details>
-    <details><summary>除了 API，可以使用 DDEX、Excel 或 SFTP 吗？</summary><p>这些属于可以单独评估的集成或数据交换方案，并不意味着默认包含在标准 API 接入服务中。需要根据现有系统、数据规模和实施要求确认。</p></details>
+    <details><summary>只接入基础发行 API，可以完成上架、修改和下架吗？</summary><p>可以。基础发行 API 已包含身份认证、文件上传、K-JSON 任务提交及渠道结果查询，不必额外购买资产、艺人或发行数据模块。</p></details>
+    <details><summary>发行预充值如何支付，半年和一年有什么区别？</summary><p>根据预计发行规模选择充值档位，并一次充入 6 或 12 个月对应金额，无需每月支付。起步额度半年充值 ¥5,994，一年充值 ¥11,988；按实际发行量扣减，未用余额可跨月抵扣。</p></details>
+    <details><summary>发行使用量如何计算？更新和异常任务如何计费？</summary><p>标准测算按发行歌曲数 × 目标渠道数 × ¥0.8 计算，从预充值余额扣除。更新、下架、重传、重复提交、失败任务及到期余额的处理规则以正式合作协议为准。</p></details>
+    <details><summary>扩展 API 模块可以独立申请吗？</summary><p>可以按业务需要选择扩展模块。当前以每模块 ¥2,000 的一次性参考费用测算接入意向；接口权限、实际交付范围与技术服务内容以双方确认的合作方案为准。</p></details>
+    <details><summary>使用 API 是否需要购买企业发行管理平台？还支持其他接入方式吗？</summary><p>发行 API 可独立申请，无需另购自有品牌发行平台。Excel、SFTP、XML、DDEX 等文件交换或行业标准集成方式可单独评估，不默认包含在标准 API 实施服务中。</p></details>
   </div>
 </div></section>
-<section class="enterprise-contact-cta"><div class="container"><div class="enterprise-contact-panel reveal"><div><span class="eyebrow light">CONTACT SALES</span><h2>获取适配业务需求的企业发行方案</h2><p>告诉我们你的业务场景、预计发行规模与需要的 API 模块，我们将基于当前可交付能力评估接入和后续扩展方案。</p></div><div class="enterprise-contact-actions"><a class="btn btn-white btn-lg" href="/apply?solution=api" data-route>申请 API 接入</a></div></div></div></section>
+<section class="enterprise-contact-cta"><div class="container"><div class="enterprise-contact-panel reveal"><div><span class="eyebrow light">CONTACT SALES</span><h2>获取适配业务需求的企业发行方案</h2><p>提交业务场景、预计发行规模与所需 API 模块，获取适配的接入评估方案。</p></div><div class="enterprise-contact-actions"><a class="btn btn-white btn-lg" href="/apply?solution=api" data-route>申请 API 接入</a></div></div></div></section>
 </section>
 <section class="page developer-modular" data-page="developers">
 <section class="dev-shell">
@@ -1496,11 +1523,11 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-
 <section id="overview">
         <span class="eyebrow">开发者中心</span>
         <h1>企业发行 Open API</h1>
-        <p class="lead">通过基础发行 API，将音乐内容提交、渠道状态查询及更新 / 下架等能力接入现有网站、App、SaaS 或内部系统。再按业务需要逐步选购资产、艺人、发行数据、版税报表、分账与客户管理模块。</p>
+        <p class="lead">通过基础发行 API，将音乐内容提交、渠道状态查询及更新 / 下架等能力接入现有网站、App、SaaS 或内部系统。扩展业务模块按实际需求申请，具体接口权限与交付范围由企业合作方案确认。</p>
         <div class="dev-actions"><a class="btn btn-primary" href="/apply?solution=api" data-route>申请 API 接入</a><a class="btn btn-secondary" href="/api" data-route>返回发行 API</a></div>
         <div class="dev-notice"><b>文档说明</b><span>基础发行 API 覆盖身份认证、OSS 上传、K-JSON 发行任务和渠道结果查询；扩展业务 API 按资产管理、艺人与厂牌、发行数据、版税报表、分账管理及客户管理分组。选择左侧目录即可查看各个模块的接口路径、请求参数和响应字段。</span></div>
         <div class="dev-paths">
-          <article><small>可选扩展</small><h3>模块化业务 API</h3><p>按企业实际业务系统选择资产、艺人、发行数据、版税、分账及客户模块。按业务模块查看相应接口、请求参数与字段规范，将发行、收益和分账相关数据集成进企业现有系统。</p><span>模块独立选购 · 按需授权</span></article>
+          <article><small>可选扩展</small><h3>模块化业务 API</h3><p>按企业实际业务系统选择资产、艺人、发行数据、版税、分账及客户模块。按业务模块查看相应接口、请求参数与字段规范，将发行、收益和分账相关数据集成进企业现有系统。</p><span>按需申请 · 授权按合作方案</span></article>
           <article><small>基础发行</small><h3>K-JSON 发行链路</h3><p>直接提交完整发行数据与素材，适合大型发行商、大曲库迁移和批量系统对接。</p><span>认证 → STS → OSS → K-JSON → 任务 → 结果</span></article>
         </div>
       </section>
@@ -4220,7 +4247,8 @@ document.addEventListener('input',e=>{if(e.target.matches('[data-estimate-songs]
     const deposit=rechargeTier*rechargeMonths,remain=Math.max(0,+(deposit-usage).toFixed(2)),shortage=Math.max(0,+(usage-deposit).toFixed(2));
     document.querySelectorAll('[data-api-recharge]').forEach(b=>{const on=Number(b.dataset.apiRecharge)===rechargeTier;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
     document.querySelectorAll('[data-api-recharge-months]').forEach(b=>{const on=Number(b.dataset.apiRechargeMonths)===rechargeMonths;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
-    document.querySelectorAll('[data-api-plan-deposit]').forEach(el=>{el.textContent=rechargeMonths+' 个月一次充值 '+money(Number(el.dataset.apiPlanDeposit)*rechargeMonths)});
+    document.querySelectorAll('[data-api-plan-deposit]').forEach(el=>{el.textContent=money(Number(el.dataset.apiPlanDeposit)*rechargeMonths)});
+ document.querySelectorAll('.api-v2-recharge-plans button>small').forEach(el=>{el.textContent=rechargeMonths===6?'每半年一次充值':'每年一次充值'});
     root.querySelector('[data-api-addon-count]').textContent=selected.size+' 个';
     root.querySelector('[data-api-addon-price]').textContent=money(addonFee);
     root.querySelector('[data-api-usage-price]').textContent='−'+money(usage);
