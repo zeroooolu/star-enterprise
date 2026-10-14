@@ -96,7 +96,40 @@
 .api-v2 .api-v2-billing-strip>div strong em{font-size:14px;font-style:normal;color:#7c8aa1}
 .api-v2 .api-v2-billing-strip>div span{font-size:12px;color:#62718a}
 .api-v2 .api-v2-billing-strip>i{align-self:center;color:#8a9cba;font-style:normal;font-weight:700;font-size:23px}
-.api-v2 .api-v2-billing-strip>i:before{content:"+"}
+
+/* API-only prepaid distribution plans; do not change SaaS subscription pricing */
+.api-v2 .api-v2-billing-strip>div+div{border-left:1px solid #dfeaf7}
+.api-v2 .api-v2-recharge-panel{margin:23px 0 26px;padding:19px;background:#f7faff;border:1px solid #dbe8f7;border-radius:15px}
+.api-v2 .api-v2-recharge-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.api-v2 .api-v2-recharge-heading strong,.api-v2 .api-v2-recharge-duration>span{font-size:13px;color:#263f65}
+.api-v2 .api-v2-recharge-heading>span{font-size:11px;color:#6b819f}
+.api-v2 .api-v2-recharge-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.api-v2 .api-v2-recharge-plans button{display:flex;flex-direction:column;gap:7px;min-width:0;text-align:left;padding:13px 11px;border:1px solid #d9e4f2;border-radius:10px;background:#fff;cursor:pointer;color:#436188;font:inherit}
+.api-v2 .api-v2-recharge-plans button.active{border-color:#2c71c9;background:#edf5ff;box-shadow:0 0 0 1px #2c71c9}
+.api-v2 .api-v2-recharge-plans button>span{font-size:12px;font-weight:700}
+.api-v2 .api-v2-recharge-plans button b{font-size:20px;color:#173b75;white-space:nowrap}
+.api-v2 .api-v2-recharge-plans button small{display:block;font-size:10px;color:#74859a;font-weight:500;white-space:normal}
+.api-v2 .api-v2-recharge-plans button em{font-size:11px;font-style:normal;color:#60738f;line-height:1.6}
+.api-v2 .api-v2-recharge-duration{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:17px}
+.api-v2 .api-v2-recharge-duration>div{display:flex;gap:7px;flex-wrap:wrap}
+.api-v2 .api-v2-recharge-duration button{border:1px solid #cbdcf0;border-radius:8px;background:#fff;padding:8px 11px;font:inherit;font-size:12px;color:#546c89;cursor:pointer}
+.api-v2 .api-v2-recharge-duration button.active{background:#e7f1ff;border-color:#4887d6;color:#19559c;font-weight:700}
+.api-v2 .api-v2-recharge-panel>p{margin:13px 0 0;font-size:11px;line-height:1.8;color:#6b829f}
+.api-v2 .api-v2-usage-label{margin-top:25px}
+.api-v2 .api-v2-usage-label+.api-v2-usage-fields{margin-top:10px}
+.api-v2 .api-v2-balance-result{margin:5px 0 22px;padding:15px;background:rgba(255,255,255,.08);border-radius:12px}
+.api-v2 .api-v2-balance-result>div{display:flex;justify-content:space-between;gap:8px;margin-bottom:11px;font-size:12px;color:#d1e0f5}
+.api-v2 .api-v2-balance-result>div b{font-size:15px;color:#fff}
+.api-v2 .api-v2-balance-result>p{font-size:11px;line-height:1.7;color:#b9cae4;margin:7px 0 0}
+.pricing-api-deposit-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0 8px}
+.pricing-api-deposit-grid>div{border:1px solid #dfe8f4;border-radius:14px;padding:18px 20px;background:#f8fbff}
+.pricing-api-deposit-grid>div>span{display:block;font-size:12px;font-weight:700;color:#53739e;margin-bottom:9px}
+.pricing-api-deposit-grid strong{font-size:23px;color:#1c477e}
+.pricing-api-deposit-grid strong small{font-size:11px;color:#7588a3;font-weight:500}
+.pricing-api-deposit-grid p{margin:9px 0 0;font-size:12px;line-height:1.9;color:#566d8a}
+.pricing-api-deposit-note{margin:12px 0 18px;font-size:12px;color:#577393;line-height:1.8}
+@media(max-width:760px){.api-v2 .api-v2-recharge-plans{grid-template-columns:1fr}.api-v2 .api-v2-recharge-duration,.api-v2 .api-v2-recharge-heading{flex-direction:column;align-items:flex-start}.pricing-api-deposit-grid{grid-template-columns:1fr}.api-v2 .api-v2-billing-strip>div+div{border-left:0;border-top:1px solid #dfeaf7}}
+
 .api-v2 .api-v2-calculator{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(275px,.7fr);border:1px solid #e2e9f2;border-radius:22px;overflow:hidden;box-shadow:0 14px 40px rgba(27,62,109,.055)}
 .api-v2 .api-v2-calculator-main{padding:35px}
 .api-v2 .api-v2-calculator-main h3{margin:12px 0;font-size:27px;line-height:1.4}
@@ -1134,13 +1167,17 @@
 <div class="plan-common reveal"><div><span class="eyebrow">INCLUDED IN EVERY PLAN</span><h3>所有版本均包含核心发行能力</h3></div><div class="plan-common-items"><span>曲库与文件管理</span><span>客户发行门户</span><span>数字发行与状态跟踪</span><span>数据与收入报表</span><span>更新 / 重传 / 下架</span><span>页面 / Excel 内容导入</span></div></div>
 </div></section>
 <section class="section soft plan-matrix-section" id="pricing-compare"><div class="container"><div class="section-head reveal"><span class="eyebrow">COMPARE PLANS</span><h2>关键版本差异，一目了然</h2><p>优先呈现与企业采购决策相关的业务容量、客户运营、系统集成及服务等级差异。</p></div><div class="pricing-key-table" role="table" aria-label="版本核心权益对比"><div class="pricing-key-row head" role="row"><b role="columnheader">关键权益</b><b role="columnheader">基础版</b><b role="columnheader">专业版</b><b role="columnheader">企业版</b></div><div class="pricing-key-row" role="row"><span role="rowheader">曲库规模</span><span role="cell">1,000 首</span><span role="cell">5 万首</span><span role="cell">30 万首起</span></div><div class="pricing-key-row" role="row"><span role="rowheader">合作客户</span><span role="cell">50 个</span><span role="cell">1,000 个</span><span role="cell">按项目配置</span></div><div class="pricing-key-row" role="row"><span role="rowheader">独立域名</span><span role="cell">—</span><span role="cell">支持</span><span role="cell">支持</span></div><div class="pricing-key-row" role="row"><span role="rowheader">合作方分账</span><span role="cell">—</span><span role="cell">支持</span><span role="cell">支持</span></div><div class="pricing-key-row" role="row"><span role="rowheader">批量发行</span><span role="cell">—</span><span role="cell">支持</span><span role="cell">支持</span></div><div class="pricing-key-row" role="row"><span role="rowheader">SFTP / XML</span><span role="cell">—</span><span role="cell">支持</span><span role="cell">支持</span></div><div class="pricing-key-row" role="row"><span role="rowheader">DDEX 接入</span><span role="cell">—</span><span role="cell">—</span><span role="cell">支持</span></div><div class="pricing-key-row" role="row"><span role="rowheader">发行 API</span><span role="cell">可增购</span><span role="cell">可增购</span><span role="cell">包含</span></div><div class="pricing-key-row" role="row"><span role="rowheader">客户支持</span><span role="cell">标准</span><span role="cell">优先</span><span role="cell">专属客户经理</span></div></div><details class="pricing-full-compare"><summary>展开完整权益与实施服务对比 <span aria-hidden="true">＋</span></summary><div class="pricing-full-body"><div class="mobile-plan-compare" data-plan-compare><div class="mobile-plan-tabs" role="tablist" aria-label="完整权益切换"><button type="button" data-plan-tab="basic">基础版</button><button type="button" class="active" data-plan-tab="pro">专业版</button><button type="button" data-plan-tab="enterprise">企业版</button></div><div class="mobile-plan-panel" data-plan-panel="basic"><div class="pricing-mobile-group">业务容量</div><div><span>主要适用阶段</span><b>小规模发行运营</b></div><div><span>曲库规模</span><b>1,000 首</b></div><div><span>视频使用量</span><b>100 个视频</b></div><div><span>合作客户</span><b>50 个</b></div><div class="pricing-mobile-group">品牌、曲库与客户运营</div><div><span>企业品牌与 Logo</span><b>✓</b></div><div><span>企业管理后台 + 客户发行门户</span><b>✓</b></div><div><span>艺人 / 厂牌 / 专辑 / 歌曲 / 文件管理</span><b>✓</b></div><div><span>合作客户与团队管理</span><b>✓</b></div><div><span>独立域名</span><b>—</b></div><div><span>页面 / Excel 批量导入</span><b>✓</b></div><div class="pricing-mobile-group">发行与持续运营</div><div><span>国内外音乐平台发行</span><b>✓</b></div><div><span>发行资料校验与合规检查</span><b>✓</b></div><div><span>发行状态与异常跟踪</span><b>✓</b></div><div><span>更新 / 重传 / 下架</span><b>✓</b></div><div><span>批量发行</span><b>—</b></div><div><span>API 自动化发行</span><b>随 API</b></div><div class="pricing-mobile-group">数据、收入与结算</div><div><span>平台数据与收入报表</span><b>✓</b></div><div><span>收入与提现管理</span><b>✓</b></div><div><span>合作方分账与结算</span><b>—</b></div><div><span>报表导出</span><b>✓</b></div><div class="pricing-mobile-group">批量处理与系统集成</div><div><span>Excel 数据交换</span><b>✓</b></div><div><span>SFTP 文件 / 数据交换</span><b>—</b></div><div><span>XML 结构化数据交换</span><b>—</b></div><div><span>DDEX 行业标准接入</span><b>—</b></div><div><span>发行 API</span><b>可增购</b></div><div><span>Webhook / API 日志</span><b>随 API</b></div><div class="pricing-mobile-group">实施与服务</div><div><span>首次标准实施费</span><b>¥9,800 / 一次性</b></div><div><span>历史曲库迁移</span><b>可选服务</b></div><div><span>客户支持</span><b>标准支持</b></div><div><span>上线与培训</span><b>标准上线指引</b></div><div><span>技术支持</span><b>标准技术支持</b></div></div><div class="mobile-plan-panel active" data-plan-panel="pro"><div class="pricing-mobile-group">业务容量</div><div><span>主要适用阶段</span><b>规模化多客户发行</b></div><div><span>曲库规模</span><b>5 万首</b></div><div><span>视频使用量</span><b>1,000 个视频</b></div><div><span>合作客户</span><b>1,000 个</b></div><div class="pricing-mobile-group">品牌、曲库与客户运营</div><div><span>企业品牌与 Logo</span><b>✓</b></div><div><span>企业管理后台 + 客户发行门户</span><b>✓</b></div><div><span>艺人 / 厂牌 / 专辑 / 歌曲 / 文件管理</span><b>✓</b></div><div><span>合作客户与团队管理</span><b>✓</b></div><div><span>独立域名</span><b>✓</b></div><div><span>页面 / Excel 批量导入</span><b>✓</b></div><div class="pricing-mobile-group">发行与持续运营</div><div><span>国内外音乐平台发行</span><b>✓</b></div><div><span>发行资料校验与合规检查</span><b>✓</b></div><div><span>发行状态与异常跟踪</span><b>✓</b></div><div><span>更新 / 重传 / 下架</span><b>✓</b></div><div><span>批量发行</span><b>✓</b></div><div><span>API 自动化发行</span><b>随 API</b></div><div class="pricing-mobile-group">数据、收入与结算</div><div><span>平台数据与收入报表</span><b>✓</b></div><div><span>收入与提现管理</span><b>✓</b></div><div><span>合作方分账与结算</span><b>✓</b></div><div><span>报表导出</span><b>✓</b></div><div class="pricing-mobile-group">批量处理与系统集成</div><div><span>Excel 数据交换</span><b>✓</b></div><div><span>SFTP 文件 / 数据交换</span><b>✓</b></div><div><span>XML 结构化数据交换</span><b>✓</b></div><div><span>DDEX 行业标准接入</span><b>—</b></div><div><span>发行 API</span><b>可增购</b></div><div><span>Webhook / API 日志</span><b>随 API</b></div><div class="pricing-mobile-group">实施与服务</div><div><span>首次标准实施费</span><b>¥9,800 / 一次性</b></div><div><span>历史曲库迁移</span><b>可选服务</b></div><div><span>客户支持</span><b>优先支持</b></div><div><span>上线与培训</span><b>首次实施培训</b></div><div><span>技术支持</span><b>优先技术支持</b></div></div><div class="mobile-plan-panel" data-plan-panel="enterprise"><div class="pricing-mobile-group">业务容量</div><div><span>主要适用阶段</span><b>大型发行或平台级业务</b></div><div><span>曲库规模</span><b>30 万首起</b></div><div><span>视频使用量</span><b>10,000 个视频</b></div><div><span>合作客户</span><b>按项目配置</b></div><div class="pricing-mobile-group">品牌、曲库与客户运营</div><div><span>企业品牌与 Logo</span><b>✓</b></div><div><span>企业管理后台 + 客户发行门户</span><b>✓</b></div><div><span>艺人 / 厂牌 / 专辑 / 歌曲 / 文件管理</span><b>✓</b></div><div><span>合作客户与团队管理</span><b>✓</b></div><div><span>独立域名</span><b>✓</b></div><div><span>页面 / Excel 批量导入</span><b>✓</b></div><div class="pricing-mobile-group">发行与持续运营</div><div><span>国内外音乐平台发行</span><b>✓</b></div><div><span>发行资料校验与合规检查</span><b>✓</b></div><div><span>发行状态与异常跟踪</span><b>✓</b></div><div><span>更新 / 重传 / 下架</span><b>✓</b></div><div><span>批量发行</span><b>✓</b></div><div><span>API 自动化发行</span><b>✓</b></div><div class="pricing-mobile-group">数据、收入与结算</div><div><span>平台数据与收入报表</span><b>✓</b></div><div><span>收入与提现管理</span><b>✓</b></div><div><span>合作方分账与结算</span><b>✓</b></div><div><span>报表导出</span><b>✓</b></div><div class="pricing-mobile-group">批量处理与系统集成</div><div><span>Excel 数据交换</span><b>✓</b></div><div><span>SFTP 文件 / 数据交换</span><b>✓</b></div><div><span>XML 结构化数据交换</span><b>✓</b></div><div><span>DDEX 行业标准接入</span><b>✓</b></div><div><span>发行 API</span><b>包含</b></div><div><span>Webhook / API 日志</span><b>✓</b></div><div class="pricing-mobile-group">实施与服务</div><div><span>首次标准实施费</span><b>¥9,800 / 一次性</b></div><div><span>历史曲库迁移</span><b>按项目范围</b></div><div><span>客户支持</span><b>专属客户经理</b></div><div><span>上线与培训</span><b>项目制实施 / 定制培训</b></div><div><span>技术支持</span><b>专属技术支持 / SLA</b></div></div></div><p class="compare-hint">横向滑动查看全部版本权益</p><div class="compare plan-compare"><div class="row head"><b>对比项目</b><b>基础版</b><b>专业版</b><b>企业版</b></div><div class="group">业务容量</div><div class="row"><span>主要适用阶段</span><span>小规模发行运营</span><span>规模化多客户发行</span><span>大型发行或平台级业务</span></div><div class="row"><span>曲库规模</span><span>1,000 首</span><span>5 万首</span><span>30 万首起</span></div><div class="row"><span>视频使用量</span><span>100 个视频</span><span>1,000 个视频</span><span>10,000 个视频</span></div><div class="row"><span>合作客户</span><span>50 个</span><span>1,000 个</span><span>按项目配置</span></div><div class="group">品牌、曲库与客户运营</div><div class="row"><span>企业品牌与 Logo</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>企业管理后台 + 客户发行门户</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>艺人 / 厂牌 / 专辑 / 歌曲 / 文件管理</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>合作客户与团队管理</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>独立域名</span><span>—</span><span>✓</span><span>✓</span></div><div class="row"><span>页面 / Excel 批量导入</span><span>✓</span><span>✓</span><span>✓</span></div><div class="group">发行与持续运营</div><div class="row"><span>国内外音乐平台发行</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>发行资料校验与合规检查</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>发行状态与异常跟踪</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>更新 / 重传 / 下架</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>批量发行</span><span>—</span><span>✓</span><span>✓</span></div><div class="row"><span>API 自动化发行</span><span>随 API</span><span>随 API</span><span>✓</span></div><div class="group">数据、收入与结算</div><div class="row"><span>平台数据与收入报表</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>收入与提现管理</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>合作方分账与结算</span><span>—</span><span>✓</span><span>✓</span></div><div class="row"><span>报表导出</span><span>✓</span><span>✓</span><span>✓</span></div><div class="group">批量处理与系统集成</div><div class="row"><span>Excel 数据交换</span><span>✓</span><span>✓</span><span>✓</span></div><div class="row"><span>SFTP 文件 / 数据交换</span><span>—</span><span>✓</span><span>✓</span></div><div class="row"><span>XML 结构化数据交换</span><span>—</span><span>✓</span><span>✓</span></div><div class="row"><span>DDEX 行业标准接入</span><span>—</span><span>—</span><span>✓</span></div><div class="row"><span>发行 API</span><span>可增购</span><span>可增购</span><span>包含</span></div><div class="row"><span>Webhook / API 日志</span><span>随 API</span><span>随 API</span><span>✓</span></div><div class="group">实施与服务</div><div class="row"><span>首次标准实施费</span><span>¥9,800 / 一次性</span><span>¥9,800 / 一次性</span><span>¥9,800 / 一次性</span></div><div class="row"><span>历史曲库迁移</span><span>可选服务</span><span>可选服务</span><span>按项目范围</span></div><div class="row"><span>客户支持</span><span>标准支持</span><span>优先支持</span><span>专属客户经理</span></div><div class="row"><span>上线与培训</span><span>标准上线指引</span><span>首次实施培训</span><span>项目制实施 / 定制培训</span></div><div class="row"><span>技术支持</span><span>标准技术支持</span><span>优先技术支持</span><span>专属技术支持 / SLA</span></div></div></div></details><p class="pricing-matrix-note">接口开放、额度扩容、历史迁移及项目实施以实际合作方案为准。</p></div></section>
-<section class="section pricing-api-section" id="pricing-api"><div class="container"><div class="pricing-section-heading reveal"><div><span class="eyebrow">API-ONLY PLAN</span><h2>只需发行 API，也能独立接入</h2></div><p>保留原有网站、App 或业务系统。基础发行 API 随一次性实施费开通，其他业务模块按需选购。</p></div><div class="pricing-api-hero reveal"><div class="pricing-api-title"><span class="pricing-mode-mark"><svg class="pricing-s-icon" aria-hidden="true"><use href="#pricing-icon-api"></use></svg></span><b>发行 API · 模块化接入</b></div><div class="pricing-api-body"><div><h3>¥9,800 <small>/ 一次性实施</small></h3><p>发行使用费 ¥0.8 / 首 / 渠道；可选扩展 API ¥2,000 / 模块（一次性）</p></div><a class="btn btn-primary" href="/api#api-pricing" data-route>查看 API 模块与费用</a></div><div class="pricing-api-features"><span>基础发行 API 默认包含</span><span>上架 / 修改 / 下架与结果查询</span><span>扩展模块独立选配</span><span>无需另购企业管理平台</span></div><p class="pricing-api-footnote">当前已验证的是基础发行网关；扩展模块按产品规划展示，接口范围与开放进度将依据后续文档确认。专项实施与技术支持范围按合作方案确定。</p></div></div></section>
+<section class="section pricing-api-section" id="pricing-api"><div class="container"><div class="pricing-section-heading reveal"><div><span class="eyebrow">API-ONLY PLAN</span><h2>只需发行 API，也能独立接入</h2></div><p>保留原有网站、App 或业务系统。基础发行 API 随一次性实施费开通，发行费采用预充值抵扣，其他业务模块按需选购。</p></div><div class="pricing-api-hero reveal"><div class="pricing-api-title"><span class="pricing-mode-mark"><svg class="pricing-s-icon" aria-hidden="true"><use href="#pricing-icon-api"></use></svg></span><b>发行 API · 模块化接入</b></div><div class="pricing-api-body"><div><h3>¥9,800 <small>/ 一次性实施</small></h3><p>预充值额度标准 ¥999 / ¥9,999 / ¥29,999（月度基准），半年或一年一次性充值；¥0.8 / 首 / 渠道从余额抵扣。可选扩展 API ¥2,000 / 模块（一次性）</p></div><a class="btn btn-primary" href="/api#api-pricing" data-route>查看充值方案与费用</a></div><div class="pricing-api-deposit-grid" aria-label="API 发行预充值档位">
+<div><span>起步额度</span><strong>¥999 <small>/ 月度额度</small></strong><p>半年充值 ¥5,994<br>一年充值 ¥11,988</p></div>
+<div><span>成长额度</span><strong>¥9,999 <small>/ 月度额度</small></strong><p>半年充值 ¥59,994<br>一年充值 ¥119,988</p></div>
+<div><span>规模额度</span><strong>¥29,999 <small>/ 月度额度</small></strong><p>半年充值 ¥179,994<br>一年充值 ¥359,988</p></div></div>
+<p class="pricing-api-deposit-note">月度额度是计算基准，不要求逐月充值；发行费从账户余额按次抵扣，不重复收取。</p><div class="pricing-api-features"><span>基础发行 API 默认包含</span><span>上架 / 修改 / 下架与结果查询</span><span>扩展模块独立选配</span><span>无需另购企业管理平台</span></div><p class="pricing-api-footnote">当前已验证的是基础发行网关；扩展模块按产品规划展示，接口范围与开放进度将依据后续文档确认。专项实施、余额到期结算及技术支持范围按合作方案确定。</p></div></div></section>
 <section class="section pricing-options-section"><div class="container"><div class="section-head split reveal"><div><span class="eyebrow">OPTIONAL SERVICES</span><h2>专项实施与企业级集成服务</h2></div><p>首次标准实施费对应基础配置和上线支持；历史曲库迁移、高级系统集成与大型项目另行评估。</p></div><div class="option-grid reveal"><article><span class="pricing-option-icon"><svg class="pricing-s-icon" aria-hidden="true"><use href="#pricing-icon-upload"></use></svg></span><h3>历史曲库迁移</h3><p>字段映射、存量数据整理、文件迁移与验证。</p></article><article><span class="pricing-option-icon"><svg class="pricing-s-icon" aria-hidden="true"><use href="#pricing-icon-network"></use></svg></span><h3>高级系统集成</h3><p>API、SFTP、XML、DDEX 接入设计与专项联调。</p></article><article><span class="pricing-option-icon"><svg class="pricing-s-icon" aria-hidden="true"><use href="#pricing-icon-support"></use></svg></span><h3>项目实施与服务保障</h3><p>实施计划、培训、技术支持与约定 SLA。</p></article></div></div></section>
 <section class="section soft pricing-faq-section"><div class="container"><div class="section-head reveal"><span class="eyebrow">FAQ</span><h2>版本、计费与合作常见问题</h2></div><div class="faq reveal">
 <details open><summary>三个版本是否都包含完整发行流程？</summary><p>包含。三个版本均具备曲库管理、客户发行门户、发行提交、渠道状态、数据与收入报表。版本主要差异在业务容量、合作方分账、系统集成与服务等级。</p></details>
 <details><summary>标准实施费与发行使用费如何计算？</summary><p>自有品牌发行平台首次开通收取 ¥9,800 标准实施费。版本支持月付或年付；发行使用费为 ¥0.8 / 首 / 渠道，10 首歌曲发行到 6 个渠道的示例使用费为 ¥48。</p></details>
-<details><summary>是否需要购买发行平台才能使用 API？</summary><p>不需要。基础发行 API 可独立申请，首次接入实施费 ¥9,800（一次性），发行使用费按 ¥0.8 / 首 / 渠道计。其他 API 模块按 ¥2,000 / 模块一次性选购，扩展接口以实际开放进度为准。</p></details>
-<details><summary>基础版和专业版是否能够增购发行 API？</summary><p>基础版和专业版可按需求增购发行 API；企业版标准包含。实际接口开放范围按开通方案确认。</p></details>
+<details><summary>是否需要购买发行平台才能使用 API？</summary><p>不需要。基础发行 API 可独立申请，首次实施费 ¥9,800（一次性）；发行预充值可按 ¥999、¥9,999 或 ¥29,999 的月度额度标准选择一次充值 6 或 12 个月，发行费 ¥0.8 / 首 / 渠道从余额抵扣，不重复收取。扩展模块仍按 ¥2,000 / 模块一次性选配。</p></details>
+<details><summary>API 预充值如何选择半年或一年？</summary><p>API 合作的月度额度只是充值金额基准，按选定档位乘以 6 或 12，一次充入发行余额，无需每月付款；发行使用费从预充值中扣减，不额外叠加。与企业品牌发行平台的订阅月付、年付相互独立。</p></details><details><summary>基础版和专业版是否能够增购发行 API？</summary><p>基础版和专业版可按需求增购发行 API；企业版标准包含。实际接口开放范围按开通方案确认。</p></details>
 <details><summary>各版本的视频与合作客户额度是多少？</summary><p>基础版包含 100 个视频、50 个合作客户；专业版包含 1,000 个视频、1,000 个合作客户；企业版包含 10,000 个视频，合作客户数量按项目配置。具体统计口径以合作方案为准。</p></details>
 <details><summary>超出曲库或客户额度如何处理？</summary><p>可评估升级版本或单独扩容，具体额度统计及扩容费用在方案阶段确认。</p></details>
 <details><summary>发行更新、重传、下架是否计费？</summary><p>标准计费单位为一首歌曲向一个目标渠道对应的发行使用量。更新、重传、下架、失败任务等特殊情况以正式商业计费规则为准。</p></details>
@@ -1179,7 +1216,7 @@
         <div class="api-v2-core-chips"><span>凭证认证</span><span>文件上传</span><span>批次提交</span><span>上架 / 修改 / 下架</span><span>任务查询</span><span>渠道结果</span></div>
         <a href="#api-flow" class="api-v2-inline-link">了解基础发行接入流程 <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="api-v2-core-price"><small>基础发行 API 权限</small><strong>标准接入</strong><span>随 ¥9,800 一次性实施服务开通</span><p>发行使用费另按 ¥0.8 / 首 / 渠道计算。</p></div>
+      <div class="api-v2-core-price"><small>基础发行 API 权限</small><strong>标准接入</strong><span>随 ¥9,800 一次性实施服务开通</span><p>发行费按 ¥0.8 / 首 / 渠道从预充值余额扣除，支持半年或一年一次充值。</p></div>
     </div>
     <div class="api-v2-addon-heading reveal"><div><span class="eyebrow">OPTIONAL API MODULES</span><h3>在基础发行之外，扩展更多业务能力</h3><p>围绕现有系统选择业务模块。下列模块是开放规划与意向选配展示，费用按模块一次性测算。</p></div><div class="api-v2-addon-rate"><strong>¥2,000</strong><small>/ 模块 · 一次性</small></div></div>
     <div class="api-v2-addon-grid reveal"><article class="api-v2-addon">
@@ -1230,39 +1267,46 @@
 
   
 <section class="section api-v2-billing" id="api-pricing"><div class="container">
-    <div class="section-head split reveal"><div><span class="eyebrow">API PRICING</span><h2>清晰的 API 商业方案</h2></div><p>无需采购完整品牌发行门户。标准接入费用一次性收取，扩展模块按需选配，发行使用费依据实际业务量计算。其他专项实施及长期服务边界按合作方案确认。</p></div>
-    <div class="api-v2-billing-strip reveal">
-      <div><small>首次接入实施费</small><strong>¥9,800</strong><span>一次性 · 含基础发行 API</span></div><i aria-hidden="true"></i>
-      <div><small>扩展 API 模块</small><strong>¥2,000</strong><span>每个模块一次性选购</span></div><i aria-hidden="true"></i>
-      <div><small>发行使用费</small><strong>¥0.8</strong><span>每首歌曲 / 每目标渠道</span></div>
-    </div>
-    <div class="api-v2-calculator reveal" data-api-calculator>
-      <div class="api-v2-calculator-main">
-        <span class="eyebrow">ESTIMATE YOUR COST</span><h3>配置 API 接入方案</h3><p>选择意向模块，输入预计发行歌曲数与目标渠道数，获得一次性接入费用和本批次发行使用费的估算。</p>
-        <div class="api-v2-calculator-label">扩展模块意向选配（可多选）</div>
-        <div class="api-v2-options"><label class="api-v2-opt"><input type="checkbox" data-api-addon-check="asset"><span>资产管理 API</span><b>+ ¥2,000</b></label>
+<div class="section-head split reveal"><div><span class="eyebrow">API PRICING</span><h2>清晰的 API 商业方案</h2></div><p>首次接入费一次性支付；按发行规模选择月度充值额度标准，半年或一年一次性充入发行账户。发行使用费从预充值余额中按实际使用量抵扣，无需每月付款。</p></div>
+<div class="api-v2-billing-strip reveal">
+<div><small>首次接入实施费</small><strong>¥9,800</strong><span>一次性 · 含基础发行 API</span></div>
+<div><small>发行预充值</small><strong>¥999 起</strong><span>月度额度标准 · 6 / 12 个月一次充值</span></div>
+<div><small>发行使用抵扣</small><strong>¥0.8</strong><span>每首歌曲 / 每目标渠道 · 从余额扣除</span></div>
+</div>
+<div class="api-v2-calculator reveal" data-api-calculator>
+<div class="api-v2-calculator-main">
+<span class="eyebrow">ESTIMATE YOUR COST</span><h3>配置 API 接入方案</h3><p>选择充值档位和一次性充值时长，再选配需要的 API 模块。每次发行按 ¥0.8 / 首 / 渠道从余额扣减，不再额外计入首次付款。</p>
+<div class="api-v2-recharge-panel">
+<div class="api-v2-recharge-heading"><strong>01 / 选择发行充值档位</strong><span>按月度额度标准测算，非月付订阅</span></div>
+<div class="api-v2-recharge-plans" role="group" aria-label="发行预充值档位">
+<button type="button" class="active" aria-pressed="true" data-api-recharge="999"><span>起步</span><b>¥999<small> / 月度额度</small></b><em data-api-plan-deposit="999">6 个月一次充值 ¥5,994</em></button>
+<button type="button" aria-pressed="false" data-api-recharge="9999"><span>成长</span><b>¥9,999<small> / 月度额度</small></b><em data-api-plan-deposit="9999">6 个月一次充值 ¥59,994</em></button>
+<button type="button" aria-pressed="false" data-api-recharge="29999"><span>规模</span><b>¥29,999<small> / 月度额度</small></b><em data-api-plan-deposit="29999">6 个月一次充值 ¥179,994</em></button>
+</div>
+<div class="api-v2-recharge-duration"><span>02 / 选择一次充值的时长</span><div role="group" aria-label="预充值周期"><button type="button" class="active" aria-pressed="true" data-api-recharge-months="6">半年 · 6 个月</button><button type="button" aria-pressed="false" data-api-recharge-months="12">一年 · 12 个月</button></div></div>
+<p>无需逐月充值；未消耗余额可跨月继续抵扣。到期续充、剩余余额处理及额外充值规则以正式合作协议为准。</p>
+</div>
+<div class="api-v2-calculator-label">扩展模块意向选配（可多选） · ¥2,000 / 模块，一次性</div>
+<div class="api-v2-options"><label class="api-v2-opt"><input type="checkbox" data-api-addon-check="asset"><span>资产管理 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="artist"><span>艺人与厂牌 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="analytics"><span>发行数据 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="royalty"><span>版税报表 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="settlement"><span>分账管理 API</span><b>+ ¥2,000</b></label>
 <label class="api-v2-opt"><input type="checkbox" data-api-addon-check="customer"><span>客户管理 API</span><b>+ ¥2,000</b></label></div>
-        <div class="api-v2-usage-fields">
-          <label>发行歌曲数<input type="number" min="0" max="100000" step="1" value="100" inputmode="numeric" data-api-songs></label><span aria-hidden="true">×</span>
-          <label>平均目标渠道数<input type="number" min="0" max="100" step="1" value="5" inputmode="numeric" data-api-channels></label>
-        </div>
-      </div>
-      <aside class="api-v2-calculator-summary" aria-live="polite" aria-atomic="true">
-        <span class="api-v2-summary-eyebrow">方案估算 · 非正式报价</span><h4>费用概览</h4>
-        <div class="api-v2-summary-row"><span>基础接入实施费</span><b>¥9,800</b></div>
-        <div class="api-v2-summary-row"><span>已选扩展模块 <small data-api-addon-count>0 个</small></span><b data-api-addon-price>¥0</b></div>
-        <div class="api-v2-summary-row"><span>本批次预计发行费</span><b data-api-usage-price>¥400</b></div>
-        <div class="api-v2-summary-total"><span>接入及本批次费用合计</span><strong data-api-total-price>¥10,200</strong></div>
-        <p>接入费和选定模块费用仅计入一次；本批次发行费为示例估算，不代表持续周期费用。</p>
-        <a class="btn btn-primary" href="/apply?solution=api" data-route data-api-submit-plan>携带方案申请接入</a>
-      </aside>
-    </div>
-    <p class="api-v2-billing-disclaimer reveal">计费口径：示例按“歌曲数 × 目标渠道数 × ¥0.8”测算，非最终结算账单。更新、重传、下架和异常任务如何计费，以及模块授权、维护支持和专项集成范围，以正式合同与实际接口开放情况为准。</p>
-  </div></section>
+<div class="api-v2-calculator-label api-v2-usage-label">预计本批次发行使用量</div>
+<div class="api-v2-usage-fields"><label>发行歌曲数<input type="number" min="0" max="100000" step="1" value="100" inputmode="numeric" data-api-songs></label><span aria-hidden="true">×</span><label>平均目标渠道数<input type="number" min="0" max="100" step="1" value="5" inputmode="numeric" data-api-channels></label></div>
+</div>
+<aside class="api-v2-calculator-summary" aria-live="polite" aria-atomic="true">
+<span class="api-v2-summary-eyebrow">方案估算 · 非正式报价</span><h4>首次支付与充值余额</h4>
+<div class="api-v2-summary-row"><span>基础接入实施费</span><b>¥9,800</b></div>
+<div class="api-v2-summary-row"><span>已选扩展模块 <small data-api-addon-count>0 个</small></span><b data-api-addon-price>¥0</b></div>
+<div class="api-v2-summary-row"><span>本次发行预充值 <small data-api-recharge-term>起步 · 半年</small></span><b data-api-recharge-price>¥5,994</b></div>
+<div class="api-v2-summary-total"><span>首次预计支付</span><strong data-api-total-price>¥15,794</strong></div>
+<div class="api-v2-balance-result"><div><span>本批次预计扣减余额</span><b data-api-usage-price>−¥400</b></div><div><span>预计抵扣后余额</span><b data-api-balance-price>¥5,594</b></div><p data-api-recharge-tip>发行费从充值余额抵扣，不重复计入首次付款。</p></div>
+<a class="btn btn-primary" href="/apply?solution=api" data-route data-api-submit-plan>携带方案申请接入</a>
+</aside></div>
+<p class="api-v2-billing-disclaimer reveal">计费口径：歌曲数 × 目标渠道数 × ¥0.8，从预充值余额中扣除。月度额度标准乘以 6 或 12 个月得到一次性充值金额，不代表每月付款，也未设置未经确认的年付折扣。余额到期处理、追加充值、更新、重传、下架及异常任务的具体规则以正式合作协议为准。</p>
+</div></section>
 
   
 <section class="section soft api-v2-support" id="api-developer"><div class="container">
@@ -1325,8 +1369,9 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-
   <div class="faq reveal">
     <details><summary>只接入基础发行 API，可以完成发行吗？</summary><p>可以。基础发行 API 包含认证、文件上传凭证、K-JSON 发行任务、更新、下架和渠道结果查询，不需要另外购买艺人、资产或发行数据模块。</p></details>
     <details><summary>扩展 API 模块可以直接购买和调用吗？</summary><p>当前扩展模块为产品规划与意向方案展示，尚不代表已经开放或可立即开通。实际接口、授权范围与交付时间将在合作确认及相应接口文档完善后明确。</p></details>
+    <details><summary>API 发行预充值需要每月付款吗？</summary><p>不需要。按 ¥999、¥9,999 或 ¥29,999 的月度额度基准，选择半年（6 个月）或一年（12 个月）一次充值。例如起步档半年充值 ¥5,994，一年充值 ¥11,988。发行使用费按 ¥0.8 / 首 / 渠道从余额抵扣；未消耗余额可跨月使用，到期余额处理以合同为准。</p></details>
     <details><summary>¥2,000/模块需要每年支付吗？</summary><p>当前方案按照每模块 ¥2,000 一次性授权费用测算，不按年重复计入模块授权费。持续服务、维护和专项技术支持范围由合作方案约定。</p></details>
-    <details><summary>需要再购买企业发行管理平台套餐吗？</summary><p>不需要。基础发行 API 可以独立接入，标准实施费为 ¥9,800，一般发行使用费按照 ¥0.8 / 首 / 目标渠道的测算口径展示。</p></details>
+    <details><summary>需要再购买企业发行管理平台套餐吗？</summary><p>不需要。基础发行 API 可以独立接入，标准实施费为 ¥9,800（一次性）；另选择半年或一年一次性充值的发行余额方案，每首歌曲 / 每目标渠道从余额扣减 ¥0.8，无需每月付款。</p></details>
     <details><summary>发行更新、下架、异常或重复提交怎样计费？</summary><p>目前页面只展示基础发行的估算计费口径。更新、下架、重传、异常等业务的具体收费规则，以正式合作合同及结算口径为准。</p></details>
     <details><summary>除了 API，可以使用 DDEX、Excel 或 SFTP 吗？</summary><p>这些属于可以单独评估的集成或数据交换方案，并不意味着默认包含在标准 API 接入服务中。需要根据现有系统、数据规模和实施要求确认。</p></details>
   </div>
@@ -4151,6 +4196,8 @@ document.addEventListener('input',e=>{if(e.target.matches('[data-estimate-songs]
 (function(){
   const moduleLabels={asset:'资产管理 API',artist:'艺人与厂牌 API',analytics:'发行数据 API',royalty:'版税报表 API',settlement:'分账管理 API',customer:'客户管理 API'};
   const selected=new Set();
+  let rechargeTier=999,rechargeMonths=6;
+  const tierNames={999:"起步",9999:"成长",29999:"规模"};
   const money=n=>'¥'+n.toLocaleString('zh-CN',{maximumFractionDigits:2,minimumFractionDigits:0});
   function normalizeValue(el,max){
     const parsed=Number(el?.value);
@@ -4170,17 +4217,29 @@ document.addEventListener('input',e=>{if(e.target.matches('[data-estimate-songs]
     const songs=normalizeValue(root.querySelector('[data-api-songs]'),100000);
     const channels=normalizeValue(root.querySelector('[data-api-channels]'),100);
     const addonFee=selected.size*2000,usage=+(songs*channels*.8).toFixed(2);
+    const deposit=rechargeTier*rechargeMonths,remain=Math.max(0,+(deposit-usage).toFixed(2)),shortage=Math.max(0,+(usage-deposit).toFixed(2));
+    document.querySelectorAll('[data-api-recharge]').forEach(b=>{const on=Number(b.dataset.apiRecharge)===rechargeTier;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
+    document.querySelectorAll('[data-api-recharge-months]').forEach(b=>{const on=Number(b.dataset.apiRechargeMonths)===rechargeMonths;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
+    document.querySelectorAll('[data-api-plan-deposit]').forEach(el=>{el.textContent=rechargeMonths+' 个月一次充值 '+money(Number(el.dataset.apiPlanDeposit)*rechargeMonths)});
     root.querySelector('[data-api-addon-count]').textContent=selected.size+' 个';
     root.querySelector('[data-api-addon-price]').textContent=money(addonFee);
-    root.querySelector('[data-api-usage-price]').textContent=money(usage);
-    root.querySelector('[data-api-total-price]').textContent=money(9800+addonFee+usage);
+    root.querySelector('[data-api-usage-price]').textContent='−'+money(usage);
+    root.querySelector('[data-api-recharge-term]').textContent=tierNames[rechargeTier]+' · '+(rechargeMonths===6?'半年':'一年');
+    root.querySelector('[data-api-recharge-price]').textContent=money(deposit);
+    root.querySelector('[data-api-balance-price]').textContent=money(remain);
+    root.querySelector('[data-api-total-price]').textContent=money(9800+addonFee+deposit);
+    root.querySelector('[data-api-recharge-tip]').textContent=shortage>0?'预计使用量超过本次充值余额 '+money(shortage)+'，需另行充值；发行费不重复计入首次支付。':'发行费从充值余额抵扣，不重复计入首次付款。';
     const submit=root.querySelector('[data-api-submit-plan]');
     if(submit){
-      const params=new URLSearchParams({solution:'api',plan:'1',modules:[...selected].sort().join(','),songs:String(songs),channels:String(channels)});
+      const params=new URLSearchParams({solution:'api',plan:'1',modules:[...selected].sort().join(','),songs:String(songs),channels:String(channels),recharge:String(rechargeTier),months:String(rechargeMonths)});
       submit.href='/apply?'+params.toString();
     }
   }
   document.addEventListener('click',event=>{
+    const tier=event.target.closest('[data-api-recharge]');
+    if(tier){const n=Number(tier.dataset.apiRecharge);if(Object.hasOwn(tierNames,n)){rechargeTier=n;refresh()}return}
+    const period=event.target.closest('[data-api-recharge-months]');
+    if(period){const n=Number(period.dataset.apiRechargeMonths);if(n===6||n===12){rechargeMonths=n;refresh()}return}
     const btn=event.target.closest('[data-api-addon]');
     if(!btn||!Object.hasOwn(moduleLabels,btn.dataset.apiAddon))return;
     const id=btn.dataset.apiAddon;
@@ -4220,16 +4279,24 @@ function syncApplyPlanSummary(){
   const songs=limitedInt('songs',100000),channels=limitedInt('channels',100);
   const currency=n=>'¥'+n.toLocaleString('zh-CN',{maximumFractionDigits:2});
   const addonFee=addons.length*2000,usage=+(songs*channels*.8).toFixed(2);
+  const tier=[999,9999,29999].includes(Number(params.get('recharge')))?Number(params.get('recharge')):999;
+  const months=[6,12].includes(Number(params.get('months')))?Number(params.get('months')):6;
+  const deposit=tier*months,remain=Math.max(0,deposit-usage),shortage=Math.max(0,usage-deposit);
   const lines=[
     '接入意向：看见音乐 · 基础发行 API',
     '扩展模块：'+(addons.length?addons.map(k=>allowed[k]).join('、'):'未选配'),
+    '预充值档位：'+currency(tier)+' / 月度额度（非月付）',
+    '充值时长：'+(months===6?'半年（6 个月）':'一年（12 个月）'),
+    '本次充值金额：'+currency(deposit),
     '预计发行歌曲数：'+songs+' 首',
     '平均目标渠道数：'+channels+' 个',
     '基础接入实施费：'+currency(9800)+'（一次性）',
     '扩展模块费用：'+currency(addonFee)+'（一次性意向测算）',
-    '本批次预计发行费：'+currency(usage),
-    '方案参考合计：'+currency(9800+addonFee+usage),
-    '备注：上述费用仅为方案估算；扩展模块是否开放及交付范围、特殊任务计费和持续服务以正式合作方案为准。'
+    '首次预计支付：'+currency(9800+addonFee+deposit),
+    '本批次预计从余额扣减：'+currency(usage),
+    '预计抵扣后余额：'+currency(remain),
+    ...(shortage>0?['预计另需追加充值：'+currency(shortage)]:[]),
+    '备注：发行费从预充值中抵扣，不再叠加到首次支付；余额到期处理、特殊任务计费和扩展服务以正式合作方案为准。'
   ];
   const field=box.querySelector('[data-apply-api-text]');
   if(field)field.value=lines.join('\n');
