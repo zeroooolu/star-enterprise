@@ -1581,13 +1581,13 @@ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entr
 function revealVisible(){document.querySelectorAll('.page.active .reveal').forEach(el=>observer.observe(el))}
 function closeMenu(){const menu=document.querySelector('.nav-links'),toggle=document.querySelector('.nav-toggle');menu?.classList.remove('open');if(toggle){toggle.setAttribute('aria-expanded','false');toggle.textContent='☰'}}
 function syncSectionNav(){document.querySelectorAll('.product-subnav,.api-subnav,.solutions-subnav').forEach(nav=>{const links=[...nav.querySelectorAll('a[href^="#"]')],targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);if(!targets.length)return;const update=()=>{const y=scrollY+150;let current=targets[0];targets.forEach(t=>{if(t.offsetTop<=y)current=t});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current.id))};update();if(!nav.dataset.spy){nav.dataset.spy='1';addEventListener('scroll',update,{passive:true})}})}
-function render(path,hash=''){const page=routes[path]||'home';document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));setNav(page);setPageMeta(page);closeMenu();closeDeveloperMenu();requestAnimationFrame(()=>{revealVisible();syncSectionNav();if(hash)document.querySelector(hash)?.scrollIntoView();else scrollTo(0,0);requestAnimationFrame(updateDeveloperNavActive)})}
+function render(path,hash=''){const page=routes[path]||'home';document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));setNav(page);setPageMeta(page);closeMenu();closeDeveloperMenu();if(page==='apply')syncApplyPlanSummary();requestAnimationFrame(()=>{revealVisible();syncSectionNav();if(hash)document.querySelector(hash)?.scrollIntoView();else scrollTo(0,0);requestAnimationFrame(updateDeveloperNavActive)})}
 const pricingPlanAmounts={basic:{monthly:999,yearly:9999},professional:{monthly:9999,yearly:99999},enterprise:{monthly:29999,yearly:299999}};
 let pricingPeriod='yearly',pricingEstimatePlan='professional';
 const rmb=n=>'¥'+Math.round(n).toLocaleString('zh-CN');
 function updatePricingEstimate(){const root=document.querySelector('[data-page="pricing"] .pricing-estimator');if(!root)return;const n=root.querySelector('[data-estimate-songs]'),m=root.querySelector('[data-estimate-channels]');const songs=Math.max(1,Math.min(100000,Math.trunc(Number(n?.value)||1))),channels=Math.max(1,Math.min(100,Math.trunc(Number(m?.value)||1)));const subscription=pricingPlanAmounts[pricingEstimatePlan][pricingPeriod],usage=songs*channels*.8;const write=(key,value)=>{const el=root.querySelector('[data-estimate-'+key+']');if(el)el.textContent=value};write('subscription',rmb(subscription));write('usage',rmb(usage));write('total',rmb(subscription+9800+usage));write('cycle',(pricingPeriod==='yearly'?'年付':'月付')+' · 首次开通示例')}
 function setBillingPeriod(period){const yearly=period==='yearly';pricingPeriod=period;document.querySelectorAll('[data-billing-period]').forEach(btn=>{const on=btn.dataset.billingPeriod===period;btn.classList.toggle('active',on);btn.setAttribute('aria-pressed',String(on))});document.querySelectorAll('[data-plan-price]').forEach(price=>{const monthly=Number(price.dataset.monthly),yearlyPrice=Number(price.dataset.yearly),value=yearly?yearlyPrice:monthly;price.innerHTML=rmb(value)+'<small>/'+(yearly?'年':'月')+'</small>';const saving=price.closest('.pricing-card-v3')?.querySelector('[data-plan-saving]');if(saving){saving.hidden=!yearly;saving.textContent='年付节省 '+rmb(monthly*12-yearlyPrice)}});const label=document.querySelector('[data-billing-summary-label]'),summary=document.querySelector('[data-billing-summary-price]');if(label)label.textContent=yearly?'年付订阅':'月付订阅';if(summary)summary.textContent=yearly?'¥9,999 起':'¥999 起';updatePricingEstimate()}
-document.addEventListener('click',e=>{const billing=e.target.closest('[data-billing-period]');if(billing){setBillingPeriod(billing.dataset.billingPeriod);return}const estimate=e.target.closest('[data-estimate-plan]');if(estimate){pricingEstimatePlan=estimate.dataset.estimatePlan;document.querySelectorAll('[data-estimate-plan]').forEach(x=>{const on=x===estimate;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});updatePricingEstimate();return}const a=e.target.closest('a[data-route]');if(a){const u=new URL(a.href,location.origin);if(routes[u.pathname]){e.preventDefault();history.pushState({},'',u.pathname+u.search+u.hash);render(u.pathname,u.hash);return}}const tab=e.target.closest('[data-product-tab]');if(tab){const key=tab.dataset.productTab;document.querySelectorAll('[data-product-tab]').forEach(btn=>{const active=btn===tab;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});document.querySelectorAll('[data-product-panel]').forEach(panel=>{const active=panel.dataset.productPanel===key;panel.classList.toggle('active',active);panel.hidden=!active});return}const plan=e.target.closest('[data-plan-tab]');if(plan){const root=plan.closest('[data-plan-compare]'),key=plan.dataset.planTab;root.querySelectorAll('[data-plan-tab]').forEach(btn=>btn.classList.toggle('active',btn===plan));root.querySelectorAll('[data-plan-panel]').forEach(panel=>panel.classList.toggle('active',panel.dataset.planPanel===key));return}const apiResource=e.target.closest('[data-api-resource]');if(apiResource){const root=apiResource.closest('[data-api-explorer]'),key=apiResource.dataset.apiResource;root.querySelectorAll('[data-api-resource]').forEach(btn=>btn.classList.toggle('active',btn===apiResource));root.querySelectorAll('[data-api-endpoints]').forEach(panel=>panel.hidden=panel.dataset.apiEndpoints!==key);const title=root.querySelector('#api-resource-title');if(title)title.textContent=apiResource.querySelector('b')?.textContent||key;return}const navInner=e.target.closest('.nav-inner');if(!navInner)closeMenu()});
+document.addEventListener('click',e=>{const billing=e.target.closest('[data-billing-period]');if(billing){setBillingPeriod(billing.dataset.billingPeriod);return}const estimate=e.target.closest('[data-estimate-plan]');if(estimate){pricingEstimatePlan=estimate.dataset.estimatePlan;document.querySelectorAll('[data-estimate-plan]').forEach(x=>{const on=x===estimate;x.classList.toggle('active',on);x.setAttribute('aria-pressed',String(on))});updatePricingEstimate();return}const a=e.target.closest('a[data-route]');if(a){const u=new URL(a.href,location.origin);if(routes[u.pathname]){e.preventDefault();history.pushState({},'',u.pathname+u.search+u.hash);render(u.pathname,u.hash);return}}const tab=e.target.closest('[data-product-tab]');if(tab){const key=tab.dataset.productTab;document.querySelectorAll('[data-product-tab]').forEach(btn=>{const active=btn===tab;btn.classList.toggle('active',active);btn.setAttribute('aria-selected',String(active))});document.querySelectorAll('[data-product-panel]').forEach(panel=>{const active=panel.dataset.productPanel===key;panel.classList.toggle('active',active);panel.hidden=!active});return}const plan=e.target.closest('[data-plan-tab]');if(plan){const root=plan.closest('[data-plan-compare]'),key=plan.dataset.planTab;root.querySelectorAll('[data-plan-tab]').forEach(btn=>btn.classList.toggle('active',btn===plan));root.querySelectorAll('[data-plan-panel]').forEach(panel=>panel.classList.toggle('active',panel.dataset.planPanel===key));return}const apiResource=e.target.closest('[data-api-resource]');if(apiResource){const root=apiResource.closest('[data-api-explorer]'),key=apiResource.dataset.apiResource;root.querySelectorAll('[data-api-resource]').forEach(btn=>btn.classList.toggle('active',btn===apiResource));root.querySelectorAll('[data-api-endpoints]').forEach(panel=>panel.hidden=panel.dataset.apiEndpoints!==key);const title=root.querySelector('#api-resource-title');if(title)title.textContent=apiResource.querySelector('b')?.textContent||key;const doc=root.querySelector('[data-api-doc-link]');if(doc){const chapter={auth:'authentication',upload:'files',task:'gateway-tasks',result:'release-status'};doc.href='/developers#'+(chapter[key]||'quickstart')}return}const navInner=e.target.closest('.nav-inner');if(!navInner)closeMenu()});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
 addEventListener('popstate',()=>render(location.pathname,location.hash));
 const toggle=document.querySelector('.nav-toggle'),nav=document.querySelector('.nav-links');if(toggle&&nav)toggle.onclick=()=>{const open=nav.classList.toggle('open');toggle.textContent=open?'×':'☰';toggle.setAttribute('aria-expanded',open)};const devToggle=document.querySelector('[data-page="developers"] .dev-mobile-nav');
@@ -1670,45 +1670,109 @@ integrationDialog?.addEventListener('click',event=>{if(event.target===integratio
 integrationDialog?.addEventListener('close',()=>{integrationZoomContent?.replaceChildren();integrationExpand?.focus()});
 document.addEventListener('input',e=>{if(e.target.matches('[data-estimate-songs],[data-estimate-channels]'))updatePricingEstimate()});
 
-/* API modular cost estimator: only a UI quote, no purchasing or API activation */
+/* API intent estimator — estimate only; no payment, submission or activation */
 (function(){
-  const selected=new Set(), money=n=>'¥'+n.toLocaleString('zh-CN',{maximumFractionDigits:2,minimumFractionDigits:0});
+  const moduleLabels={asset:'资产管理 API',artist:'艺人与厂牌 API',analytics:'发行数据 API',royalty:'版税报表 API',settlement:'分账管理 API',customer:'客户管理 API'};
+  const selected=new Set();
+  const money=n=>'¥'+n.toLocaleString('zh-CN',{maximumFractionDigits:2,minimumFractionDigits:0});
+  function normalizeValue(el,max){
+    const parsed=Number(el?.value);
+    const value=Number.isFinite(parsed)?Math.max(0,Math.min(max,Math.trunc(parsed))):0;
+    if(el&&String(value)!==el.value)el.value=String(value);
+    return value;
+  }
   function refresh(){
     document.querySelectorAll('[data-api-addon]').forEach(button=>{
       const active=selected.has(button.dataset.apiAddon);
       button.setAttribute('aria-pressed',String(active));
-      button.innerHTML=active?'已选入测算 <span aria-hidden="true">✓</span>':'加入费用测算 <span aria-hidden="true">+</span>';
+      button.innerHTML=active?'已选入测算 <span aria-hidden="true">✓</span>':'加入方案测算 <span aria-hidden="true">+</span>';
     });
     document.querySelectorAll('[data-api-addon-check]').forEach(input=>{input.checked=selected.has(input.dataset.apiAddonCheck)});
     const root=document.querySelector('[data-api-calculator]');
     if(!root)return;
-    const songs=Math.max(0,Math.min(100000,Math.trunc(Number(root.querySelector('[data-api-songs]')?.value)||0)));
-    const channels=Math.max(0,Math.min(100,Math.trunc(Number(root.querySelector('[data-api-channels]')?.value)||0)));
+    const songs=normalizeValue(root.querySelector('[data-api-songs]'),100000);
+    const channels=normalizeValue(root.querySelector('[data-api-channels]'),100);
     const addonFee=selected.size*2000,usage=+(songs*channels*.8).toFixed(2);
     root.querySelector('[data-api-addon-count]').textContent=selected.size+' 个';
     root.querySelector('[data-api-addon-price]').textContent=money(addonFee);
     root.querySelector('[data-api-usage-price]').textContent=money(usage);
     root.querySelector('[data-api-total-price]').textContent=money(9800+addonFee+usage);
+    const submit=root.querySelector('[data-api-submit-plan]');
+    if(submit){
+      const params=new URLSearchParams({solution:'api',plan:'1',modules:[...selected].sort().join(','),songs:String(songs),channels:String(channels)});
+      submit.href='/apply?'+params.toString();
+    }
   }
-  document.addEventListener('click',e=>{
-    const btn=e.target.closest('[data-api-addon]');
-    if(!btn)return;
+  document.addEventListener('click',event=>{
+    const btn=event.target.closest('[data-api-addon]');
+    if(!btn||!Object.hasOwn(moduleLabels,btn.dataset.apiAddon))return;
     const id=btn.dataset.apiAddon;
     if(selected.has(id))selected.delete(id);else selected.add(id);
     refresh();
   });
-  document.addEventListener('change',e=>{
-    if(e.target.matches('[data-api-addon-check]')){
-      const id=e.target.dataset.apiAddonCheck;
-      if(e.target.checked)selected.add(id);else selected.delete(id);
+  document.addEventListener('change',event=>{
+    if(event.target.matches('[data-api-addon-check]')){
+      const id=event.target.dataset.apiAddonCheck;
+      if(!Object.hasOwn(moduleLabels,id))return;
+      if(event.target.checked)selected.add(id);else selected.delete(id);
       refresh();
     }
   });
-  document.addEventListener('input',e=>{
-    if(e.target.matches('[data-api-songs],[data-api-channels]'))refresh();
+  document.addEventListener('input',event=>{
+    if(event.target.matches('[data-api-songs],[data-api-channels]'))refresh();
   });
   refresh();
 })();
+
+/* The Feishu collection form is cross-origin. Show an explicit copyable estimate on the left,
+   do not claim that arbitrary URL data can prefill the iframe. */
+function syncApplyPlanSummary(){
+  const box=document.querySelector('[data-page="apply"] #apply-api-summary');
+  if(!box)return;
+  const params=new URLSearchParams(location.search);
+  const hasPlan=params.get('solution')==='api'&&params.get('plan')==='1';
+  box.hidden=!hasPlan;
+  if(!hasPlan)return;
+  const allowed={asset:'资产管理 API',artist:'艺人与厂牌 API',analytics:'发行数据 API',royalty:'版税报表 API',settlement:'分账管理 API',customer:'客户管理 API'};
+  const raw=(params.get('modules')||'').split(',');
+  const addons=[...new Set(raw.filter(name=>Object.hasOwn(allowed,name)))];
+  function limitedInt(key,max){
+    const num=Number(params.get(key));
+    return Number.isFinite(num)?Math.max(0,Math.min(max,Math.trunc(num))):0;
+  }
+  const songs=limitedInt('songs',100000),channels=limitedInt('channels',100);
+  const currency=n=>'¥'+n.toLocaleString('zh-CN',{maximumFractionDigits:2});
+  const addonFee=addons.length*2000,usage=+(songs*channels*.8).toFixed(2);
+  const lines=[
+    '接入意向：看见音乐 · 基础发行 API',
+    '扩展模块：'+(addons.length?addons.map(k=>allowed[k]).join('、'):'未选配'),
+    '预计发行歌曲数：'+songs+' 首',
+    '平均目标渠道数：'+channels+' 个',
+    '基础接入实施费：'+currency(9800)+'（一次性）',
+    '扩展模块费用：'+currency(addonFee)+'（一次性意向测算）',
+    '本批次预计发行费：'+currency(usage),
+    '方案参考合计：'+currency(9800+addonFee+usage),
+    '备注：上述费用仅为方案估算；扩展模块是否开放及交付范围、特殊任务计费和持续服务以正式合作方案为准。'
+  ];
+  const field=box.querySelector('[data-apply-api-text]');
+  if(field)field.value=lines.join('\n');
+  const feedback=box.querySelector('[data-apply-api-copy-status]');
+  if(feedback)feedback.textContent='';
+}
+document.addEventListener('click',async event=>{
+  const button=event.target.closest('[data-copy-api-plan]');
+  if(!button)return;
+  const box=button.closest('#apply-api-summary'),field=box?.querySelector('[data-apply-api-text]');
+  const status=box?.querySelector('[data-apply-api-copy-status]');
+  if(!field)return;
+  try{
+    await navigator.clipboard.writeText(field.value);
+    if(status)status.textContent='已复制方案摘要，可粘贴到飞书表单的需求说明中。';
+  }catch{
+    field.focus();field.select();
+    if(status)status.textContent='无法自动复制，已选中摘要，请手动复制。';
+  }
+});
 
 setBillingPeriod('yearly');
 render(location.pathname,location.hash);
