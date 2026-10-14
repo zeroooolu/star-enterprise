@@ -565,6 +565,19 @@
 [data-page="developers"] .dev-release-chapter h3{margin:7px 0 8px;color:#263e62;font-size:17px;line-height:1.4}
 [data-page="developers"] .dev-release-chapter p{margin:0;color:#657991;font-size:12px;line-height:1.8}
 @media(max-width:600px){[data-page="developers"] .dev-release-chapter{padding:15px 14px;margin-top:29px}}
+
+/* Scoped resource API reference styling */
+[data-page="developers"] .dev-resource-group{scroll-margin-top:108px}
+[data-page="developers"] .dev-resource-endpoint{scroll-margin-top:110px}
+[data-page="developers"] .dev-resource-endpoint .dev-endpoints>div{flex-wrap:wrap;min-width:0}
+[data-page="developers"] .dev-resource-endpoint .dev-endpoints code{overflow-wrap:anywhere;word-break:break-word}
+[data-page="developers"] .dev-resource-field{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#2c456c!important;font-size:11px}
+[data-page="developers"] .dev-resource-more{margin:12px 0 20px;padding:12px 14px;border:1px solid #e2eaf6;background:#fafcff;border-radius:10px}
+[data-page="developers"] .dev-resource-more>summary{font-size:12px;cursor:pointer;color:#386caa;font-weight:700}
+[data-page="developers"] .dev-resource-more .dev-finance-table-scroll{margin:12px 0 0}
+[data-page="developers"] .dev-resource-more .dev-finance-example{margin:12px 0 0}
+[data-page="developers"] .dev-resource-anchor{display:block;height:0;scroll-margin-top:115px}
+[data-page="developers"] .dev-resource-endpoint .dev-finance-table td{font-size:12px}
 </style>
 </head>
 <body>
@@ -1347,17 +1360,22 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-
         <summary>资产管理 API</summary>
         <div class="dev-nav-items">
           <a href="#asset-api">模块概览</a>
-<a href="#albums">专辑</a>
-<a href="#tracks">歌曲</a>
-<a href="#guide-create">内容创建</a>
+          <a href="#content-albums-group">专辑与作品</a>
+          <a href="#content-tracks-group">歌曲管理</a>
+          <a href="#content-files-group">音视频资产与文件</a>
+          <a href="#content-relations-group">作品与资产关联</a>
+          <a href="#content-aliases-group">多语言元数据</a>
         </div>
       </details>
       <details class="dev-nav-module">
         <summary>艺人与厂牌 API</summary>
         <div class="dev-nav-items">
           <a href="#artist-label-api">模块概览</a>
-<a href="#artists">艺人</a>
-<a href="#labels">厂牌</a>
+          <a href="#people-artist-group">艺人资料</a>
+          <a href="#people-dsp-group">艺人 DSP 身份</a>
+          <a href="#people-labels-group">厂牌资料</a>
+          <a href="#people-roles-group">作品与艺人关联</a>
+          <a href="#people-languages-group">多语言艺名</a>
         </div>
       </details>
       <details class="dev-nav-module">
@@ -1520,42 +1538,1650 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
         <div class="doc-table"><div class="head"><b>状态</b><b>中文含义</b><b>业务场景</b></div><div><span>UP_RUNNING</span><span>上架处理中</span><span>入库 / 上架进行中</span></div><div><span>UP_SUCCESS</span><span>上架成功</span><span>入库 / 上架成功</span></div><div><span>UP_FAILED</span><span>上架失败</span><span>入库 / 上架失败</span></div><div><span>DOWN_RUNNING</span><span>下架处理中</span><span>下架任务处理中</span></div><div><span>DOWN_SUCCESS</span><span>下架成功</span><span>平台已完成下架</span></div><div><span>DOWN_FAILED</span><span>下架失败</span><span>下架任务失败</span></div></div>
       </section>
 
-<section id="asset-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL / 01</div><div class="dev-modular-intro-top"><h2>资产管理 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>面向专辑、歌曲、音视频文件及曲库元数据的业务系统集成。将原开发文档中规划的专辑与歌曲资源接口归入这里，暂未提供已验证的独立资产管理 API。</p></section>
+<section id="asset-api" class="dev-modular-intro dev-resource-intro"><div class="dev-section-kicker">OPTIONAL MODULE 01 · CONTENT ASSETS</div><div class="dev-modular-intro-top"><h2>资产管理 API</h2></div><p>统一管理专辑、歌曲、音视频资产与附件文件；支持按照 UPC、ISRC 等标识检索内容，维护完整元数据并关联已有曲库资产。</p><div class="dev-finance-flow"><span>专辑</span><i>→</i><span>歌曲与文件</span><i>→</i><span>作品关联</span><i>→</i><span>多语言数据</span></div></section>
+<div id="content-albums-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>专辑与作品</h3><p>专辑检索、详情、整体提交及曲目关系</p><span id="albums" class="dev-resource-anchor" aria-hidden="true"></span><span id="guide-create" class="dev-resource-anchor" aria-hidden="true"></span></div>
+<section id="asset-album-list" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>专辑列表</h2><p>按照作品名称、UPC、艺人、厂牌、CP 或目录编号等条件检索专辑，获取封面、作品类型及包含曲目数量。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/manage/album</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /manage/album</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">artistName</td><td>query</td><td>string</td><td>否</td><td>艺人名称</td></tr><tr><td class="dev-resource-field">cpId</td><td>query</td><td>integer</td><td>否</td><td>CP ID</td></tr><tr><td class="dev-resource-field">cpName</td><td>query</td><td>string</td><td>否</td><td>CP 名称</td></tr><tr><td class="dev-resource-field">labelName</td><td>query</td><td>string</td><td>否</td><td>厂牌名称</td></tr><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>否</td><td>作品名称</td></tr><tr><td class="dev-resource-field">upc</td><td>query</td><td>string</td><td>否</td><td>UPC</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">follow</td><td>query</td><td>integer</td><td>否</td><td>1: 我关注的 0 未关注的</td></tr><tr><td class="dev-resource-field">id</td><td>query</td><td>string</td><td>否</td><td>系统ID</td></tr><tr><td class="dev-resource-field">catalogNumber</td><td>query</td><td>string</td><td>否</td><td>用户识别号</td></tr></tbody></table></div>
 
-<section id="albums">
-        <h2>专辑</h2>
-        <p>创建专辑或单曲版本，并维护 UPC、封面、发行日期、厂牌、版权声明、曲目关系等发行元数据。</p>
-        <div class="dev-endpoints"><div><b>POST</b><code>/v1/albums</code><span>创建专辑 / 单曲</span></div><div><b class="get">GET</b><code>/v1/albums</code><span>查询专辑列表</span></div><div><b class="get">GET</b><code>/v1/albums/{albumId}</code><span>查询专辑详情</span></div><div><b class="patch">PATCH</b><code>/v1/albums/{albumId}</code><span>更新专辑</span></div></div>
-        <p class="caption">现有业务模型已包含标题、封面、UPC、发行日期、厂牌、目录号、C-Line / P-Line 与曲目关联等信息。</p>
-      </section>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "authStatus": 0,
+      "descriptionFlag": true,
+      "artists": [
+        {
+          "id": "string",
+          "name": "string"
+        }
+      ],
+      "user": {
+        "id": "string",
+        "name": "string"
+      },
+      "catalogNumber": "string",
+      "cover": {
+        "previewUrl": "string",
+        "downloadUrl": "string"
+      },
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "createTime": "string",
+      "displayArtist": "string",
+      "explicit": "NONE_EXPLICIT",
+      "genre": {
+        "id": 0,
+        "name": "string"
+      },
+      "id": 0,
+      "label": {
+        "id": 0,
+        "name": "string"
+      },
+      "stats": {
+        "assetCount": 0
+      },
+      "subTitle": "string",
+      "subType": "UNKNOWN",
+      "title": "string",
+      "type": "UNKNOWN",
+      "upc": "string",
+      "updateTime": "string",
+      "follow": 0
+    }
+  ]
+}</code></pre>
+</section>
+<section id="asset-album-detail" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>专辑详情</h2><p>获取单张专辑的基础元数据、作品标识、厂牌信息、版权声明及发行日期。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/manage/album/{id}</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /manage/album/{id}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>—</td></tr></tbody></table></div>
 
-<section id="tracks">
-        <h2>歌曲</h2>
-        <p>维护歌曲标题、ISRC、音频、歌词、语种、音乐风格、艺人与词曲作者等信息，并关联所属专辑。</p>
-        <div class="dev-endpoints"><div><b>POST</b><code>/v1/tracks</code><span>创建歌曲</span></div><div><b class="get">GET</b><code>/v1/tracks</code><span>查询歌曲列表</span></div><div><b class="get">GET</b><code>/v1/tracks/{trackId}</code><span>查询歌曲详情</span></div><div><b class="patch">PATCH</b><code>/v1/tracks/{trackId}</code><span>更新歌曲</span></div></div>
-      </section>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "catalogNumber": "string",
+  "clineText": "string",
+  "clineYear": "string",
+  "coverPath": "string",
+  "cover": {
+    "previewUrl": "string",
+    "downloadUrl": "string"
+  },
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "createTime": "string",
+  "description": "string",
+  "displayArtist": "string",
+  "explicit": "NONE_EXPLICIT",
+  "genre": {
+    "id": 0,
+    "name": "string"
+  },
+  "id": 0,
+  "isCompilation": true,
+  "label": {
+    "id": 0,
+    "name": "string"
+  },
+  "language": {
+    "code": "string",
+    "name": "string"
+  },
+  "plineText": "string",
+  "plineYear": "string",
+  "releaseDate": "string",
+  "stats": {
+    "assetCount": 0
+  },
+  "subGenre": {
+    "id": 0,
+    "name": "string"
+  },
+  "subTitle": "string",
+  "subType": "UNKNOWN",
+  "title": "string",
+  "type": "UNKNOWN",
+  "upc": "string",
+  "updateTime": "string",
+  "follow": 0
+}</code></pre>
+</section>
+<section id="asset-album-editor" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>专辑整体提交</h2><p>提交专辑、参与艺人及所属歌曲资产的组合数据，适合一次性维护完整的发行内容。</p>
+<div class="dev-endpoints"><div><b class="post">POST</b><code>/albums-editor</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>POST /albums-editor</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">　id</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　title</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　coverPath</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　subTitle</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　subType</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　cpId</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　languageCode</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　type</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　genreId</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　subGenreId</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　labelId</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　upc</td><td>body</td><td>string</td><td>是</td><td>—</td></tr></tbody></table></div><details class="dev-resource-more"><summary>查看全部 62 项请求字段</summary><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">　id</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　title</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　coverPath</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　subTitle</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　subType</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　cpId</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　languageCode</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　type</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　genreId</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　subGenreId</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　labelId</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　upc</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　releaseDate</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　expectedReleaseDate</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　explicit</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　description</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　clineText</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　clineYear</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　plineText</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　plineYear</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　catalogNumber</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　displayArtist</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　performers</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　id</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　role</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　code</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　assets</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　id</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　file</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　id</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　path</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　name</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　cp</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　id</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　title</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　subTitle</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　isrc</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　catalogNumber</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　genre</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　id</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　subGenre</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　id</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　language</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　code</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　dialect</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　code</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　explicit</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　clineYear</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　clineText</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　plineYear</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　plineText</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　displayArtist</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　lyrics</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　performers</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　id</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　role</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　code</td><td>body</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　contributors</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　id</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　roles</td><td>body</td><td>object</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　　code</td><td>body</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">　　sort</td><td>body</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div></details>
+<h3>请求 Body 示例（主要字段）</h3><pre class="dev-finance-example"><code>{
+  "id": "string",
+  "title": "string",
+  "coverPath": "string",
+  "subTitle": "string",
+  "subType": "string",
+  "cpId": "string",
+  "languageCode": "string",
+  "type": "string",
+  "genreId": "string",
+  "subGenreId": "string"
+}</code></pre><details class="dev-resource-more"><summary>查看完整请求 JSON</summary><pre class="dev-finance-example"><code>{
+  "id": "string",
+  "title": "string",
+  "coverPath": "string",
+  "subTitle": "string",
+  "subType": "string",
+  "cpId": "string",
+  "languageCode": "string",
+  "type": "string",
+  "genreId": "string",
+  "subGenreId": "string",
+  "labelId": "string",
+  "upc": "string",
+  "releaseDate": "string",
+  "expectedReleaseDate": "string",
+  "explicit": "string",
+  "description": "string",
+  "clineText": "string",
+  "clineYear": "string",
+  "plineText": "string",
+  "plineYear": "string",
+  "catalogNumber": "string",
+  "displayArtist": "string",
+  "performers": [
+    {
+      "id": "string",
+      "role": {
+        "code": "string"
+      }
+    }
+  ],
+  "assets": [
+    {
+      "id": "string",
+      "file": {
+        "id": "string",
+        "path": "string",
+        "name": "string",
+        "duration": "string"
+      },
+      "cp": {
+        "id": "string"
+      },
+      "title": "string",
+      "subTitle": "string",
+      "isrc": "string",
+      "catalogNumber": "string",
+      "genre": {
+        "id": "string"
+      },
+      "subGenre": {
+        "id": "string"
+      },
+      "language": {
+        "code": "string"
+      },
+      "dialect": {
+        "code": "string"
+      },
+      "explicit": "string",
+      "clineYear": "string",
+      "clineText": "string",
+      "plineYear": "string",
+      "plineText": "string",
+      "displayArtist": "string",
+      "lyrics": "string",
+      "performers": [
+        {
+          "id": "string",
+          "role": {
+            "code": "string"
+          }
+        }
+      ],
+      "contributors": [
+        {
+          "id": "string",
+          "roles": [
+            {
+              "code": "string"
+            }
+          ]
+        }
+      ],
+      "sort": 0
+    }
+  ]
+}</code></pre></details>
+<h3>响应示例（主要字段）</h3><pre class="dev-finance-example"><code>{
+  "id": "string",
+  "tenantKey": "string",
+  "createUser": {
+    "id": "string",
+    "name": "string"
+  },
+  "createTime": "string",
+  "updateUser": {
+    "id": "string",
+    "name": "string"
+  },
+  "updateTime": "string",
+  "cp": {
+    "id": "string",
+    "name": "string"
+  }
+}</code></pre><details class="dev-resource-more"><summary>查看完整响应 JSON</summary><pre class="dev-finance-example"><code>{
+  "id": "string",
+  "tenantKey": "string",
+  "createUser": {
+    "id": "string",
+    "name": "string"
+  },
+  "createTime": "string",
+  "updateUser": {
+    "id": "string",
+    "name": "string"
+  },
+  "updateTime": "string",
+  "cp": {
+    "id": "string",
+    "name": "string"
+  },
+  "label": {
+    "id": "string",
+    "name": "string",
+    "cover": {
+      "path": "string",
+      "previewUrl": "string",
+      "downloadUrl": "string"
+    }
+  },
+  "title": "string",
+  "subTitle": "string",
+  "cover": {
+    "previewUrl": "string",
+    "downloadUrl": "string",
+    "id": "string",
+    "path": "string",
+    "md5": "string"
+  },
+  "performers": [
+    {
+      "id": "string",
+      "name": "string",
+      "cover": {
+        "previewUrl": "string"
+      },
+      "role": {
+        "code": "string",
+        "name": "string"
+      }
+    }
+  ],
+  "displayArtist": "string",
+  "subType": "string",
+  "explicit": "string",
+  "description": "string",
+  "upc": "string",
+  "catalogNumber": "string",
+  "genre": {
+    "name": "string",
+    "id": "string"
+  },
+  "subGenre": {
+    "name": "string",
+    "id": "string"
+  },
+  "clineYear": "string",
+  "clineText": "string",
+  "plineYear": "string",
+  "plineText": "string",
+  "releaseDate": "string",
+  "expectedReleaseDate": "string",
+  "language": {
+    "code": "string"
+  },
+  "dialect": {
+    "code": "string"
+  },
+  "assetCount": 0,
+  "assets": [
+    {
+      "id": "string",
+      "title": "string",
+      "subTitle": "string",
+      "isrc": "string",
+      "catalogNumber": "string",
+      "explicit": "string",
+      "cp": {
+        "id": "string",
+        "name": "string"
+      },
+      "file": {
+        "path": "string",
+        "previewUrl": "string",
+        "downloadUrl": "string"
+      },
+      "language": {
+        "code": "string"
+      },
+      "dialect": {
+        "code": "string"
+      },
+      "genre": {
+        "id": "string"
+      },
+      "subGenre": {
+        "id": "string"
+      },
+      "displayArtist": "string",
+      "lyrics": "string",
+      "performers": [
+        {
+          "id": "string",
+          "name": "string",
+          "cover": {
+            "previewUrl": "string"
+          },
+          "role": {
+            "code": "string",
+            "name": "string"
+          }
+        }
+      ],
+      "contributors": [
+        {
+          "id": "string",
+          "name": "string",
+          "cover": {
+            "perviewUrl": "string"
+          },
+          "roles": [
+            {
+              "code": "string",
+              "name": "string"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</code></pre></details>
+</section>
+<section id="asset-album-tracks" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>专辑关联歌曲列表</h2><p>获取指定作品关联的音轨资产，包括曲序、ISRC、表演者和播放地址。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/products/{id}/assets</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /products/{id}/assets</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
 
-<section id="guide-create">
-        <div class="dev-section-kicker">发行指南</div><h2>创建内容</h2>
-        <p>规划中的标准资源 API 建议先建立可复用的内容对象，再创建发行任务。这样艺人、厂牌、专辑与歌曲可以在后续更新、重发和多版本发行中持续复用。</p>
-        <div class="dev-flow-line"><span>艺人</span><i>→</i><span>厂牌</span><i>→</i><span>专辑</span><i>→</i><span>歌曲</span><i>→</i><span>音频 / 封面</span></div>
-        <div class="doc-table"><div class="head"><b>对象</b><b>关键标识</b><b>主要内容</b></div><div><span>艺人</span><span>artistId</span><span>艺名、语种、角色、平台艺人信息</span></div><div><span>专辑</span><span>albumId / UPC</span><span>标题、封面、厂牌、发行日期、版权声明</span></div><div><span>歌曲</span><span>trackId / ISRC</span><span>标题、音频、歌词、艺人、词曲作者、风格</span></div><div><span>文件</span><span>上传路径</span><span>音频、封面及发行批次文件</span></div></div>
-      </section>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "displayArtist": "string",
+      "id": 0,
+      "isrc": "string",
+      "playUrl": "string",
+      "product": {
+        "id": 0,
+        "title": "string"
+      },
+      "sort": 0,
+      "subTitle": "string",
+      "title": "string",
+      "type": "UNKNOWN",
+      "artists": [
+        {
+          "id": "string",
+          "name": "string"
+        }
+      ],
+      "user": {
+        "id": "string",
+        "name": "string"
+      }
+    }
+  ]
+}</code></pre>
+</section>
+<div id="content-tracks-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>歌曲管理</h3><p>歌曲列表、元数据查询、创建与更新</p><span id="tracks" class="dev-resource-anchor" aria-hidden="true"></span></div>
+<section id="asset-track-list" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>歌曲列表</h2><p>按照歌曲名称、ISRC、艺人、专辑、CP 等条件检索歌曲并返回对应资产信息。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/manage/track</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /manage/track</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">productId</td><td>query</td><td>integer</td><td>否</td><td>68(额外提供查询条件)</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>array[string]</td><td>否</td><td>1</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>1</td></tr><tr><td class="dev-resource-field">title</td><td>query</td><td>string</td><td>否</td><td>曲目名称</td></tr><tr><td class="dev-resource-field">isrc</td><td>query</td><td>string</td><td>否</td><td>国际标准录音代码(ISRC)</td></tr><tr><td class="dev-resource-field">cpName</td><td>query</td><td>string</td><td>否</td><td>内容供应房</td></tr><tr><td class="dev-resource-field">type</td><td>query</td><td>array[string]</td><td>否</td><td>type=TRACK; 类型定值</td></tr><tr><td class="dev-resource-field">hasAudio</td><td>query</td><td>integer</td><td>否</td><td>是否拥有曲目音频, 0</td></tr><tr><td class="dev-resource-field">hasProduct</td><td>query</td><td>integer</td><td>否</td><td>是否拥有关联专辑, 0</td></tr><tr><td class="dev-resource-field">productName</td><td>query</td><td>string</td><td>否</td><td>关联专辑名字</td></tr><tr><td class="dev-resource-field">displayArtist</td><td>query</td><td>string</td><td>否</td><td>表演者(额外提供查询条件)</td></tr><tr><td class="dev-resource-field">cpId</td><td>query</td><td>integer</td><td>否</td><td>CP ID (额外提供查询条件)</td></tr></tbody></table></div>
 
-<section id="artist-label-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL / 02</div><div class="dev-modular-intro-top"><h2>艺人与厂牌 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>用于维护艺人、厂牌资料及相关关系。原文档中的艺人和厂牌 V1 资源接口统一纳入此扩展模块，待后续补充真实接口参考。</p></section>
+<h3>响应示例（主要字段）</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "id": 0,
+      "playUrl": "string",
+      "title": "string",
+      "subTitle": "string",
+      "language": {
+        "code": "string",
+        "name": "string"
+      },
+      "dialect": {
+        "id": 0,
+        "name": "string"
+      },
+      "catalogNumber": "string"
+    }
+  ]
+}</code></pre><details class="dev-resource-more"><summary>查看完整响应 JSON</summary><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "id": 0,
+      "playUrl": "string",
+      "title": "string",
+      "subTitle": "string",
+      "language": {
+        "code": "string",
+        "name": "string"
+      },
+      "dialect": {
+        "id": 0,
+        "name": "string"
+      },
+      "catalogNumber": "string",
+      "genre": {
+        "id": 0,
+        "name": "string"
+      },
+      "subGenre": {
+        "id": 0,
+        "name": "string"
+      },
+      "explicit": "NONE_EXPLICIT",
+      "isrc": "string",
+      "displayArtist": "string",
+      "clineText": "string",
+      "clineYear": "string",
+      "plineText": "string",
+      "plineYear": "string",
+      "lyrics": "string",
+      "product": {
+        "id": 0,
+        "title": "string"
+      },
+      "artists": {
+        "artist": {
+          "id": 0,
+          "name": "string"
+        }
+      },
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "updateTime": "string",
+      "createTime": "string",
+      "createUser": {
+        "id": 0,
+        "name": "string"
+      },
+      "attachment": {
+        "audios": [
+          {
+            "cp": null,
+            "createTime": null,
+            "downloadUrl": null,
+            "filePath": null,
+            "id": null,
+            "metadata": null,
+            "name": null,
+            "size": null,
+            "type": null,
+            "updateTime": null,
+            "url": null,
+            "createUser": null
+          }
+        ],
+        "videos": [
+          {
+            "video": null,
+            "cover": null
+          }
+        ],
+        "zips": [
+          {
+            "cp": null,
+            "createTime": null,
+            "downloadUrl": null,
+            "filePath": null,
+            "id": null,
+            "metadata": null,
+            "name": null,
+            "size": null,
+            "type": null,
+            "updateTime": null,
+            "url": null,
+            "createUser": null
+          }
+        ]
+      }
+    }
+  ]
+}</code></pre></details>
+</section>
+<section id="asset-track-detail" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>歌曲详情</h2><p>获取单曲的 ISRC、版本、风格、语言、歌词及版权相关数据。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/manage/track/{id}</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /manage/track/{id}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>integer</td><td>是</td><td>—</td></tr></tbody></table></div>
 
-<section id="artists">
-        <div class="dev-section-kicker">API 参考</div><h2>艺人</h2>
-        <p>创建和维护发行中使用的艺人资料，包括艺名、语种、角色及平台艺人信息。对外接口由现有艺人能力标准化封装。</p>
-        <div class="dev-endpoints"><div><b>POST</b><code>/v1/artists</code><span>创建艺人</span></div><div><b class="get">GET</b><code>/v1/artists</code><span>查询艺人列表</span></div><div><b class="get">GET</b><code>/v1/artists/{artistId}</code><span>查询艺人详情</span></div><div><b class="patch">PATCH</b><code>/v1/artists/{artistId}</code><span>更新艺人</span></div></div>
-      </section>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "id": 0,
+  "title": "string",
+  "subTitle": "string",
+  "type": "UNKNOWN",
+  "updateTime": "string",
+  "createTime": "string",
+  "createUser": {
+    "id": 0,
+    "name": "string"
+  },
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "language": {
+    "code": "string",
+    "name": "string"
+  },
+  "dialect": {
+    "id": 0,
+    "name": "string"
+  },
+  "catalogNumber": "string",
+  "genre": {
+    "id": 0,
+    "name": "string"
+  },
+  "subGenre": {
+    "id": 0,
+    "name": "string"
+  },
+  "explicit": "NONE_EXPLICIT",
+  "isrc": "string",
+  "clineYear": "string",
+  "clineText": "string",
+  "plineText": "string",
+  "plineYear": "string",
+  "lyrics": "string"
+}</code></pre>
+</section>
+<section id="asset-track-create" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>创建歌曲</h2><p>创建歌曲资产，提交歌曲元数据与音频、视频或压缩包等附件的存储路径。</p>
+<div class="dev-endpoints"><div><b class="post">POST</b><code>/manage/tracks</code><span>201 Created</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>POST /manage/tracks</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">　cpId</td><td>body</td><td>integer</td><td>是</td><td>所属 CP ID · 仅写入使用</td></tr><tr><td class="dev-resource-field">　attachment</td><td>body</td><td>object</td><td>否</td><td>资产文件支持音频、视频、工程文件、压缩包等</td></tr><tr><td class="dev-resource-field">　　audios</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　videos</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　video</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　　cover</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　zips</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　title</td><td>body</td><td>string</td><td>是</td><td>曲目名称</td></tr></tbody></table></div><details class="dev-resource-more"><summary>查看全部 28 项请求字段</summary><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">　cpId</td><td>body</td><td>integer</td><td>是</td><td>所属 CP ID · 仅写入使用</td></tr><tr><td class="dev-resource-field">　attachment</td><td>body</td><td>object</td><td>否</td><td>资产文件支持音频、视频、工程文件、压缩包等</td></tr><tr><td class="dev-resource-field">　　audios</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　videos</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　video</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　　cover</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　zips</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　title</td><td>body</td><td>string</td><td>是</td><td>曲目名称</td></tr><tr><td class="dev-resource-field">　subTitle</td><td>body</td><td>string</td><td>否</td><td>版本</td></tr><tr><td class="dev-resource-field">　languageCode</td><td>body</td><td>string</td><td>否</td><td>曲目名称语言 · 写入使用</td></tr><tr><td class="dev-resource-field">　dialectId</td><td>body</td><td>integer</td><td>否</td><td>曲目音频语言</td></tr><tr><td class="dev-resource-field">　catalogNumber</td><td>body</td><td>string</td><td>否</td><td>作品目录编号</td></tr><tr><td class="dev-resource-field">　genreId</td><td>body</td><td>integer</td><td>否</td><td>主风格 ID</td></tr><tr><td class="dev-resource-field">　subGenreId</td><td>body</td><td>integer</td><td>否</td><td>子风格 ID</td></tr><tr><td class="dev-resource-field">　explicit</td><td>body</td><td>explicit</td><td>否</td><td>内容分级(脏标)</td></tr><tr><td class="dev-resource-field">　isrc</td><td>body</td><td>string</td><td>否</td><td>国际标准录音代码(ISRC)</td></tr><tr><td class="dev-resource-field">　displayArtist</td><td>body</td><td>string</td><td>否</td><td>表演者(自定义) · 对外展示</td></tr><tr><td class="dev-resource-field">　clineYear</td><td>body</td><td>string</td><td>否</td><td>CLine 年份</td></tr><tr><td class="dev-resource-field">　clineText</td><td>body</td><td>string</td><td>否</td><td>CLine 内容</td></tr><tr><td class="dev-resource-field">　plineText</td><td>body</td><td>string</td><td>否</td><td>PLine 内容</td></tr><tr><td class="dev-resource-field">　plineYear</td><td>body</td><td>string</td><td>否</td><td>PLine 年份 · 2000-01-01 格式纯字符，无时区</td></tr><tr><td class="dev-resource-field">　lyrics</td><td>body</td><td>string</td><td>否</td><td>歌词</td></tr><tr><td class="dev-resource-field">　productId</td><td>body</td><td>integer</td><td>否</td><td>所属作品 ID · 没有绑定时设为 0</td></tr><tr><td class="dev-resource-field">　type</td><td>body</td><td>string</td><td>是</td><td>定值:TRACK · 可以不传,后端新接口已经set了</td></tr></tbody></table></div></details>
+<h3>请求 Body 示例</h3><pre class="dev-finance-example"><code>{
+  "cpId": 0,
+  "attachment": {
+    "audios": [
+      {
+        "filePath": "string"
+      }
+    ],
+    "videos": [
+      {
+        "video": {
+          "filePath": "string"
+        },
+        "cover": {
+          "filePath": "string"
+        }
+      }
+    ],
+    "zips": [
+      {
+        "filePath": "string"
+      }
+    ]
+  },
+  "title": "string",
+  "subTitle": "string",
+  "languageCode": "string",
+  "dialectId": 0,
+  "catalogNumber": "string",
+  "genreId": 0,
+  "subGenreId": 0,
+  "explicit": "NONE_EXPLICIT",
+  "isrc": "string",
+  "displayArtist": "string",
+  "clineYear": "string",
+  "clineText": "string",
+  "plineText": "string",
+  "plineYear": "string",
+  "lyrics": "string",
+  "productId": 0,
+  "type": "string"
+}</code></pre>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "catalogNumber": "string",
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "cpId": 0,
+  "createTime": "string",
+  "dialect": {
+    "id": 0,
+    "name": "string"
+  },
+  "displayArtist": "string",
+  "explicit": "NONE_EXPLICIT",
+  "genre": {
+    "id": 0,
+    "name": "string"
+  },
+  "id": 0,
+  "isrc": "string",
+  "language": {
+    "code": "string",
+    "name": "string"
+  },
+  "lyrics": "string",
+  "playUrl": "string",
+  "plineText": "string",
+  "plineYear": "string",
+  "productId": 0,
+  "product": {
+    "id": 0,
+    "title": "string"
+  },
+  "sort": 0,
+  "subGenre": {
+    "id": 0,
+    "name": "string"
+  },
+  "subTitle": "string",
+  "title": "string",
+  "type": "UNKNOWN",
+  "updateTime": "string"
+}</code></pre>
+</section>
+<section id="asset-track-edit" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>更新歌曲</h2><p>修改已有歌曲的标题、版本、权益信息及关联素材。</p>
+<div class="dev-endpoints"><div><b class="patch">PATCH</b><code>/manage/track/{id}</code><span>204 No Content</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>PATCH /manage/track/{id}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　attachment</td><td>body</td><td>object</td><td>否</td><td>资产文件支持音频、视频、工程文件、压缩包等</td></tr><tr><td class="dev-resource-field">　　audios</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　videos</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　video</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　　cover</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　　zips</td><td>body</td><td>object</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　　　filePath</td><td>body</td><td>string</td><td>是</td><td>OSS上的路径</td></tr><tr><td class="dev-resource-field">　title</td><td>body</td><td>string</td><td>是</td><td>曲目名称</td></tr><tr><td class="dev-resource-field">　subTitle</td><td>body</td><td>string</td><td>否</td><td>版本</td></tr><tr><td class="dev-resource-field">　languageCode</td><td>body</td><td>string</td><td>否</td><td>曲目名称语言 · 写入使用</td></tr><tr><td class="dev-resource-field">　dialectId</td><td>body</td><td>integer</td><td>否</td><td>曲目音频语言</td></tr><tr><td class="dev-resource-field">　catalogNumber</td><td>body</td><td>string</td><td>否</td><td>作品目录编号</td></tr><tr><td class="dev-resource-field">　genreId</td><td>body</td><td>integer</td><td>否</td><td>主风格 ID</td></tr><tr><td class="dev-resource-field">　subGenreId</td><td>body</td><td>integer</td><td>否</td><td>子风格 ID</td></tr><tr><td class="dev-resource-field">　explicit</td><td>body</td><td>explicit</td><td>否</td><td>内容分级(脏标)</td></tr><tr><td class="dev-resource-field">　isrc</td><td>body</td><td>string</td><td>否</td><td>国际标准录音代码(ISRC)</td></tr><tr><td class="dev-resource-field">　displayArtist</td><td>body</td><td>string</td><td>否</td><td>表演者(自定义) · 对外展示</td></tr><tr><td class="dev-resource-field">　clineYear</td><td>body</td><td>string</td><td>否</td><td>CLine 年份</td></tr><tr><td class="dev-resource-field">　clineText</td><td>body</td><td>string</td><td>否</td><td>CLine 内容</td></tr><tr><td class="dev-resource-field">　plineText</td><td>body</td><td>string</td><td>否</td><td>PLine 内容</td></tr><tr><td class="dev-resource-field">　plineYear</td><td>body</td><td>string</td><td>否</td><td>PLine 年份 · 2000-01-01 格式纯字符，无时区</td></tr><tr><td class="dev-resource-field">　lyrics</td><td>body</td><td>string</td><td>否</td><td>歌词</td></tr></tbody></table></div>
+<h3>请求 Body 示例</h3><pre class="dev-finance-example"><code>{
+  "attachment": {
+    "audios": [
+      {
+        "filePath": "string"
+      }
+    ],
+    "videos": [
+      {
+        "video": {
+          "filePath": "string"
+        },
+        "cover": {
+          "filePath": "string"
+        }
+      }
+    ],
+    "zips": [
+      {
+        "filePath": "string"
+      }
+    ]
+  },
+  "title": "string",
+  "subTitle": "string",
+  "languageCode": "string",
+  "dialectId": 0,
+  "catalogNumber": "string",
+  "genreId": 0,
+  "subGenreId": 0,
+  "explicit": "NONE_EXPLICIT",
+  "isrc": "string",
+  "displayArtist": "string",
+  "clineYear": "string",
+  "clineText": "string",
+  "plineText": "string",
+  "plineYear": "string",
+  "lyrics": "string"
+}</code></pre>
+<h3>响应</h3><p>204 No Content，操作完成且不返回响应体。</p>
+</section>
+<div id="content-files-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>音视频资产与文件</h3><p>资产检索、详情、附件及关联文件</p></div>
+<section id="asset-file-assets" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>资产检索</h2><p>根据资产类型、ISRC、CP、所属作品及表演者筛选歌曲或其他音乐资产。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/assets</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /assets</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">productId</td><td>query</td><td>integer</td><td>否</td><td>68</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>否</td><td>1</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>1</td></tr><tr><td class="dev-resource-field">productName</td><td>query</td><td>string</td><td>否</td><td>所在作品名称</td></tr><tr><td class="dev-resource-field">title</td><td>query</td><td>string</td><td>否</td><td>资产标题</td></tr><tr><td class="dev-resource-field">type</td><td>query</td><td>string</td><td>否</td><td>资产类型，枚举或者不传</td></tr><tr><td class="dev-resource-field">isrc</td><td>query</td><td>string</td><td>否</td><td>ISRC</td></tr><tr><td class="dev-resource-field">displayArtist</td><td>query</td><td>string</td><td>否</td><td>表演者</td></tr><tr><td class="dev-resource-field">cpName</td><td>query</td><td>string</td><td>否</td><td>CP 名</td></tr><tr><td class="dev-resource-field">hasProduct</td><td>query</td><td>integer</td><td>否</td><td>0</td></tr><tr><td class="dev-resource-field">cpId</td><td>query</td><td>integer</td><td>否</td><td>CP ID</td></tr></tbody></table></div>
 
-<section id="labels">
-        <h2>厂牌</h2>
-        <p>维护发行品牌、版权方或厂牌信息，并与专辑和发行内容建立关联。</p>
-        <div class="dev-endpoints"><div><b>POST</b><code>/v1/labels</code><span>创建厂牌</span></div><div><b class="get">GET</b><code>/v1/labels</code><span>查询厂牌列表</span></div><div><b class="get">GET</b><code>/v1/labels/{labelId}</code><span>查询厂牌详情</span></div><div><b class="patch">PATCH</b><code>/v1/labels/{labelId}</code><span>更新厂牌</span></div></div>
-      </section>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "displayArtist": "string",
+      "id": 0,
+      "isrc": "string",
+      "playUrl": "string",
+      "product": {
+        "id": 0,
+        "title": "string"
+      },
+      "sort": 0,
+      "subTitle": "string",
+      "title": "string",
+      "type": "UNKNOWN"
+    }
+  ]
+}</code></pre>
+</section>
+<section id="asset-file-detail" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>资产详情</h2><p>获取资产的类型、ISRC、播放地址、版权元数据、语言和所关联作品的信息。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/assets/{id}</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /assets/{id}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>—</td></tr></tbody></table></div>
 
+<h3>响应示例（主要字段）</h3><pre class="dev-finance-example"><code>{
+  "catalogNumber": "string",
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "createTime": "string",
+  "dialect": {
+    "id": 0,
+    "name": "string"
+  },
+  "displayArtist": "string",
+  "explicit": "NONE_EXPLICIT",
+  "genre": {
+    "id": 0,
+    "name": "string"
+  }
+}</code></pre><details class="dev-resource-more"><summary>查看完整响应 JSON</summary><pre class="dev-finance-example"><code>{
+  "catalogNumber": "string",
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "createTime": "string",
+  "dialect": {
+    "id": 0,
+    "name": "string"
+  },
+  "displayArtist": "string",
+  "explicit": "NONE_EXPLICIT",
+  "genre": {
+    "id": 0,
+    "name": "string"
+  },
+  "id": 0,
+  "isrc": "string",
+  "language": {
+    "code": "string",
+    "name": "string"
+  },
+  "lyrics": "string",
+  "playUrl": "string",
+  "plineText": "string",
+  "plineYear": "string",
+  "product": {
+    "id": 0,
+    "title": "string"
+  },
+  "sort": 0,
+  "subGenre": {
+    "id": 0,
+    "name": "string"
+  },
+  "subTitle": "string",
+  "title": "string",
+  "type": "UNKNOWN",
+  "updateTime": "string",
+  "attachment": {
+    "audios": [
+      {
+        "cp": {
+          "id": 0,
+          "name": "string"
+        },
+        "createTime": "string",
+        "downloadUrl": "string",
+        "filePath": "string",
+        "id": 0,
+        "metadata": {
+          "bitDepth": 0,
+          "bitRate": 0,
+          "sampleRate": 0,
+          "duration": 0
+        },
+        "name": "string",
+        "size": 0,
+        "type": "AUDIO",
+        "updateTime": "string",
+        "url": "string",
+        "createUser": {
+          "id": 0,
+          "name": "string"
+        }
+      }
+    ],
+    "videos": [
+      {
+        "video": {
+          "cp": {},
+          "createTime": "string",
+          "downloadUrl": "string",
+          "filePath": "string",
+          "id": 0,
+          "metadata": {},
+          "name": "string",
+          "size": 0,
+          "type": "[",
+          "updateTime": "string",
+          "url": "string",
+          "createUser": {}
+        },
+        "cover": {
+          "cp": {},
+          "createTime": "string",
+          "downloadUrl": "string",
+          "filePath": "string",
+          "id": 0,
+          "metadata": {},
+          "name": "string",
+          "size": 0,
+          "type": "[",
+          "updateTime": "string",
+          "url": "string",
+          "createUser": {}
+        }
+      }
+    ],
+    "zips": [
+      {
+        "cp": {
+          "id": 0,
+          "name": "string"
+        },
+        "createTime": "string",
+        "downloadUrl": "string",
+        "filePath": "string",
+        "id": 0,
+        "metadata": {
+          "bitDepth": 0,
+          "bitRate": 0,
+          "sampleRate": 0,
+          "duration": 0
+        },
+        "name": "string",
+        "size": 0,
+        "type": "AUDIO",
+        "updateTime": "string",
+        "url": "string",
+        "createUser": {
+          "id": 0,
+          "name": "string"
+        }
+      }
+    ]
+  }
+}</code></pre></details>
+</section>
+<section id="asset-attachments" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>文件列表</h2><p>检索音视频与其他附件文件，获取下载地址、文件大小及可用的媒体技术参数。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/attachments</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /attachments</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpName</td><td>query</td><td>string</td><td>否</td><td>所属 CP 名</td></tr><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>否</td><td>文件名</td></tr><tr><td class="dev-resource-field">type</td><td>query</td><td>string</td><td>否</td><td>文件类型</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "createTime": "string",
+      "downloadUrl": "string",
+      "filePath": "string",
+      "id": 0,
+      "metadata": {
+        "bitDepth": 0,
+        "bitRate": 0,
+        "sampleRate": 0,
+        "duration": 0
+      },
+      "name": "string",
+      "size": 0,
+      "type": "AUDIO",
+      "updateTime": "string",
+      "url": "string",
+      "createUser": {
+        "id": 0,
+        "name": "string"
+      }
+    }
+  ]
+}</code></pre>
+</section>
+<section id="asset-file-links" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>资产关联文件</h2><p>通过资产 ID 查询其关联的媒体文件与附件信息。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/asset-files</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /asset-files</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">assetId</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "createTime": "string",
+      "downloadUrl": "string",
+      "filePath": "string",
+      "id": 0,
+      "metadata": {
+        "bitDepth": 0,
+        "bitRate": 0,
+        "sampleRate": 0,
+        "duration": 0
+      },
+      "name": "string",
+      "size": 0,
+      "type": "AUDIO",
+      "updateTime": "string",
+      "url": "string",
+      "createUser": {
+        "id": 0,
+        "name": "string"
+      }
+    }
+  ]
+}</code></pre>
+</section>
+<div id="content-relations-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>作品与资产关联</h3><p>已有资产与专辑作品的批量关联</p></div>
+<section id="asset-batch-bind" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>批量绑定资产</h2><p>将已有资产 ID 列表关联到指定作品，用于组织专辑曲目与复用曲库资产。</p>
+<div class="dev-endpoints"><div><b class="post">POST</b><code>/products/{productId}/assets/batch-bind</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>POST /products/{productId}/assets/batch-bind</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">productId</td><td>path</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　idList</td><td>body</td><td>number</td><td>是</td><td>—</td></tr></tbody></table></div>
+<h3>请求 Body 示例</h3><pre class="dev-finance-example"><code>{
+  "idList": [
+    0
+  ]
+}</code></pre>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{}</code></pre>
+</section>
+<div id="content-aliases-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>多语言元数据</h3><p>不同语言、区域下的作品标题与展示信息</p></div>
+<section id="asset-product-aliases" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">资产管理 API</div>
+<h2>作品多语言版本</h2><p>查询专辑或作品在不同语言及区域下的标题、版本及展示艺人名称。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/products/{id}/aliases</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /products/{id}/aliases</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "id": "string",
+      "displayArtist": "string",
+      "language": {
+        "code": "string",
+        "name": "string"
+      },
+      "regionList": [
+        {
+          "code": "string",
+          "name": "string"
+        }
+      ],
+      "subTitle": "string",
+      "title": "string"
+    }
+  ]
+}</code></pre>
+</section>
+<section id="artist-label-api" class="dev-modular-intro dev-resource-intro"><div class="dev-section-kicker">OPTIONAL MODULE 02 · ARTISTS & LABELS</div><div class="dev-modular-intro-top"><h2>艺人与厂牌 API</h2></div><p>维护艺人、厂牌的基础资料和关联作品，查询音乐平台艺人主页 ID 映射，并管理作品与单曲中的参与艺人及角色信息。</p><div class="dev-finance-flow"><span>艺人 / 厂牌</span><i>→</i><span>DSP 身份</span><i>→</i><span>作品与艺人关系</span><i>→</i><span>多语言艺名</span></div></section>
+<div id="people-artist-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>艺人资料</h3><p>艺人查询、创建、更新与关联作品</p><span id="artists" class="dev-resource-anchor" aria-hidden="true"></span></div>
+<section id="artist-list" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>艺人列表</h2><p>按艺人名称、CP、厂牌等条件查询艺人，返回基础信息及关联作品、资产数量。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/artists</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /artists</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>query</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">cpName</td><td>query</td><td>string</td><td>否</td><td>关键词</td></tr><tr><td class="dev-resource-field">id</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">labelName</td><td>query</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "id": 0,
+      "coverPath": "string",
+      "cover": {
+        "previewUrl": "string",
+        "downloadUrl": "string"
+      },
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "createTime": "string",
+      "labelList": [
+        {
+          "id": 0,
+          "name": "string"
+        }
+      ],
+      "name": "string",
+      "stats": {
+        "productCount": 0,
+        "assetCount": 0
+      },
+      "updateTime": "string"
+    }
+  ]
+}</code></pre>
+</section>
+<section id="artist-detail" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>艺人详情</h2><p>获取艺名、头像、简介、语种、音乐风格、关联厂牌及艺人角色。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/artists/{id}</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /artists/{id}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>integer</td><td>是</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "id": 0,
+  "coverPath": "string",
+  "cover": {
+    "previewUrl": "string",
+    "downloadUrl": "string"
+  },
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "createTime": "string",
+  "description": "string",
+  "language": {
+    "code": "string",
+    "name": "string"
+  },
+  "genreList": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "labelList": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "name": "string",
+  "roleList": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "stats": {
+    "productCount": 0,
+    "assetCount": 0
+  },
+  "type": 0,
+  "updateTime": "string"
+}</code></pre>
+</section>
+<section id="artist-create" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>创建艺人</h2><p>创建艺人资料，配置艺名、所属 CP、头像、风格、角色与关联厂牌。</p>
+<div class="dev-endpoints"><div><b class="post">POST</b><code>/artists</code><span>201 Created</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>POST /artists</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">　coverPath</td><td>body</td><td>string</td><td>是</td><td>头像 · 头像在 OSS 上路径</td></tr><tr><td class="dev-resource-field">　cpId</td><td>body</td><td>integer</td><td>是</td><td>所属 CP ID · 仅写入使用</td></tr><tr><td class="dev-resource-field">　description</td><td>body</td><td>string</td><td>是</td><td>描述 · 文本域输入的长文本</td></tr><tr><td class="dev-resource-field">　languageCode</td><td>body</td><td>string</td><td>是</td><td>艺名语种 Code · 仅写入使用</td></tr><tr><td class="dev-resource-field">　genreIdList</td><td>body</td><td>integer</td><td>是</td><td>擅长风格 ID 列表 · 仅写入使用，且只包含主风格 ID</td></tr><tr><td class="dev-resource-field">　labelIdList</td><td>body</td><td>integer</td><td>是</td><td>相关厂牌 ID 列表 · 仅写入使用</td></tr><tr><td class="dev-resource-field">　name</td><td>body</td><td>string</td><td>是</td><td>艺名 · 默认艺名</td></tr><tr><td class="dev-resource-field">　roleIdList</td><td>body</td><td>integer</td><td>是</td><td>角色 ID 列表 · 仅写入使用</td></tr><tr><td class="dev-resource-field">　type</td><td>body</td><td>artistType</td><td>是</td><td>艺人类型</td></tr></tbody></table></div>
+<h3>请求 Body 示例</h3><pre class="dev-finance-example"><code>{
+  "coverPath": "kanjian/images/png/2023-09-27/企业微信20230927-123458-1695800295490.png",
+  "cpId": 1,
+  "description": "艺人介绍",
+  "genreIdList": [
+    1238
+  ],
+  "labelIdList": [
+    115
+  ],
+  "languageCode": "zh-hans",
+  "name": "新增艺人的艺名666",
+  "roleIdList": [
+    723
+  ],
+  "type": 1
+}</code></pre>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "id": 0,
+  "coverPath": "string",
+  "cover": {
+    "previewUrl": "string",
+    "downloadUrl": "string"
+  },
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "createTime": "string",
+  "description": "string",
+  "language": {
+    "code": "string",
+    "name": "string"
+  },
+  "genreList": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "labelList": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "name": "string",
+  "roleList": [
+    {
+      "id": 0,
+      "name": "string"
+    }
+  ],
+  "stats": {
+    "productCount": 0,
+    "assetCount": 0
+  },
+  "type": 0,
+  "updateTime": "string"
+}</code></pre>
+</section>
+<section id="artist-edit" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>更新艺人</h2><p>修改艺人基本资料、头像、语种、音乐风格与关联关系。</p>
+<div class="dev-endpoints"><div><b class="patch">PATCH</b><code>/artists/{id}</code><span>204 No Content</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>PATCH /artists/{id}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>integer</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　coverPath</td><td>body</td><td>string</td><td>是</td><td>头像 · 头像在 OSS 上路径</td></tr><tr><td class="dev-resource-field">　description</td><td>body</td><td>string</td><td>是</td><td>描述 · 文本域输入的长文本</td></tr><tr><td class="dev-resource-field">　languageCode</td><td>body</td><td>string</td><td>是</td><td>艺名语种 Code · 仅写入使用</td></tr><tr><td class="dev-resource-field">　genreIdList</td><td>body</td><td>integer</td><td>是</td><td>擅长风格 ID 列表 · 仅写入使用，且只包含主风格 ID</td></tr><tr><td class="dev-resource-field">　labelIdList</td><td>body</td><td>integer</td><td>是</td><td>相关厂牌 ID 列表 · 仅写入使用</td></tr><tr><td class="dev-resource-field">　name</td><td>body</td><td>string</td><td>是</td><td>艺名 · 默认艺名</td></tr><tr><td class="dev-resource-field">　roleIdList</td><td>body</td><td>integer</td><td>是</td><td>角色 ID 列表 · 仅写入使用</td></tr><tr><td class="dev-resource-field">　type</td><td>body</td><td>artistType</td><td>是</td><td>艺人类型</td></tr></tbody></table></div>
+<h3>请求 Body 示例</h3><pre class="dev-finance-example"><code>{
+  "coverPath": "kanjian/images/png/2023-09-28/企业微信20230928-112527-1695871540283.png",
+  "description": "没有封面修改为有封面",
+  "name": "没有封面修改为有封面",
+  "type": 1,
+  "labelIdList": [
+    119
+  ],
+  "languageCode": "zh-hans",
+  "genreIdList": [
+    3
+  ],
+  "roleIdList": [
+    16
+  ]
+}</code></pre>
+<h3>响应</h3><p>204 No Content，操作完成且不返回响应体。</p>
+</section>
+<section id="artist-products" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>艺人关联作品</h2><p>分页查询艺人参与的专辑或作品，查看作品信息与关联角色。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/artists/{id}/products</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /artists/{id}/products</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>integer</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">keyword</td><td>query</td><td>string</td><td>否</td><td>关键词</td></tr><tr><td class="dev-resource-field">page</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">perPage</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "authStatus": 0,
+      "catalogNumber": "string",
+      "clineText": "string",
+      "clineYear": "string",
+      "containsContent": "string",
+      "coverPath": "string",
+      "cpId": "string",
+      "genre": {
+        "id": 0,
+        "name": "string"
+      },
+      "genreId": 0,
+      "id": 0,
+      "isCompilation": true,
+      "isLocked": true,
+      "labelId": 0,
+      "language": {
+        "code": "string",
+        "name": "string"
+      },
+      "languageCode": "string",
+      "plineText": "string",
+      "plineYear": "string",
+      "releaseDate": "string",
+      "stats": {
+        "assetCount": 0
+      },
+      "subGenre": {
+        "id": 0,
+        "name": "string"
+      },
+      "subGenreId": 0,
+      "subTitle": "string",
+      "subType": "UNKNOWN",
+      "title": "string",
+      "type": "UNKNOWN",
+      "upc": "string",
+      "follow": 0,
+      "roles": [
+        0
+      ],
+      "productId": 0
+    }
+  ]
+}</code></pre>
+</section>
+<div id="people-dsp-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>艺人 DSP 身份</h3><p>音乐平台艺人主页 ID 的查询与管理</p></div>
+<section id="artist-dsp-links" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>DSP 艺人主页映射</h2><p>查询艺人在各音乐平台上的艺人主页 ID，用于发行身份匹配。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/artists/{artistId}/dsp-links</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /artists/{artistId}/dsp-links</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">artistId</td><td>path</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">page</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">perPage</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "addAsNew": true,
+      "id": 0,
+      "dsp": {
+        "id": 0,
+        "name": "string"
+      },
+      "dspArtistId": "string"
+    }
+  ]
+}</code></pre>
+</section>
+<section id="artist-dsp-create" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>新增 DSP 艺人映射</h2><p>登记艺人与指定 DSP 的主页 ID 对应关系。</p>
+<div class="dev-endpoints"><div><b class="post">POST</b><code>/artists/{artistId}/dsp-links</code><span>201 Created</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>POST /artists/{artistId}/dsp-links</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">artistId</td><td>path</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">　dspId</td><td>body</td><td>integer</td><td>是</td><td>DSP ID</td></tr><tr><td class="dev-resource-field">　dspArtistId</td><td>body</td><td>string</td><td>是</td><td>艺人在 DSP 上的主页 ID</td></tr></tbody></table></div>
+<h3>请求 Body 示例</h3><pre class="dev-finance-example"><code>{
+  "dspId": 0,
+  "dspArtistId": "string"
+}</code></pre>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "addAsNew": true,
+  "id": 0,
+  "dsp": {
+    "id": 0,
+    "name": "string"
+  },
+  "dspArtistId": "string"
+}</code></pre>
+</section>
+<div id="people-labels-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>厂牌资料</h3><p>厂牌查询、创建及关联作品</p><span id="labels" class="dev-resource-anchor" aria-hidden="true"></span></div>
+<section id="label-list" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>厂牌列表</h2><p>按厂牌名称、CP 等条件查询厂牌，返回厂牌封面和关联艺人、作品数量。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/labels</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /labels</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">cpId</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">cpName</td><td>query</td><td>string</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "coverPath": "string",
+      "cover": {
+        "previewUrl": "string",
+        "downloadUrl": "string"
+      },
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "createTime": "string",
+      "id": 0,
+      "name": "string",
+      "stats": {
+        "productCount": 0,
+        "artistCount": 0
+      }
+    }
+  ]
+}</code></pre>
+</section>
+<section id="label-detail" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>厂牌详情</h2><p>获取厂牌名称、简介、封面、所属 CP 及统计信息。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/labels/{id}</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /labels/{id}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "coverPath": "string",
+  "cover": {
+    "previewUrl": "string",
+    "downloadUrl": "string"
+  },
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "createTime": "string",
+  "description": "string",
+  "id": 0,
+  "name": "string",
+  "stats": {
+    "productCount": 0,
+    "artistCount": 0
+  },
+  "updateTime": "string"
+}</code></pre>
+</section>
+<section id="label-create" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>创建厂牌</h2><p>创建厂牌档案，提交所属 CP、厂牌名称、简介与封面路径。</p>
+<div class="dev-endpoints"><div><b class="post">POST</b><code>/labels</code><span>201 Created</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>POST /labels</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">　coverPath</td><td>body</td><td>string</td><td>是</td><td>封面/头像 · OSS 上路径</td></tr><tr><td class="dev-resource-field">　cpId</td><td>body</td><td>integer</td><td>是</td><td>所属 CP</td></tr><tr><td class="dev-resource-field">　description</td><td>body</td><td>string</td><td>是</td><td>介绍</td></tr><tr><td class="dev-resource-field">　name</td><td>body</td><td>string</td><td>是</td><td>名称</td></tr></tbody></table></div>
+<h3>请求 Body 示例</h3><pre class="dev-finance-example"><code>{
+  "coverPath": "kanjian/images/png/2023-09-27/企业微信20230927-172513-1695806723766.png",
+  "cpId": 1,
+  "description": "厂牌logon新增",
+  "name": "厂牌logon新增"
+}</code></pre>
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "coverPath": "string",
+  "cover": {
+    "previewUrl": "string",
+    "downloadUrl": "string"
+  },
+  "cp": {
+    "id": 0,
+    "name": "string"
+  },
+  "createTime": "string",
+  "createUser": {
+    "id": "string",
+    "name": "string"
+  },
+  "description": "string",
+  "id": 0,
+  "name": "string",
+  "updateTime": "string"
+}</code></pre>
+</section>
+<section id="label-products" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>厂牌关联作品</h2><p>分页获取厂牌下的作品，查看 UPC、发行日期、版权和艺人信息。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/labels/{id}/products</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /labels/{id}/products</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>integer</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">keyword</td><td>query</td><td>string</td><td>否</td><td>关键词</td></tr><tr><td class="dev-resource-field">page</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">perPage</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例（主要字段）</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "authStatus": 0,
+      "catalogNumber": "string",
+      "clineText": "string",
+      "clineYear": "string",
+      "containsContent": "string",
+      "coverPath": "string",
+      "cover": {
+        "previewUrl": "string",
+        "downloadUrl": "string"
+      }
+    }
+  ]
+}</code></pre><details class="dev-resource-more"><summary>查看完整响应 JSON</summary><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "authStatus": 0,
+      "catalogNumber": "string",
+      "clineText": "string",
+      "clineYear": "string",
+      "containsContent": "string",
+      "coverPath": "string",
+      "cover": {
+        "previewUrl": "string",
+        "downloadUrl": "string"
+      },
+      "cp": {
+        "id": 0,
+        "name": "string"
+      },
+      "cpId": "string",
+      "createTime": "string",
+      "createUser": {
+        "id": "string",
+        "name": "string"
+      },
+      "description": "string",
+      "displayArtist": "string",
+      "explicit": "NONE_EXPLICIT",
+      "genre": {
+        "id": 0,
+        "name": "string"
+      },
+      "genreId": 0,
+      "id": 0,
+      "isCompilation": true,
+      "isLocked": true,
+      "label": {
+        "id": 0,
+        "name": "string"
+      },
+      "labelId": 0,
+      "language": {
+        "code": "string",
+        "name": "string"
+      },
+      "languageCode": "string",
+      "plineText": "string",
+      "plineYear": "string",
+      "reviewStatus": 0,
+      "releaseDate": "string",
+      "stats": {
+        "assetCount": 0
+      },
+      "subGenre": {
+        "id": 0,
+        "name": "string"
+      },
+      "subGenreId": 0,
+      "subTitle": "string",
+      "subType": "UNKNOWN",
+      "title": "string",
+      "type": "UNKNOWN",
+      "upc": "string",
+      "updateTime": "string",
+      "updateUser": {
+        "id": "string",
+        "name": "string"
+      },
+      "follow": 0
+    }
+  ]
+}</code></pre></details>
+</section>
+<div id="people-roles-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>作品与艺人关联</h3><p>作品、歌曲资产中的艺人及参与角色</p></div>
+<section id="artist-product-roles" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>作品艺人及角色</h2><p>按作品 ID 查询主艺人、合作艺人及其角色和展示排序。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/product-artists</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /product-artists</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">productId</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "mainArtistList": [
+    {
+      "artist": {
+        "id": 0,
+        "name": "string"
+      },
+      "id": 0,
+      "createTime": "string",
+      "roleList": [
+        {
+          "id": 0,
+          "name": "string"
+        }
+      ],
+      "sort": 0,
+      "updateTime": "string"
+    }
+  ],
+  "featuringList": [
+    {
+      "artist": {
+        "id": 0,
+        "name": "string"
+      },
+      "id": 0,
+      "createTime": "string",
+      "roleList": [
+        {
+          "id": 0,
+          "name": "string"
+        }
+      ],
+      "sort": 0,
+      "updateTime": "string"
+    }
+  ]
+}</code></pre>
+</section>
+<section id="artist-asset-roles" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>资产艺人及贡献者</h2><p>按资产 ID 查询主要艺人、合作艺人及贡献者相关角色数据。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/asset-artists</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /asset-artists</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">assetId</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "mainArtistList": [
+    {
+      "artist": {
+        "id": 0,
+        "name": "string"
+      },
+      "id": 0,
+      "createTime": "string",
+      "roleList": [
+        {
+          "id": 0,
+          "name": "string"
+        }
+      ],
+      "sort": 0,
+      "updateTime": "string"
+    }
+  ],
+  "featuringList": [
+    {
+      "artist": {
+        "id": 0,
+        "name": "string"
+      },
+      "id": 0,
+      "createTime": "string",
+      "roleList": [
+        {
+          "id": 0,
+          "name": "string"
+        }
+      ],
+      "sort": 0,
+      "updateTime": "string"
+    }
+  ],
+  "contributorList": [
+    {
+      "artist": {
+        "id": 0,
+        "name": "string"
+      },
+      "id": 0,
+      "createTime": "string",
+      "roleList": [
+        {
+          "id": 0,
+          "name": "string"
+        }
+      ],
+      "sort": 0,
+      "updateTime": "string"
+    }
+  ]
+}</code></pre>
+</section>
+<div id="people-languages-group" class="dev-release-chapter dev-resource-group"><div class="dev-section-kicker">API REFERENCE</div><h3>多语言艺名</h3><p>艺人在不同语种与区域下的名称</p></div>
+<section id="artist-aliases" class="dev-finance-endpoint dev-resource-endpoint">
+<div class="dev-section-kicker">艺人与厂牌 API</div>
+<h2>多语言艺名</h2><p>获取艺人在不同语言和发行区域使用的名称版本。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/artists/{id}/aliases</code><span>200 OK</span></div></div>
+<h3>请求方式</h3><pre class="dev-finance-request"><code>GET /artists/{id}/aliases</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>名称</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>—</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>否</td><td>—</td></tr></tbody></table></div>
+
+<h3>响应示例</h3><pre class="dev-finance-example"><code>{
+  "total": 0,
+  "data": [
+    {
+      "id": "string",
+      "language": {
+        "code": "string",
+        "name": "string"
+      },
+      "regionList": [
+        {
+          "code": "string",
+          "name": "string"
+        }
+      ],
+      "title": "string"
+    }
+  ]
+}</code></pre>
+</section>
 <section id="distribution-data-api" class="dev-modular-intro dev-release-intro"><span id="release-management" aria-hidden="true"></span>
 <div class="dev-section-kicker">OPTIONAL MODULE 03 · DISTRIBUTION DATA</div>
 <div class="dev-modular-intro-top"><h2>发行数据 API</h2></div>
