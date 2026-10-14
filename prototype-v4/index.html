@@ -518,6 +518,36 @@
   .api-v2 .api-v2-hero-visual{width:calc(100% + 24px);margin:3px -12px 0}
   .api-v2 .api-v2-hero-visual img{width:112%;transform:translateX(-1%)}
 }
+
+/* Developer center · royalty reporting and read-only split documentation */
+[data-page="developers"] .dev-finance-intro{padding-bottom:27px!important}
+[data-page="developers"] .dev-finance-intro>p{line-height:1.85}
+[data-page="developers"] .dev-finance-note{margin:18px 0 0;padding:17px 19px;border:1px solid #d9e5f5;background:#fff;border-radius:12px}
+[data-page="developers"] .dev-finance-note strong{display:block;font-size:13px;color:#315b99}
+[data-page="developers"] .dev-finance-note p{font-size:12px;color:#52677f;line-height:1.85;margin:9px 0 0}
+[data-page="developers"] .dev-finance-flow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:23px 0 9px}
+[data-page="developers"] .dev-finance-flow span{display:inline-block;background:#fff;border:1px solid #dbe6f6;border-radius:8px;padding:8px 10px;font-size:11px;font-weight:700;color:#426a9c}
+[data-page="developers"] .dev-finance-flow i{font-style:normal;color:#92a5c2;font-size:12px}
+[data-page="developers"] .dev-finance-small{color:#6d7d91;font-size:12px;line-height:1.9;margin:14px 0}
+[data-page="developers"] .dev-finance-small a,[data-page="developers"] .dev-finance-steps a{color:#2863af;text-decoration:underline;text-underline-offset:3px}
+[data-page="developers"] .dev-main section.dev-finance-endpoint,[data-page="developers"] .dev-main section.dev-finance-guidance{padding-top:24px;padding-bottom:34px;border-bottom:1px solid #e6ecf4;margin-bottom:18px}
+[data-page="developers"] .dev-finance-endpoint h2,[data-page="developers"] .dev-finance-guidance h2{font-size:22px;margin:10px 0 11px}
+[data-page="developers"] .dev-finance-endpoint h3{margin:24px 0 12px;font-size:15px;color:#243d5f}
+[data-page="developers"] .dev-finance-endpoint>p{line-height:1.8}
+[data-page="developers"] .dev-finance-table-scroll{max-width:100%;overflow-x:auto;scrollbar-width:thin;border:1px solid #e2e8f2;border-radius:10px;margin:12px 0 20px}
+[data-page="developers"] .dev-finance-table{border-collapse:collapse;width:100%;min-width:520px;background:#fff;font-size:12px}
+[data-page="developers"] .dev-finance-table th,.dev-finance-table td{padding:12px 14px;text-align:left;border-bottom:1px solid #eef2f7;vertical-align:top;line-height:1.7}
+[data-page="developers"] .dev-finance-table th{color:#475d78;background:#f6f9fd;font-size:11px;white-space:nowrap;font-weight:800}
+[data-page="developers"] .dev-finance-table td{color:#596b81;overflow-wrap:anywhere}
+[data-page="developers"] .dev-finance-table tr:last-child td{border-bottom:0}
+[data-page="developers"] pre.dev-finance-example{margin:14px 0 19px;max-width:100%;overflow-x:auto;font-size:11px;line-height:1.65}
+[data-page="developers"] .dev-finance-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:23px 0}
+[data-page="developers"] .dev-finance-steps>div{padding:17px 14px;background:#f6f9ff;border:1px solid #e3eaf7;border-radius:12px;display:flex;flex-direction:column;gap:10px}
+[data-page="developers"] .dev-finance-steps b{color:#3871c4;font-size:13px}
+[data-page="developers"] .dev-finance-steps strong{font-size:13px;color:#264568}
+[data-page="developers"] .dev-finance-steps span{color:#6c7d92;font-size:11px;line-height:1.75}
+@media(max-width:650px){[data-page="developers"] .dev-finance-steps{grid-template-columns:1fr}[data-page="developers"] .dev-finance-table{min-width:460px}}
+
 </style>
 </head>
 <body>
@@ -1314,9 +1344,30 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-
         </div>
       </details>
       <a href="#distribution-data-api">发行数据 API</a>
-<a href="#royalty-api">版税报表 API</a>
-<a href="#split-api">分账管理 API</a>
-<a href="#customer-api">客户管理 API</a>
+      <details class="dev-nav-module">
+        <summary>版税报表 API</summary>
+        <div class="dev-nav-items">
+          <a href="#royalty-api">模块概览</a>
+          <a href="#royalty-summary">收益概览</a>
+          <a href="#royalty-periods">月度报表</a>
+          <a href="#royalty-platforms">DSP 渠道收益</a>
+          <a href="#royalty-albums">专辑收益</a>
+          <a href="#royalty-tracks">歌曲收益</a>
+          <a href="#royalty-details">收益明细</a>
+          <a href="#royalty-track-dsp">单曲渠道明细</a>
+          <a href="#royalty-scope">数据口径</a>
+        </div>
+      </details>
+      <details class="dev-nav-module">
+        <summary>分账管理 API</summary>
+        <div class="dev-nav-items">
+          <a href="#split-api">模块概览</a>
+          <a href="#split-workflow">分账查询流程</a>
+          <a href="#split-detail">歌曲分账详情</a>
+          <a href="#split-scope">能力与权限边界</a>
+        </div>
+      </details>
+      <a href="#customer-api">客户管理 API</a>
     </div>
 
     <details class="dev-nav-group dev-nav-reference">
@@ -1348,9 +1399,9 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-
         <h1>企业发行 Open API</h1>
         <p class="lead">通过基础发行 API，将音乐内容提交、渠道状态查询及更新 / 下架等能力接入现有网站、App、SaaS 或内部系统。再按业务需要逐步选购资产、艺人、发行数据、版税报表、分账与客户管理模块。</p>
         <div class="dev-actions"><a class="btn btn-primary" href="/apply?solution=api" data-route>申请 API 接入</a><a class="btn btn-secondary" href="/api" data-route>返回发行 API</a></div>
-        <div class="dev-notice"><b>文档说明</b><span>基础发行 API 共 6 个真实网关接口，覆盖身份认证、OSS 上传凭证、K-JSON 批次任务和发行结果查询。专辑、歌曲、艺人、厂牌等资源接口是此前的 V1 规划，已移至对应的扩展模块；其他扩展模块先预留分组，等待你后续提供真实接口资料。</span></div>
+        <div class="dev-notice"><b>文档说明</b><span>基础发行 API 共 6 个真实网关接口，覆盖身份认证、OSS 上传凭证、K-JSON 批次任务和发行结果查询。专辑、歌曲、艺人、厂牌等资源接口仍为 V1 规划；版税报表与分账模块已增加从真实 SaaS 前台文档筛选的接口参考，尚需对外网关封装与权限验证。其他业务模块继续按资料补充。</span></div>
         <div class="dev-paths">
-          <article><small>可选扩展</small><h3>模块化业务 API</h3><p>按企业实际业务系统选择资产、艺人、发行数据、版税、分账及客户模块。除已标注的 V1 规划示例外，暂不展示未验证的接口。</p><span>模块独立选购 · 资料逐步补充</span></article>
+          <article><small>可选扩展</small><h3>模块化业务 API</h3><p>按企业实际业务系统选择资产、艺人、发行数据、版税、分账及客户模块。基础发行使用公开发行网关；版税与分账展示真实 SaaS 源接口供对接设计，正式公网接口以开放文档为准。</p><span>模块独立选购 · 资料逐步补充</span></article>
           <article><small>基础发行</small><h3>K-JSON 发行链路</h3><p>直接提交完整发行数据与素材，适合大型发行商、大曲库迁移和批量系统对接。</p><span>认证 → STS → OSS → K-JSON → 任务 → 结果</span></article>
         </div>
       </section>
@@ -1477,9 +1528,175 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
 
 <section id="distribution-data-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL MODULE 03</div><div class="dev-modular-intro-top"><h2>发行数据 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>面向跨批次发行记录、统计及运营数据分析；与基础发行 API 中已包含的任务及渠道状态查询区别管理。</p></section><section class="dev-modular-placeholder"><h3>接口参考待补充</h3><p>需要补充数据维度、查询规则、字段和可用性，暂未提供真实独立端点。</p><div class="dev-notice"><b>暂无已确认的公开接口</b><span>后续收到该模块的真实 API 文档后，在此补充 Endpoint、认证与参数、请求和响应示例、错误码及限制。当前不提供未经验证的示例路径。</span></div></section>
 
-<section id="royalty-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL MODULE 04</div><div class="dev-modular-intro-top"><h2>版税报表 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>面向 DSP 销售与版税报表、歌曲收益明细等财务数据读取。</p></section><section class="dev-modular-placeholder"><h3>接口参考待补充</h3><p>需要补充账期、币种、报表明细及授权范围，暂未提供真实独立端点。</p><div class="dev-notice"><b>暂无已确认的公开接口</b><span>后续收到该模块的真实 API 文档后，在此补充 Endpoint、认证与参数、请求和响应示例、错误码及限制。当前不提供未经验证的示例路径。</span></div></section>
-
-<section id="split-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL MODULE 05</div><div class="dev-modular-intro-top"><h2>分账管理 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>面向多合作方分账规则、收益分配及结算结果的系统集成。</p></section><section class="dev-modular-placeholder"><h3>接口参考待补充</h3><p>读写权限和计算规则以正式资料为准，当前不假定存在可修改分账规则的开放接口。</p><div class="dev-notice"><b>暂无已确认的公开接口</b><span>后续收到该模块的真实 API 文档后，在此补充 Endpoint、认证与参数、请求和响应示例、错误码及限制。当前不提供未经验证的示例路径。</span></div></section>
+<section id="royalty-api" class="dev-modular-intro dev-finance-intro"><div class="dev-section-kicker">OPTIONAL MODULE 04 · ROYALTY REPORTING</div><div class="dev-modular-intro-top"><h2>版税报表 API</h2></div>
+<p>为厂牌、发行商及音乐 SaaS 系统提供 CP 收益概览、按账期查询、渠道与作品维度收益汇总、明细检索等只读数据接入能力。重点在于<strong>查询报表和核对收益</strong>，不负责改变分账规则或发起提现。</p>
+<div class="dev-finance-note"><strong>接口来源及开放边界</strong><p>本章选自你提供的 <code>saas-royalty-front.md</code> 真实 SaaS 前台接口文档，保留原始 HTTP Method、路径、字段名称和主要响应结构。<strong>它们是对外 Open API 封装的依据，不代表当前已经开放公网 API 调用。</strong>源文档未提供统一 Base URL、认证请求头、权限范围、限流和错误码；不能直接套用基础发行 API 的 <code>accessToken</code>。</p></div>
+<div class="dev-finance-flow"><span>CP 收益概览</span><i>→</i><span>月度账期</span><i>→</i><span>DSP / 专辑 / 歌曲</span><i>→</i><span>销售明细</span></div>
+<p class="dev-finance-small">以下仅保留对企业系统最实用的 7 个查询接口。<code>by-current-cp</code> 表示数据面向当前 CP 上下文，未来对外开放时必须通过企业凭证验证可访问主体与数据范围。</p></section>
+<section id="royalty-summary" class="dev-finance-endpoint"><div class="dev-section-kicker">版税报表 API</div><h2>CP 收益概览</h2><p>获取当前 CP 的累计报表收益、到账收益、账期区间以及涉及 DSP 的数量，适用于收益工作台或财务概览。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/earnings/mix/by-current-cp</code><span>SaaS 源接口</span></div></div><h3>请求参数</h3><p>源文档未定义路径或查询参数；使用服务端当前 CP 上下文。</p><h3>200 响应示例</h3><pre class="dev-finance-example"><code>{
+  &quot;cpId&quot;: 0,
+  &quot;receivedEarningTotal&quot;: 0,
+  &quot;statementEarningTotal&quot;: 0,
+  &quot;splitPeriodStart&quot;: &quot;&quot;,
+  &quot;splitPeriodEnd&quot;: &quot;&quot;,
+  &quot;statementDspCount&quot;: 0,
+  &quot;receivedDspCount&quot;: 0
+}</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>字段</th><th>类型</th><th>业务含义</th></tr></thead><tbody><tr><td>cpId</td><td>number</td><td>当前 CP ID</td></tr><tr><td>statementEarningTotal</td><td>number</td><td>报表收益累计</td></tr><tr><td>receivedEarningTotal</td><td>number</td><td>到账收益累计</td></tr><tr><td>splitPeriodStart / splitPeriodEnd</td><td>string</td><td>数据覆盖账期范围</td></tr><tr><td>statementDspCount / receivedDspCount</td><td>number</td><td>报表 / 已到账 DSP 数量</td></tr></tbody></table></div><p class="dev-finance-small">历史口径：源文档注明此 <code>mix</code> 接口汇总 <strong>2025-06 之前的星发总收益与之后的 SaaS 金额</strong>。跨系统过渡数据应以现有返回为准，不应把 <code>statementEarningTotal</code> 当成可提现余额。</p></section>
+<section id="royalty-periods" class="dev-finance-endpoint"><div class="dev-section-kicker">版税报表 API</div><h2>月度账期与报表列表</h2><p>以分页形式查询当前 CP 的月度报表，是进入平台、专辑或歌曲维度收益分析的入口。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/earnings/by-current-cp/reports</code><span>SaaS 源接口</span></div></div><h3>Query 参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>pageNum</td><td>query · integer</td><td>否</td><td>页码；默认值未在源文档中注明</td></tr><tr><td>pageSize</td><td>query · integer</td><td>否</td><td>分页大小；最大值未在源文档中注明</td></tr></tbody></table></div><h3>200 响应示例</h3><pre class="dev-finance-example"><code>{
+  &quot;list&quot;: [
+    {
+      &quot;cpId&quot;: 0,
+      &quot;splitPeriod&quot;: &quot;&quot;,
+      &quot;splitTaskId&quot;: &quot;&quot;,
+      &quot;statementEarning&quot;: 0,
+      &quot;receivedEarning&quot;: 0,
+      &quot;statementDspCount&quot;: 0,
+      &quot;receivedDspCount&quot;: 0,
+      &quot;createTime&quot;: &quot;&quot;,
+      &quot;reportId&quot;: 0,
+      &quot;cpIdSign&quot;: &quot;&quot;
+    }
+  ],
+  &quot;total&quot;: 0
+}</code></pre><p class="dev-finance-small"><code>splitPeriod</code> 是账期标识，<code>statementEarning</code> 和 <code>receivedEarning</code> 分别代表报表收益和已到账收益。<code>splitTaskId</code> 可作为对接任务 ID 的候选关联字段，但与下文接口 <code>{taskId}</code> 的映射尚需联调确认。源文档另说明 2025-06 之前的报表金额取星发数据。</p></section>
+<section id="royalty-platforms" class="dev-finance-endpoint"><div class="dev-section-kicker">版税报表 API</div><h2>月度报表 · DSP 平台收益</h2><p>查询指定报表任务下各 DSP 平台的使用次数、收益占比、报表收益与到账情况。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/earnings/tasks/{taskId}/by-current-cp/platforms</code><span>SaaS 源接口</span></div></div><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置 / 类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>taskId</td><td>path · string</td><td>是</td><td>报表任务标识；与 splitTaskId 的关系待确认</td></tr><tr><td>pageNum</td><td>query · integer</td><td>否</td><td>页码；默认值未在源文档中注明</td></tr><tr><td>pageSize</td><td>query · integer</td><td>否</td><td>分页大小；最大值未在源文档中注明</td></tr></tbody></table></div><h3>200 响应示例（数组）</h3><pre class="dev-finance-example"><code>[
+  {
+    &quot;dspId&quot;: &quot;&quot;,
+    &quot;dspName&quot;: &quot;&quot;,
+    &quot;periodStartDate&quot;: &quot;&quot;,
+    &quot;periodEndDate&quot;: &quot;&quot;,
+    &quot;unitCount&quot;: 0,
+    &quot;netEarning&quot;: &quot;&quot;,
+    &quot;scaleOfEarning&quot;: &quot;&quot;,
+    &quot;receivedEarning&quot;: &quot;&quot;,
+    &quot;receivedStatus&quot;: 0
+  }
+]</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>字段</th><th>类型</th><th>含义</th></tr></thead><tbody><tr><td>dspId / dspName</td><td>string</td><td>渠道标识 / 名称</td></tr><tr><td>unitCount</td><td>integer</td><td>使用次数</td></tr><tr><td>netEarning / receivedEarning</td><td>string</td><td>报表收益 / 到账收益</td></tr><tr><td>scaleOfEarning</td><td>string</td><td>收益占比；示例格式为 85.23%</td></tr><tr><td>receivedStatus</td><td>integer</td><td>0 未到账；1 全部到账；2 部分到账</td></tr><tr><td>periodStartDate / periodEndDate</td><td>string</td><td>渠道收益周期</td></tr></tbody></table></div><p class="dev-finance-small">尽管源文档列出分页参数，但响应示例是<strong>数组而非包含 total 的对象</strong>，请以实际联调返回结构为准。</p></section>
+<section id="royalty-albums" class="dev-finance-endpoint"><div class="dev-section-kicker">版税报表 API</div><h2>月度报表 · 专辑收益</h2><p>按专辑汇总收益及占比，适合厂牌按作品集查看收入。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/earnings/tasks/{taskId}/by-current-cp/albums</code><span>SaaS 源接口</span></div></div><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置 / 类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>taskId</td><td>path · string</td><td>是</td><td>报表任务 ID</td></tr><tr><td>pageNum</td><td>query · integer</td><td>否</td><td>页码；默认值未在源文档中注明</td></tr><tr><td>pageSize</td><td>query · integer</td><td>否</td><td>分页大小；最大值未在源文档中注明</td></tr></tbody></table></div><h3>200 响应示例</h3><pre class="dev-finance-example"><code>{
+  &quot;list&quot;: [
+    {
+      &quot;albumName&quot;: &quot;&quot;,
+      &quot;releaseArtist&quot;: &quot;&quot;,
+      &quot;netEarning&quot;: &quot;&quot;,
+      &quot;scaleOfEarning&quot;: &quot;&quot;
+    }
+  ],
+  &quot;total&quot;: 0
+}</code></pre><p class="dev-finance-small">原接口返回专辑名称和发行艺人，未在该响应示例中提供专辑 ID 或 UPC，因此不应依赖名称作为唯一关联键。</p></section>
+<section id="royalty-tracks" class="dev-finance-endpoint"><div class="dev-section-kicker">版税报表 API</div><h2>月度报表 · 歌曲收益</h2><p>按歌曲汇总版税收益，同时保留作词、作曲、录音三个权益方向的金额字段，用于歌曲收益查询和分账核对入口。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/earnings/tasks/{taskId}/by-current-cp/tracks</code><span>SaaS 源接口</span></div></div><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置 / 类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>taskId</td><td>path · string</td><td>是</td><td>报表任务 ID</td></tr><tr><td>pageNum</td><td>query · integer</td><td>否</td><td>页码；默认值未在源文档中注明</td></tr><tr><td>pageSize</td><td>query · integer</td><td>否</td><td>分页大小；最大值未在源文档中注明</td></tr></tbody></table></div><h3>200 响应示例</h3><pre class="dev-finance-example"><code>{
+  &quot;list&quot;: [
+    {
+      &quot;id&quot;: 0,
+      &quot;trackId&quot;: &quot;&quot;,
+      &quot;trackName&quot;: &quot;&quot;,
+      &quot;albumName&quot;: &quot;&quot;,
+      &quot;trackArtist&quot;: &quot;&quot;,
+      &quot;netEarning&quot;: &quot;&quot;,
+      &quot;scaleOfEarning&quot;: &quot;&quot;,
+      &quot;lyricistEarning&quot;: 0,
+      &quot;composerEarning&quot;: 0,
+      &quot;recordingEarning&quot;: 0,
+      &quot;isrc&quot;: &quot;&quot;,
+      &quot;splitPeriod&quot;: &quot;&quot;,
+      &quot;upc&quot;: &quot;&quot;,
+      &quot;nextSplit&quot;: 0,
+      &quot;totalPlatformNum&quot;: 0,
+      &quot;arrivedPlatformNum&quot;: 0
+    }
+  ],
+  &quot;total&quot;: 0
+}</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>字段</th><th>类型</th><th>用途</th></tr></thead><tbody><tr><td>trackId / trackName</td><td>string</td><td>歌曲标识与名称</td></tr><tr><td>isrc / upc</td><td>string</td><td>音轨与专辑识别码</td></tr><tr><td>netEarning / scaleOfEarning</td><td>string</td><td>报表收益与占比</td></tr><tr><td>lyricistEarning / composerEarning / recordingEarning</td><td>number</td><td>作词 / 作曲 / 录音权益金额</td></tr><tr><td>totalPlatformNum / arrivedPlatformNum</td><td>integer</td><td>涉及平台数 / 已到账平台数</td></tr><tr><td>nextSplit</td><td>integer</td><td>源文档未给出枚举定义，需联调</td></tr></tbody></table></div><p class="dev-finance-small">权益类型金额属于现有计算结果，不代表已按具体贡献者完成分配。按贡献者查询详见 <a href="#split-detail">分账管理 API：歌曲分账详情</a>。</p></section>
+<section id="royalty-details" class="dev-finance-endpoint"><div class="dev-section-kicker">版税报表 API</div><h2>月度报表 · 收益明细</h2><p>按账期搜索歌曲收入明细，支持名称、ISRC、UPC、到账日期等维度，返回 DSP、使用量、收益类型、到账信息和各权益金额。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/earnings/tasks/get-track-basic-list</code><span>SaaS 源接口</span></div></div><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置 / 类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>splitPeriod</td><td>query · string</td><td>是</td><td>账期，具体格式源文档未定义</td></tr><tr><td>keyword</td><td>query · string</td><td>否</td><td>关键词</td></tr><tr><td>isrc / upc</td><td>query · string</td><td>否</td><td>歌曲 ISRC / 专辑 UPC</td></tr><tr><td>receivedStartDate / receivedEndDate</td><td>query · string</td><td>否</td><td>到账时间范围；具体格式待确认</td></tr><tr><td>pageNum</td><td>query · integer</td><td>否</td><td>页码；默认值未在源文档中注明</td></tr><tr><td>pageSize</td><td>query · integer</td><td>否</td><td>分页大小；最大值未在源文档中注明</td></tr></tbody></table></div><h3>200 响应示例</h3><pre class="dev-finance-example"><code>{
+  &quot;list&quot;: [
+    {
+      &quot;id&quot;: 0,
+      &quot;splitPeriod&quot;: &quot;&quot;,
+      &quot;trackId&quot;: 0,
+      &quot;trackName&quot;: &quot;&quot;,
+      &quot;isrc&quot;: &quot;&quot;,
+      &quot;albumName&quot;: &quot;&quot;,
+      &quot;upc&quot;: &quot;&quot;,
+      &quot;artistList&quot;: &quot;&quot;,
+      &quot;saleFormat&quot;: &quot;&quot;,
+      &quot;subSaleFormat&quot;: &quot;&quot;,
+      &quot;region&quot;: &quot;&quot;,
+      &quot;netEarning&quot;: &quot;&quot;,
+      &quot;periodStartDate&quot;: &quot;&quot;,
+      &quot;periodEndDate&quot;: &quot;&quot;,
+      &quot;serviceName&quot;: &quot;&quot;,
+      &quot;unitCount&quot;: 0,
+      &quot;lyricistEarning&quot;: 0,
+      &quot;composerEarning&quot;: 0,
+      &quot;recordingEarning&quot;: 0,
+      &quot;releaseArtist&quot;: &quot;&quot;,
+      &quot;saleKey&quot;: &quot;&quot;,
+      &quot;totalEarning&quot;: 0,
+      &quot;operateCost&quot;: &quot;&quot;,
+      &quot;ratio&quot;: &quot;&quot;,
+      &quot;receivedStatus&quot;: 0,
+      &quot;receivedTime&quot;: &quot;&quot;,
+      &quot;receivedEarning&quot;: 0
+    }
+  ],
+  &quot;total&quot;: 0
+}</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>关键字段</th><th>用途</th></tr></thead><tbody><tr><td>serviceName / region / saleFormat / subSaleFormat</td><td>DSP 服务、销售地区及类型</td></tr><tr><td>periodStartDate / periodEndDate / splitPeriod</td><td>使用周期与分账账期</td></tr><tr><td>netEarning / totalEarning / operateCost / ratio</td><td>收益及现有业务计算字段；精确关系待确认</td></tr><tr><td>receivedEarning / receivedTime / receivedStatus</td><td>到账金额、时间及状态</td></tr><tr><td>id / trackId / isrc / upc</td><td>明细记录和作品匹配字段</td></tr></tbody></table></div><p class="dev-finance-small">源文档中的 <code>id</code> 是收益明细记录标识，分账详情接口也要求 <code>id</code>，但两者能否直接透传需要核对，不应在未验证前作硬编码假设。</p></section>
+<section id="royalty-track-dsp" class="dev-finance-endpoint"><div class="dev-section-kicker">版税报表 API</div><h2>单曲 · 按 DSP 拆解</h2><p>从单曲继续下钻到各 DSP 平台，检查平台收益、使用次数及到账状态，支持逐平台核对。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/earnings/tasks/{taskId}/by-current-cp/tracks-dsp</code><span>SaaS 源接口</span></div></div><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置 / 类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>taskId</td><td>path · string</td><td>是</td><td>报表任务 ID</td></tr><tr><td>trackId</td><td>query · string</td><td>是</td><td>歌曲 ID</td></tr><tr><td>pageNum</td><td>query · integer</td><td>否</td><td>页码；默认值未在源文档中注明</td></tr><tr><td>pageSize</td><td>query · integer</td><td>否</td><td>分页大小；最大值未在源文档中注明</td></tr></tbody></table></div><h3>200 响应示例（数组）</h3><pre class="dev-finance-example"><code>[
+  {
+    &quot;dspId&quot;: &quot;&quot;,
+    &quot;dspName&quot;: &quot;&quot;,
+    &quot;periodStartDate&quot;: &quot;&quot;,
+    &quot;periodEndDate&quot;: &quot;&quot;,
+    &quot;unitCount&quot;: 0,
+    &quot;netEarning&quot;: &quot;&quot;,
+    &quot;scaleOfEarning&quot;: &quot;&quot;,
+    &quot;receivedEarning&quot;: &quot;&quot;,
+    &quot;receivedStatus&quot;: 0,
+    &quot;periodList&quot;: [
+      &quot;&quot;
+    ]
+  }
+]</code></pre><p class="dev-finance-small">返回包括 <code>periodList</code>（关联周期集合）；<code>receivedStatus</code> 沿用 0 未到账 / 1 全部到账 / 2 部分到账。源文档返回示例仍为数组而非分页包装对象。</p></section>
+<section id="royalty-scope" class="dev-finance-guidance"><h2>数据口径与对外封装要求</h2><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>关注点</th><th>对接说明</th></tr></thead><tbody><tr><td>鉴权与数据隔离</td><td>当前源接口多为 by-current-cp；对外必须从授权上下文限定 CP / 租户，防止跨主体读取</td></tr><tr><td>账期与历史数据</td><td>mix 与报表列表涉及 2025-06 前后星发与 SaaS 数据融合；不要盲目合并重复统计</td></tr><tr><td>金额精度</td><td>同组响应既有 number 也有 string，生产消费端应使用 Decimal / 字符串精确处理</td></tr><tr><td>到账口径</td><td>报表收益、到账收益、可提现余额不是同一概念；不要据此发起打款</td></tr><tr><td>版本和参数</td><td>正式 Base URL、认证、分页默认值、账期格式、币种与错误响应目前未在源资料中给出</td></tr></tbody></table></div><p class="caption">上述路径为现有 SaaS 前台服务的原始路径，不应直接拼接到 <code>/open/v1</code> 发行网关域名下；对外网关路径、鉴权及租户授权方式需要独立确认。</p></section>
+<section id="split-api" class="dev-modular-intro dev-finance-intro"><div class="dev-section-kicker">OPTIONAL MODULE 05 · ROYALTY SPLIT</div><div class="dev-modular-intro-top"><h2>分账管理 API</h2></div>
+<p>本阶段优先建设<strong>分账结果查询</strong>：在收益明细基础上，查询某首歌曲按贡献者与版权权益方向拆分后的金额，并核对未分配项。提供只读能力，避免把收益结果查询与分账规则修改混成一套接口。</p>
+<div class="dev-finance-note"><strong>接口来源及开放边界</strong><p>原始资料中仅有一条明确的前台歌曲分账详情接口，其他是版税汇总、收益明细及提现相关接口。因此本模块以该真实接口为核心，复用版税明细作为定位入口，<strong>暂不虚构分账比例设置、批量执行、审核、发放或回调等公开接口</strong>。完整对外鉴权与租户权限仍需后续确定。</p></div>
+</section>
+<section id="split-workflow" class="dev-finance-guidance"><h2>分账查询流程</h2><p>当企业需要在自有系统展示收益归属与合作方分配结果时，建议采用以下只读路径：</p>
+<div class="dev-finance-steps"><div><b>01</b><strong>找到对应账期</strong><span>查询 <a href="#royalty-periods">月度报表列表</a>，选择 splitPeriod。</span></div>
+<div><b>02</b><strong>定位歌曲与明细</strong><span>使用 <a href="#royalty-details">收益明细接口</a>，按 ISRC、UPC 或关键词检索明细记录。</span></div>
+<div><b>03</b><strong>查看贡献者分账</strong><span>携带明细标识与账期查询 <a href="#split-detail">歌曲分账详情</a>；id 与原始明细记录 ID 的映射需联调确认。</span></div></div>
+<p class="dev-finance-small">上面的流程是产品接入建议，并非源接口文档声明的完整交易工作流；尤其 <code>id</code> 与 <code>splitPeriod</code> 的关联需要实际验证。</p></section>
+<section id="split-detail" class="dev-finance-endpoint"><div class="dev-section-kicker">分账管理 API</div><h2>歌曲分账详情</h2><p>获取单曲对应贡献者分配结果，返回 CP、结算币种、歌曲总收益，以及贡献者列表与未共享项的分账数据。</p>
+<div class="dev-endpoints"><div><b class="get">GET</b><code>/earnings/split/tasks/split-track-detail-front</code><span>SaaS 源接口 · 只读</span></div></div>
+<h3>Query 参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td>id</td><td>integer</td><td>是</td><td>收益 / 分账明细 ID；具体关联规则待联调</td></tr><tr><td>splitPeriod</td><td>string</td><td>是</td><td>分账账期；源文档未定义具体格式</td></tr></tbody></table></div><h3>200 响应示例</h3><pre class="dev-finance-example"><code>{
+  &quot;trackName&quot;: &quot;&quot;,
+  &quot;isrc&quot;: &quot;&quot;,
+  &quot;totalEarning&quot;: &quot;&quot;,
+  &quot;cpName&quot;: &quot;&quot;,
+  &quot;grossCurrency&quot;: &quot;&quot;,
+  &quot;shareAccountList&quot;: [
+    {
+      &quot;contributorName&quot;: &quot;&quot;,
+      &quot;roleName&quot;: &quot;&quot;,
+      &quot;artistLyricistEarning&quot;: &quot;&quot;,
+      &quot;artistComposerEarning&quot;: &quot;&quot;,
+      &quot;artistRecordingEarning&quot;: &quot;&quot;,
+      &quot;totalEarning&quot;: &quot;&quot;,
+      &quot;splitMethodName&quot;: &quot;&quot;
+    }
+  ],
+  &quot;unShareAccountList&quot;: [
+    {
+      &quot;useScene&quot;: &quot;&quot;,
+      &quot;artistLyricistEarning&quot;: &quot;&quot;,
+      &quot;artistComposerEarning&quot;: &quot;&quot;,
+      &quot;artistRecordingEarning&quot;: &quot;&quot;,
+      &quot;totalEarning&quot;: &quot;&quot;,
+      &quot;splitMethodName&quot;: &quot;&quot;
+    }
+  ]
+}</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>返回字段</th><th>含义与用途</th></tr></thead><tbody><tr><td>trackName / isrc</td><td>歌曲基本信息与音轨唯一编码</td></tr><tr><td>cpName / grossCurrency</td><td>所属 CP 与返回的总收益币种字段</td></tr><tr><td>totalEarning</td><td>歌曲总收益；源文档示例为字符串</td></tr><tr><td>shareAccountList</td><td>贡献者分账结果数组</td></tr><tr><td>shareAccountList[].contributorName / roleName</td><td>贡献者与角色名称</td></tr><tr><td>shareAccountList[].artistLyricistEarning / artistComposerEarning / artistRecordingEarning</td><td>作词 / 作曲 / 录音权益对应金额</td></tr><tr><td>shareAccountList[].totalEarning / splitMethodName</td><td>该贡献者收益合计及分账方式名称</td></tr><tr><td>unShareAccountList</td><td>源接口中的未共享账户 / 项目数组（含 useScene 与权益分配金额），具体业务归属待确认</td></tr></tbody></table></div><p class="dev-finance-small">字段名 <code>unShareAccountList</code> 保持源文档原样；不能仅凭名称断言它等同于「滞留版税」或「待付款」。示例金额多数为字符串，不能按浮点数简单累加并认为必然与总收益完全相等。</p></section>
+<section id="split-scope" class="dev-finance-guidance"><h2>分账能力边界与扩展方向</h2><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>当前有源接口依据的能力</th><th>尚无接口资料支撑的能力</th></tr></thead><tbody><tr><td>查看指定歌曲的贡献者分账结果</td><td>创建 / 修改分账比例或规则</td></tr><tr><td>查看作词、作曲、录音的分配金额</td><td>触发分账重算、确认或审核</td></tr><tr><td>查看源接口返回的未共享项</td><td>分账款项自动支付、提现或回调</td></tr></tbody></table></div><p>当前分账查询仅返回<strong>既有计算结果</strong>，不改变权益归属或结算状态。未来增加写操作时，应单独设计鉴权、授权依据、数据版本、幂等、审核和操作日志。</p><p class="caption">上述路径为现有 SaaS 前台服务的原始路径，不应直接拼接到 <code>/open/v1</code> 发行网关域名下；对外网关路径、鉴权及租户授权方式需要独立确认。</p></section>
 
 <section id="customer-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL MODULE 06</div><div class="dev-modular-intro-top"><h2>客户管理 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>面向 CP 客户、账号、曲库关联与租户隔离的业务系统集成。</p></section><section class="dev-modular-placeholder"><h3>接口参考待补充</h3><p>具体客户对象、可操作范围及权限模型待后续提供 API 资料确认。</p><div class="dev-notice"><b>暂无已确认的公开接口</b><span>后续收到该模块的真实 API 文档后，在此补充 Endpoint、认证与参数、请求和响应示例、错误码及限制。当前不提供未经验证的示例路径。</span></div></section>
 
