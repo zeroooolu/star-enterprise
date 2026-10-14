@@ -558,6 +558,13 @@
 [data-page="developers"] .dev-release-enums .dev-finance-table td:nth-child(2){font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;overflow-wrap:anywhere}
 [data-page="developers"] .dev-release-endpoint .dev-finance-request{margin:13px 0 20px}
 
+
+/* Release data documentation — scoped chapter dividers within module body */
+[data-page="developers"] .dev-release-chapter{margin:40px 0 14px;padding:17px 20px 15px;border-left:3px solid #3974da;background:linear-gradient(90deg,#f5f9ff 0%,rgba(245,249,255,0) 100%);border-radius:0 10px 10px 0}
+[data-page="developers"] .dev-release-chapter .dev-section-kicker{font-size:10px;color:#4774b3;letter-spacing:.09em}
+[data-page="developers"] .dev-release-chapter h3{margin:7px 0 8px;color:#263e62;font-size:17px;line-height:1.4}
+[data-page="developers"] .dev-release-chapter p{margin:0;color:#657991;font-size:12px;line-height:1.8}
+@media(max-width:600px){[data-page="developers"] .dev-release-chapter{padding:15px 14px;margin-top:29px}}
 </style>
 </head>
 <body>
@@ -1539,9 +1546,10 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
 <section id="distribution-data-api" class="dev-modular-intro dev-release-intro"><span id="release-management" aria-hidden="true"></span>
 <div class="dev-section-kicker">OPTIONAL MODULE 03 · DISTRIBUTION DATA</div>
 <div class="dev-modular-intro-top"><h2>发行数据 API</h2></div>
-<p>提供发行模板、产品发行设置、发行列表、批量处理状态及 DSP 渠道记录查询，便于在企业业务系统中管理发行数据、查看操作历史及追踪各渠道发行进度。</p>
-<div class="dev-finance-flow"><span>选择发行模板</span><i>→</i><span>查看产品发行配置</span><i>→</i><span>查询发行列表与状态</span><i>→</i><span>查看 DSP 发行记录</span></div>
+<p>围绕发行配置、发行进度与 DSP 渠道记录提供查询能力，帮助企业系统展示产品发行设置、统一检索发行记录，并追踪上架、更新和下架处理结果。</p>
+<div class="dev-finance-flow"><span>模板与产品设置</span><i>→</i><span>发行列表与任务状态</span><i>→</i><span>渠道记录与操作历史</span></div>
 <p class="dev-finance-small">本模块侧重发行配置与业务记录查询，使用 <code>/release/...</code>、<code>/releases</code> 路径。<strong>基础发行 API</strong> 仍独立提供 K-JSON 发行任务提交及其状态查询，详见 <a href="#gateway-tasks">发行任务</a>和<a href="#release-status">基础状态查询</a>。</p></section>
+<div class="dev-release-chapter" aria-label="发行模板与产品设置"><div class="dev-section-kicker">01 / CONFIGURATION</div><h3>发行模板与产品设置</h3><p>先读取可复用的 DSP 发行模板，再查看具体产品的发行渠道、授权协议和发行时间配置。</p></div>
 <section id="release-templates" class="dev-finance-endpoint dev-release-endpoint">
 <div class="dev-section-kicker">发行数据 API · 发行管理</div><h2>发行模板列表</h2><p>列出可复用的发行模板，返回模板名称、标识及所包含的 DSP 数量，供客户选择已有发行范围。</p>
 <div class="dev-endpoints"><div><b class="get">GET</b><code>/release/config/template</code><span>查询</span></div></div>
@@ -1609,6 +1617,7 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
   ],
   "expectTime": "1998-11-24 05:33:33"
 }</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>agreements[].type</td><td>string</td><td>发行协议类型</td></tr><tr><td>agreements[].path / previewUrl</td><td>string</td><td>协议文件地址 / 预览地址</td></tr><tr><td>data[].groupId</td><td>string</td><td>DSP 分组 ID</td></tr><tr><td>data[].dsps[].id / name</td><td>string</td><td>目标 DSP 信息</td></tr><tr><td>data[].dsps[].isExclude</td><td>boolean</td><td>是否排除当前 DSP</td></tr><tr><td>data[].dsps[].areas.isWorldwide</td><td>boolean</td><td>全球发行标志</td></tr><tr><td>data[].dsps[].areas.regionList</td><td>string[]</td><td>选择的发行区域列表</td></tr><tr><td>expectTime</td><td>string</td><td>期望发行时间</td></tr></tbody></table></div><p class="dev-finance-small">协议类型包括 <code>AGREEMENT_DIGITAL_DISTRIBUTION</code>、<code>AGREEMENT_MUSIC_LIBRARY</code>、<code>AGREEMENT_PUBLISHING_ADMINISTRATION</code> 和 <code>AGREEMENT_NEIGHBORING_RIGHT_ADMINISTRATION</code>。</p></section>
+<div class="dev-release-chapter" aria-label="发行列表与处理状态"><div class="dev-section-kicker">02 / RELEASE STATUS</div><h3>发行列表与处理状态</h3><p>按关键词检索发行记录，并通过产品 ID 列表批量获取发行处理状态，适合工作台列表和状态回填。</p></div>
 <section id="release-list" class="dev-finance-endpoint dev-release-endpoint">
 <div class="dev-section-kicker">发行数据 API · 发行管理</div><h2>发行列表</h2><p>查询发行记录列表，可按关键词筛选，支持分页和排序，适合企业发行工作台及发行任务列表。</p>
 <div class="dev-endpoints"><div><b class="get">GET</b><code>/releases</code><span>查询</span></div></div>
@@ -1643,7 +1652,8 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
       "status": "APPLY_DETAIL_STATUS_WAIT"
     }
   ]
-}</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>total</td><td>integer</td><td>结果数量</td></tr><tr><td>data[].id</td><td>string</td><td>发行处理记录标识</td></tr><tr><td>data[].productId</td><td>string</td><td>产品 ID</td></tr><tr><td>data[].status</td><td>string</td><td>发行处理状态；参见下方状态枚举</td></tr></tbody></table></div><p class="dev-finance-small">查询结果以 <code>productId</code> 对应产品。<code>productIdList</code> 为数组参数，具体数组 Query 序列化方式请与接入服务所用客户端约定保持一致。</p></section>
+}</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>total</td><td>integer</td><td>结果数量</td></tr><tr><td>data[].id</td><td>string</td><td>发行处理记录标识</td></tr><tr><td>data[].productId</td><td>string</td><td>产品 ID</td></tr><tr><td>data[].status</td><td>string</td><td>发行处理状态；参见下方状态枚举</td></tr></tbody></table></div><p class="dev-finance-small">通过 <code>productIdList</code> 传入产品 ID 数组，响应按 <code>productId</code> 标识各产品，并使用 <code>status</code> 返回处理状态。</p></section>
+<div class="dev-release-chapter" aria-label="DSP 渠道记录与操作历史"><div class="dev-section-kicker">03 / DSP RECORDS</div><h3>DSP 渠道记录与操作历史</h3><p>下钻到单个专辑的 DSP 渠道进度，再按产品与渠道查看每次上架、更新、下架申请的操作记录。</p></div>
 <section id="release-channel-records" class="dev-finance-endpoint dev-release-endpoint">
 <div class="dev-section-kicker">发行数据 API · 发行管理</div><h2>专辑发行渠道概览</h2><p>查询某个产品的 DSP 发行记录概览，显示渠道发行状态、操作类型、发行区域及操作时间。</p>
 <div class="dev-endpoints"><div><b class="get">GET</b><code>/release/{product_id}/records</code><span>查询</span></div></div>
@@ -1697,7 +1707,7 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
   ]
 }</code></pre><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td>data[].type</td><td>string</td><td>发行操作类型</td></tr><tr><td>data[].status</td><td>string</td><td>发行任务状态</td></tr><tr><td>data[].releaseDate</td><td>string</td><td>期望发行时间</td></tr><tr><td>data[].areas.isWorldwide / regionList</td><td>boolean / string[]</td><td>地区范围配置</td></tr><tr><td>data[].batchId</td><td>string</td><td>发行批次 ID</td></tr><tr><td>data[].applyId</td><td>string</td><td>发行申请 ID</td></tr><tr><td>data[].createdTime / updatedTime</td><td>string</td><td>记录创建 / 更新时间</td></tr><tr><td>data[].isInvalid</td><td>boolean</td><td>该条记录是否作废</td></tr></tbody></table></div></section>
 <section id="release-management-statuses" class="dev-finance-guidance dev-release-enums">
-<h2>发行状态与操作类型</h2>
+<div class="dev-section-kicker">04 / STATUS REFERENCE</div><h2>发行状态与操作类型</h2>
 <p>发行数据接口的状态字段包括发行列表状态、申请处理状态、渠道上下架状态以及操作类型。不同字段属于不同层级，不应与基础发行网关的 <a href="#statuses">UP_SUCCESS / DOWN_SUCCESS 状态</a>混用。</p>
 <div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>字段</th><th>枚举值</th><th>含义</th></tr></thead><tbody><tr><td>发行列表 status</td><td>DRAFT / IN_PROGRESS / RELEASED</td><td>草稿 / 处理中 / 已发行</td></tr><tr><td>处理状态 releaseStatus、status</td><td>APPLY_DETAIL_STATUS_WAIT / APPLY_DETAIL_STATUS_DOING / APPLY_DETAIL_STATUS_FINISH / APPLY_DETAIL_STATUS_FAILED</td><td>等待 / 处理中 / 完成 / 失败</td></tr><tr><td>DSP 上下架 status</td><td>PENDING_TAKE_ON / TAKE_ON_SUCCESS / TAKE_DOWN_SUCCESS</td><td>待上架 / 上架成功 / 下架成功</td></tr><tr><td>操作类型 releaseType、type</td><td>APPLY_DETAIL_TYPE_CREATE / APPLY_DETAIL_TYPE_DELETE / APPLY_DETAIL_TYPE_UPDATE</td><td>新建发行 / 下架 / 更新发行</td></tr></tbody></table></div>
 </section>
