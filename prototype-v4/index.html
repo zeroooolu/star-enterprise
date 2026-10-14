@@ -3774,10 +3774,14 @@ let devScrollPending=false;
 function updateDeveloperNavActive(){
   const page=document.querySelector('[data-page="developers"]');
   if(!page?.classList.contains('active'))return;
-  const sections=page.querySelectorAll('.dev-main section[id]');
+  const sections=page.querySelectorAll('.dev-main section[id], .dev-main .dev-resource-group[id]');
   const threshold=window.matchMedia('(max-width: 820px)').matches?150:140;
+  const available=new Set([...devNav.querySelectorAll('a[href^="#"]')].map(link=>link.getAttribute('href').slice(1)));
   let active=sections[0];
-  for(const section of sections){if(section.getBoundingClientRect().top<=threshold)active=section;else break}
+  for(const section of sections){
+    if(section.getBoundingClientRect().top>threshold)break;
+    if(available.has(section.id))active=section;
+  }
   if(active)setDeveloperNavActive(active.id,true);
 }
 addEventListener('scroll',()=>{
