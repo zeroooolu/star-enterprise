@@ -578,6 +578,12 @@
 [data-page="developers"] .dev-resource-more .dev-finance-example{margin:12px 0 0}
 [data-page="developers"] .dev-resource-anchor{display:block;height:0;scroll-margin-top:115px}
 [data-page="developers"] .dev-resource-endpoint .dev-finance-table td{font-size:12px}
+
+/* Customer API documentation */
+[data-page="developers"] .dev-customer-chapter{scroll-margin-top:110px}
+[data-page="developers"] .dev-customer-endpoint .dev-endpoints>div{flex-wrap:wrap;min-width:0}
+[data-page="developers"] .dev-customer-endpoint .dev-endpoints code{overflow-wrap:anywhere;word-break:break-word}
+[data-page="developers"] .dev-customer-endpoint .dev-finance-table td{font-size:12px}
 </style>
 </head>
 <body>
@@ -1415,7 +1421,17 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-
           <a href="#split-scope">字段与数据说明</a>
         </div>
       </details>
-      <a href="#customer-api">客户管理 API</a>
+      <details class="dev-nav-module">
+        <summary>客户管理 API</summary>
+        <div class="dev-nav-items">
+          <a href="#customer-api">模块概览</a>
+          <a href="#customer-profiles">客户档案</a>
+          <a href="#customer-contacts">联系人管理</a>
+          <a href="#customer-tags">客户标签</a>
+          <a href="#customer-identity-data">实名认证信息</a>
+          <a href="#customer-api-fields">状态与字段说明</a>
+        </div>
+      </details>
     </div>
 
     <details class="dev-nav-group dev-nav-reference">
@@ -3533,8 +3549,309 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
 <tr><td>接口操作</td><td>GET 请求用于读取分账结果，不会更改分账规则或结算状态</td></tr>
 </tbody></table></div></section>
 
-<section id="customer-api" class="dev-modular-intro "><div class="dev-section-kicker">OPTIONAL MODULE 06</div><div class="dev-modular-intro-top"><h2>客户管理 API</h2><span class="dev-modular-state ">规划中 / 待补充</span></div><p>面向 CP 客户、账号、曲库关联与租户隔离的业务系统集成。</p></section><section class="dev-modular-placeholder"><h3>接口参考待补充</h3><p>具体客户对象、可操作范围及权限模型待后续提供 API 资料确认。</p><div class="dev-notice"><b>暂无已确认的公开接口</b><span>后续收到该模块的真实 API 文档后，在此补充 Endpoint、认证与参数、请求和响应示例、错误码及限制。当前不提供未经验证的示例路径。</span></div></section>
-
+<section id="customer-api" class="dev-modular-intro dev-resource-intro dev-customer-intro">
+<div class="dev-section-kicker">OPTIONAL MODULE 06 · CUSTOMER MANAGEMENT</div><div class="dev-modular-intro-top"><h2>客户管理 API</h2></div>
+<p>面向企业管理客户档案、联系人、客户标签及实名认证信息。提供客户信息的创建、维护、检索与关联查询能力，帮助企业统一管理客户关系及客户名下的音乐内容。</p>
+<div class="dev-finance-flow"><span>建立客户档案</span><i>→</i><span>维护联系人</span><i>→</i><span>客户标签</span><i>→</i><span>实名认证信息</span></div>
+<p class="dev-finance-small">客户相关接口沿用现有 <code>/content-providers/...</code>、<code>/cp/{cpId}/...</code> 与 <code>/tags/...</code> 路径；其中 <code>cpId</code> 表示客户 ID，<code>cpName</code> 表示客户名称，<code>cpShortName</code> 表示客户简称。</p></section>
+<div id="customer-profiles" class="dev-release-chapter dev-resource-group dev-customer-chapter"><div class="dev-section-kicker">CUSTOMER MANAGEMENT</div><h3>客户档案</h3><p>客户检索、基础资料、创建更新与批量关联查询</p></div>
+<section id="customer-list" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户档案</div><h2>客户列表</h2><p>分页检索客户档案，可按客户名称、客户编号、客户类型、国家地区、审核状态及实名状态筛选。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/content-providers</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /content-providers</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>否</td><td>页码 默认 1</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>否</td><td>每一页数量 默认 20</td></tr><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>否</td><td>客户名称</td></tr><tr><td class="dev-resource-field">type</td><td>query</td><td>integer</td><td>否</td><td>cp类型: 0 个人 1企业 3未知</td></tr><tr><td class="dev-resource-field">regionCode</td><td>query</td><td>string</td><td>否</td><td>国家地区code</td></tr><tr><td class="dev-resource-field">clientId</td><td>query</td><td>string</td><td>否</td><td>客户编号</td></tr><tr><td class="dev-resource-field">auditStatus</td><td>query</td><td>string</td><td>否</td><td>审核状态： AUDIT_WAITING 待审核  AUDIT_APPROVED 已通过  AUDIT_REJECT 未通过</td></tr><tr><td class="dev-resource-field">realNameStatus</td><td>query</td><td>integer</td><td>否</td><td>实名状态 0未实名 1已实名</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>{
+  "list": [
+    {
+      "id": 0,
+      "name": "",
+      "cpShortName": "",
+      "description": "",
+      "type": 0,
+      "clientId": "",
+      "region": {
+        "code": "",
+        "name": ""
+      },
+      "stats": {
+        "artistCount": 0,
+        "labelCount": 0,
+        "productCount": 0
+      },
+      "logoUrl": "",
+      "originalLogoUrl": "",
+      "copyrightEstimatedCount": 0,
+      "minimumCashout": "",
+      "contactPersonList": [
+        {
+          "id": 0,
+          "name": ""
+        }
+      ],
+      "address": "",
+      "source": 0,
+      "realNameStatus": 0,
+      "auditStatus": "",
+      "createTime": "",
+      "updateTime": ""
+    }
+  ],
+  "total": 0
+}</code></pre><p class="dev-finance-small">查询响应包含客户名称、客户编号、所在地区、作品/艺人/厂牌统计、审核状态及实名状态。<code>auditStatus</code> 取值为 <code>AUDIT_WAITING</code>、<code>AUDIT_APPROVED</code>、<code>AUDIT_REJECT</code>。</p></section>
+<section id="customer-search" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户档案</div><h2>客户名称快捷查询</h2><p>根据客户名称查询精简的客户 ID 与名称列表，可用于创建专辑、艺人、厂牌时选择归属客户。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/content-providers/all</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /content-providers/all</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>是</td><td>名称</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>{
+  "total": 0,
+  "list": [
+    {
+      "id": "string",
+      "name": "string"
+    }
+  ]
+}</code></pre></section>
+<section id="customer-detail" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户档案</div><h2>客户详情</h2><p>根据客户 ID 查询名称、简称、所属地区、联系人、统计信息、审核及实名认证状态。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/content-providers/{id}</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /content-providers/{id}</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>主键</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>{
+  "id": 0,
+  "name": "",
+  "cpShortName": "",
+  "description": "",
+  "type": 0,
+  "clientId": "",
+  "region": {
+    "code": "",
+    "name": ""
+  },
+  "stats": {
+    "artistCount": 0,
+    "labelCount": 0,
+    "productCount": 0
+  },
+  "logoUrl": "",
+  "originalLogoUrl": "",
+  "copyrightEstimatedCount": 0,
+  "minimumCashout": "",
+  "contactPersonList": [
+    {
+      "id": 0,
+      "name": ""
+    }
+  ],
+  "address": "",
+  "source": 0,
+  "realNameStatus": 0,
+  "auditStatus": "",
+  "createTime": "",
+  "updateTime": ""
+}</code></pre><p class="dev-finance-small"><code>id</code> 是客户主键，<code>clientId</code> 为客户编号；<code>stats</code> 包含关联艺人、厂牌与作品数量。</p></section>
+<section id="customer-create" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户档案</div><h2>创建客户</h2><p>创建客户档案，包括客户类型、名称、地区、联系人、标识、地址及关联标签。</p><div class="dev-endpoints"><div><b class="post">POST</b><code>/content-providers</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>POST /content-providers</code></pre>
+<h3>路径与查询参数</h3><p>无额外路径或 Query 参数。</p><h3>请求 Body</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>body</td><td>integer</td><td>否</td><td>cpid</td></tr><tr><td class="dev-resource-field">type</td><td>body</td><td>integer</td><td>否</td><td>none</td></tr><tr><td class="dev-resource-field">cpName</td><td>body</td><td>string</td><td>否</td><td>客户名称</td></tr><tr><td class="dev-resource-field">name</td><td>body</td><td>string</td><td>否</td><td>none</td></tr><tr><td class="dev-resource-field">cpShortName</td><td>body</td><td>string</td><td>否</td><td>客户简称</td></tr><tr><td class="dev-resource-field">description</td><td>body</td><td>string</td><td>否</td><td>描述</td></tr><tr><td class="dev-resource-field">regionCode</td><td>body</td><td>string</td><td>否</td><td>用户名</td></tr><tr><td class="dev-resource-field">contactPersonIds</td><td>body</td><td>[integer]</td><td>否</td><td>联系人集合</td></tr><tr><td class="dev-resource-field">logoUrl</td><td>body</td><td>string</td><td>否</td><td>cpLogo地址</td></tr><tr><td class="dev-resource-field">copyrightEstimatedCount</td><td>body</td><td>integer</td><td>否</td><td>预估版权数</td></tr><tr><td class="dev-resource-field">minimumCashout</td><td>body</td><td>string</td><td>否</td><td>最低提现金额</td></tr><tr><td class="dev-resource-field">tenantKey</td><td>body</td><td>string</td><td>否</td><td>租户标识</td></tr><tr><td class="dev-resource-field">clientId</td><td>body</td><td>string</td><td>否</td><td>客户编号</td></tr><tr><td class="dev-resource-field">address</td><td>body</td><td>string</td><td>否</td><td>详细地址</td></tr><tr><td class="dev-resource-field">auditStatus</td><td>body</td><td>string</td><td>否</td><td>审核状态</td></tr><tr><td class="dev-resource-field">realNameStatus</td><td>body</td><td>integer</td><td>否</td><td>实名状态</td></tr><tr><td class="dev-resource-field">tagCodeList</td><td>body</td><td>[string]</td><td>否</td><td>标签codeList</td></tr><tr><td class="dev-resource-field">page</td><td>body</td><td>integer</td><td>否</td><td>分页参数</td></tr><tr><td class="dev-resource-field">perPage</td><td>body</td><td>integer</td><td>否</td><td>分页参数</td></tr></tbody></table></div>
+ <pre class="dev-finance-example"><code>{
+  "id": 0,
+  "type": 0,
+  "cpName": "string",
+  "name": "string",
+  "cpShortName": "string",
+  "description": "string",
+  "regionCode": "string",
+  "contactPersonIds": [
+    0
+  ],
+  "logoUrl": "string",
+  "copyrightEstimatedCount": 0,
+  "minimumCashout": "string",
+  "tenantKey": "string",
+  "clientId": "string",
+  "address": "string",
+  "auditStatus": "AUDIT_WAITING",
+  "realNameStatus": 0,
+  "tagCodeList": [
+    "string"
+  ],
+  "page": 0,
+  "perPage": 0
+}</code></pre><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>false</code></pre><p class="dev-finance-small">查询响应包含客户名称、客户编号、所在地区、作品/艺人/厂牌统计、审核状态及实名状态。<code>auditStatus</code> 取值为 <code>AUDIT_WAITING</code>、<code>AUDIT_APPROVED</code>、<code>AUDIT_REJECT</code>。</p><p class="dev-finance-small"><code>cpName</code> 和 <code>cpShortName</code> 分别对应客户名称与客户简称；<code>tenantKey</code> 为租户标识。</p></section>
+<section id="customer-update" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户档案</div><h2>更新客户</h2><p>更新已有客户的基础资料与关联信息，使用客户 ID 指定目标记录。</p><div class="dev-endpoints"><div><b class="patch">PATCH</b><code>/content-providers/{id}</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>PATCH /content-providers/{id}</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>path</td><td>string</td><td>是</td><td>主键标识</td></tr></tbody></table></div><h3>请求 Body</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>body</td><td>integer</td><td>否</td><td>cpid</td></tr><tr><td class="dev-resource-field">type</td><td>body</td><td>integer</td><td>否</td><td>none</td></tr><tr><td class="dev-resource-field">cpName</td><td>body</td><td>string</td><td>否</td><td>客户名称</td></tr><tr><td class="dev-resource-field">name</td><td>body</td><td>string</td><td>否</td><td>none</td></tr><tr><td class="dev-resource-field">cpShortName</td><td>body</td><td>string</td><td>否</td><td>客户简称</td></tr><tr><td class="dev-resource-field">description</td><td>body</td><td>string</td><td>否</td><td>描述</td></tr><tr><td class="dev-resource-field">regionCode</td><td>body</td><td>string</td><td>否</td><td>用户名</td></tr><tr><td class="dev-resource-field">contactPersonIds</td><td>body</td><td>[integer]</td><td>否</td><td>联系人集合</td></tr><tr><td class="dev-resource-field">logoUrl</td><td>body</td><td>string</td><td>否</td><td>cpLogo地址</td></tr><tr><td class="dev-resource-field">copyrightEstimatedCount</td><td>body</td><td>integer</td><td>否</td><td>预估版权数</td></tr><tr><td class="dev-resource-field">minimumCashout</td><td>body</td><td>string</td><td>否</td><td>最低提现金额</td></tr><tr><td class="dev-resource-field">tenantKey</td><td>body</td><td>string</td><td>否</td><td>租户标识</td></tr><tr><td class="dev-resource-field">clientId</td><td>body</td><td>string</td><td>否</td><td>客户编号</td></tr><tr><td class="dev-resource-field">address</td><td>body</td><td>string</td><td>否</td><td>详细地址</td></tr><tr><td class="dev-resource-field">auditStatus</td><td>body</td><td>string</td><td>否</td><td>审核状态</td></tr><tr><td class="dev-resource-field">realNameStatus</td><td>body</td><td>integer</td><td>否</td><td>实名状态</td></tr><tr><td class="dev-resource-field">tagCodeList</td><td>body</td><td>[string]</td><td>否</td><td>标签codeList</td></tr><tr><td class="dev-resource-field">page</td><td>body</td><td>integer</td><td>否</td><td>分页参数</td></tr><tr><td class="dev-resource-field">perPage</td><td>body</td><td>integer</td><td>否</td><td>分页参数</td></tr></tbody></table></div>
+ <pre class="dev-finance-example"><code>{
+  "id": 0,
+  "type": 0,
+  "cpName": "string",
+  "name": "string",
+  "cpShortName": "string",
+  "description": "string",
+  "regionCode": "string",
+  "contactPersonIds": [
+    0
+  ],
+  "logoUrl": "string",
+  "copyrightEstimatedCount": 0,
+  "minimumCashout": "string",
+  "tenantKey": "string",
+  "clientId": "string",
+  "address": "string",
+  "auditStatus": "AUDIT_WAITING",
+  "realNameStatus": 0,
+  "tagCodeList": [
+    "string"
+  ],
+  "page": 0,
+  "perPage": 0
+}</code></pre><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>false</code></pre><p class="dev-finance-small"><code>id</code> 是客户主键，<code>clientId</code> 为客户编号；<code>stats</code> 包含关联艺人、厂牌与作品数量。</p></section>
+<section id="customer-batch" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户档案</div><h2>批量客户基本信息</h2><p>按客户 ID 列表一次获取多条客户名称、简称及 ID，适用于列表数据关联及批量回填。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/content-providers/batch</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /content-providers/batch</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">ids</td><td>query</td><td>array[string]</td><td>是</td><td>客户 ID 列表</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>[
+  {
+    "id": 0,
+    "name": "",
+    "cpShortName": ""
+  }
+]</code></pre></section>
+<div id="customer-contacts" class="dev-release-chapter dev-resource-group dev-customer-chapter"><div class="dev-section-kicker">CUSTOMER MANAGEMENT</div><h3>联系人管理</h3><p>管理客户对接人、职位、联系电话和邮箱</p></div>
+<section id="customer-contacts-list" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 联系人管理</div><h2>客户联系人列表</h2><p>分页读取指定客户下的联系人，包含姓名、职位、联系电话和邮箱。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/cp/{cpId}/contacts</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /cp/{cpId}/contacts</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>path</td><td>string</td><td>是</td><td>客户 ID（字段名：cpId）</td></tr><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>是</td><td>页码</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>是</td><td>每页数量</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>{
+  "list": [
+    {
+      "id": 0,
+      "cpId": 0,
+      "name": "",
+      "title": "",
+      "phoneNumber": "",
+      "email": "",
+      "createTime": ""
+    }
+  ],
+  "total": 0
+}</code></pre><p class="dev-finance-small">路径参数 <code>cpId</code> 为客户 ID。接口字段名称与请求结构保持一致。</p></section>
+<section id="customer-contacts-create" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 联系人管理</div><h2>新增客户联系人</h2><p>为指定客户新增业务联系人及联系方式。</p><div class="dev-endpoints"><div><b class="post">POST</b><code>/cp/{cpId}/contacts</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>POST /cp/{cpId}/contacts</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>path</td><td>string</td><td>是</td><td>客户 ID（字段名：cpId）</td></tr></tbody></table></div><h3>请求 Body</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>body</td><td>integer | null</td><td>否</td><td>Cp id</td></tr><tr><td class="dev-resource-field">name</td><td>body</td><td>string | null</td><td>否</td><td>联系人名称</td></tr><tr><td class="dev-resource-field">title</td><td>body</td><td>string | null</td><td>否</td><td>职位/身份</td></tr><tr><td class="dev-resource-field">phoneNumber</td><td>body</td><td>string | null</td><td>否</td><td>联系电话</td></tr><tr><td class="dev-resource-field">email</td><td>body</td><td>string | null</td><td>否</td><td>联系电话</td></tr></tbody></table></div>
+ <pre class="dev-finance-example"><code>{
+  "cpId": 0,
+  "name": "string",
+  "title": "string",
+  "phoneNumber": "string",
+  "email": "string"
+}</code></pre><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>false</code></pre><p class="dev-finance-small">路径参数 <code>cpId</code> 为客户 ID。接口字段名称与请求结构保持一致。</p><p class="dev-finance-small">操作响应为 <code>boolean</code>，请根据返回值处理业务结果。</p></section>
+<section id="customer-contacts-detail" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 联系人管理</div><h2>客户联系人详情</h2><p>通过客户 ID 与联系人 ID 查询完整的联系人信息。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/cp/{cpId}/contacts/{contactId}</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /cp/{cpId}/contacts/{contactId}</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>path</td><td>string</td><td>是</td><td>客户 ID（字段名：cpId）</td></tr><tr><td class="dev-resource-field">contactId</td><td>path</td><td>string</td><td>是</td><td>联系人 ID</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>{
+  "id": 0,
+  "cpId": 0,
+  "name": "",
+  "title": "",
+  "phoneNumber": "",
+  "email": "",
+  "createTime": ""
+}</code></pre><p class="dev-finance-small">路径参数 <code>cpId</code> 为客户 ID。接口字段名称与请求结构保持一致。</p></section>
+<section id="customer-contacts-update" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 联系人管理</div><h2>更新客户联系人</h2><p>更新指定客户下联系人的姓名、职位、电话及邮箱。</p><div class="dev-endpoints"><div><b class="patch">PATCH</b><code>/cp/{cpId}/contacts/{contactId}</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>PATCH /cp/{cpId}/contacts/{contactId}</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>path</td><td>string</td><td>是</td><td>客户 ID（字段名：cpId）</td></tr><tr><td class="dev-resource-field">contactId</td><td>path</td><td>string</td><td>是</td><td>联系人 ID</td></tr></tbody></table></div><h3>请求 Body</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>body</td><td>integer | null</td><td>否</td><td>none</td></tr><tr><td class="dev-resource-field">name</td><td>body</td><td>string | null</td><td>否</td><td>联系人名称</td></tr><tr><td class="dev-resource-field">title</td><td>body</td><td>string | null</td><td>否</td><td>职位/身份</td></tr><tr><td class="dev-resource-field">phoneNumber</td><td>body</td><td>string | null</td><td>否</td><td>联系电话</td></tr><tr><td class="dev-resource-field">email</td><td>body</td><td>string | null</td><td>否</td><td>联系电话</td></tr></tbody></table></div>
+ <pre class="dev-finance-example"><code>{
+  "id": 0,
+  "name": "string",
+  "title": "string",
+  "phoneNumber": "string",
+  "email": "string"
+}</code></pre><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>false</code></pre><p class="dev-finance-small">路径参数 <code>cpId</code> 为客户 ID。接口字段名称与请求结构保持一致。</p><p class="dev-finance-small">操作响应为 <code>boolean</code>，请根据返回值处理业务结果。</p></section>
+<section id="customer-contacts-delete" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 联系人管理</div><h2>删除客户联系人</h2><p>删除指定客户下的一条联系人记录。</p><div class="dev-endpoints"><div><b class="delete">DELETE</b><code>/cp/{cpId}/contacts/{contactId}</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>DELETE /cp/{cpId}/contacts/{contactId}</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>path</td><td>string</td><td>是</td><td>客户 ID（字段名：cpId）</td></tr><tr><td class="dev-resource-field">contactId</td><td>path</td><td>string</td><td>是</td><td>联系人 ID</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>false</code></pre><p class="dev-finance-small">路径参数 <code>cpId</code> 为客户 ID。接口字段名称与请求结构保持一致。</p></section>
+<div id="customer-tags" class="dev-release-chapter dev-resource-group dev-customer-chapter"><div class="dev-section-kicker">CUSTOMER MANAGEMENT</div><h3>客户标签</h3><p>查询标签字典并维护客户的标签关联</p></div>
+<section id="customer-tags-options" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户标签</div><h2>客户标签列表</h2><p>按照名称、编码及标签类型查询可用的标签配置。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/tags</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /tags</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">pageNum</td><td>query</td><td>integer</td><td>是</td><td>页码</td></tr><tr><td class="dev-resource-field">pageSize</td><td>query</td><td>integer</td><td>是</td><td>每页数量</td></tr><tr><td class="dev-resource-field">id</td><td>query</td><td>string</td><td>否</td><td>主键标识</td></tr><tr><td class="dev-resource-field">code</td><td>query</td><td>string</td><td>否</td><td>—</td></tr><tr><td class="dev-resource-field">codes</td><td>query</td><td>array[string]</td><td>否</td><td>标签编码列表</td></tr><tr><td class="dev-resource-field">title</td><td>query</td><td>string</td><td>否</td><td>搜索关键词</td></tr><tr><td class="dev-resource-field">titles</td><td>query</td><td>array[string]</td><td>否</td><td>标签名称列表</td></tr><tr><td class="dev-resource-field">tagType</td><td>query</td><td>string</td><td>否</td><td>标签类型</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>{
+  "total": 0,
+  "list": [
+    {
+      "id": 0,
+      "tenantKey": "",
+      "createUser": {
+        "id": 0,
+        "name": ""
+      },
+      "createTime": "",
+      "updateUser": {
+        "id": 0,
+        "name": ""
+      },
+      "updateTime": "",
+      "title": "",
+      "code": "",
+      "tagType": "",
+      "description": "",
+      "status": 0
+    }
+  ]
+}</code></pre></section>
+<section id="customer-tags-get" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户标签</div><h2>查询客户标签</h2><p>查询指定客户当前关联的标签及标签信息。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/tags/cp/{cpId}</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /tags/cp/{cpId}</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>path</td><td>string</td><td>是</td><td>客户 ID（字段名：cpId）</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>[
+  {
+    "id": 0,
+    "tenantKey": "",
+    "createUser": {
+      "id": 0,
+      "name": ""
+    },
+    "createTime": "",
+    "updateUser": {
+      "id": 0,
+      "name": ""
+    },
+    "updateTime": "",
+    "title": "",
+    "code": "",
+    "tagType": "",
+    "description": "",
+    "status": 0
+  }
+]</code></pre></section>
+<section id="customer-tags-update" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 客户标签</div><h2>设置客户标签</h2><p>传入标签编码列表，保存指定客户的标签关联。</p><div class="dev-endpoints"><div><b class="patch">PATCH</b><code>/tags/cp/{cpId}</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>PATCH /tags/cp/{cpId}</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>path</td><td>string</td><td>是</td><td>客户 ID（字段名：cpId）</td></tr></tbody></table></div><h3>请求 Body</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">body</td><td>body</td><td>array[string]</td><td>否</td><td>需要关联的标签编码列表</td></tr></tbody></table></div>
+ <pre class="dev-finance-example"><code>[
+  "string"
+]</code></pre><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>{}</code></pre></section>
+<div id="customer-identity-data" class="dev-release-chapter dev-resource-group dev-customer-chapter"><div class="dev-section-kicker">CUSTOMER MANAGEMENT</div><h3>实名认证信息</h3><p>查询客户身份及企业认证资料</p></div>
+<section id="customer-identity" class="dev-finance-endpoint dev-resource-endpoint dev-customer-endpoint"><div class="dev-section-kicker">客户管理 API · 实名认证信息</div><h2>客户实名认证信息</h2><p>查询指定客户的个人或企业认证资料，包含主体类型、认证方式及企业相关信息。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/cp/{cpId}/real/info</code><span>200</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /cp/{cpId}/real/info</code></pre>
+<h3>路径与查询参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">cpId</td><td>path</td><td>string</td><td>是</td><td>客户 ID（字段名：cpId）</td></tr></tbody></table></div><h3>200 OK 响应示例</h3>
+ <pre class="dev-finance-example"><code>{
+  "cpId": 0,
+  "organizeType": 0,
+  "authWay": "",
+  "signWay": "",
+  "authName": "",
+  "contactMobile": "",
+  "certificateType": "",
+  "certificateNumber": "",
+  "certificatePath": "",
+  "contactAddress": "",
+  "enterpriseName": "",
+  "taxpayerNumber": "",
+  "businessLicensePath": "",
+  "legalPersonName": "",
+  "legalPersonMobile": ""
+}</code></pre><p class="dev-finance-small">路径参数 <code>cpId</code> 为客户 ID。接口字段名称与请求结构保持一致。</p><p class="dev-finance-small">实名认证数据包含证件号码、营业执照等敏感信息，应仅限授权业务用途并采取适当的数据保护措施。</p></section>
+<section id="customer-api-fields" class="dev-finance-guidance"><h2>客户状态与字段说明</h2>
+<div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id / cpId</td><td>字段</td><td>integer / string</td><td>否</td><td>客户内部 ID；cpId 在接口路径中表示客户 ID</td></tr><tr><td class="dev-resource-field">clientId</td><td>字段</td><td>string</td><td>否</td><td>客户编号</td></tr><tr><td class="dev-resource-field">cpName / name</td><td>字段</td><td>string</td><td>否</td><td>客户名称字段，具体使用以对应接口请求和响应为准</td></tr><tr><td class="dev-resource-field">cpShortName</td><td>字段</td><td>string</td><td>否</td><td>客户简称</td></tr><tr><td class="dev-resource-field">realNameStatus</td><td>字段</td><td>integer</td><td>否</td><td>实名认证状态：0 未实名；1 已实名</td></tr><tr><td class="dev-resource-field">auditStatus</td><td>字段</td><td>string</td><td>否</td><td>AUDIT_WAITING 待审核；AUDIT_APPROVED 已通过；AUDIT_REJECT 未通过</td></tr><tr><td class="dev-resource-field">stats</td><td>响应</td><td>object</td><td>否</td><td>客户关联的艺人、厂牌与作品数量</td></tr><tr><td class="dev-resource-field">tagCodeList</td><td>请求</td><td>array[string]</td><td>否</td><td>客户关联的标签编码列表</td></tr></tbody></table></div>
+<p class="dev-finance-small">不同端点分别采用 <code>pageNum/pageSize</code> 或 <code>page/size</code>，分页响应可能使用 <code>list/total</code> 或直接返回数组。请根据对应接口的参数和响应结构处理，不要混用。</p>
+</section>
 <section class="dev-modular-common"><div class="dev-section-kicker">SHARED REFERENCE & ROADMAP</div><h2>公共规范与参考</h2><p>这部分保存已有文档的参考数据、统一发行资源、Webhook、错误码与版本管理内容。V1 规划接口不属于已验证的基础发行网关端点。</p></section>
 
 <section id="reference-data">
