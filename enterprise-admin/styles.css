@@ -348,3 +348,25 @@ a{text-decoration:none;color:inherit}
 @media(max-width:860px){
   .nav-submenu{display:none!important}
 }
+
+
+/* Visual QA · prevent narrow labels, form controls and values from clipping. */
+.page.active .page-head>*,.page.active .content>*,.page.active .brand-editor-layout>*,
+.page.active .brand-asset-card>*,.page.active .agreement-item>*,
+.page.active .translation-row>*,.page.active .theme-setting>*,
+.page.active .metric-grid>*,.page.active .usage-record-row>* {min-width:0}
+.page.active h1,.page.active h2,.page.active h3,.page.active p {overflow-wrap:break-word}
+.page.active .page-head p,.page.active .brand-page p,.page.active .usage-page p {overflow-wrap:anywhere}
+.page.active input,.page.active select,.page.active textarea {max-width:100%;min-width:0}
+.page.active button,.page.active .secondary-mini {max-width:100%;overflow-wrap:break-word}
+.translation-row input,.translation-row textarea {min-width:0}
+.translation-actions {flex-wrap:wrap}
+.enterprise-subnav {min-width:0;max-width:100%;overflow-x:auto;scrollbar-width:thin}
+.enterprise-subnav a {flex:none;white-space:nowrap}
+.brand-asset-card .asset-thumb,.brand-asset-card .asset-preview {flex-shrink:0}
+.brand-page .portal-head,.admin-preview-top {min-width:0}
+@media(max-width:460px){
+ .translation-row{grid-template-columns:minmax(0,1fr);gap:5px}
+ .translation-row label{padding-top:0}
+ .brand-save-actions{flex-wrap:wrap;row-gap:8px}
+}
