@@ -1437,21 +1437,11 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-
     <details class="dev-nav-group dev-nav-reference">
       <summary>公共规范</summary>
       <div class="dev-nav-items">
-        <a href="#reference-data">参考数据</a>
-<a href="#territories">国家与地区</a>
-<a href="#languages">语言</a>
-<a href="#genres">音乐风格</a>
-<a href="#roles">角色</a>
-<a href="#dsps">发行平台</a>
-<a href="#distributions">统一发行资源</a>
-<a href="#guide-submit">提交发行</a>
-<a href="#guide-update">更新发行</a>
-<a href="#guide-takedown">下架</a>
-<a href="#webhooks">事件回调</a>
-<a href="#event-types">事件类型</a>
-<a href="#signature">签名校验</a>
-<a href="#error-codes">错误码</a>
-<a href="#changelog">更新记录</a>
+        <a href="#reference-data">模块概览</a>
+        <a href="#territories">国家与地区</a>
+        <a href="#languages">语言与语种</a>
+        <a href="#genres">音乐风格</a>
+        <a href="#roles">贡献者角色</a>
       </div>
     </details>
   </nav>
@@ -1465,14 +1455,14 @@ GET /open/v1/release/result/latest/{catalogNo}</code></pre><small class="api-v2-
         <div class="dev-actions"><a class="btn btn-primary" href="/apply?solution=api" data-route>申请 API 接入</a><a class="btn btn-secondary" href="/api" data-route>返回发行 API</a></div>
         <div class="dev-notice"><b>文档说明</b><span>基础发行 API 覆盖身份认证、OSS 上传、K-JSON 发行任务和渠道结果查询；扩展业务 API 按资产管理、艺人与厂牌、发行数据、版税报表、分账管理及客户管理分组。选择左侧目录即可查看各个模块的接口路径、请求参数和响应字段。</span></div>
         <div class="dev-paths">
-          <article><small>可选扩展</small><h3>模块化业务 API</h3><p>按企业实际业务系统选择资产、艺人、发行数据、版税、分账及客户模块。按业务模块查看相应接口、请求参数与字段规范，将发行、收益和分账相关数据集成进企业现有系统。</p><span>模块独立选购 · 资料逐步补充</span></article>
+          <article><small>可选扩展</small><h3>模块化业务 API</h3><p>按企业实际业务系统选择资产、艺人、发行数据、版税、分账及客户模块。按业务模块查看相应接口、请求参数与字段规范，将发行、收益和分账相关数据集成进企业现有系统。</p><span>模块独立选购 · 按需授权</span></article>
           <article><small>基础发行</small><h3>K-JSON 发行链路</h3><p>直接提交完整发行数据与素材，适合大型发行商、大曲库迁移和批量系统对接。</p><span>认证 → STS → OSS → K-JSON → 任务 → 结果</span></article>
         </div>
       </section>
 
 <section id="quickstart">
         <div class="dev-section-kicker">开始</div><h2>快速开始</h2>
-        <p>当前的基础发行链路不依赖购买其他 API 模块，也不需要先调用规划中的艺人、专辑等资源接口。先准备 K-JSON 元数据及素材，再认证、上传、创建任务并查询结果。</p>
+        <p>基础发行不依赖其他扩展 API。使用统一域名和真实发行网关路径，按「获取凭证 → 上传文件 → 提交 K-JSON 发行任务 → 查询结果」完成系统接入。</p>
         <div class="dev-steps"><div><b>1</b><span>获取访问凭证</span></div><div><b>2</b><span>获取 OSS STS</span></div><div><b>3</b><span>上传 K-JSON 与素材</span></div><div><b>4</b><span>提交发行任务</span></div><div><b>5</b><span>查询平台状态</span></div></div>
         <h3>基础发行 API · 6 个已验证网关接口</h3>
         <pre><code>GET  /open/v1/token
@@ -1481,26 +1471,31 @@ POST /open/v1/kjson/tasks
 GET  /open/v1/kjson/tasks/{taskId}
 GET  /open/v1/kjson/tasks?batchPath={batchPath}
 GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
-        <p class="caption">创建 K-JSON 任务后的 taskId 返回结构在现有文档中尚未完整定义，联调时以实际测试环境返回为准。</p>
-      </section>
+        <p class="caption">统一 Host 为 <code>https://api.kanjian.com</code>；请求时将 Host 与下方的 Endpoint Path 直接拼接，例如 <code>https://api.kanjian.com/open/v1/token</code>。任务提交后的返回结构在现有资料中未明确，应通过已支持的批次路径查询确认处理结果。</p>
+      <h3>接口接入顺序</h3><div class="doc-table"><div class="head"><b>阶段</b><b>使用接口</b><b>下一步</b></div><div><span>身份认证</span><span>GET /open/v1/token</span><span>获得访问令牌</span></div><div><span>文件上传</span><span>GET /open/v1/oss/sts</span><span>按返回的临时凭证和 basePath 上传文件</span></div><div><span>提交发行</span><span>POST /open/v1/kjson/tasks</span><span>提交包含 filePath 的 JSON 请求体</span></div><div><span>结果查询</span><span>GET /open/v1/kjson/tasks?batchPath=...</span><span>查询批次任务；按 catalogNo 查询发行渠道结果</span></div></div>
+<p class="caption">此流程展示已提供的真实接口顺序。现有资料未提供完整的 Token 响应、STS SDK 调用和任务创建响应模型，不提供虚构的“可直接运行”响应数据；实施时需使用开通的实际凭证及 K-JSON 样例。</p></section>
 
 <section id="basic-api" class="dev-modular-intro dev-modular-live"><div class="dev-section-kicker">CORE / INCLUDED</div><div class="dev-modular-intro-top"><h2>基础发行 API</h2></div><p>默认随 API 接入实施开通。认证、文件上传、K-JSON 发行任务与 DSP 状态查询构成完整发行闭环；上架、修改和下架不依赖额外购买其他业务模块。</p></section>
 
 <section id="authentication">
         <div class="dev-section-kicker">基础发行 API</div><h2>身份认证</h2>
-        <p>使用企业开通时分配的 <code>appKey</code> 与 <code>appSecret</code> 获取 <code>accessToken</code>，后续请求通过 Bearer Token 认证。</p>
-        <pre><code>GET /open/v1/token?appKey={appKey}&amp;appSecret={appSecret}
-
+        <p>通过企业开通凭证 <code>appKey</code> 与 <code>appSecret</code> 调用令牌接口，获得 <code>accessToken</code>。取得令牌后，再将其放到后续受保护接口的 <code>Authorization</code> 请求头。</p>
+<h3>① 获取 Token</h3><pre><code>GET https://api.kanjian.com/open/v1/token?appKey={appKey}&amp;appSecret={appSecret}</code></pre>
+<h3>② 使用 Token</h3><pre><code>GET https://api.kanjian.com/open/v1/oss/sts
 Authorization: Bearer {accessToken}</code></pre>
+<p class="caption">令牌申请接口采用现有网关提供的 GET 方式。<code>appSecret</code> 属于敏感凭证，请仅在服务端调用，不要嵌入浏览器代码，避免在 URL 日志、监控及错误报告中泄露密钥。</p>
         <div class="doc-table"><div class="head"><b>字段</b><b>来源</b><b>用途</b></div><div><span>appKey / appSecret</span><span>企业开通后分配</span><span>换取访问令牌</span></div><div><span>accessToken</span><span>认证接口返回</span><span>后续接口鉴权</span></div><div><span>contentProvider</span><span>平台配置</span><span>现有发行网关识别内容提供方</span></div><div><span>tenantkey</span><span>平台配置</span><span>现有发行网关租户标识；标准资源 API 将尽量由凭证上下文自动识别</span></div></div>
       </section>
 
-<section id="environment">
-        <h2>环境与凭证</h2>
-        <p>测试环境用于完成认证、上传、发行任务与结果查询。生产环境与正式凭证在企业合作和联调阶段开通。</p>
-        <div class="doc-table"><div class="head"><b>项目</b><b>测试环境</b><b>生产环境</b></div><div><span>发行网关地址</span><span>https://api.test.kanjian.com/open/v1</span><span>项目开通后提供</span></div><div><span>用途</span><span>接口联调与发行验证</span><span>真实业务发行</span></div><div><span>凭证</span><span>测试 appKey / appSecret</span><span>独立生产凭证</span></div></div>
-        <p class="caption">标准资源 API 的正式 Base URL 会在 V1 对外开放时统一提供，不与现有内部接口地址直接绑定。</p>
-      </section>
+<section id="environment"><h2>服务地址与请求路径</h2>
+<p>所有示例使用统一 API 域名；请求路径保留每个真实接口的原始路径和版本前缀，不对业务接口进行二次拼接。</p>
+<div class="doc-table"><div class="head"><b>名称</b><b>取值</b><b>说明</b></div><div><span>Host / Base URL</span><span>https://api.kanjian.com</span><span>统一 HTTPS API 服务域名，不包含版本路径</span></div><div><span>Endpoint Path</span><span>/open/v1/kjson/tasks</span><span>包含该接口自带的 /open/v1 前缀</span></div><div><span>完整请求 URL</span><span>https://api.kanjian.com/open/v1/kjson/tasks</span><span>Host + Endpoint Path，路径只拼接一次</span></div></div>
+<pre><code>GET  https://api.kanjian.com/open/v1/token?appKey={appKey}&amp;appSecret={appSecret}
+GET  https://api.kanjian.com/open/v1/oss/sts
+POST https://api.kanjian.com/open/v1/kjson/tasks
+GET  https://api.kanjian.com/regions</code></pre>
+<p class="caption">测试环境、生产凭证和各扩展模块的实际网关权限由企业开通配置确定。现有资料未确认独立测试域名，不将猜测的环境地址作为正式地址发布。</p>
+</section>
 
 <section id="files">
         <h2>OSS 文件上传</h2>
@@ -3852,104 +3847,131 @@ GET  /open/v1/release/result/latest/{catalogNo}</code></pre>
 <div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>必填</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id / cpId</td><td>字段</td><td>integer / string</td><td>否</td><td>客户内部 ID；cpId 在接口路径中表示客户 ID</td></tr><tr><td class="dev-resource-field">clientId</td><td>字段</td><td>string</td><td>否</td><td>客户编号</td></tr><tr><td class="dev-resource-field">cpName / name</td><td>字段</td><td>string</td><td>否</td><td>客户名称字段，具体使用以对应接口请求和响应为准</td></tr><tr><td class="dev-resource-field">cpShortName</td><td>字段</td><td>string</td><td>否</td><td>客户简称</td></tr><tr><td class="dev-resource-field">realNameStatus</td><td>字段</td><td>integer</td><td>否</td><td>实名认证状态：0 未实名；1 已实名</td></tr><tr><td class="dev-resource-field">auditStatus</td><td>字段</td><td>string</td><td>否</td><td>AUDIT_WAITING 待审核；AUDIT_APPROVED 已通过；AUDIT_REJECT 未通过</td></tr><tr><td class="dev-resource-field">stats</td><td>响应</td><td>object</td><td>否</td><td>客户关联的艺人、厂牌与作品数量</td></tr><tr><td class="dev-resource-field">tagCodeList</td><td>请求</td><td>array[string]</td><td>否</td><td>客户关联的标签编码列表</td></tr></tbody></table></div>
 <p class="dev-finance-small">不同端点分别采用 <code>pageNum/pageSize</code> 或 <code>page/size</code>，分页响应可能使用 <code>list/total</code> 或直接返回数组。请根据对应接口的参数和响应结构处理，不要混用。</p>
 </section>
-<section class="dev-modular-common"><div class="dev-section-kicker">SHARED REFERENCE & ROADMAP</div><h2>公共规范与参考</h2><p>这部分保存已有文档的参考数据、统一发行资源、Webhook、错误码与版本管理内容。V1 规划接口不属于已验证的基础发行网关端点。</p></section>
-
-<section id="reference-data">
-        <h2>参考数据</h2>
-        <p>语言、地区、音乐风格、角色与发行平台统一通过参考数据接口读取，避免客户在代码中长期维护内部 ID。</p>
-        <div class="dev-endpoints"><div><b class="get">GET</b><code>/v1/reference/languages</code><span>语言</span></div><div><b class="get">GET</b><code>/v1/reference/territories</code><span>国家与地区</span></div><div><b class="get">GET</b><code>/v1/reference/genres</code><span>音乐风格</span></div><div><b class="get">GET</b><code>/v1/reference/roles</code><span>贡献者角色</span></div><div><b class="get">GET</b><code>/v1/reference/dsps</code><span>发行平台</span></div></div>
-      </section>
-
-<section id="territories">
-        <div class="dev-section-kicker">参考</div><h2>国家与地区</h2>
-        <p>用于定义发行可用地区、限制地区和平台覆盖范围。建议通过参考数据接口实时读取，不在客户系统中长期写死内部 ID。</p>
-        <pre><code>GET /v1/reference/territories</code></pre>
-      </section>
-<section id="languages">
-        <h2>语言</h2>
-        <p>用于艺人、专辑、歌曲与歌词等内容的语种标识。正式接口会返回稳定代码和展示名称。</p>
-        <pre><code>GET /v1/reference/languages</code></pre>
-      </section>
-<section id="genres">
-        <h2>音乐风格</h2>
-        <p>用于专辑和歌曲的主风格、子风格等分类。不同平台对风格的支持可能存在差异，提交前由发行校验统一处理。</p>
-        <pre><code>GET /v1/reference/genres</code></pre>
-      </section>
-<section id="roles">
-        <h2>角色</h2>
-        <p>用于表达主艺人、伴唱艺人、作词、作曲等参与关系。现有业务模型已使用角色信息组织艺人和创作者。</p>
-        <pre><code>GET /v1/reference/roles</code></pre>
-      </section>
-<section id="dsps">
-        <h2>发行平台</h2>
-        <p>返回可选择的目标发行平台及稳定平台代码，用于创建发行任务和查询平台状态。</p>
-        <pre><code>GET /v1/reference/dsps</code></pre>
-      </section>
-
-<section id="distributions">
-        <h2>统一发行资源</h2>
-        <p>对外统一使用“发行”资源，屏蔽底层 K-JSON 任务编排。创建发行时配置目标平台、发行日期、地区与可用期；后续更新和下架继续围绕同一个发行对象操作。</p>
-        <div class="dev-endpoints"><div><b>POST</b><code>/v1/distributions</code><span>创建并提交发行</span></div><div><b class="get">GET</b><code>/v1/distributions/{distributionId}</code><span>查询发行详情</span></div><div><b>POST</b><code>/v1/distributions/{distributionId}/update</code><span>更新发行</span></div><div><b>POST</b><code>/v1/distributions/{distributionId}/takedown</code><span>指定平台下架</span></div><div><b>POST</b><code>/v1/distributions/{distributionId}/takedown-all</code><span>全部平台下架</span></div></div>
-        <div class="doc-table"><div class="head"><b>对外操作</b><b>底层 K-JSON</b><b>说明</b></div><div><span>新建内容</span><span>ContentState = INSERT</span><span>新增发行内容</span></div><div><span>更新内容</span><span>ContentState = UPDATE</span><span>更新已有内容</span></div><div><span>上架</span><span>DSP = RELEASE</span><span>向指定发行平台提交</span></div><div><span>下架</span><span>DSP = TAKE_DOWN</span><span>指定平台下架</span></div><div><span>全部下架</span><span>DSP = TAKE_DOWN_ALL</span><span>全部目标平台下架</span></div></div>
-      </section>
-
-<section id="guide-submit">
-        <h2>提交发行</h2>
-        <p>内容准备完成后创建发行任务，选择目标发行平台、发行日期和地区。标准资源 API 会由服务端生成底层 K-JSON 并进入现有发行链路。</p>
-        <pre><code>POST /v1/distributions
-{
-  "album_id": "alb_xxx",
-  "platforms": ["youtube_music", "spotify", "apple_music", "qq_music"],
-  "release_date": "2026-10-02",
-  "territories": ["WORLDWIDE"]
-}</code></pre>
-        <p class="caption">以上为 V1 对外资源模型示例；最终字段命名与枚举以正式开放契约为准。</p>
-      </section>
-<section id="guide-update">
-        <h2>更新发行</h2>
-        <p>发行后的元数据、文件或平台配置发生变化时，通过原发行对象提交更新。底层对应 <code>ContentState = UPDATE</code>，并继续复用原有发行关系。</p>
-        <pre><code>POST /v1/distributions/{distributionId}/update</code></pre>
-        <p>建议在更新前先读取当前发行详情与平台状态，避免对仍在处理中的任务重复提交冲突操作。</p>
-      </section>
-<section id="guide-takedown">
-        <h2>下架</h2>
-        <p>支持指定发行平台下架和全部平台下架。底层分别映射到 <code>TAKE_DOWN</code> 与 <code>TAKE_DOWN_ALL</code>。</p>
-        <pre><code>POST /v1/distributions/{distributionId}/takedown
-POST /v1/distributions/{distributionId}/takedown-all</code></pre>
-        <p>下架同样是异步任务；当前应通过基础网关主动查询平台状态，Webhook 回调仍在规划中。</p>
-      </section>
-
-<section id="webhooks">
-        <div class="dev-section-kicker">事件</div><h2>事件回调</h2>
-        <p>事件回调用于把发行任务和各平台处理结果主动推送到客户系统，减少持续轮询。V1 会提供回调地址管理、投递记录与失败重试。</p>
-        <div class="dev-endpoints"><div><b>POST</b><code>/v1/webhooks</code><span>创建回调地址</span></div><div><b class="get">GET</b><code>/v1/webhooks</code><span>查询回调配置</span></div><div><b class="delete">DELETE</b><code>/v1/webhooks/{webhookId}</code><span>删除回调地址</span></div></div>
-      </section>
-
-<section id="event-types">
-        <h2>事件类型</h2>
-        <p>事件名保持稳定的机器可读格式，中文文档解释其业务含义。</p>
-        <div class="doc-table"><div class="head"><b>事件</b><b>中文含义</b><b>触发场景</b></div><div><span>distribution.created</span><span>发行已创建</span><span>发行任务创建成功</span></div><div><span>distribution.processing</span><span>发行处理中</span><span>发行链路正在处理</span></div><div><span>distribution.completed</span><span>发行任务完成</span><span>任务级处理完成</span></div><div><span>distribution.failed</span><span>发行任务失败</span><span>任务级异常</span></div><div><span>platform.processing</span><span>平台处理中</span><span>单个平台正在处理</span></div><div><span>platform.live</span><span>平台已上线</span><span>单个平台已完成上架</span></div><div><span>platform.failed</span><span>平台处理失败</span><span>返回平台失败原因</span></div><div><span>platform.takedown</span><span>平台已下架</span><span>下架完成</span></div></div>
-      </section>
-
-<section id="signature">
-        <h2>签名校验</h2>
-        <p>Webhook 会使用独立 Secret 对回调请求进行签名，客户服务端应先验证签名再处理事件，并使用事件 ID 做幂等去重。</p>
-        <div class="doc-table"><div class="head"><b>要求</b><b>作用</b><b>说明</b></div><div><span>独立 Secret</span><span>验证回调来源</span><span>与 API 访问凭证分离</span></div><div><span>时间戳</span><span>降低重放风险</span><span>校验允许的时间窗口</span></div><div><span>event_id</span><span>幂等去重</span><span>同一事件只处理一次</span></div><div><span>失败重试</span><span>提高投递可靠性</span><span>非 2xx 响应进入重试</span></div></div>
-        <p class="caption">具体签名算法与 Header 名称会在 V1 正式契约中固定，当前资料尚未提供已上线的签名规范。</p>
-      </section>
-
-<section id="error-codes">
-        <h2>错误码</h2>
-        <p>对外 V1 使用 HTTP 状态码 + 业务错误码 + 请求 ID。现有发行结果中的 <code>failCode</code> 继续用于表达具体平台失败原因。</p>
-        <div class="doc-table"><div class="head"><b>类型</b><b>需要查看</b><b>处理方式</b></div><div><span>认证 / 权限</span><span>HTTP 状态码、业务错误码</span><span>检查令牌和接口权限</span></div><div><span>参数校验</span><span>字段路径与错误原因</span><span>修正请求后重试</span></div><div><span>发行处理</span><span>任务、目录号、平台状态</span><span>等待处理或修正发行资料</span></div><div><span>平台失败</span><span>failCode、dspId</span><span>按平台要求修正后重新提交</span></div><div><span>系统异常</span><span>请求 ID、请求时间</span><span>提交技术支持排查</span></div></div>
-      </section>
-
-<section id="changelog">
-        <h2>更新记录</h2>
-        <p>Open API 以 <code>/v1</code> 作为稳定版本边界。新增字段、枚举扩展、行为调整和废弃计划会在更新记录中统一说明，避免企业接入方因接口变化被动修改。</p>
-        <div class="dev-notice"><b>版本原则</b><span>兼容性新增优先在当前版本内演进；存在破坏性变更时进入新的主版本，并提前提供迁移说明与过渡期。</span></div>
-        <div class="hero-actions"><a class="btn btn-primary" href="/apply?solution=api" data-route>申请 API 接入</a><a class="btn btn-secondary" href="/api" data-route>返回发行 API</a></div>
-      </section>
+<section class="dev-modular-common"><div class="dev-section-kicker">SHARED METADATA API</div><h2>公共规范与参考</h2><p>为内容创建、发行地区配置和艺人角色管理提供统一的基础元数据查询。仅收录已提供接口资料中的实际查询路径，不重复介绍基础发行与扩展模块的业务操作。</p><p class="dev-finance-small">公共元数据接口沿用原始路径，以 <code>https://api.kanjian.com</code> 为统一 Host。认证及租户权限依据企业实际开通的模块配置；部分同名接口存在不同版本的响应结构，不应混用字段。</p></section>
+<section id="reference-data" class="dev-modular-intro dev-ref-intro"><div class="dev-section-kicker">REFERENCE DATA</div><h2>公共元数据 API</h2><p>建议先读取国家地区、语种、风格和参与角色代码，再创建作品或发行内容，避免将字典 ID 与代码写死在业务系统中。</p><div class="dev-finance-flow"><span>地区</span><i>→</i><span>语言</span><i>→</i><span>风格</span><i>→</i><span>角色</span></div></section>
+<div id="territories" class="dev-release-chapter dev-resource-group dev-public-group"><div class="dev-section-kicker">REFERENCE CATEGORY</div><h3>国家与地区</h3><p>查询标准地区代码与预置地区分组，按发行授权地区配置使用</p></div>
+<section id="ref-regions" class="dev-finance-endpoint dev-resource-endpoint dev-public-endpoint">
+<div class="dev-section-kicker">公共规范 · 国家与地区</div><h2>国家与地区代码</h2><p>按代码、名称或 ID 查询国家和地区；支持在发行地区与地区限制中使用返回的地区 code。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/regions</code><span>元数据查询</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /regions
+Authorization: Bearer {accessToken}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">code</td><td>query</td><td>string</td><td>地区代码</td></tr><tr><td class="dev-resource-field">codes</td><td>query</td><td>string</td><td>多个地区代码；具体分隔格式由业务服务定义</td></tr><tr><td class="dev-resource-field">id</td><td>query</td><td>string</td><td>地区 ID</td></tr><tr><td class="dev-resource-field">ids</td><td>query</td><td>string</td><td>多个地区 ID</td></tr><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>地区名称</td></tr><tr><td class="dev-resource-field">names</td><td>query</td><td>string</td><td>多个地区名称</td></tr></tbody></table></div>
+<h3>200 响应结构示例</h3><pre class="dev-finance-example"><code>{
+  &quot;total&quot;: 251,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;1&quot;,
+      &quot;name&quot;: &quot;Andorra&quot;,
+      &quot;code&quot;: &quot;AD&quot;,
+      &quot;tenantKey&quot;: &quot;default&quot;
+    },
+    {
+      &quot;id&quot;: &quot;2&quot;,
+      &quot;name&quot;: &quot;United Arab Emirates (the)&quot;,
+      &quot;code&quot;: &quot;AE&quot;,
+      &quot;tenantKey&quot;: &quot;default&quot;
+    }
+  ]
+}</code></pre><p class="dev-finance-small">此响应示例摘录自元数据接口的查询结果，列表仅展示前两条。另一份公共服务文档使用相同路径但不同字段及数组响应模型；接入时需确认使用的网关契约。</p><p class="dev-finance-small">示例数据用于展示响应结构，具体记录和授权范围以实际服务返回为准。</p></section>
+<section id="ref-territory-groups" class="dev-finance-endpoint dev-resource-endpoint dev-public-endpoint">
+<div class="dev-section-kicker">公共规范 · 国家与地区</div><h2>预置地区分组</h2><p>获取预定义的地区组合（包括大洲范围），便于企业选择发行授权的目标地区。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/territory-group-templates</code><span>元数据查询</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /territory-group-templates
+Authorization: Bearer {accessToken}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">User-Language</td><td>header</td><td>string</td><td>展示语言，可按服务支持值传入</td></tr></tbody></table></div>
+<h3>200 响应结构示例</h3><pre class="dev-finance-example"><code>{
+  &quot;total&quot;: 0,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;territoryList&quot;: [
+        {
+          &quot;id&quot;: &quot;string&quot;,
+          &quot;name&quot;: &quot;string&quot;,
+          &quot;code&quot;: &quot;string&quot;,
+          &quot;tenantKey&quot;: &quot;string&quot;
+        }
+      ]
+    }
+  ]
+}</code></pre><p class="dev-finance-small">示例数据用于展示响应结构，具体记录和授权范围以实际服务返回为准。</p></section>
+<div id="languages" class="dev-release-chapter dev-resource-group dev-public-group"><div class="dev-section-kicker">REFERENCE CATEGORY</div><h3>语言与语种</h3><p>区分标题展示语言和音频、歌词所用语种</p></div>
+<section id="ref-language-scripts" class="dev-finance-endpoint dev-resource-endpoint dev-public-endpoint">
+<div class="dev-section-kicker">公共规范 · 语言与语种</div><h2>标题语言</h2><p>查询专辑及歌曲标题所用语言的标识、地区变体与中文名称。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/language-scripts</code><span>元数据查询</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /language-scripts
+Authorization: Bearer {accessToken}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>query</td><td>string</td><td>语言 ID</td></tr><tr><td class="dev-resource-field">code</td><td>query</td><td>string</td><td>语言代码</td></tr><tr><td class="dev-resource-field">codeDialect</td><td>query</td><td>string</td><td>语言方言代码</td></tr><tr><td class="dev-resource-field">codes</td><td>query</td><td>array[string]</td><td>多个语言代码</td></tr><tr><td class="dev-resource-field">codeDialects</td><td>query</td><td>array[string]</td><td>多个方言代码</td></tr></tbody></table></div>
+<h3>200 响应结构示例</h3><pre class="dev-finance-example"><code>[
+  {
+    &quot;id&quot;: &quot;2&quot;,
+    &quot;code&quot;: &quot;zh-hans&quot;,
+    &quot;codeDialect&quot;: &quot;zh-hans&quot;,
+    &quot;name&quot;: &quot;简体中文&quot;
+  },
+  {
+    &quot;id&quot;: &quot;3&quot;,
+    &quot;code&quot;: &quot;zh-hant&quot;,
+    &quot;codeDialect&quot;: &quot;zh-hant&quot;,
+    &quot;name&quot;: &quot;繁体中文&quot;
+  }
+]</code></pre><p class="dev-finance-small">此处采用元数据服务的数组响应示例；另一份公共服务文档在同路径下返回 total/data 对象，两者不可混用。</p><p class="dev-finance-small">示例数据用于展示响应结构，具体记录和授权范围以实际服务返回为准。</p></section>
+<section id="ref-language-dialects" class="dev-finance-endpoint dev-resource-endpoint dev-public-endpoint">
+<div class="dev-section-kicker">公共规范 · 语言与语种</div><h2>音频与歌词语种</h2><p>查询音频人声或歌词语种代码，可按语言名称或代码筛选。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/language-dialects</code><span>元数据查询</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /language-dialects
+Authorization: Bearer {accessToken}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>query</td><td>string</td><td>语种 ID</td></tr><tr><td class="dev-resource-field">code</td><td>query</td><td>string</td><td>语种代码</td></tr><tr><td class="dev-resource-field">codes</td><td>query</td><td>array[string]</td><td>多个语种代码</td></tr><tr><td class="dev-resource-field">ids</td><td>query</td><td>array[string]</td><td>多个语种 ID</td></tr><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>语种名称</td></tr><tr><td class="dev-resource-field">names</td><td>query</td><td>array[string]</td><td>多个语种名称</td></tr></tbody></table></div>
+<h3>200 响应结构示例</h3><pre class="dev-finance-example"><code>[
+  {
+    &quot;id&quot;: &quot;2&quot;,
+    &quot;code&quot;: &quot;zh-hans&quot;,
+    &quot;codeDialect&quot;: &quot;zh-hans&quot;,
+    &quot;name&quot;: &quot;简体中文&quot;
+  },
+  {
+    &quot;id&quot;: &quot;8&quot;,
+    &quot;code&quot;: &quot;en-US&quot;,
+    &quot;codeDialect&quot;: &quot;en-US&quot;,
+    &quot;name&quot;: &quot;英语&quot;
+  }
+]</code></pre><p class="dev-finance-small">示例数据用于展示响应结构，具体记录和授权范围以实际服务返回为准。</p></section>
+<div id="genres" class="dev-release-chapter dev-resource-group dev-public-group"><div class="dev-section-kicker">REFERENCE CATEGORY</div><h3>音乐风格</h3><p>查询歌曲和专辑填写的音乐风格分类</p></div>
+<section id="ref-genres" class="dev-finance-endpoint dev-resource-endpoint dev-public-endpoint">
+<div class="dev-section-kicker">公共规范 · 音乐风格</div><h2>音乐风格字典</h2><p>查询音乐风格及其子分类，供专辑与歌曲填写风格元数据时使用。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/genres</code><span>元数据查询</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /genres
+Authorization: Bearer {accessToken}</code></pre>
+<h3>请求参数</h3><div class="dev-finance-table-scroll"><table class="dev-finance-table"><thead><tr><th>参数</th><th>位置</th><th>类型</th><th>说明</th></tr></thead><tbody><tr><td class="dev-resource-field">id</td><td>query</td><td>string</td><td>风格 ID</td></tr><tr><td class="dev-resource-field">ids</td><td>query</td><td>array[string]</td><td>多个风格 ID</td></tr><tr><td class="dev-resource-field">name</td><td>query</td><td>string</td><td>风格名称</td></tr><tr><td class="dev-resource-field">names</td><td>query</td><td>string</td><td>多个风格名称</td></tr></tbody></table></div>
+<h3>200 响应结构示例</h3><pre class="dev-finance-example"><code>{
+  &quot;total&quot;: 0,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;children&quot;: [
+        &quot;string&quot;
+      ]
+    }
+  ]
+}</code></pre><p class="dev-finance-small">示例数据用于展示响应结构，具体记录和授权范围以实际服务返回为准。</p></section>
+<div id="roles" class="dev-release-chapter dev-resource-group dev-public-group"><div class="dev-section-kicker">REFERENCE CATEGORY</div><h3>贡献者角色</h3><p>查询艺人和词曲等参与人员的角色信息</p></div>
+<section id="ref-roles" class="dev-finance-endpoint dev-resource-endpoint dev-public-endpoint">
+<div class="dev-section-kicker">公共规范 · 贡献者角色</div><h2>艺人及贡献者角色</h2><p>查询参与角色的代码、名称与类型，用于歌曲艺人及作词、作曲等人员的角色映射。</p><div class="dev-endpoints"><div><b class="get">GET</b><code>/roles</code><span>元数据查询</span></div></div>
+<h3>请求示例</h3><pre class="dev-finance-request"><code>GET /roles
+Authorization: Bearer {accessToken}</code></pre>
+<h3>请求参数</h3><p>无额外 Path 或 Query 参数。</p>
+<h3>200 响应结构示例</h3><pre class="dev-finance-example"><code>{
+  &quot;total&quot;: 0,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: &quot;string&quot;,
+      &quot;name&quot;: &quot;string&quot;,
+      &quot;code&quot;: &quot;string&quot;,
+      &quot;type&quot;: 0,
+      &quot;namespace&quot;: &quot;string&quot;,
+      &quot;sort&quot;: 0,
+      &quot;tenantKey&quot;: &quot;string&quot;,
+      &quot;isDeleted&quot;: 0
+    }
+  ]
+}</code></pre><p class="dev-finance-small">示例数据用于展示响应结构，具体记录和授权范围以实际服务返回为准。</p></section>
 </article>
 </section>
 <section class="enterprise-contact-cta"><div class="container"><div class="enterprise-contact-panel reveal"><div><span class="eyebrow light">企业合作</span><h2>获取适配业务需求的企业发行方案</h2><p>结合曲库规模、业务系统与技术接入需求，评估适合的基础发行 API、扩展模块或专项集成方案。</p></div><div class="enterprise-contact-actions"><a class="btn btn-white btn-lg" href="/apply?solution=api" data-route>申请 API 接入</a></div></div></div></section>
