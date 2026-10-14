@@ -2022,3 +2022,39 @@
  [data-page="api"] .api-v2-calculator-summary .api-v2-summary-total strong {font-size:clamp(27px,8vw,37px)}
  [data-page="api"] .api-v2-recharge-plans button>b {font-size:clamp(21px,6vw,23px)}
 }
+
+/* Pricing first-fold polish: tighter reading rhythm and quicker access to plans. */
+[data-page="pricing"] .pricing-hero{padding-top:58px;padding-bottom:46px}
+[data-page="pricing"] .pricing-hero .eyebrow{margin-bottom:12px}
+[data-page="pricing"] .pricing-hero h1{font-size:clamp(42px,4vw,54px);line-height:1.13;margin-bottom:16px}
+[data-page="pricing"] .pricing-hero p{max-width:680px;margin-top:0;margin-bottom:0;font-size:15px;line-height:1.7}
+[data-page="pricing"] .pricing-platform-section{padding-top:32px}
+[data-page="pricing"] .pricing-mode-grid{gap:13px;margin-bottom:30px}
+[data-page="pricing"] .pricing-mode-choice{min-height:84px;padding:15px 18px;gap:13px}
+[data-page="pricing"] .pricing-mode-mark{width:43px;height:43px;border-radius:12px}
+[data-page="pricing"] .pricing-mode-choice>span:nth-child(2){gap:4px}
+[data-page="pricing"] .pricing-section-heading{gap:24px;margin-bottom:18px}
+[data-page="pricing"] .pricing-section-heading .eyebrow{margin-bottom:5px}
+[data-page="pricing"] .pricing-section-heading h2{font-size:clamp(27px,2.5vw,34px);margin-top:5px}
+[data-page="pricing"] .pricing-section-heading>p{font-size:13px;line-height:1.7}
+[data-page="pricing"] .pricing-period-switch{margin-bottom:18px}
+@media(max-width:900px){
+ [data-page="pricing"] .pricing-hero{padding-top:48px;padding-bottom:39px}
+ [data-page="pricing"] .pricing-hero h1{font-size:clamp(38px,5.3vw,49px)}
+ [data-page="pricing"] .pricing-platform-section{padding-top:28px}
+ [data-page="pricing"] .pricing-mode-grid{margin-bottom:27px}
+ [data-page="pricing"] .pricing-mode-choice{min-height:78px;padding:13px 15px}
+ [data-page="pricing"] .pricing-section-heading{gap:8px}
+}
+@media(max-width:680px){
+ [data-page="pricing"] .pricing-hero{padding-top:38px;padding-bottom:32px}
+ [data-page="pricing"] .pricing-hero h1{font-size:clamp(32px,8.4vw,42px);line-height:1.18;margin-bottom:12px}
+ [data-page="pricing"] .pricing-hero p{font-size:14px}
+ [data-page="pricing"] .pricing-platform-section{padding-top:20px}
+ [data-page="pricing"] .pricing-mode-grid{gap:9px;margin-bottom:24px}
+ [data-page="pricing"] .pricing-mode-choice{min-height:72px;padding:12px 13px}
+ [data-page="pricing"] .pricing-mode-mark{width:39px;height:39px}
+ [data-page="pricing"] .pricing-section-heading{margin-bottom:15px}
+ [data-page="pricing"] .pricing-section-heading h2{font-size:29px}
+ [data-page="pricing"] .pricing-period-switch{margin-bottom:14px}
+}
