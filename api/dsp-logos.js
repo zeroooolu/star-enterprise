@@ -11,7 +11,8 @@ module.exports = async function handler(req, res) {
     'Qobuz': { id: '380' },
     'SoundCloud': { id: '98' },
     'TIDAL': { id: '21' },
-    'Yandex': { id: '59215' }
+    'Yandex': { id: '59215' },
+    '全民K歌': { name: '全民K歌' }
   };
 
   // User-confirmed / official static brand assets that are not present in the Star preset.
@@ -41,9 +42,11 @@ module.exports = async function handler(req, res) {
     const groups = [...(root.includeList || []), ...(root.excludeList || [])];
     const items = groups.flatMap(group => group.dspList || []);
 
-    const logos = { ...staticLogos };
-    await Promise.all(Object.entries(exportTargets).map(async ([key, target]) => {
-      const item = items.find(x => target.id ? String(x.dspId) === target.id : x.name === target.name);
+    const only = (req.query && req.query.only) === 'quanminkge';
+    const selectedTargets = only ? { '全民K歌': exportTargets['全民K歌'] } : exportTargets;
+    const logos = only ? {} : { ...staticLogos };
+    await Promise.all(Object.entries(selectedTargets).map(async ([key, target]) => {
+      const item = items.find(x => target.id ? String(x.dspId) === target.id : String(x.name || '').replace(/\s+/g, '').toLowerCase() === target.name.toLowerCase());
       if (!item || !item.logoPath) return;
       const imageResp = await fetch(item.logoPath);
       if (!imageResp.ok) return;
@@ -52,10 +55,22 @@ module.exports = async function handler(req, res) {
       logos[key] = `data:${mime};base64,${buf.toString('base64')}`;
     }));
 
+    if (only) {
+      res.setHeader('content-type', 'application/json; charset=utf-8');
+      res.setHeader('cache-control', 'public, s-maxage=86400, stale-while-revalidate=604800');
+      res.status(200).json({ logo: logos['全民K歌'] || null });
+      return;
+    }
     res.setHeader('content-type', 'application/javascript; charset=utf-8');
     res.setHeader('cache-control', 'public, s-maxage=86400, stale-while-revalidate=604800');
     res.status(200).send(`window.STAR_DSP_LOGOS=${JSON.stringify(logos)};\n`);
   } catch (error) {
+    if (req.query && req.query.only === 'quanminkge') {
+      res.setHeader('content-type', 'application/json; charset=utf-8');
+      res.setHeader('cache-control', 'no-store');
+      res.status(200).json({ logo: null });
+      return;
+    }
     res.setHeader('content-type', 'application/javascript; charset=utf-8');
     res.setHeader('cache-control', 'no-store');
     res.status(200).send(`window.STAR_DSP_LOGOS=${JSON.stringify(staticLogos)};\n`);
