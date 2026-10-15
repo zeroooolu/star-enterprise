@@ -4303,7 +4303,20 @@ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entr
 function revealVisible(){document.querySelectorAll('.page.active .reveal').forEach(el=>observer.observe(el))}
 function closeMenu(){const menu=document.querySelector('.nav-links'),toggle=document.querySelector('.nav-toggle');menu?.classList.remove('open');if(toggle){toggle.setAttribute('aria-expanded','false');toggle.textContent='☰'}}
 function syncSectionNav(){document.querySelectorAll('.product-subnav,.api-subnav,.solutions-subnav').forEach(nav=>{const links=[...nav.querySelectorAll('a[href^="#"]')],targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);if(!targets.length)return;const update=()=>{const y=scrollY+150;let current=targets[0];targets.forEach(t=>{if(t.offsetTop<=y)current=t});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current.id))};update();if(!nav.dataset.spy){nav.dataset.spy='1';addEventListener('scroll',update,{passive:true})}})}
-function render(path,hash=''){if(path==='/pricing'&&hash==='#pricing-api'){history.replaceState({},'','/api#api-pricing');path='/api';hash='#api-pricing'}const page=routes[path]||'home';document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));setNav(page);setPageMeta(page);closeMenu();closeDeveloperMenu();if(page==='apply')syncApplyPlanSummary();requestAnimationFrame(()=>{revealVisible();syncSectionNav();if(hash)document.querySelector(hash)?.scrollIntoView();else scrollTo(0,0);requestAnimationFrame(updateDeveloperNavActive)})}
+function render(path,hash=''){
+  if(path==='/pricing'&&hash==='#pricing-api'){history.replaceState({},'','/api#api-pricing');path='/api';hash='#api-pricing'}
+  const page=routes[path]||'home';
+  const samePage=document.querySelector('.page.active')?.dataset.page===page;
+  document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active',el.dataset.page===page));
+  setNav(page);setPageMeta(page);closeMenu();closeDeveloperMenu();
+  if(page==='apply')syncApplyPlanSummary();
+  // A route change must reset immediately, overriding html's smooth-scroll rule.
+  // Keep smooth scrolling only for anchors within the already active page.
+  const anchor=hash?document.getElementById(hash.slice(1)):null;
+  if(anchor)anchor.scrollIntoView({behavior:samePage?'smooth':'instant',block:'start'});
+  else window.scrollTo({top:0,left:0,behavior:'instant'});
+  requestAnimationFrame(()=>{revealVisible();syncSectionNav();requestAnimationFrame(updateDeveloperNavActive)});
+}
 const pricingPlanAmounts={basic:{monthly:999,yearly:9999,monthlyQuota:1250},professional:{monthly:9999,yearly:99999,monthlyQuota:15000},enterprise:{monthly:29999,yearly:299999,monthlyQuota:50000}};
 let pricingPeriod='yearly',pricingEstimatePlan='professional';
 const rmb=n=>'¥'+Math.round(n).toLocaleString('zh-CN');
@@ -4564,6 +4577,7 @@ document.addEventListener('click',async event=>{
 });
 
 setBillingPeriod('yearly');
+if('scrollRestoration' in history)history.scrollRestoration='manual';
 render(location.pathname,location.hash);
 </script>
 <script src="/assets/kjson-reference.js"></script>
