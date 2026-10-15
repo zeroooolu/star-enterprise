@@ -650,6 +650,62 @@
 [data-page="developers"] .dev-customer-endpoint .dev-endpoints>div{flex-wrap:wrap;min-width:0}
 [data-page="developers"] .dev-customer-endpoint .dev-endpoints code{overflow-wrap:anywhere;word-break:break-word}
 [data-page="developers"] .dev-customer-endpoint .dev-finance-table td{font-size:12px}
+
+/* API-only pricing: explicit fee types, prominent minimum six-month cost and separate usage estimate */
+.api-v2 .api-v2-billing-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;overflow:visible;margin-bottom:18px;border:0;background:transparent}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card{display:flex;flex-direction:column;min-width:0;gap:8px;padding:20px;border:1px solid #e0e7f0;border-radius:16px;background:#fff}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card.required{border-color:rgba(var(--brand-blue-rgb),.25);background:linear-gradient(155deg,rgba(var(--brand-blue-rgb),.045),#fff 78%)}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card+.api-v2-fee-card{border:1px solid #e0e7f0}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card.required+.api-v2-fee-card.required{border-color:rgba(var(--brand-blue-rgb),.25)}
+.api-v2 .api-v2-fee-kind{display:block;color:var(--brand-blue)!important;font-size:11px!important;font-weight:800}
+.api-v2 .api-v2-fee-card:not(.required) .api-v2-fee-kind{color:#64748d!important}
+.api-v2 .api-v2-fee-title{font-size:12px!important;font-weight:750!important;color:#324660!important}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card strong{display:block;margin:2px 0 0;font-size:clamp(24px,2.15vw,30px);white-space:nowrap}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card strong em{font-size:12px}
+.api-v2 .api-v2-fee-explain{margin-top:auto;color:#718099!important;font-size:11px!important;line-height:1.65}
+.api-v2 .api-v2-prepaid-explainer{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 15px;margin:0 0 27px;padding:13px 18px;border:1px solid rgba(var(--brand-blue-rgb),.11);border-radius:11px;background:rgba(var(--brand-blue-rgb),.024)}
+.api-v2 .api-v2-prepaid-explainer>span{color:var(--brand-blue);font-size:11px;font-weight:800}
+.api-v2 .api-v2-prepaid-explainer>strong{color:#344766;font-size:12px;line-height:1.6}
+.api-v2 .api-v2-prepaid-explainer>small{display:block;width:100%;color:#708099;font-size:11px;line-height:1.55}
+.api-v2 .api-v2-recharge-plans button{align-items:flex-start;padding:15px 12px;gap:7px}
+.api-v2 .api-v2-recharge-plans button .api-v2-tier-name{font-size:13px;color:#324767;font-weight:800}
+.api-v2 .api-v2-recharge-plans button .api-v2-tier-monthly{color:#74869e;font-size:11px;line-height:1.5}
+.api-v2 .api-v2-recharge-plans button .api-v2-tier-pay-label{margin-top:8px;color:#667997;font-size:11px;font-weight:650}
+.api-v2 .api-v2-recharge-plans button b.api-v2-tier-total{font-size:clamp(21px,2vw,29px);letter-spacing:-.035em;line-height:1.2;font-variant-numeric:tabular-nums;color:#253c5c}
+.api-v2 .api-v2-recharge-plans button.active b.api-v2-tier-total{color:var(--brand-blue)}
+.api-v2 .api-v2-recharge-plans button .api-v2-tier-quota{display:block;width:100%;margin-top:7px;padding-top:10px;border-top:1px solid #e4ebf5;color:#5e7390;font-size:11px;font-weight:650}
+.api-v2 .api-v2-recharge-plans button .api-v2-tier-quota strong{font-size:12px;color:#2d466a}
+.api-v2 .api-v2-calculator-label small{color:#70829b;font-size:11px;font-weight:500;line-height:1.6}
+.api-v2 .api-v2-addon-bottom{justify-content:flex-end}
+.api-v2 .api-v2-selection-feedback{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:12px 0 0;padding:13px 18px;border:1px solid rgba(var(--brand-blue-rgb),.12);border-radius:11px;background:rgba(var(--brand-blue-rgb),.052);color:#344862;font-size:12px;font-weight:750}
+.api-v2 .api-v2-selection-feedback[hidden]{display:none}
+.api-v2 .api-v2-selection-feedback a{color:var(--brand-blue);font-size:12px;font-weight:800;text-decoration:none}
+.api-v2 .api-v2-selection-feedback a:hover{text-decoration:underline}
+.api-v2 .api-v2-inline-usage{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin:14px 0 0;padding:12px 15px;border-radius:11px;background:rgba(var(--brand-blue-rgb),.045)}
+.api-v2 .api-v2-inline-usage>span{font-size:11px;color:#687b94;font-weight:700}
+.api-v2 .api-v2-inline-usage>strong{font-size:17px;color:var(--brand-blue);font-variant-numeric:tabular-nums}
+.api-v2 .api-v2-inline-usage>small{margin-left:auto;color:#687b94;font-size:11px}
+.api-v2 .api-v2-mobile-result-link{display:none}
+.api-v2 .api-v2-summary-total small{display:block;max-width:32ch;font-size:11px;line-height:1.6;color:rgba(255,255,255,.72)}
+.api-v2 .api-v2-balance-result{margin-top:22px}
+.api-v2 .api-v2-balance-result h5{display:flex;flex-direction:column;gap:4px;margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.15);font-size:13px;color:#fff}
+.api-v2 .api-v2-balance-result h5 small{font-size:10px;font-weight:500;color:rgba(255,255,255,.65)}
+.api-v2 .api-v2-apply-tip{margin:9px 0 0;color:rgba(255,255,255,.72);font-size:11px;line-height:1.6;text-align:center}
+#api-cost-result{scroll-margin-top:100px}
+@media(max-width:1180px){.api-v2 .api-v2-billing-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){
+.api-v2 .api-v2-billing-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card{padding:15px}
+.api-v2 .api-v2-recharge-plans{grid-template-columns:1fr}
+.api-v2 .api-v2-recharge-plans button{padding:15px 16px}
+.api-v2 .api-v2-mobile-result-link{display:inline-flex;align-items:center;margin-top:14px;color:var(--brand-blue);font-size:12px;font-weight:800;text-decoration:none}
+.api-v2 .api-v2-inline-usage>small{margin-left:0}
+}
+@media(max-width:420px){
+.api-v2 .api-v2-billing-strip{grid-template-columns:1fr}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card strong{font-size:29px}
+.api-v2 .api-v2-prepaid-explainer{padding:13px}
+}
 </style>
 </head>
 <body>
@@ -1327,7 +1383,7 @@
 <div class="api-v2-summary-row"><span>已选扩展模块 <small data-api-addon-count>0 个</small></span><b data-api-addon-price>¥0</b></div>
 <div class="api-v2-summary-row"><span>预付套餐费 <small data-api-recharge-term>起步 · 6 个月</small></span><b data-api-recharge-price>¥5,994</b></div>
 <div class="api-v2-summary-total"><span>首期费用估算</span><strong data-api-total-price>¥15,794</strong><small>包含所选扩展模块参考费用，不包含可能产生的超额发行费。</small></div>
-<div class="api-v2-balance-result"><h5>半年额度使用测算 <small>不计入上方首期费用</small></h5><div><span>半年套餐包含</span><b data-api-included-count>7,500 次</b></div><div><span>预计使用</span><b data-api-usage-count>500 次</b></div><div><span>预计剩余</span><b data-api-remaining-count>7,000 次</b></div><div><span>预计超额发行费</span><b data-api-overage-price>¥0</b></div><p data-api-recharge-tip>套餐额度内无需另付发行费；超额费用不计入首次最低支付。</p></div>
+<div class="api-v2-balance-result"><h5>半年额度使用测算 <small>不计入上方首期费用</small></h5><div><span>半年套餐包含</span><b data-api-included-count>7,500 次</b></div><div><span>预计使用</span><b data-api-usage-count>500 次</b></div><div><span>预计剩余</span><b data-api-remaining-count>7,000 次</b></div><div><span>预计超额发行费</span><b data-api-overage-price>¥0</b></div><p data-api-recharge-tip>套餐额度内无需另付发行费；超额费用不计入首期费用估算。</p></div>
 <a class="btn btn-primary" href="/apply?solution=api" data-route data-api-submit-plan>下一步：确认方案并申请接入</a><p class="api-v2-apply-tip">申请页将生成方案摘要；填写飞书表单前需手动复制。</p>
 </aside></div>
 <p class="api-v2-billing-disclaimer reveal">测算按最低 6 个月：套餐费 = 月度价格 × 6，包含发行次数 = 每月额度 × 6。额度在周期内可跨月使用，超过包含次数的部分按 ¥1 / 次计费；超额费用不预先计入首期费用。额度到期、续购、超额结算及特殊任务以正式协议为准。</p>
@@ -4249,16 +4305,16 @@ const apiMonthlyQuotas={999:1250,9999:15000,29999:50000};
       button.setAttribute('aria-pressed',String(active));
       button.innerHTML=active?'已选入测算 <span aria-hidden="true">✓</span>':'加入方案测算 <span aria-hidden="true">+</span>';
     });
-    document.querySelectorAll('[data-api-addon-check]').forEach(input=>{input.checked=selected.has(input.dataset.apiAddonCheck)});
+    document.querySelectorAll('[data-api-addon-check]').forEach(input=>{input.checked=selected.has(input.dataset.apiAddonCheck)});const feedback=document.querySelector('[data-api-selection-feedback]');if(feedback){feedback.hidden=selected.size===0;feedback.querySelector('[data-api-selected-count]').textContent=selected.size;}
     const root=document.querySelector('[data-api-calculator]');
     if(!root)return;
     const songs=normalizeValue(root.querySelector('[data-api-songs]'),100000);
     const channels=normalizeValue(root.querySelector('[data-api-channels]'),100);
     const addonFee=selected.size*2000,usage=songs*channels;
     const planFee=rechargeTier*minimumRechargeMonths,included=apiMonthlyQuotas[rechargeTier]*minimumRechargeMonths;
-    const remaining=Math.max(0,included-usage),overage=Math.max(0,usage-included),overageFee=overage;
+    const remaining=Math.max(0,included-usage),overage=Math.max(0,usage-included),overageFee=overage;const inlineCount=root.querySelector('[data-api-inline-count]'),inlineFormula=root.querySelector('[data-api-inline-formula]');if(inlineCount)inlineCount.textContent=usage.toLocaleString('zh-CN')+' 次';if(inlineFormula)inlineFormula.textContent=songs.toLocaleString('zh-CN')+' 首 × '+channels.toLocaleString('zh-CN')+' 个渠道';
     document.querySelectorAll('[data-api-recharge]').forEach(b=>{const on=Number(b.dataset.apiRecharge)===rechargeTier;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on))});
-    document.querySelectorAll('[data-api-plan-deposit]').forEach(el=>{el.textContent='半年套餐费 '+money(Number(el.dataset.apiPlanDeposit)*minimumRechargeMonths)});
+    document.querySelectorAll('[data-api-plan-deposit]').forEach(el=>{el.textContent=money(Number(el.dataset.apiPlanDeposit)*minimumRechargeMonths)});
     root.querySelector('[data-api-addon-count]').textContent=selected.size+' 个';
     root.querySelector('[data-api-addon-price]').textContent=money(addonFee);
     root.querySelector('[data-api-recharge-term]').textContent=tierNames[rechargeTier]+' · 6 个月起充';
@@ -4268,7 +4324,7 @@ const apiMonthlyQuotas={999:1250,9999:15000,29999:50000};
     root.querySelector('[data-api-remaining-count]').textContent=remaining.toLocaleString('zh-CN')+' 次';
     root.querySelector('[data-api-overage-price]').textContent=money(overageFee);
     root.querySelector('[data-api-total-price]').textContent=money(9800+addonFee+planFee);
-    root.querySelector('[data-api-recharge-tip]').textContent=overage>0?'预计超出 '+overage.toLocaleString('zh-CN')+' 次，按 ¥1 / 次计算；超额费用另行充值或结算，未计入首次最低支付。':'套餐额度内无需另付发行费；超额费用不计入首次最低支付。';
+    root.querySelector('[data-api-recharge-tip]').textContent=overage>0?'预计超出 '+overage.toLocaleString('zh-CN')+' 次，按 ¥1 / 次计算；超额费用另行充值或结算，未计入首期费用估算。':'套餐额度内无需另付发行费；超额费用不计入首期费用估算。';
     const submit=root.querySelector('[data-api-submit-plan]');
     if(submit){
       const params=new URLSearchParams({solution:'api',plan:'1',modules:[...selected].sort().join(','),songs:String(songs),channels:String(channels),recharge:String(rechargeTier),months:String(minimumRechargeMonths)});
@@ -4334,7 +4390,7 @@ function syncApplyPlanSummary(){
     '预计剩余发行次数：'+remaining.toLocaleString('zh-CN')+' 次',
     '基础接入实施费：'+currency(9800)+'（一次性）',
     '扩展模块费用：'+currency(addonFee)+'（一次性意向测算）',
-    '首次最低预计支付：'+currency(9800+addonFee+planFee),
+    '首期费用估算（含可选模块参考费用）：'+currency(9800+addonFee+planFee),
     '预计超额发行次数：'+overage.toLocaleString('zh-CN')+' 次',
     '预计超额发行费：'+currency(overage)+'（¥1 / 首 / 渠道，另行充值或结算）',
     '备注：套餐包含次数在半年周期内可跨月使用；超额费用未计入首次最低支付。额度到期、特殊任务计费和扩展服务以正式合作方案为准。'
@@ -4352,7 +4408,7 @@ document.addEventListener('click',async event=>{
   if(!field)return;
   try{
     await navigator.clipboard.writeText(field.value);
-    if(status)status.textContent='已复制方案摘要，可粘贴到飞书表单的需求说明中。';
+    if(status)status.textContent='方案摘要已复制，请粘贴到右侧飞书表单的需求说明中。';
   }catch{
     field.focus();field.select();
     if(status)status.textContent='无法自动复制，已选中摘要，请手动复制。';
