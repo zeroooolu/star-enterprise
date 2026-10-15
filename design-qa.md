@@ -63,3 +63,42 @@ The hero workbench itself is the focused comparison region. Its menu labels, bre
 - P3: if future real enterprise catalog data becomes available, the fictional titles can be swapped without changing the layout.
 
 final result: passed
+
+---
+
+# Design QA — 定价页订阅周期切换器（2026-10-15）
+
+- Source visual truth: `/var/folders/c4/j08jzybj5xvfmh812c5w18p80000gp/T/codex-clipboard-f5b3f19a-9244-46d8-bd59-7d47e3d76f81.png` (522 × 146 px).
+- Implementation: `http://localhost:3001/pricing`; full-view capture: `design-qa-assets/pricing-toggle-yearly-full.png` (1280 × 720 px); focused capture: `design-qa-assets/pricing-toggle-yearly-focus.png` (320 × 78 px).
+- Viewport and normalization: 1280 × 720 CSS px, browser capture at 1×. The reference is an enlarged component crop, so the source and focused implementation were compared by relative proportions and state, not as pixel-identical page captures. Responsive checks used 390 × 844 and 320 × 700 CSS px.
+- State: yearly selected for the saved captures; monthly selected was also checked interactively.
+
+## Findings
+
+- No actionable P0/P1/P2 mismatch. The longer existing annual-offer label makes the implementation wider than the reference, as expected from the requirement to preserve all copy.
+- Fonts and typography: existing site font, sizes, weights, and all four labels remain unchanged and readable. The selected label uses the brand blue; the inactive label uses muted gray.
+- Spacing and layout rhythm: a subtly bordered pale-gray frame contains the two choices, and the selected choice is a rounded white raised segment. The badges stay aligned with their labels at desktop and 390 px; they stack within each choice at 320 px to prevent clipping.
+- Colors and tokens: the only blue accent is the existing brand token. Both badges use a pale tint of that token; the selected state no longer uses a solid-blue fill.
+- Image quality and assets: the source has no imagery or external assets, so no image substitution is involved.
+- Copy and content: “月付”, “3 个月起订”, “年付”, and “省约 17% · 免部署费” are unchanged. Monthly and yearly selection still update `aria-pressed` and the prices.
+
+## Comparison evidence
+
+- Full view: `design-qa-assets/pricing-toggle-yearly-full.png` shows the revised switch centered beneath the existing heading without changing card layout.
+- Focused region: the source crop and `design-qa-assets/pricing-toggle-yearly-focus.png` were opened together in one visual comparison. Both show a pale-gray frame, inactive gray option, white elevated selected option, and blue tinted badges. The width difference follows the longer preserved annual badge text.
+
+## Interaction and runtime checks
+
+- Monthly and yearly buttons were both clicked; selected state and prices updated in each direction.
+- Captures at 390 px and 320 px showed no cut-off switch labels.
+- Browser console errors: none. Brand color validation and `git diff --check` passed.
+
+## Comparison history
+
+- Pass 1: after the CSS change, the rendered yearly component was compared with the reference. No actionable P0/P1/P2 differences remained; no further visual fix was needed.
+
+## Open questions and follow-up polish
+
+- None required for this scoped style change.
+
+final result: passed
