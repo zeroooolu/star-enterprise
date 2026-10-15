@@ -4295,9 +4295,7 @@ const apiMonthlyQuotas={999:1250,9999:15000,29999:50000};
   const money=n=>'¥'+n.toLocaleString('zh-CN',{maximumFractionDigits:2,minimumFractionDigits:0});
   function normalizeValue(el,max){
     const parsed=Number(el?.value);
-    const value=Number.isFinite(parsed)?Math.max(0,Math.min(max,Math.trunc(parsed))):0;
-    if(el&&String(value)!==el.value)el.value=String(value);
-    return value;
+    return Number.isFinite(parsed)?Math.max(0,Math.min(max,Math.trunc(parsed))):0;
   }
   function refresh(){
     document.querySelectorAll('[data-api-addon]').forEach(button=>{
@@ -4341,6 +4339,12 @@ const apiMonthlyQuotas={999:1250,9999:15000,29999:50000};
     refresh();
   });
   document.addEventListener('change',event=>{
+    if(event.target.matches('[data-api-songs],[data-api-channels]')){
+      const max=event.target.matches('[data-api-songs]')?100000:100;
+      event.target.value=String(normalizeValue(event.target,max));
+      refresh();
+      return;
+    }
     if(event.target.matches('[data-api-addon-check]')){
       const id=event.target.dataset.apiAddonCheck;
       if(!Object.hasOwn(moduleLabels,id))return;
