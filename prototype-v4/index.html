@@ -657,9 +657,9 @@
 .api-v2 .api-v2-billing-strip>.api-v2-fee-card+.api-v2-fee-card{border:1px solid #e0e7f0}
 .api-v2 .api-v2-billing-strip>.api-v2-fee-card.required,.api-v2 .api-v2-billing-strip>.api-v2-fee-card.required+.api-v2-fee-card.required{border-color:rgba(var(--brand-blue-rgb),.22);background:linear-gradient(160deg,rgba(var(--brand-blue-rgb),.032),#fff 68%)}
 .api-v2 .api-v2-fee-head{display:flex;align-items:center;min-width:0;gap:9px}
-.api-v2 .api-v2-fee-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:31px;height:31px;border-radius:9px;background:rgba(var(--brand-blue-rgb),.075);color:var(--brand-blue)}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card .api-v2-fee-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:31px;height:31px;border-radius:9px;background:rgba(var(--brand-blue-rgb),.075);color:var(--brand-blue)}
 .api-v2 .api-v2-fee-icon svg{display:block;width:18px;height:18px}
-.api-v2 .api-v2-fee-card:not(.required) .api-v2-fee-icon{background:rgba(var(--brand-blue-rgb),.042);color:#647896}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card:not(.required) .api-v2-fee-icon{background:rgba(var(--brand-blue-rgb),.042);color:#647896}
 .api-v2 .api-v2-fee-title{min-width:0;font-size:12px!important;font-weight:800!important;line-height:1.5;color:#2c3d57!important;white-space:nowrap}
 .api-v2 .api-v2-fee-kind{display:inline-flex;align-items:center;justify-content:center;flex:none;margin-left:auto;padding:4px 7px;border-radius:6px;background:rgba(var(--brand-blue-rgb),.07);color:var(--brand-blue)!important;font-size:10px!important;font-weight:700!important;letter-spacing:0;white-space:nowrap}
 .api-v2 .api-v2-fee-card:not(.required) .api-v2-fee-kind{background:rgba(var(--brand-blue-rgb),.034);color:#6f7e93!important}
@@ -827,6 +827,9 @@
   .api-v2 .api-v2-options{gap:2px 5px}
   .api-v2 .api-v2-opt{font-size:11px}
 }
+
+/* Keep all fee-overview text readable on narrow phones. */
+@media(max-width:600px){.api-v2 .api-v2-billing-strip{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
