@@ -723,8 +723,9 @@
 .api-v2 .api-v2-half-year-label{background:transparent;border:0;padding:0;color:#70829b!important;font-weight:650}
 .api-v2 .api-v2-recharge-plans{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(var(--brand-blue-rgb),.1);border-bottom:1px solid rgba(var(--brand-blue-rgb),.1)}
 .api-v2 .api-v2-recharge-plans button{
-  display:flex;align-items:center;gap:13px;min-width:0;min-height:81px;
-  padding:12px 14px;background:transparent;border:0;border-bottom:1px solid rgba(var(--brand-blue-rgb),.09);
+  display:grid;grid-template-columns:18px minmax(0,1fr) max-content;
+  align-items:center;column-gap:12px;row-gap:0;min-width:0;width:100%;min-height:86px;
+  padding:13px 15px;background:transparent;border:0;border-bottom:1px solid rgba(var(--brand-blue-rgb),.09);
   border-radius:0;box-shadow:none;text-align:left;color:#2d3d59;transition:background .18s;
 }
 .api-v2 .api-v2-recharge-plans button:last-child{border-bottom:0}
@@ -740,7 +741,7 @@
 .api-v2 .api-v2-recharge-plans button .api-v2-tier-name{font-size:13px;font-weight:800;color:#2b3e5c}
 .api-v2 .api-v2-recharge-plans button .api-v2-tier-monthly{font-size:11px;line-height:1.5;color:#7c899d}
 .api-v2 .api-v2-recharge-plans button .api-v2-tier-quota{width:auto;display:block;margin:0;padding:0;border:0;color:#5f7190;font-size:11px;font-weight:600}
-.api-v2 .api-v2-tier-payment{display:flex;flex:none;min-width:112px;align-items:flex-end;flex-direction:column;gap:4px;text-align:right}
+.api-v2 .api-v2-tier-payment{display:flex;min-width:0;align-items:flex-end;flex-direction:column;gap:4px;text-align:right}
 .api-v2 .api-v2-tier-payment small{font-size:11px;color:#8b98ab}
 .api-v2 .api-v2-recharge-plans button b.api-v2-tier-total{font-size:20px;font-weight:850;color:#283954;line-height:1.25;letter-spacing:-.025em}
 .api-v2 .api-v2-recharge-plans button.active b.api-v2-tier-total{color:var(--brand-blue)}
@@ -798,16 +799,16 @@
   .api-v2 .api-v2-calculator-summary{border-left:0;border-top:1px solid rgba(var(--brand-blue-rgb),.12)}
   .api-v2 .api-v2-calculator-main{padding:25px 22px}
   .api-v2 .api-v2-recharge-plans{display:flex;flex-direction:column}
-  .api-v2 .api-v2-recharge-plans button{padding:13px 11px}
-  .api-v2 .api-v2-tier-payment{min-width:108px}
+  .api-v2 .api-v2-recharge-plans button{grid-template-columns:17px minmax(0,1fr) max-content;column-gap:10px;padding:13px 11px}
+  .api-v2 .api-v2-tier-payment{min-width:0}
   .api-v2 .api-v2-recharge-plans button b.api-v2-tier-total{font-size:19px}
   .api-v2 .api-v2-options{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:420px){
-  .api-v2 .api-v2-recharge-plans button{gap:8px}
+  .api-v2 .api-v2-recharge-plans button{grid-template-columns:15px minmax(0,1fr) max-content;column-gap:8px;padding:12px 8px}
   .api-v2 .api-v2-tier-radio{width:15px;height:15px}
   .api-v2 .api-v2-recharge-plans button.active .api-v2-tier-radio{border-width:4px}
-  .api-v2 .api-v2-tier-payment{min-width:100px}
+  .api-v2 .api-v2-tier-payment{min-width:0}
   .api-v2 .api-v2-recharge-plans button b.api-v2-tier-total{font-size:17px}
   .api-v2 .api-v2-calculator-main{padding:23px 16px}
   .api-v2 .api-v2-calculator-summary{padding:24px 17px}
