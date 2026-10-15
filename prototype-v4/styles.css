@@ -2061,3 +2061,28 @@
  [data-page="pricing"] .pricing-section-heading h2{font-size:29px}
  [data-page="pricing"] .pricing-period-switch{margin-bottom:14px}
 }
+
+/* Branded platform billing: monthly minimum term and annual deployment-fee waiver. */
+[data-page="pricing"] .pricing-period-benefit{display:flex;align-items:flex-start;gap:11px;margin:-6px 1px 19px;padding:0 2px}
+[data-page="pricing"] .pricing-period-benefit-icon{display:grid;flex:none;place-items:center;width:23px;height:23px;border-radius:50%;background:rgba(var(--brand-blue-rgb),.08);color:var(--brand-blue);font-size:12px;font-weight:900}
+[data-page="pricing"] .pricing-period-benefit>div{min-width:0}
+[data-page="pricing"] .pricing-period-benefit strong{display:block;color:#283b59;font-size:13px;line-height:1.5}
+[data-page="pricing"] .pricing-period-benefit small{display:block;margin-top:3px;color:#748399;font-size:11px;line-height:1.65}
+[data-page="pricing"] .pricing-period-benefit.is-monthly .pricing-period-benefit-icon{background:#eef2f7;color:#5c6c83}
+[data-page="pricing"] .pricing-plan-period-perk{display:block;margin-top:5px;color:var(--brand-blue);font-size:11px;font-weight:750;line-height:1.45}
+[data-page="pricing"] .pricing-card-v3-fees b s,[data-page="pricing"] .pricing-estimator-result b s,[data-page="pricing"] .pricing-cost-items strong s{color:#94a0b2;font-size:.65em;font-weight:600;text-decoration:line-through;text-decoration-thickness:1px}
+[data-page="pricing"] .pricing-card-v3-fees b em,[data-page="pricing"] .pricing-estimator-result b em,[data-page="pricing"] .pricing-cost-items strong em{color:var(--brand-blue);font-style:normal;font-weight:850}
+[data-page="pricing"] .pricing-cost-items strong em{font-size:25px}
+[data-page="pricing"] .pricing-estimator-result>span>span{min-width:0;flex:1}
+[data-page="pricing"] .pricing-estimator-result>span>b{flex:none;text-align:right}
+@media(max-width:680px){
+ [data-page="pricing"] .pricing-period-benefit{margin:0 0 18px}
+ [data-page="pricing"] .pricing-period-switch{margin-bottom:10px}
+ [data-page="pricing"] .pricing-period-benefit strong{font-size:12px}
+ [data-page="pricing"] .pricing-toggle button{min-width:0;padding:7px 9px}
+}
+@media(max-width:400px){
+ [data-page="pricing"] .pricing-toggle{gap:2px}
+ [data-page="pricing"] .pricing-toggle button{gap:4px;padding:7px 6px;font-size:11px}
+ [data-page="pricing"] .pricing-toggle em{padding:3px 5px;font-size:9px}
+}
