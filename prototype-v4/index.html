@@ -706,6 +706,115 @@
 .api-v2 .api-v2-billing-strip>.api-v2-fee-card strong{font-size:29px}
 .api-v2 .api-v2-prepaid-explainer{padding:13px}
 }
+
+/* API calculator — flattened layout with one summary surface (2026-10-15). */
+.api-v2 .api-v2-calculator{
+  grid-template-columns:minmax(0,1.36fr) minmax(285px,.82fr);
+  border:1px solid rgba(var(--brand-blue-rgb),.13);
+  border-radius:18px;background:#fff;
+  box-shadow:0 10px 30px rgba(27,62,109,.045);
+}
+.api-v2 .api-v2-calculator-main{min-width:0;padding:31px 34px 34px}
+.api-v2 .api-v2-calculator-main h3{margin:9px 0 5px;font-size:26px}
+.api-v2 .api-v2-calculator-main>p{margin:0 0 28px;color:#708096}
+.api-v2 .api-v2-recharge-panel{margin:0 0 27px;padding:0;background:transparent;border:0;border-radius:0}
+.api-v2 .api-v2-recharge-heading{margin-bottom:13px}
+.api-v2 .api-v2-recharge-panel>p{margin:11px 0 0;color:#78879c;font-size:11px;line-height:1.65}
+.api-v2 .api-v2-half-year-label{background:transparent;border:0;padding:0;color:#70829b!important;font-weight:650}
+.api-v2 .api-v2-recharge-plans{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(var(--brand-blue-rgb),.1);border-bottom:1px solid rgba(var(--brand-blue-rgb),.1)}
+.api-v2 .api-v2-recharge-plans button{
+  display:flex;align-items:center;gap:13px;min-width:0;min-height:81px;
+  padding:12px 14px;background:transparent;border:0;border-bottom:1px solid rgba(var(--brand-blue-rgb),.09);
+  border-radius:0;box-shadow:none;text-align:left;color:#2d3d59;transition:background .18s;
+}
+.api-v2 .api-v2-recharge-plans button:last-child{border-bottom:0}
+.api-v2 .api-v2-recharge-plans button:hover{background:rgba(var(--brand-blue-rgb),.032)}
+.api-v2 .api-v2-recharge-plans button.active{
+  position:relative;background:rgba(var(--brand-blue-rgb),.048);
+  border:1px solid rgba(var(--brand-blue-rgb),.34);border-radius:10px;
+  margin:0 -1px;box-shadow:none;
+}
+.api-v2 .api-v2-recharge-plans button.active+.api-v2-recharge-plans button{border-top:0}
+.api-v2 .api-v2-tier-radio{width:17px;height:17px;flex:none;align-self:center;border:1.7px solid #aab5c4;border-radius:50%;background:#fff}
+.api-v2 .api-v2-recharge-plans button.active .api-v2-tier-radio{border:5px solid var(--brand-blue)}
+.api-v2 .api-v2-tier-meta{display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
+.api-v2 .api-v2-recharge-plans button .api-v2-tier-name{font-size:13px;font-weight:800;color:#2b3e5c}
+.api-v2 .api-v2-recharge-plans button .api-v2-tier-monthly{font-size:11px;line-height:1.5;color:#7c899d}
+.api-v2 .api-v2-recharge-plans button .api-v2-tier-quota{width:auto;display:block;margin:0;padding:0;border:0;color:#5f7190;font-size:11px;font-weight:600}
+.api-v2 .api-v2-tier-payment{display:flex;flex:none;min-width:112px;align-items:flex-end;flex-direction:column;gap:4px;text-align:right}
+.api-v2 .api-v2-tier-payment small{font-size:11px;color:#8b98ab}
+.api-v2 .api-v2-recharge-plans button b.api-v2-tier-total{font-size:20px;font-weight:850;color:#283954;line-height:1.25;letter-spacing:-.025em}
+.api-v2 .api-v2-recharge-plans button.active b.api-v2-tier-total{color:var(--brand-blue)}
+.api-v2 .api-v2-calculator-label{margin-bottom:10px;font-size:13px}
+.api-v2 .api-v2-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px}
+.api-v2 .api-v2-opt{
+  display:flex;align-items:center;min-height:34px;gap:9px;padding:6px 2px;
+  border:0;border-radius:0;background:transparent;box-shadow:none;
+  color:#40516a;font-size:12px;transition:color .15s;
+}
+.api-v2 .api-v2-opt:hover{background:transparent;color:var(--brand-blue)}
+.api-v2 .api-v2-opt:has(input:checked){background:transparent;border:0;color:var(--brand-blue);font-weight:750}
+.api-v2 .api-v2-opt input{width:16px;height:16px;flex:none;margin:0;cursor:pointer}
+.api-v2 .api-v2-usage-label{margin-top:26px}
+.api-v2 .api-v2-usage-fields{margin-top:0}
+.api-v2 .api-v2-usage-fields input{min-height:42px;padding:10px 12px}
+.api-v2 .api-v2-inline-usage{
+  display:flex;align-items:baseline;gap:7px;flex-wrap:wrap;
+  margin:11px 0 0;padding:0;background:transparent;border:0;border-radius:0;
+  color:#667991;font-size:12px;line-height:1.7;
+}
+.api-v2 .api-v2-inline-usage>strong{font-size:15px}
+.api-v2 .api-v2-inline-usage>small{margin-left:3px;color:#8b98ab}
+.api-v2 .api-v2-calculator-summary{
+  display:flex;flex-direction:column;min-width:0;padding:33px 28px;
+  background:#f6f8fc;color:#263850;border-left:1px solid rgba(var(--brand-blue-rgb),.10);
+}
+.api-v2 .api-v2-summary-eyebrow{display:block;margin:0 0 12px;color:#687b94;font-size:11px;letter-spacing:.06em;font-weight:800}
+.api-v2 .api-v2-summary-total{display:flex;flex-direction:column;gap:6px;padding:0 0 21px;margin:0;border-top:0;border-bottom:1px solid rgba(var(--brand-blue-rgb),.13)}
+.api-v2 .api-v2-summary-total>span{color:#5e718f;font-size:12px;font-weight:700}
+.api-v2 .api-v2-summary-total>strong{color:var(--brand-blue);font-size:clamp(29px,3vw,36px);font-variant-numeric:tabular-nums;letter-spacing:-.05em}
+.api-v2 .api-v2-summary-total>small{max-width:none;color:#8391a5;font-size:11px;line-height:1.6}
+.api-v2 .api-v2-summary-breakdown{padding:21px 0 19px;border-bottom:1px solid rgba(var(--brand-blue-rgb),.13)}
+.api-v2 .api-v2-summary-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 13px;color:#62738c;font-size:12px}
+.api-v2 .api-v2-summary-row:last-child{margin-bottom:0}
+.api-v2 .api-v2-summary-row>span{min-width:0}
+.api-v2 .api-v2-summary-row b{flex:none;color:#344961;font-size:13px;font-weight:750;white-space:nowrap}
+.api-v2 .api-v2-summary-row small{color:#8a99ac;font-size:10px}
+.api-v2 .api-v2-balance-result{display:block;margin:0 0 23px;padding:20px 0 0;border:0;border-radius:0;background:transparent}
+.api-v2 .api-v2-balance-result h5{display:block;margin:0 0 17px;padding:0;border:0;color:#253b56;font-size:13px;font-weight:800}
+.api-v2 .api-v2-balance-result>div{display:flex;justify-content:space-between;gap:9px;margin:0 0 12px;color:#677990;font-size:12px}
+.api-v2 .api-v2-balance-result>div b{color:#344861;font-size:13px;font-weight:760}
+.api-v2 .api-v2-balance-result>div.api-v2-summary-overage{margin-top:12px;padding-top:13px;border-top:1px solid rgba(var(--brand-blue-rgb),.10);color:#2d405d}
+.api-v2 .api-v2-balance-result>div.api-v2-summary-overage b{color:var(--brand-blue);font-size:15px}
+.api-v2 .api-v2-balance-result>p{margin:12px 0 0;font-size:11px;line-height:1.6;color:#8695a8}
+.api-v2 .api-v2-calculator-summary .btn{min-height:44px;margin-top:auto}
+.api-v2 .api-v2-apply-tip{color:#8695a8;text-align:center;font-size:11px;margin-top:9px}
+@media(max-width:980px){
+  .api-v2 .api-v2-calculator{grid-template-columns:minmax(0,1.12fr) minmax(265px,.88fr)}
+  .api-v2 .api-v2-calculator-main{padding:27px 23px}
+  .api-v2 .api-v2-calculator-summary{padding:27px 21px}
+}
+@media(max-width:720px){
+  .api-v2 .api-v2-calculator{grid-template-columns:1fr}
+  .api-v2 .api-v2-calculator-summary{border-left:0;border-top:1px solid rgba(var(--brand-blue-rgb),.12)}
+  .api-v2 .api-v2-calculator-main{padding:25px 22px}
+  .api-v2 .api-v2-recharge-plans{display:flex;flex-direction:column}
+  .api-v2 .api-v2-recharge-plans button{padding:13px 11px}
+  .api-v2 .api-v2-tier-payment{min-width:108px}
+  .api-v2 .api-v2-recharge-plans button b.api-v2-tier-total{font-size:19px}
+  .api-v2 .api-v2-options{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:420px){
+  .api-v2 .api-v2-recharge-plans button{gap:8px}
+  .api-v2 .api-v2-tier-radio{width:15px;height:15px}
+  .api-v2 .api-v2-recharge-plans button.active .api-v2-tier-radio{border-width:4px}
+  .api-v2 .api-v2-tier-payment{min-width:100px}
+  .api-v2 .api-v2-recharge-plans button b.api-v2-tier-total{font-size:17px}
+  .api-v2 .api-v2-calculator-main{padding:23px 16px}
+  .api-v2 .api-v2-calculator-summary{padding:24px 17px}
+  .api-v2 .api-v2-options{gap:2px 5px}
+  .api-v2 .api-v2-opt{font-size:11px}
+}
 </style>
 </head>
 <body>
@@ -1361,29 +1470,33 @@
 <div class="api-v2-recharge-panel">
     <div class="api-v2-recharge-heading"><strong>第一步：选择预付发行次数套餐</strong><span class="api-v2-half-year-label">按最低 6 个月展示</span></div>
     <div class="api-v2-recharge-plans" role="group" aria-label="API 预付套餐档位">
-<button type="button" class="active" aria-pressed="true" data-api-recharge="999"><span class="api-v2-tier-name">起步额度</span><small class="api-v2-tier-monthly">¥999 / 月 · 月度计价标准</small><span class="api-v2-tier-pay-label">半年套餐费</span><b class="api-v2-tier-total" data-api-plan-deposit="999">¥5,994</b><span class="api-v2-tier-quota">半年包含 <strong>7,500 次</strong></span></button>
-<button type="button" aria-pressed="false" data-api-recharge="9999"><span class="api-v2-tier-name">成长额度</span><small class="api-v2-tier-monthly">¥9,999 / 月 · 月度计价标准</small><span class="api-v2-tier-pay-label">半年套餐费</span><b class="api-v2-tier-total" data-api-plan-deposit="9999">¥59,994</b><span class="api-v2-tier-quota">半年包含 <strong>90,000 次</strong></span></button>
-<button type="button" aria-pressed="false" data-api-recharge="29999"><span class="api-v2-tier-name">规模额度</span><small class="api-v2-tier-monthly">¥29,999 / 月 · 月度计价标准</small><span class="api-v2-tier-pay-label">半年套餐费</span><b class="api-v2-tier-total" data-api-plan-deposit="29999">¥179,994</b><span class="api-v2-tier-quota">半年包含 <strong>300,000 次</strong></span></button>
+<button type="button" class="active" aria-pressed="true" data-api-recharge="999"><span class="api-v2-tier-radio" aria-hidden="true"></span><span class="api-v2-tier-meta"><strong class="api-v2-tier-name">起步额度</strong><small class="api-v2-tier-monthly">¥999 / 月 · 月度标准价</small><small class="api-v2-tier-quota">半年包含 7,500 次</small></span><span class="api-v2-tier-payment"><small>半年套餐费</small><b class="api-v2-tier-total" data-api-plan-deposit="999">¥5,994</b></span></button>
+<button type="button" aria-pressed="false" data-api-recharge="9999"><span class="api-v2-tier-radio" aria-hidden="true"></span><span class="api-v2-tier-meta"><strong class="api-v2-tier-name">成长额度</strong><small class="api-v2-tier-monthly">¥9,999 / 月 · 月度标准价</small><small class="api-v2-tier-quota">半年包含 90,000 次</small></span><span class="api-v2-tier-payment"><small>半年套餐费</small><b class="api-v2-tier-total" data-api-plan-deposit="9999">¥59,994</b></span></button>
+<button type="button" aria-pressed="false" data-api-recharge="29999"><span class="api-v2-tier-radio" aria-hidden="true"></span><span class="api-v2-tier-meta"><strong class="api-v2-tier-name">规模额度</strong><small class="api-v2-tier-monthly">¥29,999 / 月 · 月度标准价</small><small class="api-v2-tier-quota">半年包含 300,000 次</small></span><span class="api-v2-tier-payment"><small>半年套餐费</small><b class="api-v2-tier-total" data-api-plan-deposit="29999">¥179,994</b></span></button>
 </div>
     <p>首期按照月度标准价 × 6 个月计算；包含发行次数在这 6 个月内共用、可跨月使用。此处不是现金余额充值。</p>
   </div>
   <div class="api-v2-calculator-label">第二步：选配扩展 API 模块（可多选）<small> · ¥2,000 / 模块，一次性参考价</small></div>
-<div class="api-v2-options"><label class="api-v2-opt"><input type="checkbox" data-api-addon-check="asset"><span>资产管理 API</span><b>+ ¥2,000</b></label>
-<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="artist"><span>艺人与厂牌 API</span><b>+ ¥2,000</b></label>
-<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="analytics"><span>发行数据 API</span><b>+ ¥2,000</b></label>
-<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="royalty"><span>版税报表 API</span><b>+ ¥2,000</b></label>
-<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="settlement"><span>分账管理 API</span><b>+ ¥2,000</b></label>
-<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="customer"><span>客户管理 API</span><b>+ ¥2,000</b></label></div>
+<div class="api-v2-options" role="group" aria-label="扩展 API 模块">
+<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="asset"><span>资产管理 API</span></label>
+<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="artist"><span>艺人与厂牌 API</span></label>
+<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="analytics"><span>发行数据 API</span></label>
+<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="royalty"><span>版税报表 API</span></label>
+<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="settlement"><span>分账管理 API</span></label>
+<label class="api-v2-opt"><input type="checkbox" data-api-addon-check="customer"><span>客户管理 API</span></label>
+</div>
 <div class="api-v2-calculator-label api-v2-usage-label">第三步：估算半年内发行量</div>
-<div class="api-v2-usage-fields"><label>半年内预计发行歌曲数<input type="number" min="0" max="100000" step="1" value="100" inputmode="numeric" data-api-songs></label><span aria-hidden="true">×</span><label>平均目标渠道数<input type="number" min="0" max="100" step="1" value="5" inputmode="numeric" data-api-channels></label></div><div class="api-v2-inline-usage" aria-live="polite"><span>预计发行次数</span><strong data-api-inline-count>500 次</strong><small data-api-inline-formula>100 首 × 5 个渠道</small></div><a class="api-v2-mobile-result-link" href="#api-cost-result">查看首期费用与额度结果 ↓</a>
+<div class="api-v2-usage-fields"><label>半年内预计发行歌曲数<input type="number" min="0" max="100000" step="1" value="100" inputmode="numeric" data-api-songs></label><span aria-hidden="true">×</span><label>平均目标渠道数<input type="number" min="0" max="100" step="1" value="5" inputmode="numeric" data-api-channels></label></div><p class="api-v2-inline-usage" aria-live="polite"><span>预计使用</span> <strong data-api-inline-count>500 次</strong><small data-api-inline-formula>100 首 × 5 个渠道</small></p><a class="api-v2-mobile-result-link" href="#api-cost-result">查看首期费用与额度结果 ↓</a>
 </div>
 <aside class="api-v2-calculator-summary" id="api-cost-result" aria-live="polite" aria-atomic="true">
-<span class="api-v2-summary-eyebrow">方案估算 · 非正式报价</span><h4>首期费用估算</h4>
+<span class="api-v2-summary-eyebrow">费用摘要 · 非正式报价</span>
+<div class="api-v2-summary-total"><span>首期费用估算</span><strong data-api-total-price>¥15,794</strong><small>包含所选扩展模块参考费用，超额发行费另计。</small></div>
+<div class="api-v2-summary-breakdown" aria-label="首期费用构成">
 <div class="api-v2-summary-row"><span>基础接入实施费</span><b>¥9,800</b></div>
-<div class="api-v2-summary-row"><span>已选扩展模块 <small data-api-addon-count>0 个</small></span><b data-api-addon-price>¥0</b></div>
 <div class="api-v2-summary-row"><span>预付套餐费 <small data-api-recharge-term>起步 · 6 个月</small></span><b data-api-recharge-price>¥5,994</b></div>
-<div class="api-v2-summary-total"><span>首期费用估算</span><strong data-api-total-price>¥15,794</strong><small>包含所选扩展模块参考费用，不包含可能产生的超额发行费。</small></div>
-<div class="api-v2-balance-result"><h5>半年额度使用测算 <small>不计入上方首期费用</small></h5><div><span>半年套餐包含</span><b data-api-included-count>7,500 次</b></div><div><span>预计使用</span><b data-api-usage-count>500 次</b></div><div><span>预计剩余</span><b data-api-remaining-count>7,000 次</b></div><div><span>预计超额发行费</span><b data-api-overage-price>¥0</b></div><p data-api-recharge-tip>套餐额度内无需另付发行费；超额费用不计入首期费用估算。</p></div>
+<div class="api-v2-summary-row"><span>扩展 API 模块 <small data-api-addon-count>0 个</small></span><b data-api-addon-price>¥0</b></div>
+</div>
+<div class="api-v2-balance-result"><h5>发行额度测算</h5><div><span>半年套餐包含</span><b data-api-included-count>7,500 次</b></div><div><span>预计使用</span><b data-api-usage-count>500 次</b></div><div><span>预计剩余</span><b data-api-remaining-count>7,000 次</b></div><div class="api-v2-summary-overage"><span>预计超额发行费</span><b data-api-overage-price>¥0</b></div><p data-api-recharge-tip>套餐额度内无需另付发行费；超额费用不计入首期费用估算。</p></div>
 <a class="btn btn-primary" href="/apply?solution=api" data-route data-api-submit-plan>下一步：确认方案并申请接入</a><p class="api-v2-apply-tip">申请页将生成方案摘要；填写飞书表单前需手动复制。</p>
 </aside></div>
 <p class="api-v2-billing-disclaimer reveal">测算按最低 6 个月：套餐费 = 月度价格 × 6，包含发行次数 = 每月额度 × 6。额度在周期内可跨月使用，超过包含次数的部分按 ¥1 / 次计费；超额费用不预先计入首期费用。额度到期、续购、超额结算及特殊任务以正式协议为准。</p>
