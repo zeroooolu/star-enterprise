@@ -651,18 +651,30 @@
 [data-page="developers"] .dev-customer-endpoint .dev-endpoints code{overflow-wrap:anywhere;word-break:break-word}
 [data-page="developers"] .dev-customer-endpoint .dev-finance-table td{font-size:12px}
 
-/* API-only pricing: explicit fee types, prominent minimum six-month cost and separate usage estimate */
+/* API billing fee overview: icon + title + concise category, amount and one-line explanation */
 .api-v2 .api-v2-billing-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;overflow:visible;margin-bottom:18px;border:0;background:transparent}
-.api-v2 .api-v2-billing-strip>.api-v2-fee-card{display:flex;flex-direction:column;min-width:0;gap:8px;padding:20px;border:1px solid #e0e7f0;border-radius:16px;background:#fff}
-.api-v2 .api-v2-billing-strip>.api-v2-fee-card.required{border-color:rgba(var(--brand-blue-rgb),.25);background:linear-gradient(155deg,rgba(var(--brand-blue-rgb),.045),#fff 78%)}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card{display:flex;flex-direction:column;min-width:0;min-height:156px;gap:0;padding:19px 19px 17px;border:1px solid #e0e7f0;border-radius:15px;background:#fff;transition:border-color .18s,box-shadow .18s}
 .api-v2 .api-v2-billing-strip>.api-v2-fee-card+.api-v2-fee-card{border:1px solid #e0e7f0}
-.api-v2 .api-v2-billing-strip>.api-v2-fee-card.required+.api-v2-fee-card.required{border-color:rgba(var(--brand-blue-rgb),.25)}
-.api-v2 .api-v2-fee-kind{display:block;color:var(--brand-blue)!important;font-size:11px!important;font-weight:800}
-.api-v2 .api-v2-fee-card:not(.required) .api-v2-fee-kind{color:#64748d!important}
-.api-v2 .api-v2-fee-title{font-size:12px!important;font-weight:750!important;color:#324660!important}
-.api-v2 .api-v2-billing-strip>.api-v2-fee-card strong{display:block;margin:2px 0 0;font-size:clamp(24px,2.15vw,30px);white-space:nowrap}
-.api-v2 .api-v2-billing-strip>.api-v2-fee-card strong em{font-size:12px}
-.api-v2 .api-v2-fee-explain{margin-top:auto;color:#718099!important;font-size:11px!important;line-height:1.65}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card.required,.api-v2 .api-v2-billing-strip>.api-v2-fee-card.required+.api-v2-fee-card.required{border-color:rgba(var(--brand-blue-rgb),.22);background:linear-gradient(160deg,rgba(var(--brand-blue-rgb),.032),#fff 68%)}
+.api-v2 .api-v2-fee-head{display:flex;align-items:center;min-width:0;gap:9px}
+.api-v2 .api-v2-fee-icon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:31px;height:31px;border-radius:9px;background:rgba(var(--brand-blue-rgb),.075);color:var(--brand-blue)}
+.api-v2 .api-v2-fee-icon svg{display:block;width:18px;height:18px}
+.api-v2 .api-v2-fee-card:not(.required) .api-v2-fee-icon{background:rgba(var(--brand-blue-rgb),.042);color:#647896}
+.api-v2 .api-v2-fee-title{min-width:0;font-size:12px!important;font-weight:800!important;line-height:1.5;color:#2c3d57!important;white-space:nowrap}
+.api-v2 .api-v2-fee-kind{display:inline-flex;align-items:center;justify-content:center;flex:none;margin-left:auto;padding:4px 7px;border-radius:6px;background:rgba(var(--brand-blue-rgb),.07);color:var(--brand-blue)!important;font-size:10px!important;font-weight:700!important;letter-spacing:0;white-space:nowrap}
+.api-v2 .api-v2-fee-card:not(.required) .api-v2-fee-kind{background:rgba(var(--brand-blue-rgb),.034);color:#6f7e93!important}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card strong.api-v2-fee-amount{display:block;min-width:0;margin:16px 0 0;color:var(--brand-blue);font-size:clamp(25px,2.22vw,31px);line-height:1.15;letter-spacing:-.045em;font-weight:850;white-space:nowrap;font-variant-numeric:tabular-nums}
+.api-v2 .api-v2-billing-strip>.api-v2-fee-card strong.api-v2-fee-amount em{margin-left:2px;font-size:12px;font-weight:650;letter-spacing:0;color:#7a8aa2;font-style:normal}
+.api-v2 .api-v2-fee-explain{margin-top:auto;padding-top:13px;color:#7989a0!important;font-size:11px!important;line-height:1.5}
+@media(max-width:1180px){
+ .api-v2 .api-v2-fee-head{gap:8px}
+}
+@media(max-width:600px){
+ .api-v2 .api-v2-billing-strip{grid-template-columns:1fr}
+ .api-v2 .api-v2-billing-strip>.api-v2-fee-card{min-height:133px;padding:17px}
+ .api-v2 .api-v2-billing-strip>.api-v2-fee-card strong.api-v2-fee-amount{margin-top:13px}
+ .api-v2 .api-v2-fee-explain{padding-top:10px}
+}
 .api-v2 .api-v2-prepaid-explainer{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 15px;margin:0 0 27px;padding:13px 18px;border:1px solid rgba(var(--brand-blue-rgb),.11);border-radius:11px;background:rgba(var(--brand-blue-rgb),.024)}
 .api-v2 .api-v2-prepaid-explainer>span{color:var(--brand-blue);font-size:11px;font-weight:800}
 .api-v2 .api-v2-prepaid-explainer>strong{color:#344766;font-size:12px;line-height:1.6}
@@ -1458,10 +1470,26 @@
 <section class="section api-v2-billing" id="api-pricing"><div class="container">
 <div class="section-head split reveal"><div><span class="eyebrow">API PRICING</span><h2>发行 API 如何计费？</h2></div><p>接入实施费与预付套餐是开通所需费用；超额发行费只在套餐次数用完后产生，扩展 API 模块按需选配。</p></div>
 <div class="api-v2-billing-strip reveal" aria-label="API 费用类别">
-<div class="api-v2-fee-card required"><small class="api-v2-fee-kind">开通必选 · 一次性</small><span class="api-v2-fee-title">基础接入实施费</span><strong>¥9,800</strong><span class="api-v2-fee-explain">开通基础发行 API 权限</span></div>
-<div class="api-v2-fee-card required"><small class="api-v2-fee-kind">开通必选 · 预付套餐</small><span class="api-v2-fee-title">发行次数套餐</span><strong>¥999<em> / 月起</em></strong><span class="api-v2-fee-explain">首期至少购买 6 个月</span></div>
-<div class="api-v2-fee-card"><small class="api-v2-fee-kind">达到条件才收取</small><span class="api-v2-fee-title">超额发行费</span><strong>¥1<em> / 次</em></strong><span class="api-v2-fee-explain">仅超出套餐包含次数时计费</span></div>
-<div class="api-v2-fee-card"><small class="api-v2-fee-kind">按需选配 · 参考价</small><span class="api-v2-fee-title">扩展 API 模块</span><strong>¥2,000<em> / 模块</em></strong><span class="api-v2-fee-explain">每模块一次性参考费用</span></div>
+<div class="api-v2-fee-card required">
+  <div class="api-v2-fee-head"><span class="api-v2-fee-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v6m8-6v6M6 9h12v3a6 6 0 0 1-12 0V9Zm6 9v3"/><path d="M9 15h6"/></svg></span><span class="api-v2-fee-title">基础接入实施费</span><small class="api-v2-fee-kind">一次性开通</small></div>
+  <strong class="api-v2-fee-amount">¥9,800</strong>
+  <span class="api-v2-fee-explain">开通基础发行 API 权限</span>
+</div>
+<div class="api-v2-fee-card required">
+  <div class="api-v2-fee-head"><span class="api-v2-fee-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="15" rx="2.5"/><path d="M3.5 10.5H21M6.5 6V4.5A2 2 0 0 1 8.5 2.5H18"/><circle cx="16.5" cy="15.5" r="1"/></svg></span><span class="api-v2-fee-title">发行次数套餐</span><small class="api-v2-fee-kind">预付套餐</small></div>
+  <strong class="api-v2-fee-amount">¥999<em> / 月起</em></strong>
+  <span class="api-v2-fee-explain">首期至少购买 6 个月</span>
+</div>
+<div class="api-v2-fee-card">
+  <div class="api-v2-fee-head"><span class="api-v2-fee-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17a8 8 0 0 1 16 0"/><path d="m12 14 4-5"/><circle cx="12" cy="17" r="1.5"/><path d="M6 20h12"/></svg></span><span class="api-v2-fee-title">超额发行费</span><small class="api-v2-fee-kind">超额计费</small></div>
+  <strong class="api-v2-fee-amount">¥1<em> / 次</em></strong>
+  <span class="api-v2-fee-explain">仅超出套餐额度时计费</span>
+</div>
+<div class="api-v2-fee-card">
+  <div class="api-v2-fee-head"><span class="api-v2-fee-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H4a1 1 0 0 0-1 1v5h2a2 2 0 1 1 0 4H3v7a1 1 0 0 0 1 1h6v-2a2 2 0 1 1 4 0v2h6a1 1 0 0 0 1-1v-6h-2a2 2 0 1 1 0-4h2V4a1 1 0 0 0-1-1h-7v2a2 2 0 1 1-4 0V3Z"/></svg></span><span class="api-v2-fee-title">扩展 API 模块</span><small class="api-v2-fee-kind">按需选配</small></div>
+  <strong class="api-v2-fee-amount">¥2,000<em> / 模块</em></strong>
+  <span class="api-v2-fee-explain">每模块一次性参考费用</span>
+</div>
 </div>
 <div class="api-v2-prepaid-explainer reveal"><span>计费顺序</span><strong>先使用套餐包含发行次数；用完后，超出部分按 ¥1 / 次计费。</strong><small>一首歌曲发行到一个渠道计 1 次 · 套餐次数在所购半年周期内可跨月使用</small></div>
 <div class="api-v2-calculator reveal" data-api-calculator>
