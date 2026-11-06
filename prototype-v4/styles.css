@@ -2242,6 +2242,22 @@
 }
 [data-page="home"] .home-plan-grid article>strong,[data-page="home"] .home-usage>strong{font-size:24px;line-height:1.35;white-space:normal}
 [data-page="pricing"] .pricing-card-v3-price h2{font-size:clamp(23px,2vw,29px);white-space:normal}
+
+/* Public pricing preview: keep the starting price prominent and details with sales. */
+[data-page="home"] .home-plan-grid .home-custom-price{font-size:29px}
+[data-page="pricing"] .pricing-teaser-card .pricing-card-v3-price{min-height:92px}
+[data-page="pricing"] .pricing-teaser-card .pricing-card-v3-price h2{font-size:clamp(30px,2.8vw,40px);white-space:normal}
+[data-page="pricing"] .pricing-teaser-card .pricing-card-v3-price h2 small{font-size:14px;margin-left:5px}
+[data-page="pricing"] .pricing-teaser-card .pricing-card-v3-price p{min-height:0;margin:0;color:#78879d}
+[data-page="pricing"] .pricing-teaser-card .pricing-card-v3-includes{min-height:0;margin:20px 0 30px}
+[data-page="pricing"] .pricing-teaser-card .pricing-custom-price{font-size:clamp(28px,2.5vw,36px)}
+.pricing-teaser-detail .section-head{max-width:720px}
+.pricing-teaser-points{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.pricing-teaser-points>div{padding:24px;border:1px solid #e0e7f0;border-radius:16px;background:#fff}
+.pricing-teaser-points b,.pricing-teaser-points span{display:block}
+.pricing-teaser-points b{font-size:15px;color:#202f49}
+.pricing-teaser-points span{margin-top:9px;font-size:13px;line-height:1.65;color:#707b8d}
+@media(max-width:820px){.pricing-teaser-points{grid-template-columns:1fr}}
 .pricing-contact-panel{margin-top:25px;padding:28px 32px;border:1px solid rgba(var(--brand-blue-rgb),.18);border-radius:18px;background:rgba(var(--brand-blue-rgb),.04)}
 .pricing-contact-panel h3{margin:0 0 8px;color:#19375f;font-size:22px}
 .pricing-contact-panel p{margin:0 0 18px;color:#64758d;font-size:14px;line-height:1.7}
